@@ -1,172 +1,166 @@
-
-// Pulls every Water Oak listing (Sun sales office + RE/MAX Foxfire) from MHVillage,
-// compares to last week, and keeps a running record in data/market.json.
+// Water Oak market robot — reads the Sun sales office site and RE/MAX Foxfire
+// directly in a real (headless) Chrome, then keeps a running record in data/market.json.
 import fs from 'node:fs';
+import { execSync } from 'node:child_process';
 
-const PARK = 6059;
-const SUN_KEY = '3211';
-const BASE = 'https://www.mhvillage.com';
+execSync('npm i --no-save --no-audit --no-fund playwright', { stdio: 'inherit' });
+execSync('npx playwright install --with-deps chromium', { stdio: 'inherit' });
+const { chromium } = await import('playwright');
+
+const SUN_LIST = 'https://www.suncommunities.com/florida/water-oak-country-club-estates/find-a-home';
+const FOX_BASE = 'https://foxfiremanufactured.com';
+const FOX_LIST = FOX_BASE + '/Water-Oak-Country-Club.html';
 const FILE = 'data/market.json';
-const HEAD = {
-  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
-  'Accept': 'text/html,application/json;q=0.9,*/*;q=0.8',
-  'Accept-Language': 'en-US,en;q=0.9'
-};
 const today = new Date().toISOString().slice(0, 10);
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const n = s => s == null ? null : Number(String(s).replace(/[$,\s]/g, '')) || null;
 
-async function get(url, json) {
+/* ---------- browser ---------- */
+const browser = await chromium.launch({ headless: true, args: ['--disable-blink-features=AutomationControlled'] });
+const ctx = await browser.newContext({
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+  viewport: { width: 1366, height: 900 }, locale: 'en-US', timezoneId: 'America/New_York'
+});
+// skip the tracking/ad scripts that freeze the Sun site, plus images
+await ctx.route('**/*', r => {
+  const u = r.request().url(), t = r.request().resourceType();
+  if (['image', 'media', 'font'].includes(t)) return r.abort();
+  if (/googletagmanager|google-analytics|doubleclick|facebook|hotjar|clarity\.ms|tiktok|bing\.com|segment|newrelic|optimizely|qualtrics|onetrust|cookielaw|trustarc|adobedtm|demdex|criteo|pinterest|linkedin|twitter|yahoo|taboola|outbrain|adroll|hubspot|intercom|zendesk|livechat|podium|birdeye/i.test(u)) return r.abort();
+  return r.continue();
+});
+const page = await ctx.newPage();
+
+async function open(url, wait = 4000) {
   for (let i = 0; i < 3; i++) {
     try {
-      const r = await fetch(url, { headers: HEAD });
-      if (r.ok) return json ? await r.json() : await r.text();
-      console.log('HTTP', r.status, url);
-    } catch (e) { console.log('fetch error', url, e.message); }
-    await sleep(2000 * (i + 1));
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+      await page.waitForTimeout(wait);
+      return true;
+    } catch (e) { console.log('open failed', url, e.message.split('\n')[0]); await page.waitForTimeout(3000); }
   }
-  return null;
+  return false;
+}
+async function loadAll() {
+  for (let i = 0; i < 12; i++) {
+    await page.mouse.wheel(0, 4000); await page.waitForTimeout(700);
+    const more = page.locator('button, a').filter({ hasText: /^(load|show|view) more/i }).first();
+    if (await more.count() && await more.isVisible().catch(() => false)) { await more.click().catch(() => {}); await page.waitForTimeout(2000); }
+  }
+}
+const bodyText = async () => (await page.locator('body').innerText().catch(() => '')).replace(/\u00a0/g, ' ');
+
+function parking(t) {
+  const noCart = t.replace(/golf[- ]?cart garage/gi, '');
+  if (/\bgarage\b/i.test(noCart)) return 'Garage';
+  if (/carport/i.test(t)) return 'Carport';
+  if (/golf[- ]?cart garage/i.test(t)) return 'Cart garage';
+  return 'None';
+}
+function specs(t) {
+  const bb = t.match(/(\d)\s*Bed(?:room)?s?\s*\|?\s*(\d(?:\.\d)?)\s*Bath(?:room)?s?\s*\|?\s*([\d,]{3,5})\s*sq/i);
+  return {
+    beds: bb ? n(bb[1]) : n((t.match(/(\d)\s*(?:Beds?|BR|Bedrooms?)\b/i) || [])[1]),
+    baths: bb ? n(bb[2]) : n((t.match(/(\d(?:\.\d)?)\s*(?:Baths?|BA|Bathrooms?)\b/i) || [])[1]),
+    sqft: bb ? n(bb[3]) : n((t.match(/([\d,]{3,5})\s*(?:sq\.?\s*ft|sqft|square)/i) || [])[1]),
+    year: n((t.match(/(?:Year(?:\s*Built)?|Built)\s*:?\s*((?:19|20)\d{2})/i) || [])[1]),
+    parking: parking(t),
+    pending: /sale pending|under contract|contract pending/i.test(t)
+  };
 }
 
-// 1. find every active listing key in the community
-async function listingKeys() {
-  const found = new Map(); // key -> salesCenter key (if known)
-  for (let off = 0; off < 600; off += 60) {
-    const url = `${BASE}/api/v1/listings.json?offset=${off}&limit=60&order[]=best-match:asc&radius=0&active-sold[]=2&park-key=${PARK}&active[]=1&include[]=detailsStd`;
-    const j = await get(url, true);
-    const items = j && (j.payload || j.data || []);
-    if (!Array.isArray(items) || !items.length) break;
-    for (const it of items) {
-      const key = String(it.key || it.id || '');
-      if (!key) continue;
-      const sc = it.relationships?.salesCenter?.key ?? it.salesCenter?.key ?? '';
-      const det = it.relationships?.detailsStd || it.detailsStd || {};
-      found.set(key, { sc: String(sc), garage: det.garage, raw: it });
-      if (found.size === 1) console.log('SAMPLE API ITEM:', JSON.stringify(it).slice(0, 4000));
-    }
-    if (items.length < 60) break;
-    await sleep(800);
+/* ---------- Sun sales office ---------- */
+async function scanSun() {
+  const out = [];
+  if (!await open(SUN_LIST, 8000)) return null;
+  await loadAll();
+  const links = await page.$$eval('a[href]', as => as.map(a => {
+    const card = a.closest('[class*="card"], li, article') || a.parentElement;
+    return { href: a.href, text: (card ? card.innerText : a.innerText) || '' };
+  }));
+  const seen = new Map();
+  for (const l of links) {
+    const m = l.href.match(/water-oak-country-club-estates\/(\d+)-([a-z0-9-]+?)-32159/i);
+    if (m && !seen.has(m[1])) seen.set(m[1], { ...l, id: m[1], slug: m[2] });
   }
-  if (!found.size) {
-    // fallback: read links off the community page
-    for (const path of [`/parks/${PARK}`, `/parks/${PARK}/homes`]) {
-      const html = await get(BASE + path);
-      if (!html) continue;
-      for (const m of html.matchAll(/\/homes\/(\d{6,9})/g)) if (!found.has(m[1])) found.set(m[1], {});
-    }
+  console.log('Sun listing links found:', seen.size);
+  for (const l of seen.values()) {
+    await open(l.href, 3500);
+    const t = await bodyText();
+    let address = (t.match(/Address:\s*([^,\n]+?)\s*,\s*Lady Lake/i) || [])[1];
+    if (!address) address = l.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const price = n((t.match(/Sales Price\s*\$?\s*([\d,]{4,})/i) || t.match(/\$\s?([\d,]{5,})(?!\s*\/\s*mo)/) || l.text.match(/\$\s?([\d,]{5,})/) || [])[1]);
+    const h = { source: 'Sun', address: address.trim(), price, ...specs(t + ' ' + l.text), url: l.href };
+    if (h.price) out.push(h); else console.log('Sun: no price for', h.address);
   }
-  return found;
-}
-
-const text = html => html
-  .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-  .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-  .replace(/<!--[\s\S]*?-->/g, '')
-  .replace(/<[^>]+>/g, ' ')
-  .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&#39;/g, "'")
-  .replace(/\s+/g, ' ');
-const n = s => s == null ? null : Number(String(s).replace(/,/g, ''));
-
-// 2. read one listing — API data first, page text fills gaps
-function flatten(o, p = '', out = {}) {
-  if (o && typeof o === 'object') {
-    for (const [k, v] of Object.entries(o)) flatten(v, p ? p + '.' + k : k, out);
-  } else out[p] = o;
   return out;
 }
-function pick(f, re, ok) {
-  for (const [k, v] of Object.entries(f)) if (re.test(k) && v != null && v !== '' && (!ok || ok(v))) return v;
-  return null;
-}
-const num = v => { const x = Number(String(v).replace(/[$,]/g, '')); return isNaN(x) ? null : x; };
 
-function parse(key, html, hint) {
-  const f = flatten(hint.raw || {});
-  const t = html ? text(html) : '';
-  const all = (JSON.stringify(hint.raw || {}) + ' ' + t);
-
-  // address
-  let address = pick(f, /(address|street)(1|Line1)?$|\.address$|addressLine/i, v => /^\d+\s+\S/.test(String(v)));
-  if (!address && html) {
-    const title = ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '').replace(/&amp;/g, '&');
-    const seg = title.split(/[>|]/).map(x => x.trim()).find(x => /^\d+\s+\S/.test(x));
-    address = seg || (t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?),\s*Lady Lake/i) || [])[1] || null;
+/* ---------- RE/MAX Foxfire ---------- */
+async function scanFox() {
+  const out = [];
+  if (!await open(FOX_LIST, 5000)) return null;
+  await loadAll();
+  let cards = await page.$$eval("[onclick*='HomedetailCustom'], a[href*='HomedetailCustom']", els => els.map(e => ({
+    ref: (e.getAttribute('onclick') || '') + ' ' + (e.getAttribute('href') || ''),
+    title: (e.querySelector('h5.card-title, .card-title') || {}).innerText || '',
+    price: (e.querySelector('h5.fw-bold, .fw-bold') || {}).innerText || '',
+    text: e.innerText || ''
+  })));
+  const seen = new Map();
+  for (const c of cards) { const id = (c.ref.match(/id=(\d+)/i) || [])[1]; if (id && !seen.has(id)) seen.set(id, { ...c, id }); }
+  console.log('Foxfire listing cards found:', seen.size);
+  for (const c of seen.values()) {
+    const url = `${FOX_BASE}/HomedetailCustom.asp?id=${c.id}`;
+    await open(url, 2500);
+    const t = await bodyText();
+    const address = (c.title || (t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?(?:St|Street|Dr|Drive|Ln|Lane|Ct|Court|Cir|Circle|Way|Blvd|Ave|Sq|Square|Trl|Pl|Rd|Hl|Hill))\b/i) || [])[1] || '').trim();
+    const price = n((c.price.match(/[\d,]{4,}/) || t.match(/\$\s?([\d,]{5,})/) || [])[0]?.replace(/^\$/, ''));
+    const h = { source: 'Foxfire', address, price, ...specs(t + ' ' + c.text), url };
+    if (h.address && h.price) out.push(h); else console.log('Foxfire: skipped id', c.id);
   }
-  if (address) address = String(address).replace(/,\s*Lady Lake.*$/i, '').trim();
-
-  // price
-  let price = num(pick(f, /(^|\.)(price|listPrice|askingPrice|salePrice|listingPrice)$/i, v => num(v) > 5000 && num(v) < 2000000));
-  if (!price && html) price = n((html.match(/price-widget[^>]*>(?:<!---->)?\s*\$?([\d,]+)/) || t.match(/Buy:\s*\$\s*([\d,]+)/) || [])[1]);
-
-  // specs
-  let beds = num(pick(f, /bed/i, v => num(v) >= 1 && num(v) <= 6));
-  let baths = num(pick(f, /bath/i, v => num(v) >= 1 && num(v) <= 5));
-  let sqft = num(pick(f, /sq|square/i, v => num(v) >= 300 && num(v) <= 4000));
-  let year = num(pick(f, /year/i, v => num(v) >= 1950 && num(v) <= 2030));
-  const bb = t.match(/\b(\d)\s*\/\s*(\d(?:\.\d)?)\s+[\d,]{3,5}\s*Sq\.?\s*Ft/i);
-  if (!beds && bb) beds = n(bb[1]);
-  if (!baths && bb) baths = n(bb[2]);
-  if (!sqft) sqft = n((t.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
-  if (!year) year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i) || [])[1]);
-  const lotRent = num(pick(f, /lot.?rent|siteRent/i, v => num(v) > 100 && num(v) < 3000)) || n((t.match(/Lot Rent:\s*\$\s*([\d,]+)/i) || [])[1]);
-  const pending = /sale pending|"(?:is)?pending"\s*:\s*true|status"\s*:\s*"[^"]*pending/i.test(all);
-
-  // who's selling it
-  const scName = String(pick(f, /salesCenter.*(name|title)/i) || '');
-  let source = 'Other';
-  if (/foxfire/i.test(scName) || /foxfire/i.test(t)) source = 'Foxfire';
-  else if (hint.sc === SUN_KEY || /Water Oak/i.test(scName) || /premier Sun community/i.test(t)) source = 'Sun';
-
-  // parking — true/false flags from the data, otherwise the description
-  const words = t.replace(/golf[- ]cart garage/gi, '');
-  let parking = 'None';
-  if (hint.garage === true || pick(f, /garage/i, v => v === true) || /\bgarage\b/i.test(words)) parking = 'Garage';
-  else if (pick(f, /carport/i, v => v === true) || /carport/i.test(t)) parking = 'Carport';
-  else if (/golf[- ]cart garage/i.test(t)) parking = 'Cart garage';
-
-  if (!address || !price) { console.log('skipped', key, address ? 'no price' : 'no address'); return null; }
-  return { key, address, source, price, beds, baths, sqft, year, lotRent, parking, pending,
-           url: `${BASE}/homes/${key}` };
+  return out;
 }
 
-// 3. merge with history
-const db = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8'))
-  : { started: today, updated: null, runs: [], homes: {} };
+const sun = await scanSun().catch(e => { console.log('Sun scan error', e.message); return null; });
+const fox = await scanFox().catch(e => { console.log('Foxfire scan error', e.message); return null; });
+await browser.close();
+console.log('Sun homes:', sun ? sun.length : 'FAILED', '| Foxfire homes:', fox ? fox.length : 'FAILED');
+for (const h of [...(sun || []), ...(fox || [])]) console.log(` ${h.source} | ${h.address} | $${h.price} | ${h.beds}/${h.baths} ${h.sqft || '?'}sf ${h.year || ''} ${h.parking}${h.pending ? ' PENDING' : ''}`);
 
-const keys = await listingKeys();
-console.log('listing keys found:', keys.size);
+/* ---------- merge with history ---------- */
+const keyOf = a => a.toLowerCase().replace(/[.,#]/g, ' ')
+  .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g, 'st').replace(/\b(lane|la)\b/g, 'ln')
+  .replace(/\b(circle)\b/g, 'cir').replace(/\b(square)\b/g, 'sq').replace(/\b(court)\b/g, 'ct')
+  .replace(/\b(avenue)\b/g, 'ave').replace(/\b(east)\b/g, 'e').replace(/\b(west)\b/g, 'w')
+  .replace(/\s+\d{3,5}$/, '').replace(/\s+/g, ' ').trim();
+
+let db = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8')) : null;
+if (!db || db.version !== 2) db = { version: 2, started: today, updated: null, runs: [], homes: {} };
+
+const ok = {};
+for (const [src, list] of [['Sun', sun], ['Foxfire', fox]]) {
+  const prev = Object.values(db.homes).filter(h => h.source === src && !h.gone).length;
+  ok[src] = !!list && list.length > 0 && !(prev >= 6 && list.length < prev * 0.5);
+  if (!ok[src]) console.log(`${src}: scan looks incomplete — not marking any ${src} homes gone this run.`);
+}
+if (!ok.Sun && !ok.Foxfire) { console.log('Both scans failed.'); process.exit(1); }
+
+const first = !db.runs.length;
 const seen = {};
-for (const [key, hint] of keys) {
-  const html = await get(`${BASE}/homes/${key}`);
-  await sleep(700);
-  const h = parse(key, html || '', hint);
-  if (h) seen[h.address.toLowerCase()] = h;
-}
-const count = Object.keys(seen).length;
-console.log('Water Oak homes saved:', count);
-
-const before = Object.values(db.homes).filter(h => !h.gone).length;
-if (count === 0 || (before >= 10 && count < before * 0.5)) {
-  console.log('Scan looks incomplete — not marking anything gone this run.');
-  process.exit(count === 0 ? 1 : 0);
-}
-
-const first = !db.runs.length || db.started === today;
-for (const [id, h] of Object.entries(seen)) {
+for (const h of [...(ok.Sun ? sun : []), ...(ok.Foxfire ? fox : [])]) {
+  const id = keyOf(h.address); seen[id] = true;
   const old = db.homes[id];
-  if (!old) {
-    db.homes[id] = { ...h, firstSeen: today, lastSeen: today, onAtStart: first,
-                     prices: [{ date: today, price: h.price }], gone: false, goneDate: null };
-  } else {
+  if (!old) db.homes[id] = { ...h, firstSeen: today, lastSeen: today, onAtStart: first, prices: [{ date: today, price: h.price }], gone: false, goneDate: null };
+  else {
     const lastP = old.prices[old.prices.length - 1];
     if (!lastP || lastP.price !== h.price) old.prices.push({ date: today, price: h.price });
     Object.assign(old, h, { lastSeen: today, gone: false, goneDate: null });
   }
 }
 for (const [id, h] of Object.entries(db.homes)) {
-  if (!seen[id] && !h.gone) { h.gone = true; h.goneDate = today; }
+  if (!seen[id] && !h.gone && ok[h.source]) { h.gone = true; h.goneDate = today; }
 }
 db.updated = today;
-db.runs.push({ date: today, count });
+db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.length : null });
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
-console.log('saved', FILE);
+console.log('saved', FILE, '— for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
