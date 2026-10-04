@@ -1,13 +1,8 @@
 {
- "version": 2,
+ "version": 3,
  "started": "2026-10-04",
  "updated": "2026-10-04",
  "runs": [
-  {
-   "date": "2026-10-04",
-   "sun": 0,
-   "foxfire": 22
-  },
   {
    "date": "2026-10-04",
    "sun": 23,
@@ -15,6 +10,581 @@
   }
  ],
  "homes": {
+  "sun listing 3542251": {
+   "key": "3542251",
+   "address": "Sun listing #3542251",
+   "source": "Sun",
+   "price": 214900,
+   "beds": 2,
+   "baths": 2.5,
+   "sqft": 1920,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3542251",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 214900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3540381": {
+   "key": "3540381",
+   "address": "Sun listing #3540381",
+   "source": "Sun",
+   "price": 209900,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1920,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3540381",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 209900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3574943": {
+   "key": "3574943",
+   "address": "Sun listing #3574943",
+   "source": "Sun",
+   "price": 199995,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1512,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3574943",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 199995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3566035": {
+   "key": "3566035",
+   "address": "Sun listing #3566035",
+   "source": "Sun",
+   "price": 199900,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1568,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3566035",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 199900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3293741": {
+   "key": "3293741",
+   "address": "Sun listing #3293741",
+   "source": "Sun",
+   "price": 189900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1352,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3293741",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 189900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3573917": {
+   "key": "3573917",
+   "address": "Sun listing #3573917",
+   "source": "Sun",
+   "price": 167995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1248,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3573917",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 167995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3573357": {
+   "key": "3573357",
+   "address": "Sun listing #3573357",
+   "source": "Sun",
+   "price": 164995,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1344,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3573357",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 164995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3565355": {
+   "key": "3565355",
+   "address": "Sun listing #3565355",
+   "source": "Sun",
+   "price": 159995,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1152,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3565355",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 159995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3545801": {
+   "key": "3545801",
+   "address": "Sun listing #3545801",
+   "source": "Sun",
+   "price": 149900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1456,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3545801",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 149900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3559739": {
+   "key": "3559739",
+   "address": "Sun listing #3559739",
+   "source": "Sun",
+   "price": 124995,
+   "beds": 4,
+   "baths": 2,
+   "sqft": 2432,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3559739",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 124995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3572881": {
+   "key": "3572881",
+   "address": "Sun listing #3572881",
+   "source": "Sun",
+   "price": 109995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1144,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3572881",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 109995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3542249": {
+   "key": "3542249",
+   "address": "Sun listing #3542249",
+   "source": "Sun",
+   "price": 108900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1344,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3542249",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 108900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3483223": {
+   "key": "3483223",
+   "address": "Sun listing #3483223",
+   "source": "Sun",
+   "price": 84995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1040,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3483223",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 84995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3566803": {
+   "key": "3566803",
+   "address": "Sun listing #3566803",
+   "source": "Sun",
+   "price": 82995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 960,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3566803",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 82995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3508475": {
+   "key": "3508475",
+   "address": "Sun listing #3508475",
+   "source": "Sun",
+   "price": 79500,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1560,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3508475",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 79500
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3566809": {
+   "key": "3566809",
+   "address": "Sun listing #3566809",
+   "source": "Sun",
+   "price": 75995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 864,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3566809",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 75995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3448147": {
+   "key": "3448147",
+   "address": "Sun listing #3448147",
+   "source": "Sun",
+   "price": 74000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 936,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3448147",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 74000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3499421": {
+   "key": "3499421",
+   "address": "Sun listing #3499421",
+   "source": "Sun",
+   "price": 72900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1056,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3499421",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 72900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3439439": {
+   "key": "3439439",
+   "address": "Sun listing #3439439",
+   "source": "Sun",
+   "price": 72000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1040,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3439439",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 72000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3547363": {
+   "key": "3547363",
+   "address": "Sun listing #3547363",
+   "source": "Sun",
+   "price": 69900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 768,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3547363",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 69900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3553227": {
+   "key": "3553227",
+   "address": "Sun listing #3553227",
+   "source": "Sun",
+   "price": 68900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 960,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3553227",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 68900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3536249": {
+   "key": "3536249",
+   "address": "Sun listing #3536249",
+   "source": "Sun",
+   "price": 63500,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 768,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3536249",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 63500
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "sun listing 3501969": {
+   "key": "3501969",
+   "address": "Sun listing #3501969",
+   "source": "Sun",
+   "price": 59000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 768,
+   "year": null,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3501969",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 59000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
   "410 palmer dr": {
    "source": "Foxfire",
    "address": "410 Palmer Dr",
@@ -516,539 +1086,6 @@
     {
      "date": "2026-10-04",
      "price": 79900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2020 champion mobile home for sale": {
-   "key": "3293741",
-   "address": "2020 Champion Mobile Home For Sale",
-   "source": "Sun",
-   "price": 189900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1352,
-   "year": null,
-   "lotRent": null,
-   "parking": "Garage",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3293741",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 214900
-    },
-    {
-     "date": "2026-10-04",
-     "price": 189900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2017 skyline mobile home for sale": {
-   "key": "3540381",
-   "address": "2017 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 209900,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1920,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3540381",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 209900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2012 skyline mobile home for sale": {
-   "key": "3574943",
-   "address": "2012 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 199995,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1512,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3574943",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 199995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2016 palb mobile home for sale": {
-   "key": "3566035",
-   "address": "2016 PALB Mobile Home For Sale",
-   "source": "Sun",
-   "price": 199900,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1568,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3566035",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 199900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2026 champion mobile home for sale or rent": {
-   "key": "3573917",
-   "address": "2026 Champion Mobile Home For Sale or Rent",
-   "source": "Sun",
-   "price": 167995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1248,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3573917",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 167995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2026 skyline mobile home for sale": {
-   "key": "3573357",
-   "address": "2026 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 164995,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1344,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3573357",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 164995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2026 jacobsen mobile home for sale or rent": {
-   "key": "3565355",
-   "address": "2026 Jacobsen Mobile Home For Sale or Rent",
-   "source": "Sun",
-   "price": 159995,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1152,
-   "year": null,
-   "lotRent": null,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3565355",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 159995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2023 palm harbor mobile home for sale": {
-   "key": "3545801",
-   "address": "2023 Palm Harbor Mobile Home For Sale",
-   "source": "Sun",
-   "price": 149900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1456,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3545801",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 149900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2004 skyline mobile home for sale": {
-   "key": "3559739",
-   "address": "2004 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 124995,
-   "beds": 4,
-   "baths": 2,
-   "sqft": 2432,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3559739",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 124995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2002 skyline mobile home for sale": {
-   "key": "3572881",
-   "address": "2002 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 109995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1144,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3572881",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 109995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2014 skyline mobile home for sale": {
-   "key": "3542249",
-   "address": "2014 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 108900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1344,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3542249",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 108900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1989 barr mobile home for sale": {
-   "key": "3483223",
-   "address": "1989 BARR Mobile Home For Sale",
-   "source": "Sun",
-   "price": 84995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1040,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3483223",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 84995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1989 other mobile home for sale": {
-   "key": "3547363",
-   "address": "1989 Other Mobile Home For Sale",
-   "source": "Sun",
-   "price": 69900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3547363",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 82995
-    },
-    {
-     "date": "2026-10-04",
-     "price": 69900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1987 home mobile home for sale": {
-   "key": "3508475",
-   "address": "1987 HOME Mobile Home For Sale",
-   "source": "Sun",
-   "price": 79500,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1560,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3508475",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 79500
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1983 palm harbor mobile home for sale": {
-   "key": "3566809",
-   "address": "1983 Palm Harbor Mobile Home For Sale",
-   "source": "Sun",
-   "price": 75995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 864,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3566809",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 75995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1984 fleetwood mobile home for sale": {
-   "key": "3448147",
-   "address": "1984 Fleetwood Mobile Home For Sale",
-   "source": "Sun",
-   "price": 74000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 936,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3448147",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 74000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1994 sunc mobile home for sale": {
-   "key": "3499421",
-   "address": "1994 SUNC Mobile Home For Sale",
-   "source": "Sun",
-   "price": 72900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1056,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3499421",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 72900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1984 jacobsen mobile home for sale": {
-   "key": "3439439",
-   "address": "1984 Jacobsen Mobile Home For Sale",
-   "source": "Sun",
-   "price": 72000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1040,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3439439",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 72000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2001 skyline mobile home for sale": {
-   "key": "3553227",
-   "address": "2001 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 68900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 960,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3553227",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 68900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1988 barr mobile home for sale": {
-   "key": "3536249",
-   "address": "1988 BARR Mobile Home For Sale",
-   "source": "Sun",
-   "price": 63500,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3536249",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 63500
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1994 fleetwood mobile home for sale": {
-   "key": "3501969",
-   "address": "1994 Fleetwood Mobile Home For Sale",
-   "source": "Sun",
-   "price": 59000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3501969",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 59000
     }
    ],
    "gone": false,
