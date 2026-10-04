@@ -1,0 +1,62 @@
+{
+ "started": "2026-10-04",
+ "updated": "2026-10-04",
+ "runs": [
+  {
+   "date": "2026-10-04",
+   "count": 2
+  }
+ ],
+ "homes": {
+  "812 trevino dr": {
+   "key": "3524749",
+   "address": "812 Trevino Dr",
+   "source": "Foxfire",
+   "price": 83000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1144,
+   "year": null,
+   "lotRent": 765,
+   "parking": "None",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3524749",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 83000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "206 bradley ln": {
+   "key": "3524777",
+   "address": "206 Bradley Ln",
+   "source": "Foxfire",
+   "price": 62900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1248,
+   "year": null,
+   "lotRent": 765,
+   "parking": "None",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3524777",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 62900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  }
+ }
+}
