@@ -19,7 +19,6 @@ const ctx = await browser.newContext({
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
   viewport: { width: 1366, height: 900 }, locale: 'en-US', timezoneId: 'America/New_York'
 });
-// skip the tracking/ad scripts that freeze the Sun site, plus images
 await ctx.route('**/*', r => {
   const u = r.request().url(), t = r.request().resourceType();
   if (['image', 'media', 'font'].includes(t)) return r.abort();
@@ -66,10 +65,7 @@ function specs(t) {
   };
 }
 
-/* ---------- Sun sales office ----------
-   Sun's own site blocks robots, but the Sun sales office posts the exact same
-   inventory to MHVillage under its own seller account (key 3211). We read ONLY
-   that account — nothing else from MHVillage. */
+/* ---------- Sun sales office (its own seller account on MHVillage, key 3211 only) ---------- */
 const SUN_KEY = '3211';
 const MHV = 'https://www.mhvillage.com';
 const HEAD = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15', 'Accept': 'text/html,application/json;q=0.9,*/*;q=0.8' };
@@ -88,8 +84,6 @@ const text = html => html
   .replace(/<[^>]+>/g, ' ')
   .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&#39;/g, "'")
   .replace(/\s+/g, ' ');
-
-// 2. read one listing — API data first, page text fills gaps
 function flatten(o, p = '', out = {}) {
   if (o && typeof o === 'object') {
     for (const [k, v] of Object.entries(o)) flatten(v, p ? p + '.' + k : k, out);
@@ -107,20 +101,19 @@ function parseMhv(key, html, hint) {
   const t = html ? text(html) : '';
   const all = (JSON.stringify(hint.raw || {}) + ' ' + t);
 
-  // address
-  let address = pick(f, /(address|street)(1|Line1)?$|\.address$|addressLine/i, v => /^\d+\s+\S/.test(String(v)));
+  const STREET = /^\d{1,5}\s+(?:[NSEW]\.?\s+)?[A-Za-z][A-Za-z0-9 .'-]*?\b(?:St|Street|Dr|Drive|Ln|Lane|La|Ct|Court|Cir|Circle|Way|Blvd|Ave|Avenue|Sq|Square|Trl|Trail|Pl|Place|Rd|Road|Hill|Hl|Pt|Point|Ter|Terrace|Loop|Run|Pass|Path)\.?$/i;
+  const strVals = Object.values(f).filter(v => typeof v === 'string');
+  let address = strVals.map(v => v.trim().replace(/,\s*Lady Lake.*$/i, '')).find(v => STREET.test(v));
+  if (!address) address = (t.match(/(\d{1,5} [A-Za-z][A-Za-z0-9 .'-]+?),\s*Lady Lake/i) || [])[1];
   if (!address && html) {
     const title = ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '').replace(/&amp;/g, '&');
-    const seg = title.split(/[>|]/).map(x => x.trim()).find(x => /^\d+\s+\S/.test(x));
-    address = seg || (t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?),\s*Lady Lake/i) || [])[1] || null;
+    address = title.split(/[>|]/).map(x => x.trim().replace(/,\s*Lady Lake.*$/i, '')).find(x => STREET.test(x));
   }
-  if (address) address = String(address).replace(/,\s*Lady Lake.*$/i, '').trim();
+  address = address ? String(address).trim() : `Sun listing #${key}`;
 
-  // price
   let price = num(pick(f, /(^|\.)(price|listPrice|askingPrice|salePrice|listingPrice)$/i, v => num(v) > 5000 && num(v) < 2000000));
   if (!price && html) price = n((html.match(/price-widget[^>]*>(?:<!---->)?\s*\$?([\d,]+)/) || t.match(/Buy:\s*\$\s*([\d,]+)/) || [])[1]);
 
-  // specs
   let beds = num(pick(f, /bed/i, v => num(v) >= 1 && num(v) <= 6));
   let baths = num(pick(f, /bath/i, v => num(v) >= 1 && num(v) <= 5));
   let sqft = num(pick(f, /sq|square/i, v => num(v) >= 300 && num(v) <= 4000));
@@ -129,118 +122,4 @@ function parseMhv(key, html, hint) {
   if (!beds && bb) beds = n(bb[1]);
   if (!baths && bb) baths = n(bb[2]);
   if (!sqft) sqft = n((t.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
-  if (!year) year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i) || [])[1]);
-  const lotRent = num(pick(f, /lot.?rent|siteRent/i, v => num(v) > 100 && num(v) < 3000)) || n((t.match(/Lot Rent:\s*\$\s*([\d,]+)/i) || [])[1]);
-  const pending = /sale pending|"(?:is)?pending"\s*:\s*true|status"\s*:\s*"[^"]*pending/i.test(all);
-
-  // who's selling it
-  const scName = String(pick(f, /salesCenter.*(name|title)/i) || '');
-  let source = 'Other';
-  if (/foxfire/i.test(scName) || /foxfire/i.test(t)) source = 'Foxfire';
-  else if (hint.sc === SUN_KEY || /Water Oak/i.test(scName) || /premier Sun community/i.test(t)) source = 'Sun';
-
-  // parking — true/false flags from the data, otherwise the description
-  const words = t.replace(/golf[- ]cart garage/gi, '');
-  let parking = 'None';
-  if (hint.garage === true || pick(f, /garage/i, v => v === true) || /\bgarage\b/i.test(words)) parking = 'Garage';
-  else if (pick(f, /carport/i, v => v === true) || /carport/i.test(t)) parking = 'Carport';
-  else if (/golf[- ]cart garage/i.test(t)) parking = 'Cart garage';
-
-  if (!address || !price) { console.log('skipped', key, address ? 'no price' : 'no address'); return null; }
-  return { key, address, source, price, beds, baths, sqft, year, lotRent, parking, pending,
-           url: `https://www.mhvillage.com/homes/${key}` };
-}
-
-
-async function scanSun() {
-  const items = [];
-  for (let off = 0; off < 600; off += 60) {
-    const j = await get(`${MHV}/api/v1/listings.json?offset=${off}&limit=60&order[]=best-match:asc&radius=0&active-sold[]=2&park-key=6059&active[]=1&include[]=detailsStd`, true);
-    const list = j && (j.payload || j.data || []);
-    if (!Array.isArray(list) || !list.length) break;
-    items.push(...list);
-    if (list.length < 60) break;
-  }
-  const sunItems = items.filter(it => String(it.relationships?.salesCenter?.key ?? it.salesCenter?.key ?? '') === SUN_KEY);
-  console.log('Sun sales office listings found:', sunItems.length, 'of', items.length, 'in the community feed');
-  const out = [];
-  for (const it of sunItems) {
-    const key = String(it.key || it.id);
-    const html = await get(`${MHV}/homes/${key}`);
-    await new Promise(r => setTimeout(r, 600));
-    const h = parseMhv(key, html || '', { sc: SUN_KEY, garage: (it.relationships?.detailsStd || it.detailsStd || {}).garage, raw: it });
-    if (h) out.push({ ...h, source: 'Sun' });
-  }
-  return out;
-}
-
-/* ---------- RE/MAX Foxfire ---------- */
-async function scanFox() {
-  const out = [];
-  if (!await open(FOX_LIST, 5000)) return null;
-  await loadAll();
-  let cards = await page.$$eval("[onclick*='HomedetailCustom'], a[href*='HomedetailCustom']", els => els.map(e => ({
-    ref: (e.getAttribute('onclick') || '') + ' ' + (e.getAttribute('href') || ''),
-    title: (e.querySelector('h5.card-title, .card-title') || {}).innerText || '',
-    price: (e.querySelector('h5.fw-bold, .fw-bold') || {}).innerText || '',
-    text: e.innerText || ''
-  })));
-  const seen = new Map();
-  for (const c of cards) { const id = (c.ref.match(/id=(\d+)/i) || [])[1]; if (id && !seen.has(id)) seen.set(id, { ...c, id }); }
-  console.log('Foxfire listing cards found:', seen.size);
-  for (const c of seen.values()) {
-    const url = `${FOX_BASE}/HomedetailCustom.asp?id=${c.id}`;
-    const loaded = await open(url, 2500);
-    const t = loaded && page.url().includes(c.id) ? await bodyText() : '';
-    const address = (c.title || (t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?(?:St|Street|Dr|Drive|Ln|Lane|Ct|Court|Cir|Circle|Way|Blvd|Ave|Sq|Square|Trl|Pl|Rd|Hl|Hill))\b/i) || [])[1] || '').trim();
-    const price = n((c.price.match(/[\d,]{4,}/) || t.match(/\$\s?([\d,]{5,})/) || [])[0]?.replace(/^\$/, ''));
-    const h = { source: 'Foxfire', address, price, ...specs(t + ' ' + c.text), url };
-    if (h.address && h.price) out.push(h); else console.log('Foxfire: skipped id', c.id);
-  }
-  return out;
-}
-
-const sun = await scanSun().catch(e => { console.log('Sun scan error', e.message); return null; });
-const fox = await scanFox().catch(e => { console.log('Foxfire scan error', e.message); return null; });
-await browser.close();
-console.log('Sun homes:', sun ? sun.length : 'FAILED', '| Foxfire homes:', fox ? fox.length : 'FAILED');
-for (const h of [...(sun || []), ...(fox || [])]) console.log(` ${h.source} | ${h.address} | $${h.price} | ${h.beds}/${h.baths} ${h.sqft || '?'}sf ${h.year || ''} ${h.parking}${h.pending ? ' PENDING' : ''}`);
-
-/* ---------- merge with history ---------- */
-const keyOf = a => a.toLowerCase().replace(/[.,#]/g, ' ')
-  .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g, 'st').replace(/\b(lane|la)\b/g, 'ln')
-  .replace(/\b(circle)\b/g, 'cir').replace(/\b(square)\b/g, 'sq').replace(/\b(court)\b/g, 'ct')
-  .replace(/\b(avenue)\b/g, 'ave').replace(/\b(east)\b/g, 'e').replace(/\b(west)\b/g, 'w')
-  .replace(/\s+\d{3,5}$/, '').replace(/\s+/g, ' ').trim();
-
-let db = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8')) : null;
-if (!db || db.version !== 2) db = { version: 2, started: today, updated: null, runs: [], homes: {} };
-
-const ok = {};
-for (const [src, list] of [['Sun', sun], ['Foxfire', fox]]) {
-  const prev = Object.values(db.homes).filter(h => h.source === src && !h.gone).length;
-  ok[src] = !!list && list.length > 0 && !(prev >= 6 && list.length < prev * 0.5);
-  if (!ok[src]) console.log(`${src}: scan looks incomplete — not marking any ${src} homes gone this run.`);
-}
-if (!ok.Sun && !ok.Foxfire) { console.log('Both scans failed.'); process.exit(1); }
-
-const first = !db.runs.length || db.started === today;
-const seen = {};
-for (const h of [...(ok.Sun ? sun : []), ...(ok.Foxfire ? fox : [])]) {
-  const id = keyOf(h.address); seen[id] = true;
-  const old = db.homes[id];
-  if (!old) db.homes[id] = { ...h, firstSeen: today, lastSeen: today, onAtStart: first, prices: [{ date: today, price: h.price }], gone: false, goneDate: null };
-  else {
-    const lastP = old.prices[old.prices.length - 1];
-    if (!lastP || lastP.price !== h.price) old.prices.push({ date: today, price: h.price });
-    Object.assign(old, h, { lastSeen: today, gone: false, goneDate: null });
-  }
-}
-for (const [id, h] of Object.entries(db.homes)) {
-  if (!seen[id] && !h.gone && ok[h.source]) { h.gone = true; h.goneDate = today; }
-}
-db.updated = today;
-db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.length : null });
-fs.mkdirSync('data', { recursive: true });
-fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
-console.log('saved', FILE, '— for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
+  if (!year) year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i)
