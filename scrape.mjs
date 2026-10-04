@@ -1,3 +1,4 @@
+
 // Pulls every Water Oak listing (Sun sales office + RE/MAX Foxfire) from MHVillage,
 // compares to last week, and keeps a running record in data/market.json.
 import fs from 'node:fs';
@@ -39,7 +40,8 @@ async function listingKeys() {
       if (!key) continue;
       const sc = it.relationships?.salesCenter?.key ?? it.salesCenter?.key ?? '';
       const det = it.relationships?.detailsStd || it.detailsStd || {};
-      found.set(key, { sc: String(sc), garage: det.garage });
+      found.set(key, { sc: String(sc), garage: det.garage, raw: it });
+      if (found.size === 1) console.log('SAMPLE API ITEM:', JSON.stringify(it).slice(0, 4000));
     }
     if (items.length < 60) break;
     await sleep(800);
@@ -64,36 +66,64 @@ const text = html => html
   .replace(/\s+/g, ' ');
 const n = s => s == null ? null : Number(String(s).replace(/,/g, ''));
 
-// 2. read one listing page
+// 2. read one listing — API data first, page text fills gaps
+function flatten(o, p = '', out = {}) {
+  if (o && typeof o === 'object') {
+    for (const [k, v] of Object.entries(o)) flatten(v, p ? p + '.' + k : k, out);
+  } else out[p] = o;
+  return out;
+}
+function pick(f, re, ok) {
+  for (const [k, v] of Object.entries(f)) if (re.test(k) && v != null && v !== '' && (!ok || ok(v))) return v;
+  return null;
+}
+const num = v => { const x = Number(String(v).replace(/[$,]/g, '')); return isNaN(x) ? null : x; };
+
 function parse(key, html, hint) {
-  const t = text(html);
-  if (!/Water Oak/i.test(t)) return null;
+  const f = flatten(hint.raw || {});
+  const t = html ? text(html) : '';
+  const all = (JSON.stringify(hint.raw || {}) + ' ' + t);
 
-  let source = null;
-  if (/foxfire/i.test(t)) source = 'Foxfire';
-  else if (hint.sc === SUN_KEY || /Listed by:?\s*Water Oak Country Club Estates/i.test(t)) source = 'Sun';
-  if (hint.sc && hint.sc !== SUN_KEY && !/foxfire/i.test(t)) source = null;
-  if (!source) return null;
+  // address
+  let address = pick(f, /(address|street)(1|Line1)?$|\.address$|addressLine/i, v => /^\d+\s+\S/.test(String(v)));
+  if (!address && html) {
+    const title = ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '').replace(/&amp;/g, '&');
+    const seg = title.split(/[>|]/).map(x => x.trim()).find(x => /^\d+\s+\S/.test(x));
+    address = seg || (t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?),\s*Lady Lake/i) || [])[1] || null;
+  }
+  if (address) address = String(address).replace(/,\s*Lady Lake.*$/i, '').trim();
 
-  const title = (html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '';
-  const address = ((title.match(/\|\s*([^|]+?),\s*Lady Lake/i) || t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?),\s*Lady Lake/i) || [])[1] || '').trim();
+  // price
+  let price = num(pick(f, /(^|\.)(price|listPrice|askingPrice|salePrice|listingPrice)$/i, v => num(v) > 5000 && num(v) < 2000000));
+  if (!price && html) price = n((html.match(/price-widget[^>]*>(?:<!---->)?\s*\$?([\d,]+)/) || t.match(/Buy:\s*\$\s*([\d,]+)/) || [])[1]);
 
-  const price = n((html.match(/price-widget[^>]*>(?:<!---->)?\s*\$?([\d,]+)/) || t.match(/Buy:\s*\$\s*([\d,]+)/) || [])[1]);
+  // specs
+  let beds = num(pick(f, /bed/i, v => num(v) >= 1 && num(v) <= 6));
+  let baths = num(pick(f, /bath/i, v => num(v) >= 1 && num(v) <= 5));
+  let sqft = num(pick(f, /sq|square/i, v => num(v) >= 300 && num(v) <= 4000));
+  let year = num(pick(f, /year/i, v => num(v) >= 1950 && num(v) <= 2030));
   const bb = t.match(/\b(\d)\s*\/\s*(\d(?:\.\d)?)\s+[\d,]{3,5}\s*Sq\.?\s*Ft/i);
-  const sqft = n((t.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
-  const beds = bb ? n(bb[1]) : n((t.match(/(\d)\s*-?\s*bed(?:room)?s?\b/i) || [])[1]);
-  const baths = bb ? n(bb[2]) : n((t.match(/(\d(?:\.\d)?)\s*-?\s*bath(?:room)?s?\b/i) || [])[1]);
-  const year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i) || [])[1]);
-  const lotRent = n((t.match(/Lot Rent:\s*\$\s*([\d,]+)/i) || [])[1]);
-  const pending = /Sale Pending/i.test(t);
+  if (!beds && bb) beds = n(bb[1]);
+  if (!baths && bb) baths = n(bb[2]);
+  if (!sqft) sqft = n((t.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
+  if (!year) year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i) || [])[1]);
+  const lotRent = num(pick(f, /lot.?rent|siteRent/i, v => num(v) > 100 && num(v) < 3000)) || n((t.match(/Lot Rent:\s*\$\s*([\d,]+)/i) || [])[1]);
+  const pending = /sale pending|"(?:is)?pending"\s*:\s*true|status"\s*:\s*"[^"]*pending/i.test(all);
 
-  const noCart = t.replace(/golf[- ]cart garage/gi, '');
+  // who's selling it
+  const scName = String(pick(f, /salesCenter.*(name|title)/i) || '');
+  let source = 'Other';
+  if (/foxfire/i.test(scName) || /foxfire/i.test(t)) source = 'Foxfire';
+  else if (hint.sc === SUN_KEY || /Water Oak/i.test(scName) || /premier Sun community/i.test(t)) source = 'Sun';
+
+  // parking — true/false flags from the data, otherwise the description
+  const words = t.replace(/golf[- ]cart garage/gi, '');
   let parking = 'None';
-  if (hint.garage === true || /\b(attached|\d[- ]car|car|oversized|detached)\s+garage\b|\bgarage\b/i.test(noCart)) parking = 'Garage';
-  else if (/carport/i.test(t)) parking = 'Carport';
+  if (hint.garage === true || pick(f, /garage/i, v => v === true) || /\bgarage\b/i.test(words)) parking = 'Garage';
+  else if (pick(f, /carport/i, v => v === true) || /carport/i.test(t)) parking = 'Carport';
   else if (/golf[- ]cart garage/i.test(t)) parking = 'Cart garage';
 
-  if (!address || !price) return null;
+  if (!address || !price) { console.log('skipped', key, address ? 'no price' : 'no address'); return null; }
   return { key, address, source, price, beds, baths, sqft, year, lotRent, parking, pending,
            url: `${BASE}/homes/${key}` };
 }
@@ -108,12 +138,11 @@ const seen = {};
 for (const [key, hint] of keys) {
   const html = await get(`${BASE}/homes/${key}`);
   await sleep(700);
-  if (!html) continue;
-  const h = parse(key, html, hint);
+  const h = parse(key, html || '', hint);
   if (h) seen[h.address.toLowerCase()] = h;
 }
 const count = Object.keys(seen).length;
-console.log('Water Oak homes (Sun + Foxfire):', count);
+console.log('Water Oak homes saved:', count);
 
 const before = Object.values(db.homes).filter(h => !h.gone).length;
 if (count === 0 || (before >= 10 && count < before * 0.5)) {
@@ -121,7 +150,7 @@ if (count === 0 || (before >= 10 && count < before * 0.5)) {
   process.exit(count === 0 ? 1 : 0);
 }
 
-const first = !db.runs.length;
+const first = !db.runs.length || db.started === today;
 for (const [id, h] of Object.entries(seen)) {
   const old = db.homes[id];
   if (!old) {
