@@ -1,3 +1,4 @@
+
 // Water Oak market robot — Sun sales office (its own MHVillage seller account) + RE/MAX Foxfire
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
 import fs from 'node:fs';
@@ -194,4 +195,39 @@ for (const h of [...(sun || []), ...(fox || [])]) console.log(` ${h.source} | ${
 
 /* ---------- merge with history ---------- */
 const keyOf = a => a.toLowerCase().replace(/[.,#]/g, ' ')
-  .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g,
+  .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g, 'st').replace(/\b(lane|la)\b/g, 'ln')
+  .replace(/\b(circle)\b/g, 'cir').replace(/\b(square)\b/g, 'sq').replace(/\b(court)\b/g, 'ct')
+  .replace(/\b(avenue)\b/g, 'ave').replace(/\b(east)\b/g, 'e').replace(/\b(west)\b/g, 'w')
+  .replace(/\s+/g, ' ').trim();
+
+let db = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8')) : null;
+if (!db || db.version !== 3) db = { version: 3, started: today, updated: null, runs: [], homes: {} };
+
+const ok = {};
+for (const [src, list] of [['Sun', sun], ['Foxfire', fox]]) {
+  const prev = Object.values(db.homes).filter(h => h.source === src && !h.gone).length;
+  ok[src] = !!list && list.length > 0 && !(prev >= 6 && list.length < prev * 0.5);
+  if (!ok[src]) console.log(`${src}: scan looks incomplete, not marking any ${src} homes gone this run.`);
+}
+if (!ok.Sun && !ok.Foxfire) { console.log('Both scans failed.'); process.exit(1); }
+
+const first = !db.runs.length || db.started === today;
+const seen = {};
+for (const h of [...(ok.Sun ? sun : []), ...(ok.Foxfire ? fox : [])]) {
+  const id = keyOf(h.address); seen[id] = true;
+  const old = db.homes[id];
+  if (!old) db.homes[id] = { ...h, firstSeen: today, lastSeen: today, onAtStart: first, prices: [{ date: today, price: h.price }], gone: false, goneDate: null };
+  else {
+    const lastP = old.prices[old.prices.length - 1];
+    if (!lastP || lastP.price !== h.price) old.prices.push({ date: today, price: h.price });
+    Object.assign(old, h, { lastSeen: today, gone: false, goneDate: null });
+  }
+}
+for (const [id, h] of Object.entries(db.homes)) {
+  if (!seen[id] && !h.gone && ok[h.source]) { h.gone = true; h.goneDate = today; }
+}
+db.updated = today;
+db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.length : null });
+fs.mkdirSync('data', { recursive: true });
+fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
+console.log('saved', FILE, 'for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
