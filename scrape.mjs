@@ -122,4 +122,76 @@ function parseMhv(key, html, hint) {
   if (!beds && bb) beds = n(bb[1]);
   if (!baths && bb) baths = n(bb[2]);
   if (!sqft) sqft = n((t.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
-  if (!year) year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i)
+  if (!year) year = n((t.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || t.match(/\bbuilt in ((?:19|20)\d{2})/i) || [])[1]);
+  const lotRent = num(pick(f, /lot.?rent|siteRent/i, v => num(v) > 100 && num(v) < 3000)) || n((t.match(/Lot Rent:\s*\$\s*([\d,]+)/i) || [])[1]);
+  const pending = /sale pending|"(?:is)?pending"\s*:\s*true|status"\s*:\s*"[^"]*pending/i.test(all);
+
+  const desc = strVals.join(' ') + ' ' + t;
+  const words = desc.replace(/golf[- ]?cart garage/gi, '');
+  let parking = 'None';
+  if (hint.garage === true || pick(f, /garage/i, v => v === true) || /\bgarage\b/i.test(words)) parking = 'Garage';
+  else if (pick(f, /carport/i, v => v === true) || /carport/i.test(desc)) parking = 'Carport';
+  else if (/golf[- ]?cart garage/i.test(desc)) parking = 'Cart garage';
+
+  if (!price) { console.log('skipped', key, 'no price'); return null; }
+  return { key, address, source: 'Sun', price, beds, baths, sqft, year, lotRent, parking, pending,
+           url: `https://www.mhvillage.com/homes/${key}` };
+}
+
+async function scanSun() {
+  const items = [];
+  for (let off = 0; off < 600; off += 60) {
+    const j = await get(`${MHV}/api/v1/listings.json?offset=${off}&limit=60&order[]=best-match:asc&radius=0&active-sold[]=2&park-key=6059&active[]=1&include[]=detailsStd`, true);
+    const list = j && (j.payload || j.data || []);
+    if (!Array.isArray(list) || !list.length) break;
+    items.push(...list);
+    if (list.length < 60) break;
+  }
+  const sunItems = items.filter(it => String(it.relationships?.salesCenter?.key ?? it.salesCenter?.key ?? '') === SUN_KEY);
+  console.log('Sun sales office listings found:', sunItems.length, 'of', items.length, 'in the community feed');
+  const out = [];
+  for (const it of sunItems) {
+    const key = String(it.key || it.id);
+    const html = await get(`${MHV}/homes/${key}`);
+    await new Promise(r => setTimeout(r, 600));
+    const h = parseMhv(key, html || '', { garage: (it.relationships?.detailsStd || it.detailsStd || {}).garage, raw: it });
+    if (h) out.push(h);
+  }
+  return out;
+}
+
+/* ---------- RE/MAX Foxfire ---------- */
+async function scanFox() {
+  const out = [];
+  if (!await open(FOX_LIST, 5000)) return null;
+  await loadAll();
+  const cards = await page.$$eval("[onclick*='HomedetailCustom'], a[href*='HomedetailCustom']", els => els.map(e => ({
+    ref: (e.getAttribute('onclick') || '') + ' ' + (e.getAttribute('href') || ''),
+    title: (e.querySelector('h5.card-title, .card-title') || {}).innerText || '',
+    price: (e.querySelector('h5.fw-bold, .fw-bold') || {}).innerText || '',
+    text: e.innerText || ''
+  })));
+  const seen = new Map();
+  for (const c of cards) { const id = (c.ref.match(/id=(\d+)/i) || [])[1]; if (id && !seen.has(id)) seen.set(id, { ...c, id }); }
+  console.log('Foxfire listing cards found:', seen.size);
+  for (const c of seen.values()) {
+    const url = `${FOX_BASE}/HomedetailCustom.asp?id=${c.id}`;
+    const loaded = await open(url, 2500);
+    const t = loaded && page.url().includes(c.id) ? await bodyText() : '';
+    const address = (c.title || (t.match(/(\d{2,5} [A-Za-z0-9 .#'-]+?(?:St|Street|Dr|Drive|Ln|Lane|Ct|Court|Cir|Circle|Way|Blvd|Ave|Sq|Square|Trl|Pl|Rd|Hl|Hill))\b/i) || [])[1] || '').trim();
+    const price = n((c.price.match(/[\d,]{4,}/) || t.match(/\$\s?([\d,]{5,})/) || [])[0]?.replace(/^\$/, ''));
+    const h = { source: 'Foxfire', address, price, ...specs(t + ' ' + c.text), url };
+    if (h.address && h.price) out.push(h); else console.log('Foxfire: skipped id', c.id);
+  }
+  return out;
+}
+
+const sun = await scanSun().catch(e => { console.log('Sun scan error', e.message); return null; });
+const fox = await scanFox().catch(e => { console.log('Foxfire scan error', e.message); return null; });
+await browser.close();
+console.log('Sun homes:', sun ? sun.length : 'FAILED', '| Foxfire homes:', fox ? fox.length : 'FAILED');
+for (const h of [...(sun || []), ...(fox || [])]) console.log(` ${h.source} | ${h.address} | $${h.price} | ${h.beds}/${h.baths} ${h.sqft || '?'}sf ${h.year || ''} ${h.parking}${h.pending ? ' PENDING' : ''}`);
+
+/* ---------- merge with history ---------- */
+const keyOf = a => a.toLowerCase().replace(/[.,#]/g, ' ')
+  .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g,
