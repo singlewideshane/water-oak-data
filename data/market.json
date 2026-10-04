@@ -1,80 +1,26 @@
 {
+ "version": 2,
  "started": "2026-10-04",
  "updated": "2026-10-04",
  "runs": [
   {
    "date": "2026-10-04",
-   "count": 2
-  },
-  {
-   "date": "2026-10-04",
-   "count": 42
+   "sun": 0,
+   "foxfire": 22
   }
  ],
  "homes": {
-  "812 trevino dr": {
-   "key": "3524749",
-   "address": "812 Trevino Dr",
+  "410 palmer dr": {
    "source": "Foxfire",
-   "price": 83000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1144,
-   "year": null,
-   "lotRent": 765,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524749",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 83000
-    }
-   ],
-   "gone": true,
-   "goneDate": "2026-10-04"
-  },
-  "206 bradley ln": {
-   "key": "3524777",
-   "address": "206 Bradley Ln",
-   "source": "Foxfire",
-   "price": 62900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1248,
-   "year": null,
-   "lotRent": 765,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524777",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 62900
-    }
-   ],
-   "gone": true,
-   "goneDate": "2026-10-04"
-  },
-  "2020 champion mobile home for sale": {
-   "key": "3293741",
-   "address": "2020 Champion Mobile Home For Sale",
-   "source": "Sun",
+   "address": "410 Palmer Dr",
    "price": 189900,
-   "beds": 2,
+   "beds": 3,
    "baths": 2,
-   "sqft": 1352,
+   "sqft": 2520,
    "year": null,
-   "lotRent": null,
    "parking": "Garage",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3293741",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27083",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
@@ -87,419 +33,17 @@
    "gone": false,
    "goneDate": null
   },
-  "2017 skyline mobile home for sale": {
-   "key": "3540381",
-   "address": "2017 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 209900,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1920,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3540381",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 209900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2012 skyline mobile home for sale": {
-   "key": "3574943",
-   "address": "2012 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 199995,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1512,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3574943",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 199995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2016 palb mobile home for sale": {
-   "key": "3566035",
-   "address": "2016 PALB Mobile Home For Sale",
-   "source": "Sun",
-   "price": 199900,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1568,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3566035",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 199900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2026 champion mobile home for sale or rent": {
-   "key": "3573917",
-   "address": "2026 Champion Mobile Home For Sale or Rent",
-   "source": "Sun",
-   "price": 167995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1248,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3573917",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 167995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2026 skyline mobile home for sale": {
-   "key": "3573357",
-   "address": "2026 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 164995,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1344,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3573357",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 164995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2026 jacobsen mobile home for sale or rent": {
-   "key": "3565355",
-   "address": "2026 Jacobsen Mobile Home For Sale or Rent",
-   "source": "Sun",
-   "price": 159995,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1152,
-   "year": null,
-   "lotRent": null,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3565355",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 159995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2023 palm harbor mobile home for sale": {
-   "key": "3545801",
-   "address": "2023 Palm Harbor Mobile Home For Sale",
-   "source": "Sun",
-   "price": 149900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1456,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3545801",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 149900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2004 skyline mobile home for sale": {
-   "key": "3559739",
-   "address": "2004 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 124995,
-   "beds": 4,
-   "baths": 2,
-   "sqft": 2432,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3559739",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 124995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2002 skyline mobile home for sale": {
-   "key": "3572881",
-   "address": "2002 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 109995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1144,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3572881",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 109995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2014 skyline mobile home for sale": {
-   "key": "3542249",
-   "address": "2014 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 108900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1344,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3542249",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 108900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1989 barr mobile home for sale": {
-   "key": "3483223",
-   "address": "1989 BARR Mobile Home For Sale",
-   "source": "Sun",
-   "price": 84995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1040,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3483223",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 84995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1989 other mobile home for sale": {
-   "key": "3547363",
-   "address": "1989 Other Mobile Home For Sale",
-   "source": "Sun",
-   "price": 69900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3547363",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 69900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1987 home mobile home for sale": {
-   "key": "3508475",
-   "address": "1987 HOME Mobile Home For Sale",
-   "source": "Sun",
-   "price": 79500,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1560,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3508475",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 79500
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1983 palm harbor mobile home for sale": {
-   "key": "3566809",
-   "address": "1983 Palm Harbor Mobile Home For Sale",
-   "source": "Sun",
-   "price": 75995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 864,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3566809",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 75995
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1984 fleetwood mobile home for sale": {
-   "key": "3448147",
-   "address": "1984 Fleetwood Mobile Home For Sale",
-   "source": "Sun",
-   "price": 74000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 936,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3448147",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 74000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1994 sunc mobile home for sale": {
-   "key": "3499421",
-   "address": "1994 SUNC Mobile Home For Sale",
-   "source": "Sun",
-   "price": 72900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1056,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3499421",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 72900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1984 jacobsen mobile home for sale": {
-   "key": "3439439",
-   "address": "1984 Jacobsen Mobile Home For Sale",
-   "source": "Sun",
+  "711 e norman st": {
+   "source": "Foxfire",
+   "address": "711 E. Norman Street",
    "price": 72000,
    "beds": 2,
    "baths": 2,
-   "sqft": 1040,
+   "sqft": 1568,
    "year": null,
-   "lotRent": null,
-   "parking": "None",
+   "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3439439",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26968",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
@@ -512,394 +56,40 @@
    "gone": false,
    "goneDate": null
   },
-  "2001 skyline mobile home for sale": {
-   "key": "3553227",
-   "address": "2001 Skyline Mobile Home For Sale",
-   "source": "Sun",
-   "price": 68900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 960,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3553227",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 68900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1988 barr mobile home for sale": {
-   "key": "3536249",
-   "address": "1988 BARR Mobile Home For Sale",
-   "source": "Sun",
-   "price": 63500,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3536249",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 63500
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1994 fleetwood mobile home for sale": {
-   "key": "3501969",
-   "address": "1994 Fleetwood Mobile Home For Sale",
-   "source": "Sun",
-   "price": 59000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3501969",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 59000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1989 mobile home for sale": {
-   "key": "3320299",
-   "address": "1989 Mobile Home For Sale",
-   "source": "Other",
-   "price": 130900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1056,
-   "year": null,
-   "lotRent": null,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3320299",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 130900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2006 skyw mobile home for sale": {
-   "key": "3480465",
-   "address": "2006 SKYW Mobile Home For Sale",
+  "614 sycamore sq": {
    "source": "Foxfire",
-   "price": 189900,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 2520,
-   "year": null,
-   "lotRent": 765,
-   "parking": "Garage",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3480465",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 189900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2007 mobile home for sale": {
-   "key": "3456313",
-   "address": "2007 Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 165000,
+   "address": "614 Sycamore Square",
+   "price": 68000,
    "beds": 2,
    "baths": 2,
-   "sqft": 1456,
+   "sqft": 864,
    "year": null,
-   "lotRent": 748,
-   "parking": "Garage",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3456313",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 165000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2022 cham mobile home for sale": {
-   "key": "3564663",
-   "address": "2022 CHAM Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 164900,
-   "beds": 3,
-   "baths": 2,
-   "sqft": 1274,
-   "year": null,
-   "lotRent": 811,
-   "parking": "Garage",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3564663",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 164900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2023 palm mobile home for sale": {
-   "key": "3564649",
-   "address": "2023 PALM Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 154900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1248,
-   "year": null,
-   "lotRent": 805,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3564649",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26986",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
-     "price": 154900
+     "price": 68000
     }
    ],
    "gone": false,
    "goneDate": null
   },
-  "2012 silv mobile home for sale": {
-   "key": "3478197",
-   "address": "2012 SILV Mobile Home For Sale",
+  "626 cedar ln": {
    "source": "Foxfire",
-   "price": 88900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1144,
-   "year": null,
-   "lotRent": 765,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3478197",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 88900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1988 home mobile home for sale": {
-   "key": "3524697",
-   "address": "1988 HOME Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 38900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 768,
-   "year": null,
-   "lotRent": 765,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524697",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 38900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2001 wood mobile home for sale": {
-   "key": "3524721",
-   "address": "2001 WOOD Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 87000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1512,
-   "year": null,
-   "lotRent": 765,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524721",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 87000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1985 home mobile home for sale": {
-   "key": "3524751",
-   "address": "1985 HOME Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 69900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1056,
-   "year": null,
-   "lotRent": 765,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524751",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 69900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "2000 wdmn mobile home for sale": {
-   "key": "3524749",
-   "address": "2000 WDMN Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 83000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1144,
-   "year": null,
-   "lotRent": 765,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524749",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 83000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1995 sunc mobile home for sale": {
-   "key": "3231323",
-   "address": "1995 SUNC Mobile Home For Sale",
-   "source": "Other",
-   "price": 77777,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 960,
-   "year": null,
-   "lotRent": 725,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3231323",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 77777
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1995 mobile home for sale": {
-   "key": "3430243",
-   "address": "1995 Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 74900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1568,
-   "year": null,
-   "lotRent": 725,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3430243",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 74900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1985 mobile home for sale": {
-   "key": "3430241",
-   "address": "1985 Mobile Home For Sale",
-   "source": "Foxfire",
+   "address": "626 Cedar La",
    "price": 66500,
    "beds": 2,
    "baths": 2,
    "sqft": 1456,
    "year": null,
-   "lotRent": 725,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3430241",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26988",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
@@ -912,144 +102,155 @@
    "gone": false,
    "goneDate": null
   },
-  "1987 trop mobile home for sale": {
-   "key": "3564659",
-   "address": "1987 TROP Mobile Home For Sale",
+  "120 w pine st": {
    "source": "Foxfire",
-   "price": 68000,
+   "address": "120 W Pine St",
+   "price": 49900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 768,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27212",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 49900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "654 hickory hill": {
+   "source": "Foxfire",
+   "address": "654 Hickory Hill",
+   "price": 87000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1092,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27214",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 87000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "541 spruce dr": {
+   "source": "Foxfire",
+   "address": "541 Spruce Dr",
+   "price": 57500,
    "beds": 2,
    "baths": 2,
    "sqft": 1456,
    "year": null,
-   "lotRent": 765,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3564659",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27031",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
-     "price": 68000
+     "price": 57500
     }
    ],
    "gone": false,
    "goneDate": null
   },
-  "1987 mobile home for sale": {
-   "key": "3446907",
-   "address": "1987 Mobile Home For Sale",
+  "103 willow way": {
    "source": "Foxfire",
-   "price": 68000,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 864,
-   "year": null,
-   "lotRent": 725,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3446907",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 68000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1986 home mobile home for sale": {
-   "key": "3424387",
-   "address": "1986 HOME Mobile Home For Sale",
-   "source": "Foxfire",
-   "price": 64900,
+   "address": "103 Willow Way",
+   "price": 88900,
    "beds": 2,
    "baths": 2,
    "sqft": 1144,
    "year": null,
-   "lotRent": 725,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3424387",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27075",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
-     "price": 64900
+     "price": 88900
     }
    ],
    "gone": false,
    "goneDate": null
   },
-  "1983 brig mobile home for sale": {
-   "key": "3521821",
-   "address": "1983 BRIG Mobile Home For Sale",
-   "source": "Other",
-   "price": 64900,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 1152,
-   "year": null,
-   "lotRent": 855,
-   "parking": "None",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3521821",
-   "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-04",
-   "onAtStart": true,
-   "prices": [
-    {
-     "date": "2026-10-04",
-     "price": 64900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "1991 pasp mobile home for sale": {
-   "key": "3564661",
-   "address": "1991 PASP Mobile Home For Sale",
+  "643 mickelson way": {
    "source": "Foxfire",
-   "price": 59000,
+   "address": "643 Mickelson Way",
+   "price": 154900,
    "beds": 2,
    "baths": 2,
-   "sqft": 1352,
+   "sqft": 1248,
    "year": null,
-   "lotRent": 765,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3564661",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27216",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
-     "price": 59000
+     "price": 154900
     }
    ],
    "gone": false,
    "goneDate": null
   },
-  "1982 palm mobile home for sale": {
-   "key": "3524701",
-   "address": "1982 PALM Mobile Home For Sale",
+  "401 tulip tree ln": {
    "source": "Foxfire",
+   "address": "401 Tulip Tree Ln",
+   "price": 59900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1300,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27218",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 59900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "309 juniper cir": {
+   "source": "Foxfire",
+   "address": "309 Juniper Cir",
    "price": 59000,
    "beds": 2,
    "baths": 2,
    "sqft": 896,
    "year": null,
-   "lotRent": 765,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3524701",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27128",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
@@ -1062,19 +263,201 @@
    "gone": false,
    "goneDate": null
   },
-  "1984 palm mobile home for sale": {
-   "key": "3564655",
-   "address": "1984 PALM Mobile Home For Sale",
+  "612 cedar ln": {
    "source": "Foxfire",
+   "address": "612 Cedar Ln",
+   "price": 68000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1456,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27187",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 68000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "923 strange st": {
+   "source": "Foxfire",
+   "address": "923 Strange St",
+   "price": 110000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1586,
+   "year": null,
+   "parking": "None",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27221",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 110000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "747 trevino dr": {
+   "source": "Foxfire",
+   "address": "747 Trevino Dr",
+   "price": 38900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 768,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27140",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 38900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "812 trevino dr": {
+   "source": "Foxfire",
+   "address": "812 Trevino Dr",
+   "price": 79900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1144,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27155",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 79900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "678 cedar ln": {
+   "source": "Foxfire",
+   "address": "678 Cedar La",
+   "price": 64900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1056,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27159",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 64900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "206 bradley ln": {
+   "source": "Foxfire",
+   "address": "206 Bradley Ln",
+   "price": 57900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1248,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27174",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 57900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "512 palmer dr": {
+   "source": "Foxfire",
+   "address": "512 Palmer Dr",
+   "price": 59000,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1352,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27191",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 59000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "611 nicklaus ct": {
+   "source": "Foxfire",
+   "address": "611 Nicklaus Ct",
+   "price": 164900,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1274,
+   "year": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27195",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 164900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "620 sycamore sq": {
+   "source": "Foxfire",
+   "address": "620 Sycamore Sq",
    "price": 56500,
    "beds": 2,
    "baths": 2,
    "sqft": 936,
    "year": null,
-   "lotRent": 765,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3564655",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27225",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
@@ -1087,26 +470,47 @@
    "gone": false,
    "goneDate": null
   },
-  "1987 palm mobile home for sale": {
-   "key": "3564653",
-   "address": "1987 PALM Mobile Home For Sale",
+  "735 sutton st": {
    "source": "Foxfire",
-   "price": 49900,
+   "address": "735 Sutton St",
+   "price": 82500,
    "beds": 2,
    "baths": 2,
-   "sqft": 768,
+   "sqft": 1008,
    "year": null,
-   "lotRent": 765,
    "parking": "Carport",
    "pending": false,
-   "url": "https://www.mhvillage.com/homes/3564653",
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27231",
    "firstSeen": "2026-10-04",
    "lastSeen": "2026-10-04",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
-     "price": 49900
+     "price": 82500
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "736 sutton st": {
+   "source": "Foxfire",
+   "address": "736 Sutton St",
+   "price": 79900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1404,
+   "year": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27233",
+   "firstSeen": "2026-10-04",
+   "lastSeen": "2026-10-04",
+   "onAtStart": true,
+   "prices": [
+    {
+     "date": "2026-10-04",
+     "price": 79900
     }
    ],
    "gone": false,
