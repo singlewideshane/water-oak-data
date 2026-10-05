@@ -32,6 +32,11 @@
    "date": "2026-10-05",
    "sun": 24,
    "foxfire": 22
+  },
+  {
+   "date": "2026-10-05",
+   "sun": 24,
+   "foxfire": 22
   }
  ],
  "homes": {
@@ -541,9 +546,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3542251": {
+  "221 sakura ct": {
    "key": "3542251",
-   "address": "Sun listing #3542251",
+   "address": "221 Sakura Ct",
    "source": "Sun",
    "price": 214900,
    "beds": 2,
@@ -566,9 +571,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3540381": {
+  "201 cottonwood cir": {
    "key": "3540381",
-   "address": "Sun listing #3540381",
+   "address": "201 Cottonwood Cir",
    "source": "Sun",
    "price": 209900,
    "beds": 3,
@@ -591,9 +596,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3574943": {
+  "217 hogan dr": {
    "key": "3574943",
-   "address": "Sun listing #3574943",
+   "address": "217 Hogan Dr",
    "source": "Sun",
    "price": 199995,
    "beds": 3,
@@ -616,9 +621,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3566035": {
+  "832 bishop dr": {
    "key": "3566035",
-   "address": "Sun listing #3566035",
+   "address": "832 Bishop Dr",
    "source": "Sun",
    "price": 199900,
    "beds": 3,
@@ -641,9 +646,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3293741": {
+  "427 bemen dr": {
    "key": "3293741",
-   "address": "Sun listing #3293741",
+   "address": "427 Bemen Dr",
    "source": "Sun",
    "price": 189900,
    "beds": 2,
@@ -666,9 +671,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3573917": {
+  "898 byrnes lp": {
    "key": "3573917",
-   "address": "Sun listing #3573917",
+   "address": "898 Byrnes Lp",
    "source": "Sun",
    "price": 167995,
    "beds": 2,
@@ -691,9 +696,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3573357": {
+  "892 byrnes lp": {
    "key": "3573357",
-   "address": "Sun listing #3573357",
+   "address": "892 Byrnes Lp",
    "source": "Sun",
    "price": 164995,
    "beds": 3,
@@ -716,9 +721,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3565355": {
+  "494 sheehan way": {
    "key": "3565355",
-   "address": "Sun listing #3565355",
+   "address": "494 Sheehan Way",
    "source": "Sun",
    "price": 159995,
    "beds": 3,
@@ -741,9 +746,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3545801": {
+  "641 mickelson way": {
    "key": "3545801",
-   "address": "Sun listing #3545801",
+   "address": "641 Mickelson Way",
    "source": "Sun",
    "price": 149900,
    "beds": 2,
@@ -766,9 +771,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3559739": {
+  "220 maple dr": {
    "key": "3559739",
-   "address": "Sun listing #3559739",
+   "address": "220 Maple Dr",
    "source": "Sun",
    "price": 124995,
    "beds": 4,
@@ -791,9 +796,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3572881": {
+  "214 bradley ln": {
    "key": "3572881",
-   "address": "Sun listing #3572881",
+   "address": "214 Bradley Ln",
    "source": "Sun",
    "price": 109995,
    "beds": 2,
@@ -816,9 +821,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3542249": {
+  "805 sutton st": {
    "key": "3542249",
-   "address": "Sun listing #3542249",
+   "address": "805 Sutton St",
    "source": "Sun",
    "price": 108900,
    "beds": 2,
@@ -841,9 +846,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3493177": {
+  "813 e norman st": {
    "key": "3493177",
-   "address": "Sun listing #3493177",
+   "address": "813 E Norman St",
    "source": "Sun",
    "price": 95000,
    "beds": 2,
@@ -866,9 +871,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3483223": {
+  "532 spruce dr": {
    "key": "3483223",
-   "address": "Sun listing #3483223",
+   "address": "532 Spruce Dr",
    "source": "Sun",
    "price": 84995,
    "beds": 2,
@@ -891,9 +896,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3566803": {
+  "704 water oak blvd": {
    "key": "3566803",
-   "address": "Sun listing #3566803",
+   "address": "704 Water Oak Blvd",
    "source": "Sun",
    "price": 82995,
    "beds": 2,
@@ -916,9 +921,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3508475": {
+  "636 sycamore sq": {
    "key": "3508475",
-   "address": "Sun listing #3508475",
+   "address": "636 Sycamore Sq",
    "source": "Sun",
    "price": 79500,
    "beds": 2,
@@ -941,9 +946,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3566809": {
+  "104 magnolia dr": {
    "key": "3566809",
-   "address": "Sun listing #3566809",
+   "address": "104 Magnolia Dr",
    "source": "Sun",
    "price": 75995,
    "beds": 2,
@@ -966,9 +971,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3448147": {
+  "102 magnolia dr": {
    "key": "3448147",
-   "address": "Sun listing #3448147",
+   "address": "102 Magnolia Dr",
    "source": "Sun",
    "price": 74000,
    "beds": 2,
@@ -991,9 +996,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3499421": {
+  "416 snead dr": {
    "key": "3499421",
-   "address": "Sun listing #3499421",
+   "address": "416 Snead Dr",
    "source": "Sun",
    "price": 72900,
    "beds": 2,
@@ -1016,9 +1021,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3439439": {
+  "644 hickory hill": {
    "key": "3439439",
-   "address": "Sun listing #3439439",
+   "address": "644 Hickory Hill",
    "source": "Sun",
    "price": 72000,
    "beds": 2,
@@ -1041,9 +1046,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3547363": {
+  "706 water oak blvd": {
    "key": "3547363",
-   "address": "Sun listing #3547363",
+   "address": "706 Water Oak Blvd",
    "source": "Sun",
    "price": 69900,
    "beds": 2,
@@ -1066,9 +1071,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3553227": {
+  "923 e norman st": {
    "key": "3553227",
-   "address": "Sun listing #3553227",
+   "address": "923 E Norman St",
    "source": "Sun",
    "price": 68900,
    "beds": 2,
@@ -1091,9 +1096,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3536249": {
+  "214 birch st": {
    "key": "3536249",
-   "address": "Sun listing #3536249",
+   "address": "214 Birch St",
    "source": "Sun",
    "price": 63500,
    "beds": 2,
@@ -1116,9 +1121,9 @@
    "gone": false,
    "goneDate": null
   },
-  "sun listing 3501969": {
+  "413 bemen dr": {
    "key": "3501969",
-   "address": "Sun listing #3501969",
+   "address": "413 Bemen Dr",
    "source": "Sun",
    "price": 59000,
    "beds": 2,
