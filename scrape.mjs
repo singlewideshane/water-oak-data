@@ -160,16 +160,31 @@ async function sunDetail(key) {
   return { title, body, own };
 }
 
+const STRICT = /^\d{1,5}\s+(?:[NSEW]\.?\s+)?[A-Za-z][A-Za-z0-9 .'-]*?\b(?:St|Street|Dr|Drive|Ln|Lane|La|Ct|Court|Cir|Circle|Way|Blvd|Ave|Avenue|Sq|Square|Trl|Trail|Pl|Place|Rd|Road|Hill|Hl|Pt|Point|Ter|Terrace|Loop|Lp|Run|Pass|Path)\.?$/i;
+const isStreet = a => !!a && STRICT.test(a) && !/\b(mobile|home|homes|sale|for|of|at|located|photo)\b/i.test(a);
+
 function sunAddress(title, body) {
-  const STREET = /^\d{1,5}\s+[A-Za-z0-9 .'-]+$/;
-  const fromTitle = title.split(/[>|]/).map(x => x.trim().replace(/,\s*Lady Lake.*$/i, '')).find(x => STREET.test(x) && x.length < 40);
+  const fromTitle = title.split(/[>|]/).map(x => x.trim().replace(/,\s*Lady Lake.*$/i, '')).find(isStreet);
   if (fromTitle) return fromTitle;
-  const m = body.match(/(\d{1,5} [A-Za-z0-9 .'-]{3,35}?),\s*Lady Lake,?\s*FL/i);
-  return m ? m[1].trim() : null;
+  for (const m of body.matchAll(/(\d{1,5} [A-Za-z0-9 .'-]{3,35}?),\s*Lady Lake,?\s*FL/gi)) {
+    const c = m[1].trim();
+    if (isStreet(c)) return c;
+  }
+  return null;
+}
+
+// only the home's own description + details, never the site menus or "homes near me"
+function homeSection(t) {
+  if (!t) return '';
+  const a = t.search(/About this Home/i);
+  if (a < 0) return '';
+  const rest = t.slice(a);
+  const b = rest.search(/MOBILE HOMES NEAR ME|Financing Options|Similar Homes|Nearby Homes/i);
+  return b > 0 ? rest.slice(0, b) : rest;
 }
 
 function sunParking(t) {
-  if (!t) return 'Unknown';
+  if (!t || !t.trim()) return 'Unknown';
   const noCart = t.replace(/golf[- ]?cart garage/gi, '');
   if (/\b(?:attached|detached|\d|one|two|single|double)[- ]?car garage\b|\bgarage\b/i.test(noCart)) return 'Garage';
   if (/car ?port/i.test(t)) return 'Carport';
@@ -197,11 +212,14 @@ async function scanSun() {
     const h = parseMhv(key, html || '', { raw: it });
     if (!h) continue;
     const own = d.own || '';
-    h.address = sunAddress(d.title, d.body) || h.address;
-    h.parking = sunParking(own);
+    const pageText = (d.title || '') + ' ' + (d.body || '') + ' ' + (html ? text(html) : '');
+    const addr = sunAddress(d.title, d.body) || sunAddress(html ? ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '') : '', html ? text(html) : '');
+    h.address = addr || `Sun listing #${key}`;
+    h.parking = sunParking(homeSection(d.body) + ' ' + homeSection(html ? text(html) : ''));
     if (!h.price) h.price = n((own.match(/Buy:\s*\$\s*([\d,]+)/i) || [])[1]);
     if (!h.sqft) h.sqft = n((own.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
-    if (!h.year) h.year = n((own.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || [])[1]);
+    const yr = pageText.match(/\b((?:19|20)\d{2})\s+[A-Za-z][A-Za-z ]{1,30}?\s+Mobile Home For Sale/i);
+    h.year = yr ? n(yr[1]) : null;
     h.pending = /sale pending|under contract|contract pending/i.test(own);
     console.log(` Sun ${key}: ${h.address} | $${h.price} | parking: ${h.parking} | browser read: ${d.body ? 'yes' : 'NO'} | plain read: ${html ? 'yes' : 'NO'}`);
     out.push(h);
@@ -259,15 +277,28 @@ for (const [src, list] of [['Sun', sun], ['Foxfire', fox]]) {
 }
 if (!ok.Sun && !ok.Foxfire) { console.log('Both scans failed.'); process.exit(1); }
 
-// Sun homes were saved under "Sun listing #123" before addresses worked. Match them by
-// listing number so a new address doesn't make a home look like it sold.
-const byKey = {};
-for (const [id, h] of Object.entries(db.homes)) if (h.key) byKey[h.key] = id;
-for (const h of (ok.Sun ? sun : [])) {
-  const oldId = byKey[h.key], newId = keyOf(h.address);
-  if (!oldId || oldId === newId) continue;
-  if (/^sun listing/.test(oldId) && !db.homes[newId]) { db.homes[newId] = db.homes[oldId]; delete db.homes[oldId]; byKey[h.key] = newId; }
-  else if (/^sun listing/.test(newId)) h.address = db.homes[oldId].address;   // page didn't load this time: keep the known address
+// Clean up Sun homes saved under a listing number or a headline instead of a street address.
+// Each is matched to this run by its MHVillage listing number, keeping its first-seen date and price
+// history, so a corrected address never makes a home look like it sold.
+if (ok.Sun) {
+  const oldByKey = {};
+  for (const [id, h] of Object.entries(db.homes)) {
+    if (h.source === 'Sun' && h.key && !isStreet(h.address)) {
+      const prev = oldByKey[h.key];
+      if (!prev || (h.firstSeen || '9') < (prev.firstSeen || '9')) oldByKey[h.key] = h;
+      delete db.homes[id];
+    }
+  }
+  for (const h of sun) {
+    const old = oldByKey[h.key];
+    if (!old) continue;
+    delete oldByKey[h.key];
+    const id = keyOf(h.address);
+    if (!db.homes[id]) db.homes[id] = { ...old, gone: false, goneDate: null };
+  }
+  for (const old of Object.values(oldByKey)) {            // truly no longer listed
+    db.homes['sun listing ' + old.key] = { ...old, gone: true, goneDate: old.goneDate || today };
+  }
 }
 
 const first = !db.runs.length || db.started === today;
