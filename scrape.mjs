@@ -1,3 +1,5 @@
+// VERSION 5 — ADDRESS LIST (Oct 5). If you see this line on GitHub, the right code is saved.
+
 // Water Oak market robot — Sun sales office (its own MHVillage seller account) + RE/MAX Foxfire
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
 import fs from 'node:fs';
@@ -160,6 +162,20 @@ async function sunDetail(key) {
   return { title, body, own };
 }
 
+// Street addresses for Sun listings, from Sun's own website (checked by hand, Oct 5 2026).
+// Used when MHVillage doesn't show the address. A new Sun listing not on this list shows its
+// listing number until its address is added here.
+const SUN_ADDRESSES = {
+  '3501969': '413 Bemen Dr',      '3536249': '214 Birch St',       '3553227': '923 E Norman St',
+  '3547363': '706 Water Oak Blvd', '3439439': '644 Hickory Hill',   '3499421': '416 Snead Dr',
+  '3448147': '102 Magnolia Dr',   '3566809': '104 Magnolia Dr',    '3508475': '636 Sycamore Sq',
+  '3566803': '704 Water Oak Blvd', '3483223': '532 Spruce Dr',      '3493177': '813 E Norman St',
+  '3542249': '805 Sutton St',     '3572881': '214 Bradley Ln',     '3559739': '220 Maple Dr',
+  '3545801': '641 Mickelson Way', '3565355': '494 Sheehan Way',    '3573357': '892 Byrnes Lp',
+  '3573917': '898 Byrnes Lp',     '3293741': '427 Bemen Dr',       '3566035': '832 Bishop Dr',
+  '3574943': '217 Hogan Dr',      '3540381': '201 Cottonwood Cir', '3542251': '221 Sakura Ct'
+};
+
 const STRICT = /^\d{1,5}\s+(?:[NSEW]\.?\s+)?[A-Za-z][A-Za-z0-9 .'-]*?\b(?:St|Street|Dr|Drive|Ln|Lane|La|Ct|Court|Cir|Circle|Way|Blvd|Ave|Avenue|Sq|Square|Trl|Trail|Pl|Place|Rd|Road|Hill|Hl|Pt|Point|Ter|Terrace|Loop|Lp|Run|Pass|Path)\.?$/i;
 const isStreet = a => !!a && STRICT.test(a) && !/\b(mobile|home|homes|sale|for|of|at|located|photo)\b/i.test(a);
 
@@ -214,7 +230,7 @@ async function scanSun() {
     const own = d.own || '';
     const pageText = (d.title || '') + ' ' + (d.body || '') + ' ' + (html ? text(html) : '');
     const addr = sunAddress(d.title, d.body) || sunAddress(html ? ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '') : '', html ? text(html) : '');
-    h.address = addr || `Sun listing #${key}`;
+    h.address = addr || SUN_ADDRESSES[key] || `Sun listing #${key}`;
     h.parking = sunParking(homeSection(d.body) + ' ' + homeSection(html ? text(html) : ''));
     if (!h.price) h.price = n((own.match(/Buy:\s*\$\s*([\d,]+)/i) || [])[1]);
     if (!h.sqft) h.sqft = n((own.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
