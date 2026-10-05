@@ -1,4 +1,3 @@
-
 // Water Oak market robot — Sun sales office (its own MHVillage seller account) + RE/MAX Foxfire
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
 import fs from 'node:fs';
@@ -130,13 +129,53 @@ function parseMhv(key, html, hint) {
   const desc = strVals.join(' ') + ' ' + t;
   const words = desc.replace(/golf[- ]?cart garage/gi, '');
   let parking = 'None';
-  if (hint.garage === true || pick(f, /garage/i, v => v === true) || /\bgarage\b/i.test(words)) parking = 'Garage';
-  else if (pick(f, /carport/i, v => v === true) || /carport/i.test(desc)) parking = 'Carport';
+  if (html && /\bgarage\b/i.test(words)) parking = 'Garage';
+  else if (html && /carport/i.test(desc)) parking = 'Carport';
   else if (/golf[- ]?cart garage/i.test(desc)) parking = 'Cart garage';
 
   if (!price) { console.log('skipped', key, 'no price'); return null; }
   return { key, address, source: 'Sun', price, beds, baths, sqft, year, lotRent, parking, pending,
            url: `https://www.mhvillage.com/homes/${key}` };
+}
+
+// Read one Sun home's detail page on MHVillage in the real browser (falls back to plain fetch).
+// Returns the page text limited to the home's own section, plus the page title.
+async function sunDetail(key) {
+  const url = `${MHV}/homes/${key}`;
+  let title = '', body = '';
+  if (await open(url, 3500)) {
+    title = await page.title().catch(() => '');
+    body = await bodyText();
+  }
+  if (!/Lady Lake/i.test(title + body)) {
+    const html = await get(url);
+    if (html) { title = ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '').replace(/&amp;/g, '&'); body = text(html); }
+  }
+  // keep only this home's section: from the address/price block down to the seller box,
+  // so site menus, filters and "homes near me" links can't trip the garage/carport check
+  let own = body;
+  const a = own.search(/About this Home/i);
+  const b = own.search(/MOBILE HOMES NEAR ME|Financing Options|Similar Homes|Nearby Homes/i);
+  if (a > 0) own = own.slice(Math.max(0, a - 1500), b > a ? b : undefined);
+  return { title, body, own };
+}
+
+function sunAddress(title, body) {
+  const STREET = /^\d{1,5}\s+[A-Za-z0-9 .'-]+$/;
+  const fromTitle = title.split(/[>|]/).map(x => x.trim().replace(/,\s*Lady Lake.*$/i, '')).find(x => STREET.test(x) && x.length < 40);
+  if (fromTitle) return fromTitle;
+  const m = body.match(/(\d{1,5} [A-Za-z0-9 .'-]{3,35}?),\s*Lady Lake,?\s*FL/i);
+  return m ? m[1].trim() : null;
+}
+
+function sunParking(t) {
+  if (!t) return 'Unknown';
+  const noCart = t.replace(/golf[- ]?cart garage/gi, '');
+  if (/\b(?:attached|detached|\d|one|two|single|double)[- ]?car garage\b|\bgarage\b/i.test(noCart)) return 'Garage';
+  if (/car ?port/i.test(t)) return 'Carport';
+  if (/golf[- ]?cart garage/i.test(t)) return 'Cart garage';
+  if (/driveway/i.test(t)) return 'Driveway';
+  return 'Unknown';
 }
 
 async function scanSun() {
@@ -153,10 +192,18 @@ async function scanSun() {
   const out = [];
   for (const it of sunItems) {
     const key = String(it.key || it.id);
-    const html = await get(`${MHV}/homes/${key}`);
-    await new Promise(r => setTimeout(r, 600));
-    const h = parseMhv(key, html || '', { garage: (it.relationships?.detailsStd || it.detailsStd || {}).garage, raw: it });
-    if (h) out.push(h);
+    const d = await sunDetail(key);
+    const h = parseMhv(key, '', { raw: it });            // price / beds / baths / sqft from the feed
+    if (!h) continue;
+    const own = d.own || '';
+    h.address = sunAddress(d.title, d.body) || `Sun listing #${key}`;
+    h.parking = sunParking(own);
+    if (!h.price) h.price = n((own.match(/Buy:\s*\$\s*([\d,]+)/i) || [])[1]);
+    if (!h.sqft) h.sqft = n((own.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
+    if (!h.year) h.year = n((own.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || [])[1]);
+    h.pending = /sale pending|under contract|contract pending/i.test(own);
+    console.log(` Sun ${key}: ${h.address} | parking: ${h.parking} | page read: ${d.body ? 'yes' : 'NO'}`);
+    out.push(h);
   }
   return out;
 }
@@ -210,6 +257,17 @@ for (const [src, list] of [['Sun', sun], ['Foxfire', fox]]) {
   if (!ok[src]) console.log(`${src}: scan looks incomplete, not marking any ${src} homes gone this run.`);
 }
 if (!ok.Sun && !ok.Foxfire) { console.log('Both scans failed.'); process.exit(1); }
+
+// Sun homes were saved under "Sun listing #123" before addresses worked. Match them by
+// listing number so a new address doesn't make a home look like it sold.
+const byKey = {};
+for (const [id, h] of Object.entries(db.homes)) if (h.key) byKey[h.key] = id;
+for (const h of (ok.Sun ? sun : [])) {
+  const oldId = byKey[h.key], newId = keyOf(h.address);
+  if (!oldId || oldId === newId) continue;
+  if (/^sun listing/.test(oldId) && !db.homes[newId]) { db.homes[newId] = db.homes[oldId]; delete db.homes[oldId]; byKey[h.key] = newId; }
+  else if (/^sun listing/.test(newId)) h.address = db.homes[oldId].address;   // page didn't load this time: keep the known address
+}
 
 const first = !db.runs.length || db.started === today;
 const seen = {};
