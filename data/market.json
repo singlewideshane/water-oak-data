@@ -27,6 +27,11 @@
    "date": "2026-10-05",
    "sun": 24,
    "foxfire": 22
+  },
+  {
+   "date": "2026-10-05",
+   "sun": 24,
+   "foxfire": 22
   }
  ],
  "homes": {
@@ -536,6 +541,31 @@
    "gone": false,
    "goneDate": null
   },
+  "sun listing 3542251": {
+   "key": "3542251",
+   "address": "Sun listing #3542251",
+   "source": "Sun",
+   "price": 214900,
+   "beds": 2,
+   "baths": 2.5,
+   "sqft": 1920,
+   "year": 2020,
+   "lotRent": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3542251",
+   "firstSeen": "2026-10-05",
+   "lastSeen": "2026-10-05",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-05",
+     "price": 214900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
   "sun listing 3540381": {
    "key": "3540381",
    "address": "Sun listing #3540381",
@@ -861,6 +891,31 @@
    "gone": false,
    "goneDate": null
   },
+  "sun listing 3566803": {
+   "key": "3566803",
+   "address": "Sun listing #3566803",
+   "source": "Sun",
+   "price": 82995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 960,
+   "year": 1989,
+   "lotRent": null,
+   "parking": "Unknown",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3566803",
+   "firstSeen": "2026-10-05",
+   "lastSeen": "2026-10-05",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-05",
+     "price": 82995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
   "sun listing 3508475": {
    "key": "3508475",
    "address": "Sun listing #3508475",
@@ -1081,56 +1136,6 @@
     {
      "date": "2026-10-04",
      "price": 59000
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "sun listing 3542251": {
-   "key": "3542251",
-   "address": "Sun listing #3542251",
-   "source": "Sun",
-   "price": 214900,
-   "beds": 2,
-   "baths": 2.5,
-   "sqft": 1920,
-   "year": 2020,
-   "lotRent": null,
-   "parking": "Carport",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3542251",
-   "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-05",
-   "onAtStart": false,
-   "prices": [
-    {
-     "date": "2026-10-05",
-     "price": 214900
-    }
-   ],
-   "gone": false,
-   "goneDate": null
-  },
-  "sun listing 3566803": {
-   "key": "3566803",
-   "address": "Sun listing #3566803",
-   "source": "Sun",
-   "price": 82995,
-   "beds": 2,
-   "baths": 2,
-   "sqft": 960,
-   "year": 1989,
-   "lotRent": null,
-   "parking": "Unknown",
-   "pending": false,
-   "url": "https://www.mhvillage.com/homes/3566803",
-   "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-05",
-   "onAtStart": false,
-   "prices": [
-    {
-     "date": "2026-10-05",
-     "price": 82995
     }
    ],
    "gone": false,
