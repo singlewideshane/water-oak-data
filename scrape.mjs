@@ -193,16 +193,17 @@ async function scanSun() {
   for (const it of sunItems) {
     const key = String(it.key || it.id);
     const d = await sunDetail(key);
-    const h = parseMhv(key, '', { raw: it });            // price / beds / baths / sqft from the feed
+    const html = await get(`${MHV}/homes/${key}`);       // plain page read: this is where the price comes from
+    const h = parseMhv(key, html || '', { raw: it });
     if (!h) continue;
     const own = d.own || '';
-    h.address = sunAddress(d.title, d.body) || `Sun listing #${key}`;
+    h.address = sunAddress(d.title, d.body) || h.address;
     h.parking = sunParking(own);
     if (!h.price) h.price = n((own.match(/Buy:\s*\$\s*([\d,]+)/i) || [])[1]);
     if (!h.sqft) h.sqft = n((own.match(/([\d,]{3,5})\s*Sq\.?\s*Ft/i) || [])[1]);
     if (!h.year) h.year = n((own.match(/Year(?:\s*Built)?\s*:?\s*((?:19|20)\d{2})/i) || [])[1]);
     h.pending = /sale pending|under contract|contract pending/i.test(own);
-    console.log(` Sun ${key}: ${h.address} | parking: ${h.parking} | page read: ${d.body ? 'yes' : 'NO'}`);
+    console.log(` Sun ${key}: ${h.address} | $${h.price} | parking: ${h.parking} | browser read: ${d.body ? 'yes' : 'NO'} | plain read: ${html ? 'yes' : 'NO'}`);
     out.push(h);
   }
   return out;
