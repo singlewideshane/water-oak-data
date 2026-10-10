@@ -1,4 +1,4 @@
-// VERSION 5 — ADDRESS LIST (Oct 5). If you see this line on GitHub, the right code is saved.
+// VERSION 6 — SUN WEBSITE CROSS-CHECK + FIXES (Oct 10). If you see this line on GitHub, the right code is saved.
 
 // Water Oak market robot — Sun sales office (its own MHVillage seller account) + RE/MAX Foxfire
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
@@ -53,6 +53,7 @@ function parking(t) {
   if (/\bgarage\b/i.test(noCart)) return 'Garage';
   if (/carport/i.test(t)) return 'Carport';
   if (/golf[- ]?cart garage/i.test(t)) return 'Cart garage';
+  if (/driveway/i.test(t)) return 'Driveway';
   return 'None';
 }
 function specs(t) {
@@ -61,7 +62,7 @@ function specs(t) {
     beds: bb ? n(bb[1]) : n((t.match(/(\d)\s*(?:Beds?|BR|Bedrooms?)\b/i) || [])[1]),
     baths: bb ? n(bb[2]) : n((t.match(/(\d(?:\.\d)?)\s*(?:Baths?|BA|Bathrooms?)\b/i) || [])[1]),
     sqft: bb ? n(bb[3]) : n((t.match(/([\d,]{3,5})\s*(?:sq\.?\s*ft|sqft|square)/i) || [])[1]),
-    year: n((t.match(/(?:Year(?:\s*Built)?|Built)\s*:?\s*((?:19|20)\d{2})/i) || [])[1]),
+    year: n((t.match(/(?:Year(?:\s*Built)?|Built)\s*(?:in)?\s*:?\s*((?:19|20)\d{2})/i) || [])[1]),
     parking: parking(t),
     pending: /sale pending|under contract|contract pending/i.test(t)
   };
@@ -166,6 +167,7 @@ async function sunDetail(key) {
 // Used when MHVillage doesn't show the address. A new Sun listing not on this list shows its
 // listing number until its address is added here.
 const SUN_ADDRESSES = {
+  '3576845': '880 Byrnes Lp',
   '3501969': '413 Bemen Dr',      '3536249': '214 Birch St',       '3553227': '923 E Norman St',
   '3547363': '706 Water Oak Blvd', '3439439': '644 Hickory Hill',   '3499421': '416 Snead Dr',
   '3448147': '102 Magnolia Dr',   '3566809': '104 Magnolia Dr',    '3508475': '636 Sycamore Sq',
@@ -180,9 +182,9 @@ const STRICT = /^\d{1,5}\s+(?:[NSEW]\.?\s+)?[A-Za-z][A-Za-z0-9 .'-]*?\b(?:St|Str
 const isStreet = a => !!a && STRICT.test(a) && !/\b(mobile|home|homes|sale|for|of|at|located|photo)\b/i.test(a);
 
 function sunAddress(title, body) {
-  const fromTitle = title.split(/[>|]/).map(x => x.trim().replace(/,\s*Lady Lake.*$/i, '')).find(isStreet);
+  const fromTitle = title.split(/[>|]/).map(x => x.trim().replace(/,?\s*Lady Lake.*$/i, '')).find(isStreet);
   if (fromTitle) return fromTitle;
-  for (const m of body.matchAll(/(\d{1,5} [A-Za-z0-9 .'-]{3,35}?),\s*Lady Lake,?\s*FL/gi)) {
+  for (const m of body.matchAll(/(\d{1,5} [A-Za-z0-9 .'-]{3,35}?),?\s*Lady Lake,?\s*FL/gi)) {
     const c = m[1].trim();
     if (isStreet(c)) return c;
   }
@@ -243,6 +245,31 @@ async function scanSun() {
   return out;
 }
 
+/* ---------- Sun's own website: cross-check count + addresses ---------- */
+// Read in its own tab with a time limit, so if Sun's page hangs the rest of the run still finishes.
+const SUN_SITE = 'https://www.suncommunities.com/florida/water-oak-country-club-estates/find-a-home';
+async function scanSunSite() {
+  const tab = await ctx.newPage();
+  const job = (async () => {
+    await tab.goto(SUN_SITE, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    let count = null, t = '';
+    for (let i = 0; i < 20 && count == null; i++) {
+      await tab.waitForTimeout(2000);
+      t = (await tab.locator('body').innerText().catch(() => '')).replace(/\u00a0/g, ' ');
+      const m = t.match(/(\d+)\s+Homes?\s+found/i);
+      if (m) count = Number(m[1]);
+    }
+    for (let i = 0; i < 8; i++) { await tab.mouse.wheel(0, 4000); await tab.waitForTimeout(600); }
+    t = (await tab.locator('body').innerText().catch(() => '')).replace(/\u00a0/g, ' ');
+    const addrs = [...new Set([...t.matchAll(/\b\d{2,4} [A-Z][A-Za-z.' ]{2,25}?\b(?:St|Dr|Ln|La|Ct|Cir|Way|Blvd|Sq|Lp|Loop|Hill|Pl|Rd|Ave)\b\.?/g)].map(m => m[0].trim()))];
+    return { count, addresses: addrs };
+  })();
+  const limit = new Promise(r => setTimeout(() => r(null), 120000));
+  const res = await Promise.race([job.catch(e => { console.log('Sun website error', e.message.split('\n')[0]); return null; }), limit]);
+  await tab.close().catch(() => {});
+  return res;
+}
+
 /* ---------- RE/MAX Foxfire ---------- */
 async function scanFox() {
   const out = [];
@@ -271,6 +298,20 @@ async function scanFox() {
 
 const sun = await scanSun().catch(e => { console.log('Sun scan error', e.message); return null; });
 const fox = await scanFox().catch(e => { console.log('Foxfire scan error', e.message); return null; });
+const sunSite = await scanSunSite().catch(() => null);
+let sunCheck = 'could not read Sun website';
+if (sunSite && sunSite.count != null) {
+  sunCheck = sunSite.count === (sun ? sun.length : -1) ? 'match' : 'MISMATCH';
+  console.log(`Sun website says ${sunSite.count} homes | Sun via MHVillage: ${sun ? sun.length : 'FAILED'} -> ${sunCheck}`);
+  if (sun && sunSite.addresses.length) {
+    const k = a => a.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').slice(0, 2).join(' ');
+    const site = new Set(sunSite.addresses.map(k)), ours = new Set(sun.map(h => k(h.address)));
+    const onlySite = sunSite.addresses.filter(a => !ours.has(k(a)));
+    const onlyOurs = sun.map(h => h.address).filter(a => !site.has(k(a)));
+    if (onlySite.length) console.log('On Sun website but not in our list:', onlySite.join('; '));
+    if (onlyOurs.length) console.log('In our list but not seen on Sun website:', onlyOurs.join('; '));
+  }
+} else console.log('Sun website: could not read a count this run (Sun list still comes from MHVillage).');
 await browser.close();
 console.log('Sun homes:', sun ? sun.length : 'FAILED', '| Foxfire homes:', fox ? fox.length : 'FAILED');
 for (const h of [...(sun || []), ...(fox || [])]) console.log(` ${h.source} | ${h.address} | $${h.price} | ${h.beds}/${h.baths} ${h.sqft || '?'}sf ${h.year || ''} ${h.parking}${h.pending ? ' PENDING' : ''}`);
@@ -333,7 +374,8 @@ for (const [id, h] of Object.entries(db.homes)) {
   if (!seen[id] && !h.gone && ok[h.source]) { h.gone = true; h.goneDate = today; }
 }
 db.updated = today;
-db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.length : null });
+db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.length : null,
+  sunWebsite: sunSite ? sunSite.count : null, sunCheck });
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
 console.log('saved', FILE, 'for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
