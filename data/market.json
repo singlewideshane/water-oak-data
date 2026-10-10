@@ -54,6 +54,13 @@
    "foxfire": 22,
    "sunWebsite": null,
    "sunCheck": "could not read Sun website"
+  },
+  {
+   "date": "2026-10-10",
+   "sun": 24,
+   "foxfire": 22,
+   "sunWebsite": null,
+   "sunCheck": "could not read Sun website"
   }
  ],
  "homes": {
