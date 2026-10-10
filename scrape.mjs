@@ -247,20 +247,9 @@ async function scanSun() {
 
 /* ---------- Sun's own website: cross-check count + addresses ---------- */
 // Read in its own tab with a time limit, so if Sun's page hangs the rest of the run still finishes.
-let sunDebug = null;
 const SUN_SITE = 'https://www.suncommunities.com/florida/water-oak-country-club-estates/find-a-home';
 async function scanSunSite() {
   const tab = await ctx.newPage();
-  const calls = [];
-  tab.on('response', async r => {
-    const u = r.url(), ct = r.headers()['content-type'] || '';
-    if (/json/i.test(ct) && !/google|facebook|analytics/i.test(u)) {
-      let body = ''; try { body = (await r.text()).slice(0, 400); } catch {}
-      calls.push({ url: u.slice(0, 300), status: r.status(), body });
-    }
-  });
-  const debug = { calls, text: '' };
-  sunDebug = debug;
   const job = (async () => {
     await tab.goto(SUN_SITE, { waitUntil: 'domcontentloaded', timeout: 60000 });
     let count = null, t = '';
@@ -272,7 +261,6 @@ async function scanSunSite() {
     }
     for (let i = 0; i < 8; i++) { await tab.mouse.wheel(0, 4000); await tab.waitForTimeout(600); }
     t = (await tab.locator('body').innerText().catch(() => '')).replace(/\u00a0/g, ' ');
-    debug.text = t.slice(0, 4000);
     const addrs = [...new Set([...t.matchAll(/\b\d{2,4} [A-Z][A-Za-z.' ]{2,25}?\b(?:St|Dr|Ln|La|Ct|Cir|Way|Blvd|Sq|Lp|Loop|Hill|Pl|Rd|Ave)\b\.?/g)].map(m => m[0].trim()))];
     return { count, addresses: addrs };
   })();
@@ -390,5 +378,4 @@ db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.len
   sunWebsite: sunSite ? sunSite.count : null, sunCheck });
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
-if (sunDebug) fs.writeFileSync('data/sun-website-debug.json', JSON.stringify(sunDebug, null, 1));
 console.log('saved', FILE, 'for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
