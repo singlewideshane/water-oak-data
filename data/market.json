@@ -1,7 +1,7 @@
 {
  "version": 3,
  "started": "2026-10-04",
- "updated": "2026-10-12",
+ "updated": "2026-10-15",
  "runs": [
   {
    "date": "2026-10-04",
@@ -68,6 +68,13 @@
    "foxfire": 22,
    "sunWebsite": null,
    "sunCheck": "could not read Sun website"
+  },
+  {
+   "date": "2026-10-15",
+   "sun": 27,
+   "foxfire": 20,
+   "sunWebsite": null,
+   "sunCheck": "could not read Sun website"
   }
  ],
  "homes": {
@@ -83,7 +90,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27083",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -106,7 +113,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26968",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -129,7 +136,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26986",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -143,7 +150,7 @@
   "626 cedar ln": {
    "source": "Foxfire",
    "address": "626 Cedar La",
-   "price": 66500,
+   "price": 59000,
    "beds": 2,
    "baths": 2,
    "sqft": 1456,
@@ -152,12 +159,16 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26988",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
      "price": 66500
+    },
+    {
+     "date": "2026-10-15",
+     "price": 59000
     }
    ],
    "gone": false,
@@ -175,7 +186,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27212",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -198,7 +209,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27214",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -221,7 +232,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27031",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -252,13 +263,13 @@
      "price": 88900
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-15"
   },
   "643 mickelson way": {
    "source": "Foxfire",
    "address": "643 Mickelson Way",
-   "price": 154900,
+   "price": 149900,
    "beds": 2,
    "baths": 2,
    "sqft": 1248,
@@ -267,12 +278,16 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27216",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
      "price": 154900
+    },
+    {
+     "date": "2026-10-15",
+     "price": 149900
     }
    ],
    "gone": false,
@@ -290,7 +305,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27218",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -313,7 +328,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27128",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -344,8 +359,8 @@
      "price": 68000
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-15"
   },
   "923 strange st": {
    "source": "Foxfire",
@@ -367,8 +382,8 @@
      "price": 110000
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-15"
   },
   "747 trevino dr": {
    "source": "Foxfire",
@@ -382,7 +397,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27140",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -405,7 +420,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27155",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -419,7 +434,7 @@
   "678 cedar ln": {
    "source": "Foxfire",
    "address": "678 Cedar La",
-   "price": 64900,
+   "price": 59900,
    "beds": 2,
    "baths": 2,
    "sqft": 1056,
@@ -428,12 +443,16 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
      "price": 64900
+    },
+    {
+     "date": "2026-10-15",
+     "price": 59900
     }
    ],
    "gone": false,
@@ -451,7 +470,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27174",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -482,8 +501,8 @@
      "price": 59000
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-15"
   },
   "611 nicklaus ct": {
    "source": "Foxfire",
@@ -497,7 +516,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27195",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -520,7 +539,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27225",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -543,7 +562,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27231",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -566,7 +585,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27233",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -599,8 +618,8 @@
      "price": 214900
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-15"
   },
   "201 cottonwood cir": {
    "key": "3540381",
@@ -616,7 +635,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3540381",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -641,7 +660,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3574943",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -666,7 +685,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566035",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -691,7 +710,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3293741",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -720,7 +739,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3573917",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -745,7 +764,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3573357",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -770,7 +789,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3565355",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -795,7 +814,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3545801",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -820,7 +839,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3559739",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -845,7 +864,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3572881",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -870,7 +889,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3542249",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -895,7 +914,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3493177",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": false,
    "prices": [
     {
@@ -920,7 +939,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3483223",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -945,7 +964,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566803",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": false,
    "prices": [
     {
@@ -995,7 +1014,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566809",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1020,7 +1039,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3448147",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1045,7 +1064,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3499421",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1070,7 +1089,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3439439",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1095,7 +1114,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3547363",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1120,7 +1139,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3553227",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1145,7 +1164,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3536249",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1170,7 +1189,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3501969",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": true,
    "prices": [
     {
@@ -1195,7 +1214,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3576845",
    "firstSeen": "2026-10-08",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": false,
    "prices": [
     {
@@ -1220,7 +1239,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3579869",
    "firstSeen": "2026-10-12",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": false,
    "prices": [
     {
@@ -1245,12 +1264,108 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3579867",
    "firstSeen": "2026-10-12",
-   "lastSeen": "2026-10-12",
+   "lastSeen": "2026-10-15",
    "onAtStart": false,
    "prices": [
     {
      "date": "2026-10-12",
      "price": 199995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "886 byrnes lp": {
+   "key": "3580407",
+   "address": "886 Byrnes Lp",
+   "source": "Sun",
+   "price": 167995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1248,
+   "year": 2026,
+   "lotRent": null,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3580407",
+   "firstSeen": "2026-10-15",
+   "lastSeen": "2026-10-15",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-15",
+     "price": 167995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "962 w norman st": {
+   "key": "3581453",
+   "address": "962 W Norman St",
+   "source": "Sun",
+   "price": 128995,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1404,
+   "year": null,
+   "lotRent": null,
+   "parking": "Unknown",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3581453",
+   "firstSeen": "2026-10-15",
+   "lastSeen": "2026-10-15",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-15",
+     "price": 128995
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "434 watson dr": {
+   "source": "Foxfire",
+   "address": "434 Watson Drive",
+   "price": 279000,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1640,
+   "year": 2019,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27243",
+   "firstSeen": "2026-10-15",
+   "lastSeen": "2026-10-15",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-15",
+     "price": 279000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "450 watson dr": {
+   "source": "Foxfire",
+   "address": "450 WATSON DRIVE",
+   "price": 299900,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1640,
+   "year": 2020,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27245",
+   "firstSeen": "2026-10-15",
+   "lastSeen": "2026-10-15",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-15",
+     "price": 299900
     }
    ],
    "gone": false,
