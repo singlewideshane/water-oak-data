@@ -29,6 +29,17 @@
       "date": "2026-10-15",
       "listing": "916 E Norman",
       "showings": 1
+    },
+    {
+      "id": "2026-10-16-littler-description",
+      "date": "2026-10-16",
+      "listing": "219 Littler",
+      "change": {
+        "types": [
+          "Description"
+        ],
+        "note": "Zillow description rewritten to pitch the garage as storage savings (Lady Lake storage unit ~$180/mo)"
+      }
     }
   ]
 }
