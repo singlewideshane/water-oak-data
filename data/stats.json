@@ -1,0 +1,306 @@
+{
+ "note": "Sent by the Listings app on Shane's phone each time something changes. calls/showings are counts per day; views/saves are that day's Zillow numbers.",
+ "listings": [
+  {
+   "address": "725 Sutton St",
+   "status": "pending",
+   "listDate": "2026-07-29",
+   "listPrice": 87400,
+   "priceHistory": [],
+   "contractDate": "2026-09-30",
+   "contractPrice": 85000,
+   "soldDate": "",
+   "soldPrice": "",
+   "views": [
+    {
+     "date": "2026-09-13",
+     "views": 12,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-14",
+     "views": 12,
+     "saves": 1
+    },
+    {
+     "date": "2026-09-15",
+     "views": 11,
+     "saves": 2
+    },
+    {
+     "date": "2026-09-16",
+     "views": 13,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-18",
+     "views": 21,
+     "saves": 2
+    },
+    {
+     "date": "2026-09-19",
+     "views": 14,
+     "saves": 2
+    },
+    {
+     "date": "2026-09-20",
+     "views": 24,
+     "saves": 2
+    },
+    {
+     "date": "2026-09-20",
+     "views": 18,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-22",
+     "views": 20,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-24",
+     "views": 9,
+     "saves": 1
+    },
+    {
+     "date": "2026-09-26",
+     "views": 13,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-27",
+     "views": 12,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-28",
+     "views": 21,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-01",
+     "views": 12,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-01",
+     "views": 13,
+     "saves": 0
+    }
+   ],
+   "calls": {
+    "2026-09-30": 2
+   },
+   "showings": {
+    "2026-09-30": 2
+   },
+   "changes": []
+  },
+  {
+   "address": "219 Littler Ln",
+   "status": "active",
+   "listDate": "2026-08-12",
+   "listPrice": 159999,
+   "priceHistory": [],
+   "contractDate": "",
+   "contractPrice": "",
+   "soldDate": "",
+   "soldPrice": "",
+   "views": [
+    {
+     "date": "2026-09-13",
+     "views": 14,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-14",
+     "views": 9,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-15",
+     "views": 22,
+     "saves": 2
+    },
+    {
+     "date": "2026-09-16",
+     "views": 12,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-18",
+     "views": 15,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-19",
+     "views": 11,
+     "saves": 2
+    },
+    {
+     "date": "2026-09-20",
+     "views": 12,
+     "saves": 1
+    },
+    {
+     "date": "2026-09-21",
+     "views": 9,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-22",
+     "views": 8,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-24",
+     "views": 13,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-26",
+     "views": 5,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-27",
+     "views": 7,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-28",
+     "views": 7,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-01",
+     "views": 8,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-01",
+     "views": 16,
+     "saves": 1
+    },
+    {
+     "date": "2026-10-03",
+     "views": 7,
+     "saves": 2
+    },
+    {
+     "date": "2026-10-05",
+     "views": 8,
+     "saves": 2
+    },
+    {
+     "date": "2026-10-07",
+     "views": 9,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-12",
+     "views": 12,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-13",
+     "views": 18,
+     "saves": 3
+    },
+    {
+     "date": "2026-10-9",
+     "views": 22,
+     "saves": 0
+    }
+   ],
+   "calls": {},
+   "showings": {},
+   "changes": [
+    {
+     "date": "2026-10-03",
+     "types": [
+      "Other"
+     ],
+     "note": "updated Jeff Zillow listing just the opening sentence new fall incentive and the save rates jumped 28% roughly just by doing that and advertising one free month of lot rent"
+    }
+   ]
+  },
+  {
+   "address": "916 E Norman St.",
+   "status": "active",
+   "listDate": "2026-06-20",
+   "listPrice": 84900,
+   "priceHistory": [],
+   "contractDate": "",
+   "contractPrice": "",
+   "soldDate": "",
+   "soldPrice": "",
+   "views": [
+    {
+     "date": "2026-09-16",
+     "views": 65,
+     "saves": 1
+    },
+    {
+     "date": "2026-09-18",
+     "views": 53,
+     "saves": 3
+    },
+    {
+     "date": "2026-09-19",
+     "views": 29,
+     "saves": 3
+    },
+    {
+     "date": "2026-09-22",
+     "views": 54,
+     "saves": 1
+    },
+    {
+     "date": "2026-09-24",
+     "views": 79,
+     "saves": 0
+    },
+    {
+     "date": "2026-09-27",
+     "views": 47,
+     "saves": 1
+    },
+    {
+     "date": "2026-10-01",
+     "views": 35,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-01",
+     "views": 31,
+     "saves": 3
+    },
+    {
+     "date": "2026-10-07",
+     "views": 35,
+     "saves": 4
+    },
+    {
+     "date": "2026-10-12",
+     "views": 71,
+     "saves": 5
+    },
+    {
+     "date": "2026-10-13",
+     "views": 35,
+     "saves": 4
+    }
+   ],
+   "calls": {
+    "2026-09-13": 5
+   },
+   "showings": {
+    "2026-09-13": 3,
+    "2026-10-08": 1,
+    "2026-10-15": 3
+   },
+   "changes": []
+  }
+ ]
+}
