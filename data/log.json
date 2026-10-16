@@ -1,0 +1,6 @@
+{
+  "note": "Daily listing numbers Shane tells Claude. The Listings app reads this and applies each entry once. views/saves = that day's Zillow numbers; showings/calls = that day's total.",
+  "entries": [
+    { "id": "2026-10-15-norman-showings", "date": "2026-10-15", "listing": "916 E Norman", "showings": 3 }
+  ]
+}
