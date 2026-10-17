@@ -208,12 +208,24 @@
      "saves": 3
     },
     {
+     "date": "2026-10-15",
+     "views": 18,
+     "saves": 0
+    },
+    {
+     "date": "2026-10-16",
+     "views": 25,
+     "saves": 5
+    },
+    {
      "date": "2026-10-9",
      "views": 22,
      "saves": 0
     }
    ],
-   "calls": {},
+   "calls": {
+    "2026-10-17": 1
+   },
    "showings": {},
    "changes": [
     {
@@ -222,6 +234,13 @@
       "Other"
      ],
      "note": "updated Jeff Zillow listing just the opening sentence new fall incentive and the save rates jumped 28% roughly just by doing that and advertising one free month of lot rent"
+    },
+    {
+     "date": "2026-10-16",
+     "types": [
+      "Description"
+     ],
+     "note": "Zillow description rewritten to pitch the garage as storage savings (Lady Lake storage unit ~$180/mo)"
     }
    ]
   },
@@ -290,6 +309,11 @@
      "date": "2026-10-13",
      "views": 35,
      "saves": 4
+    },
+    {
+     "date": "2026-10-15",
+     "views": 57,
+     "saves": 0
     }
    ],
    "calls": {
@@ -298,7 +322,7 @@
    "showings": {
     "2026-09-13": 3,
     "2026-10-08": 1,
-    "2026-10-15": 3
+    "2026-10-15": 1
    },
    "changes": []
   }
