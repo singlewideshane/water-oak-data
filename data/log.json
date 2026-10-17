@@ -40,6 +40,19 @@
         ],
         "note": "Zillow description rewritten to pitch the garage as storage savings (Lady Lake storage unit ~$180/mo)"
       }
+    },
+    {
+      "id": "2026-10-16-littler-views",
+      "date": "2026-10-16",
+      "listing": "219 Littler",
+      "views": 25,
+      "saves": 5
+    },
+    {
+      "id": "2026-10-17-littler-calls",
+      "date": "2026-10-17",
+      "listing": "219 Littler",
+      "calls": 1
     }
   ]
 }
