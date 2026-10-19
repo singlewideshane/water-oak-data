@@ -1,7 +1,7 @@
 {
  "version": 3,
  "started": "2026-10-04",
- "updated": "2026-10-15",
+ "updated": "2026-10-19",
  "runs": [
   {
    "date": "2026-10-04",
@@ -75,6 +75,13 @@
    "foxfire": 20,
    "sunWebsite": null,
    "sunCheck": "could not read Sun website"
+  },
+  {
+   "date": "2026-10-19",
+   "sun": 28,
+   "foxfire": 20,
+   "sunWebsite": null,
+   "sunCheck": "could not read Sun website"
   }
  ],
  "homes": {
@@ -90,7 +97,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27083",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -113,7 +120,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26968",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -136,7 +143,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26986",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -159,7 +166,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26988",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -186,7 +193,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27212",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -209,7 +216,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27214",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -232,7 +239,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27031",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -278,7 +285,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27216",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -305,7 +312,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27218",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -328,7 +335,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27128",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -397,7 +404,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27140",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -420,7 +427,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27155",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -443,7 +450,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -470,7 +477,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27174",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -516,7 +523,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27195",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -539,7 +546,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27225",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -562,7 +569,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27231",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -585,7 +592,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27233",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -635,7 +642,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3540381",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -660,7 +667,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3574943",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -685,7 +692,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566035",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -710,7 +717,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3293741",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -739,7 +746,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3573917",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -764,7 +771,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3573357",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -789,7 +796,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3565355",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -814,7 +821,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3545801",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -839,7 +846,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3559739",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -864,7 +871,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3572881",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -889,7 +896,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3542249",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -914,7 +921,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3493177",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -939,7 +946,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3483223",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -964,7 +971,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566803",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1014,7 +1021,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566809",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1039,7 +1046,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3448147",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1064,7 +1071,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3499421",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1089,7 +1096,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3439439",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1114,7 +1121,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3547363",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1139,7 +1146,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3553227",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1164,7 +1171,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3536249",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1189,7 +1196,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3501969",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": true,
    "prices": [
     {
@@ -1214,7 +1221,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3576845",
    "firstSeen": "2026-10-08",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1239,7 +1246,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3579869",
    "firstSeen": "2026-10-12",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1264,7 +1271,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3579867",
    "firstSeen": "2026-10-12",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1289,7 +1296,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3580407",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1314,7 +1321,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3581453",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1337,7 +1344,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27243",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
@@ -1360,12 +1367,37 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27245",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-15",
+   "lastSeen": "2026-10-19",
    "onAtStart": false,
    "prices": [
     {
      "date": "2026-10-15",
      "price": 299900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "944 w norman st": {
+   "key": "3582809",
+   "address": "944 W Norman St",
+   "source": "Sun",
+   "price": 199999,
+   "beds": 3,
+   "baths": 2,
+   "sqft": 1792,
+   "year": 2015,
+   "lotRent": null,
+   "parking": "Garage",
+   "pending": false,
+   "url": "https://www.mhvillage.com/homes/3582809",
+   "firstSeen": "2026-10-19",
+   "lastSeen": "2026-10-19",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-19",
+     "price": 199999
     }
    ],
    "gone": false,
