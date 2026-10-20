@@ -251,6 +251,13 @@
       "Description"
      ],
      "note": "Zillow description rewritten to pitch the garage as storage savings (Lady Lake storage unit ~$180/mo)"
+    },
+    {
+     "date": "2026-10-19",
+     "types": [
+      "Other"
+     ],
+     "note": "Zillow listing taken down entirely and relaunched (fresh listing)"
     }
    ]
   },
@@ -341,7 +348,23 @@
     "2026-10-15": 1,
     "2026-10-18": 1
    },
-   "changes": []
+   "changes": [
+    {
+     "date": "2026-10-19",
+     "types": [
+      "Description",
+      "Other"
+     ],
+     "note": "Zillow listing taken down and relaunched; full description rewrite aimed at fixer-upper buyers"
+    },
+    {
+     "date": "2026-10-20",
+     "types": [
+      "Other"
+     ],
+     "note": "Shane taking over showings and calls. Bob calling the Water Oak office to authorize Shane to call the front gate to let buyers in. Zillow phone still Bob's number for now. Goal: sold by end of 2026."
+    }
+   ]
   }
  ]
 }
