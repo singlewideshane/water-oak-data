@@ -100,8 +100,13 @@
    "address": "219 Littler Ln",
    "status": "active",
    "listDate": "2026-08-12",
-   "listPrice": 159999,
-   "priceHistory": [],
+   "listPrice": 159400,
+   "priceHistory": [
+    {
+     "date": "2026-10-20",
+     "price": 159999
+    }
+   ],
    "contractDate": "",
    "contractPrice": "",
    "soldDate": "",
