@@ -76,6 +76,17 @@
         ],
         "note": "Zillow listing taken down and relaunched; full description rewrite aimed at fixer-upper buyers"
       }
+    },
+    {
+      "id": "2026-10-20-norman-shane-takeover",
+      "date": "2026-10-20",
+      "listing": "916 E Norman",
+      "change": {
+        "types": [
+          "Other"
+        ],
+        "note": "Shane taking over showings and calls. Bob calling the Water Oak office to authorize Shane to call the front gate to let buyers in. Zillow phone still Bob's number for now. Goal: sold by end of 2026."
+      }
     }
   ]
 }
