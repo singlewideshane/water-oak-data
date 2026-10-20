@@ -87,6 +87,20 @@
         ],
         "note": "Shane taking over showings and calls. Bob calling the Water Oak office to authorize Shane to call the front gate to let buyers in. Zillow phone still Bob's number for now. Goal: sold by end of 2026."
       }
+    },
+    {
+      "id": "2026-10-19-littler-views",
+      "date": "2026-10-19",
+      "listing": "219 Littler",
+      "views": 22,
+      "saves": 1
+    },
+    {
+      "id": "2026-10-19-norman-views",
+      "date": "2026-10-19",
+      "listing": "916 E Norman",
+      "views": 79,
+      "saves": 3
     }
   ]
 }
