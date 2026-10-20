@@ -53,6 +53,29 @@
       "date": "2026-10-17",
       "listing": "219 Littler",
       "calls": 1
+    },
+    {
+      "id": "2026-10-19-littler-relaunch",
+      "date": "2026-10-19",
+      "listing": "219 Littler",
+      "change": {
+        "types": [
+          "Other"
+        ],
+        "note": "Zillow listing taken down entirely and relaunched (fresh listing)"
+      }
+    },
+    {
+      "id": "2026-10-19-norman-relaunch",
+      "date": "2026-10-19",
+      "listing": "916 E Norman",
+      "change": {
+        "types": [
+          "Description",
+          "Other"
+        ],
+        "note": "Zillow listing taken down and relaunched; full description rewrite aimed at fixer-upper buyers"
+      }
     }
   ]
 }
