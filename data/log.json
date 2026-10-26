@@ -171,6 +171,20 @@
       "listing": "916 E Norman",
       "views": 20,
       "saves": 4
+    },
+    {
+      "id": "2026-10-25-littler-views",
+      "date": "2026-10-25",
+      "listing": "219 Littler",
+      "views": 20,
+      "saves": 0
+    },
+    {
+      "id": "2026-10-25-norman-views",
+      "date": "2026-10-25",
+      "listing": "916 E Norman",
+      "views": 21,
+      "saves": 0
     }
   ]
 }
