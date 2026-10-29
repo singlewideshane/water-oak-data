@@ -1,7 +1,7 @@
 {
  "version": 3,
  "started": "2026-10-04",
- "updated": "2026-10-26",
+ "updated": "2026-10-29",
  "runs": [
   {
    "date": "2026-10-04",
@@ -96,6 +96,13 @@
    "foxfire": 22,
    "sunWebsite": null,
    "sunCheck": "could not read Sun website"
+  },
+  {
+   "date": "2026-10-29",
+   "sun": 28,
+   "foxfire": 21,
+   "sunWebsite": null,
+   "sunCheck": "could not read Sun website"
   }
  ],
  "homes": {
@@ -111,7 +118,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27083",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -134,7 +141,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26968",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -169,8 +176,8 @@
      "price": 68000
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-29"
   },
   "626 cedar ln": {
    "source": "Foxfire",
@@ -184,7 +191,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26988",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -211,7 +218,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27212",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -234,7 +241,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27214",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -265,8 +272,8 @@
      "price": 57500
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-29"
   },
   "103 willow way": {
    "source": "Foxfire",
@@ -303,7 +310,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27216",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -321,7 +328,7 @@
   "401 tulip tree ln": {
    "source": "Foxfire",
    "address": "401 Tulip Tree Ln",
-   "price": 59900,
+   "price": 52900,
    "beds": 2,
    "baths": 2,
    "sqft": 1300,
@@ -330,12 +337,16 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27218",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
      "price": 59900
+    },
+    {
+     "date": "2026-10-29",
+     "price": 52900
     }
    ],
    "gone": false,
@@ -353,7 +364,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27128",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -426,7 +437,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27140",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -449,7 +460,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27155",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -472,7 +483,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -499,7 +510,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27174",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -549,7 +560,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27195",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -572,7 +583,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27225",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -586,7 +597,7 @@
   "735 sutton st": {
    "source": "Foxfire",
    "address": "735 Sutton St",
-   "price": 82500,
+   "price": 79900,
    "beds": 2,
    "baths": 2,
    "sqft": 1008,
@@ -595,12 +606,16 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27231",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
      "price": 82500
+    },
+    {
+     "date": "2026-10-29",
+     "price": 79900
     }
    ],
    "gone": false,
@@ -618,7 +633,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27233",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -668,7 +683,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3540381",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -697,7 +712,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3574943",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -722,7 +737,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566035",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -747,7 +762,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3293741",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -776,7 +791,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3573917",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -801,7 +816,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3573357",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -826,7 +841,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3565355",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -859,8 +874,8 @@
      "price": 149900
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-29"
   },
   "220 maple dr": {
    "key": "3559739",
@@ -876,7 +891,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3559739",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -901,7 +916,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3572881",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -926,7 +941,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3542249",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -955,7 +970,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3493177",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -980,7 +995,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3483223",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1005,7 +1020,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566803",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1055,7 +1070,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3566809",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1080,7 +1095,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3448147",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1105,7 +1120,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3499421",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1120,7 +1135,7 @@
    "key": "3439439",
    "address": "644 Hickory Hill",
    "source": "Sun",
-   "price": 72000,
+   "price": 69000,
    "beds": 2,
    "baths": 2,
    "sqft": 1040,
@@ -1130,12 +1145,16 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3439439",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
      "date": "2026-10-04",
      "price": 72000
+    },
+    {
+     "date": "2026-10-29",
+     "price": 69000
     }
    ],
    "gone": false,
@@ -1155,7 +1174,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3547363",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1180,7 +1199,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3553227",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1205,7 +1224,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3536249",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1230,7 +1249,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3501969",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": true,
    "prices": [
     {
@@ -1255,7 +1274,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3576845",
    "firstSeen": "2026-10-08",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1280,7 +1299,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3579869",
    "firstSeen": "2026-10-12",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1305,7 +1324,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3579867",
    "firstSeen": "2026-10-12",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1330,7 +1349,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3580407",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1355,7 +1374,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3581453",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1378,7 +1397,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27243",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1401,7 +1420,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27245",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1426,7 +1445,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3582809",
    "firstSeen": "2026-10-19",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1451,7 +1470,7 @@
    "pending": false,
    "url": "https://www.mhvillage.com/homes/3583955",
    "firstSeen": "2026-10-22",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
@@ -1482,8 +1501,8 @@
      "price": 124900
     }
    ],
-   "gone": false,
-   "goneDate": null
+   "gone": true,
+   "goneDate": "2026-10-29"
   },
   "912 w norman st": {
    "source": "Foxfire",
@@ -1497,12 +1516,58 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27260",
    "firstSeen": "2026-10-26",
-   "lastSeen": "2026-10-26",
+   "lastSeen": "2026-10-29",
    "onAtStart": false,
    "prices": [
     {
      "date": "2026-10-26",
      "price": 75000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "646 hickory hill": {
+   "source": "Foxfire",
+   "address": "646 Hickory Hill",
+   "price": 64900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1092,
+   "year": 1989,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27265",
+   "firstSeen": "2026-10-29",
+   "lastSeen": "2026-10-29",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-29",
+     "price": 64900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "114 magnolia dr": {
+   "source": "Foxfire",
+   "address": "114 Magnolia Dr",
+   "price": 79900,
+   "beds": 2,
+   "baths": 2,
+   "sqft": 1248,
+   "year": 1987,
+   "parking": "Carport",
+   "pending": false,
+   "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27262",
+   "firstSeen": "2026-10-29",
+   "lastSeen": "2026-10-29",
+   "onAtStart": false,
+   "prices": [
+    {
+     "date": "2026-10-29",
+     "price": 79900
     }
    ],
    "gone": false,
