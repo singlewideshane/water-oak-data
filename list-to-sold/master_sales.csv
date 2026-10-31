@@ -1,0 +1,53 @@
+address,list_date,orig_list,list_used,list_source,sold_price,sold_date,broker,highrises_url,foxfire_id,note,verified_on
+603 Nicklaus Ct,2026-01-11,,214999,Foxfire,210000,2026-02-23,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9879219238,27015,,2026-10-31
+152 Evergreen Ln,2025-10-16,,59000,Foxfire,50000,2026-02-27,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9014366272,26944,,2026-10-31
+110 Magnolia Dr,2025-06-05,,45000,Foxfire,40000,2026-02-27,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9467328708,26906,,2026-10-31
+611 Cedar Ln,2025-08-01,,55000,Foxfire,59400,2026-03-16,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9727303380,26806,Sold above Foxfire price,2026-10-31
+203 Bradley Ln,2026-02-17,174900,174900,MyStateMLS,165000,2026-03-20,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9745008780,27042,,2026-10-31
+812 Nelson Dr,2025-11-19,,90550,Foxfire,75000,2026-03-20,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9284220111,26992,,2026-10-31
+908 Lietzke Ln,2025-10-22,,94500,Foxfire,88000,2026-03-30,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9408085057,26947,Not linked to 908 Travino Dr,2026-10-31
+616 Holly Cir,2025-08-12,,65000,Foxfire,58000,2026-03-30,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9599095734,26812,,2026-10-31
+616 Hickory Hill,2025-05-29,,115000,Foxfire,105000,2026-04-13,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9924143887,26810,,2026-10-31
+807 E Norman St,2025-04-23,,89900,Foxfire,74000,2026-04-15,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9820600424,26910,,2026-10-31
+751 Bishop Dr #2442,2026-03-17,,107000,Foxfire,94000,2026-04-16,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9102462158,27092,,2026-10-31
+313 Willow Way,2026-02-09,64900,64900,MyStateMLS,55000,2026-04-23,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9076503348,27056,,2026-10-31
+203 Toskis Dr,2026-02-26,,59900,Foxfire,45000,2026-04-23,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9994758242,27076,,2026-10-31
+513 Palmer Dr,2025-06-24,,179000,Foxfire,175000,2026-04-28,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9013276695,26902,,2026-10-31
+529 Spruce Dr,2026-02-09,49900,19000,MyStateMLS,14000,2026-05-01,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M9037499412,27058,Foxfire page shows $14000 (the sold price),2026-10-31
+717 Sutton St,2025-06-18,49000,34900,MyStateMLS,23500,2026-05-06,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/717-Sutton-St_Lady-Lake_FL_32159_M94016-68512,26904,,2026-10-31
+616 Cedar Ln,2025-07-21,81000,59900,MyStateMLS,55500,2026-05-15,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/616-Cedar-Ln_Lady-Lake_FL_32159_M99603-87651,26894,,2026-10-31
+958 W Norman St #2834,2026-04-01,77900,77900,MyStateMLS,70000,2026-05-15,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/958-W-Norman-St-2834_Lady-Lake_FL_32159_M93890-93964,27124,,2026-10-31
+696 Cedar Ln #562,2026-02-20,84500,69000,MyStateMLS,64000,2026-05-20,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/696-Cedar-Ln-562_Lady-Lake_FL_32159_M99338-44002,27038,,2026-10-31
+308 Juniper Cir,2025-11-19,68000,53000,MyStateMLS,45000,2026-05-21,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/308-Juniper-Cir_Lady-Lake_FL_32159_M92518-51838,26994,Prior Sun listing 2025 not counted,2026-10-31
+935 W Norman St #2642,2026-04-01,84500,84500,MyStateMLS,77000,2026-05-22,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/935-W-Norman-St-2642_Lady-Lake_FL_32159_M99590-62248,27145,,2026-10-31
+103 Palm Dr #129,2026-03-19,64900,64900,MyStateMLS,60000,2026-05-27,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/103-Palm-Dr-129_Lady-Lake_FL_32159_M98982-68051,27090,,2026-10-31
+914 W Norman St,2025-07-19,125000,99000,MyStateMLS,95000,2026-06-01,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/914-W-Norman-St_Lady-Lake_FL_32159_M96559-47954,26811,,2026-10-31
+525 Palmer Dr,2025-12-03,199900,159900,MyStateMLS,161000,2026-06-01,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/525-Palmer-Dr_Lady-Lake_FL_32159_M52399-01144,26984,Sold over last list,2026-10-31
+624 Holly Cir #535,2026-03-20,69000,55000,MyStateMLS,55000,2026-06-02,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/624-Holly-Cir-535_Lady-Lake_FL_32159_M92354-25139,27088,,2026-10-31
+605 Nicklaus Ct,2026-04-22,89000,89000,MyStateMLS,84000,2026-06-11,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M5462825461,27136,Also sold 3/19/26 for $70000 with no list price (see gaps),2026-10-31
+829 E Norman St #2600,2026-01-11,114900,87500,MyStateMLS,80000,2026-06-12,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/829-E-Norman-St-2600_Lady-Lake_FL_32159_M91749-74261,27017,,2026-10-31
+305 Cypress Curve,2026-01-19,69500,54900,MyStateMLS,50000,2026-06-17,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/305-Cypress-Curv_Lady-Lake_FL_32159_M92463-22593,27005,Prior Sun listing 2025 not counted,2026-10-31
+906 Lietzke Ln,2026-04-24,83900,83900,MyStateMLS,79000,2026-06-26,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/906-Lietzke-Ln_Lady-Lake_FL_32159_M95157-05010,27132,,2026-10-31
+818 Sutton St,2026-02-24,114900,113900,MyStateMLS,98000,2026-06-26,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/M7732784596,27258,Relisted 10/17/26 at $124,2026-10-31
+710 Water Oak Blvd,2026-04-02,94000,69900,MyStateMLS,67000,2026-06-29,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/710-Water-Oak-Blvd_Lady-Lake_FL_32159_M50101-66054,27147,Removed 6/8 relisted 6/9,2026-10-31
+714 Sutton St,2026-06-02,85000,85000,MyStateMLS,85000,2026-07-01,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/714-Sutton-St_Lady-Lake_FL_32159_M90460-31172,27176,,2026-10-31
+736 Trevino Dr,2026-03-18,175000,159900,MyStateMLS,155000,2026-07-16,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/736-Trevino-Dr_Lady-Lake_FL_32159_M91273-48483,27098,,2026-10-31
+627 Hickory Hill,2026-02-14,89900,84000,MyStateMLS,79900,2026-07-20,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/627-Hickory-Hl_Lady-Lake_FL_32159_M96351-86613,27046,History shows $89,2026-10-31
+905 Nelson Dr,2026-05-18,87000,87000,MyStateMLS,77500,2026-07-22,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/905-Nelson-Dr_Lady-Lake_FL_32159_M92423-89161,27163,,2026-10-31
+610 Hickory Hill,2026-02-24,64900,64900,MyStateMLS,61000,2026-07-27,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/610-Hickory-Hl_Lady-Lake_FL_32159_M95688-30404,27079,,2026-10-31
+702 E Norman St,2025-05-06,179900,154900,MyStateMLS,149000,2026-08-07,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/702-E-Norman-St_Lady-Lake_FL_32159_M96876-21817,26799,,2026-10-31
+744 Trevino Dr #2457,2026-03-17,219000,219000,MyStateMLS,206000,2026-08-21,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/744-Trevino-Dr-2457_Lady-Lake_FL_32159_M99669-15212,27094,Foxfire page shows available 5/29/2025; MLS history starts 3/17/2026,2026-10-31
+604 Hickory Hill,2025-07-02,84999,42000,MyStateMLS,35000,2026-08-24,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/604-Hickory-Hl_Lady-Lake_FL_32159_M93489-27862,26898,Removed 6/30 relisted 7/13/26,2026-10-31
+524 Spruce Dr,2026-01-18,114900,84000,MyStateMLS,80000,2026-08-26,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/524-Spruce-Dr_Lady-Lake_FL_32159_M92654-36871,27007,Prior Sun listing Jan-Jul 2025 not counted,2026-10-31
+109 E Pine Dr,2025-04-04,84500,48500,MyStateMLS,42500,2026-08-26,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/109-E-Pine-Dr_Lady-Lake_FL_32159_M94830-87524,26914,Removed 4/7/26 relisted 4/21/26,2026-10-31
+711 Bishop Dr,2025-09-26,99900,59900,MyStateMLS,26500,2026-09-02,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/711-Bishop-Dr_Lady-Lake_FL_32159_M96170-30578,26868,,2026-10-31
+516 Palmer Dr,2026-04-23,89900,69900,MyStateMLS,65000,2026-09-02,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/516-Palmer-Dr_Lady-Lake_FL_32159_M99942-32354,27130,Removed 4/24 relisted 5/3; DOM from 4/23,2026-10-31
+720 Sutton St,2024-05-19,,115500,MyStateMLS,110000,2026-09-02,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/720-Sutton-St_Lady-Lake_FL_32159_M90267-90088,26807,Original list not shown (history truncated); list date from Foxfire; several remove/relist,2026-10-31
+661 Hickory Hill,2026-06-20,69500,69500,MyStateMLS,63000,2026-09-22,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/661-Hickory-Hl_Lady-Lake_FL_32159_M90526-43751,27184,,2026-10-31
+908 Travino Dr,2026-08-15,125000,94500,MyStateMLS,78000,2026-09-25,Sunbelt Home Sales,https://www.highrises.com/realestateandhomes-detail/908-Travino-Dr_Lady-Lake_FL_32159_M97532-45018,,Street spelled Travino on MLS; not linked to 908 Lietzke,2026-10-31
+401 Bemen Dr,2026-08-09,75900,75900,MyStateMLS,75900,2026-09-28,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/401-Bemen-Dr_Lady-Lake_FL_32159_M94479-78707,27210,,2026-10-31
+216 Bradley Ln,2026-07-24,119000,119000,MyStateMLS,100000,2026-09-28,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/216-Bradley-Ln_Lady-Lake_FL_32159_M95948-73216,27193,,2026-10-31
+923 Strange St,2026-09-11,110000,110000,MyStateMLS,100000,2026-10-13,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/923-Strange-St_Lady-Lake_FL_32159_M67693-23549,27221,,2026-10-31
+665 Hickory Hill,2025-10-18,68500,59500,MyStateMLS,50000,2026-10-13,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/665-Hickory-Hl_Lady-Lake_FL_32159_M91156-25786,26945,,2026-10-31
+612 Cedar Ln,2026-07-24,68000,68000,MyStateMLS,60000,2026-10-16,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/612-Cedar-Ln_Lady-Lake_FL_32159_M93437-22000,27187,,2026-10-31
+103 Willow Way,2026-02-26,119000,88900,MyStateMLS,80000,2026-10-29,RE/MAX Foxfire,https://www.highrises.com/realestateandhomes-detail/103-Willow-Way_Lady-Lake_FL_32159_M59498-24685,27075,,2026-10-31

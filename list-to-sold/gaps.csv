@@ -1,0 +1,33 @@
+category,address,sold_date,sold_price,what_we_have,reason,source,checked_on
+no_verified_list,806 Bishop Dr,2026-02-13,110000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9144159351,2026-10-31
+no_verified_list,724 Bishop Dr,2026-01-29,105000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9559796638,2026-10-31
+no_verified_list,917 Strange St,2026-02-09,100000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M5735611488,2026-10-31
+no_verified_list,114 Magnolia Dr,2026-01-23,78000,MLS sale,Foxfire price = sold price; no MLS list record (relisted 10/27/26 at $79900),https://www.highrises.com/realestateandhomes-detail/M9815979772,2026-10-31
+no_verified_list,633 Hickory Hill #330,2026-01-22,62000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9146994131,2026-10-31
+no_verified_list,403 Tulip Tree Ln #108,2026-03-01,77500,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9090222899,2026-10-31
+no_verified_list,201 Magnolia Dr #42,2026-04-28,49000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9178331154,2026-10-31
+no_verified_list,712 E Norman St #2525,2026-03-13,99000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9203920500,2026-10-31
+no_verified_list,105 E Pine Dr,2026-01-05,77000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9672129793,2026-10-31
+no_verified_list,758 Trevino Dr,2026-02-12,65000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M5643086970,2026-10-31
+no_verified_list,421 Palmer Dr,2026-01-21,65000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M9802221337,2026-10-31
+no_verified_list,810 E Norman St,2026-02-06,40000,MLS sale,Foxfire price = sold price; no MLS list record,https://www.highrises.com/realestateandhomes-detail/M6307890046,2026-10-31
+no_verified_list,605 Nicklaus Ct (1st sale),2026-03-19,70000,MLS sale,No list price for this sale (2nd sale 6/11 is paired),https://www.highrises.com/realestateandhomes-detail/M5462825461,2026-10-31
+source_conflict,303 Redbud Ln,2026-06-16,129900,Listed 5/14/26 $89900; MLS shows sold $129900,Sold figure equals its 12/15/2023 sale price (+44% over list),https://www.highrises.com/realestateandhomes-detail/303-Redbud-Ln_Lady-Lake_FL_32159_M98606-00548,2026-10-31
+source_conflict,623 Hickory Hill #335,2026-06-12,63000,Sold list says sold; home history shows listing removed only,Sold list and history disagree,https://www.highrises.com/realestateandhomes-detail/623-Hickory-Hl-335_Lady-Lake_FL_32159_M91223-01519,2026-10-31
+stamp_no_sale,419 Bemen Dr,,,Foxfire SOLD stamp; MLS shows listing removed 6/30/26,No sold price or date,https://www.highrises.com/realestateandhomes-detail/M9393002284,2026-10-31
+pending,818 Sutton St (current),,,Relisted 10/17/26 $124900; pending,Not closed (6/26/26 sale is paired),https://www.highrises.com/realestateandhomes-detail/M7732784596,2026-10-31
+sold_2025,437 Bemen Dr,2025-10-30,143000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9378814619,2026-10-31
+sold_2025,905 Zoeller St,2025-10-16,139000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9694239957,2026-10-31
+sold_2025,648 Hickory Hill,2025-10-16,124950,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9801657972,2026-10-31
+sold_2025,937 E Norman St,2025-06-12,122500,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9122113662,2026-10-31
+sold_2025,917 Lietzke Ln,2025-09-30,105000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9060789322,2026-10-31
+sold_2025,905 Stadler St,2025-11-12,116000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9530257169,2026-10-31
+sold_2025,504 Spruce Dr,2025-10-31,110000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9624062573,2026-10-31
+sold_2025,751 Bishop Dr,2025-11-07,105000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M5684350854,2026-10-31
+sold_2025,604 Palmer Dr #2230,2025-11-18,119900,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9353975629,2026-10-31
+sold_2025,202 Mulberry Cir,2025-11-13,70000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9489820758,2026-10-31
+sold_2025,915 Trevino Dr,2025-11-12,62000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M5624759280,2026-10-31
+sold_2025,149 Chestnut Ln,2025-12-15,56000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9158473159,2026-10-31
+not_covered,Sun Communities in-house sales,,,Sun listings show as listing removed with no price,No public sold price,Highrises (SunCommunities source),2026-10-31
+not_covered,MHVillage-only homes,,,Not used for pairing,MHVillage Last Reported Price = asking price,mhvillage.com,2026-10-31
+note,908 Travino Dr vs 908 Lietzke Ln,,,Both sold (9/25/26 and 3/30/26),Kept separate; no source links them,,2026-10-31
