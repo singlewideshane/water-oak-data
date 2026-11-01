@@ -264,8 +264,32 @@
           ]
         ]
       ]
+    },
+    {
+      "address": " Littler",
+      "permits": [],
+      "error": null,
+      "tables": []
     }
   ],
-  "town": [],
-  "townError": "TimeoutError: elementHandle.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - attempting select option action\n    2 × waiting for element to be visible and enabled\n      - element is not visible\n    - retrying select option action\n    - waiting 20ms\n    2 × waiting for element to be visible and "
+  "pa": [
+    {
+      "address": "916 E Norman St",
+      "error": "Error: no PA address field",
+      "steps": [
+        "https://www.lakecopropappr.com/",
+        "https://lakecopropappr.com/property-disclaimer.aspx?to=%2fproperty-search.aspx?"
+      ],
+      "fields": []
+    },
+    {
+      "address": "219 Littler Ln",
+      "error": "Error: no PA address field",
+      "steps": [
+        "https://www.lakecopropappr.com/",
+        "https://lakecopropappr.com/property-disclaimer.aspx?to=%2fproperty-search.aspx?"
+      ],
+      "fields": []
+    }
+  ]
 }
