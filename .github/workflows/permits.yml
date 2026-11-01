@@ -1,11 +1,7 @@
 name: Water Oak permit scan
+# PAUSED Nov 1 2026: the Town portal runs Google reCAPTCHA on every search,
+# so an unattended robot is not used. Lookups are done by hand on request.
 on:
-  schedule:
-    - cron: '30 23 * * 1,4'
-  push:
-    paths:
-      - 'permits/permits.mjs'
-      - 'permits/streets.txt'
   workflow_dispatch:
 permissions:
   contents: write
