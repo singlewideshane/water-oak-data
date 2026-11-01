@@ -1,0 +1,38 @@
+# Water Oak street names (no St/Ln/Dr, no East/West). One per line.
+Bemen
+Birch
+Bishop
+Bradley
+Byrnes
+Cedar
+Cottonwood
+Evergreen
+Hickory Hill
+Hogan
+Holly
+Juniper
+Lietzke
+Littler
+Magnolia
+Maple
+Mickelson
+Nelson
+Nicklaus
+Norman
+Palm
+Palmer
+Pine
+Redbud
+Sakura
+Sheehan
+Snead
+Spieth
+Spruce
+Strange
+Sutton
+Sycamore
+Toskis
+Trevino
+Tulip Tree
+Water Oak
+Willow

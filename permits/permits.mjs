@@ -1,6 +1,7 @@
-// Water Oak permit robot — Lake County Building Services permit search by address,
-// plus Lake County Property Appraiser (year built / city) for each address.
-// Reads permits/addresses.txt, writes permits/permits.json and debug pages.
+// VERSION 2 — TOWN OF LADY LAKE (Nov 1). Water Oak permits live with the Town, not the county.
+// Searches the Town's Citizenserve portal street by street, keeps every permit in permits/permits.csv,
+// lists new ones since last run in permits/new.csv, and builds permits/by_address.csv
+// (latest roof, AC, and set/build date per home).
 import fs from 'node:fs';
 import { execSync } from 'node:child_process';
 
@@ -9,12 +10,9 @@ execSync('npx playwright install --with-deps chromium', { stdio: 'inherit' });
 const { chromium } = await import('playwright');
 
 const DIR = 'permits';
-const DBG = DIR + '/debug';
-fs.mkdirSync(DBG, { recursive: true });
-const SEARCH = 'https://c.lakecountyfl.gov/offices/building_services/permit_activity_reports/permit_search_by_address.aspx';
+const SEARCH = 'https://www6.citizenserve.com/Portal/PortalController?Action=showSearchPage&ctzPagePrefix=Portal_&installationID=383&original_iid=0&original_contactID=0';
+const streets = fs.readFileSync(DIR + '/streets.txt', 'utf8').split('\n').map(s => s.trim()).filter(s => s && !s.startsWith('#'));
 const today = new Date().toISOString().slice(0, 10);
-
-const addrs = fs.readFileSync(DIR + '/addresses.txt', 'utf8').split('\n').map(s => s.trim()).filter(s => s && !s.startsWith('#'));
 
 const browser = await chromium.launch({ headless: true });
 const ctx = await browser.newContext({
@@ -22,91 +20,92 @@ const ctx = await browser.newContext({
   viewport: { width: 1366, height: 900 }, locale: 'en-US'
 });
 const page = await ctx.newPage();
-const slug = s => s.replace(/[^a-z0-9]+/gi, '_');
 
-async function tables() {
-  return page.$$eval('table', ts => ts.map(t => [...t.rows].map(r => [...r.cells].map(c => c.innerText.trim()))));
+const readRows = () => page.$$eval('main tr', trs => trs.map(tr => [...tr.cells].map(c => c.innerText.trim())).filter(r => r.length >= 7 && r[0] !== 'Permit#'));
+
+async function searchStreet(name) {
+  await page.goto(SEARCH, { waitUntil: 'networkidle', timeout: 90000 });
+  await page.evaluate(() => {
+    const s = [...document.querySelectorAll('select')].find(x => [...x.options].some(o => /^Permits$/.test(o.text)));
+    const o = [...s.options].find(o => /^Permits$/.test(o.text));
+    s.value = o.value; s.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await page.waitForTimeout(2500);
+  await page.fill('#address', name);
+  await Promise.all([
+    page.waitForNavigation({ waitUntil: 'networkidle', timeout: 90000 }).catch(() => {}),
+    page.evaluate(() => [...document.querySelectorAll('button')].find(b => /submit/i.test(b.innerText) && b.offsetParent).click())
+  ]);
+  await page.waitForTimeout(2000);
+  const body = await page.innerText('main');
+  const m = body.match(/of (\d+) records found/);
+  const total = m ? +m[1] : 0;
+  let rows = await readRows();
+  for (let start = 30; start < total; start += 30) {
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: 'networkidle', timeout: 90000 }).catch(() => {}),
+      page.evaluate(([a, b]) => window.displayResultNPagging(String(a), String(b)), [start, start + 30])
+    ]);
+    await page.waitForTimeout(1500);
+    rows = rows.concat(await readRows());
+  }
+  return { total, rows };
 }
 
-const out = { updated: today, results: [] };
+const key = r => r[0] + '|' + r[1];
+const csvq = v => '"' + String(v ?? '').replace(/"/g, '""').replace(/\s+/g, ' ') + '"';
+const FILE = DIR + '/permits.csv';
+const HEAD = ['permit', 'address', 'type', 'subtype', 'status', 'issued', 'description', 'first_seen'];
 
-for (const a of addrs) {
-  // "916|Norman"  -> number | street name (no street type)
-  const [num, street] = a.split('|').map(s => s.trim());
-  const rec = { address: `${num} ${street}`, permits: [], error: null };
+const old = new Map();
+if (fs.existsSync(FILE)) {
+  const lines = fs.readFileSync(FILE, 'utf8').trim().split('\n').slice(1);
+  for (const l of lines) {
+    const cols = [...l.matchAll(/"((?:[^"]|"")*)"/g)].map(x => x[1].replace(/""/g, '"'));
+    old.set(cols[0] + '|' + cols[1], cols);
+  }
+}
+
+const all = new Map(old);
+const fresh = [];
+const log = [];
+for (const st of streets) {
   try {
-    await page.goto(SEARCH, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    const inputs = await page.$$('input[type=text], input:not([type])');
-    fs.writeFileSync(`${DBG}/form.html`, await page.content());
-    if (inputs.length < 2) throw new Error('form inputs not found: ' + inputs.length);
-    await inputs[0].fill(num);
-    await inputs[1].fill(street);
-    const btn = await page.$('input[type=submit], button[type=submit], input[type=button]');
-    await Promise.all([page.waitForLoadState('domcontentloaded').catch(() => {}), btn ? btn.click() : inputs[1].press('Enter')]);
-    await page.waitForTimeout(4000);
-    fs.writeFileSync(`${DBG}/${slug(rec.address)}.html`, await page.content());
-    fs.writeFileSync(`${DBG}/${slug(rec.address)}.txt`, await page.innerText('body'));
-    rec.tables = (await tables()).filter(t => t.length > 1 && t.flat().join(' ').match(/\d{2}\/\d{2}\/\d{4}|permit/i));
-    // follow permit detail links if any
-    const links = await page.$$eval('a', as => as.map(x => ({ t: x.innerText.trim(), h: x.href })).filter(x => /permit/i.test(x.h) && /\d/.test(x.t)));
-    for (const l of links.slice(0, 25)) {
-      try {
-        const p2 = await ctx.newPage();
-        await p2.goto(l.h, { waitUntil: 'domcontentloaded', timeout: 45000 });
-        await p2.waitForTimeout(1500);
-        rec.permits.push({ id: l.t, url: l.h, text: (await p2.innerText('body')).replace(/\s+\n/g, '\n').slice(0, 4000) });
-        await p2.close();
-      } catch (e) { rec.permits.push({ id: l.t, url: l.h, error: String(e).slice(0, 200) }); }
+    const { total, rows } = await searchStreet(st);
+    // keep only addresses on this exact street (drops e.g. PALMER when searching PALM)
+    const re = new RegExp('^\\d+[A-Z]?\\s+(EAST |WEST |E |W )?' + st.toUpperCase().replace(/ /g, '\\s+') + '(\\s+(ST|STREET|LN|LANE|DR|DRIVE|WAY|CT|COURT|CIR|CIRCLE|SQ|SQUARE|BLVD|LP|LOOP|RD|PL|TER|TRL|AVE))?\\b', 'i');
+    const mine = rows.filter(r => re.test(r[1]));
+    for (const r of mine) {
+      const k = key(r);
+      const rec = [r[0], r[1], r[2], r[3], r[4], r[5], r[6], old.get(k)?.[7] || today];
+      if (!old.has(k)) fresh.push(rec);
+      all.set(k, rec);
     }
-  } catch (e) { rec.error = String(e).slice(0, 300); }
-  out.results.push(rec);
-  console.log(rec.address, rec.error || `${(rec.tables || []).length} tables, ${rec.permits.length} details`);
+    log.push(`${st}: ${mine.length} of ${total}`);
+    console.log(st, mine.length, 'of', total);
+  } catch (e) { log.push(`${st}: ERROR ${String(e).slice(0, 120)}`); console.log(st, 'ERROR', e.message); }
 }
-
-/* ---------- Lake County Property Appraiser (year built, roof, size) ---------- */
-out.pa = [];
-const paList = (fs.existsSync(DIR + '/pa_addresses.txt') ? fs.readFileSync(DIR + '/pa_addresses.txt', 'utf8') : '').split('\n').map(s => s.trim()).filter(s => s && !s.startsWith('#'));
-for (const full of paList) {
-  const rec = { address: full, error: null, steps: [] };
-  try {
-    await page.goto('https://www.lakecopropappr.com/', { waitUntil: 'networkidle', timeout: 90000 });
-    rec.steps.push(page.url());
-    const lk = await page.$('a:has-text("Property Search"), a:has-text("Search Records"), a:has-text("Real Estate Search")');
-    if (lk) { await lk.click(); await page.waitForLoadState('networkidle').catch(() => {}); await page.waitForTimeout(3000); }
-    rec.steps.push(page.url());
-    fs.writeFileSync(`${DBG}/pa_search.html`, await page.content());
-    const ins = await page.$$('input[type=text]:visible, input[type=search]:visible, input:not([type]):visible');
-    const meta = [];
-    for (const f of ins) meta.push([await f.getAttribute('name'), await f.getAttribute('id'), await f.getAttribute('placeholder')].join('|'));
-    rec.fields = meta;
-    const [num, ...rest] = full.split(' ');
-    const iNum = meta.findIndex(m => /house|stre?e?tn(um|o)|addrnum|number/i.test(m));
-    const iSt = meta.findIndex(m => /streetname|stname|street(?!num)/i.test(m));
-    const iAd = meta.findIndex(m => /address|situs|location/i.test(m));
-    let target;
-    if (iNum >= 0 && iSt >= 0) { await ins[iNum].fill(num); await ins[iSt].fill(rest[0] === 'E' || rest[0] === 'W' ? rest[1] : rest[0]); target = ins[iSt]; }
-    else if (iAd >= 0) { await ins[iAd].fill(full); target = ins[iAd]; }
-    else throw new Error('no PA address field');
-    const btn = await page.$('input[type=submit]:visible, button[type=submit]:visible, input[value*="Search" i]:visible, button:has-text("Search"):visible');
-    await (btn ? btn.click() : target.press('Enter'));
-    await page.waitForLoadState('networkidle').catch(() => {});
-    await page.waitForTimeout(4000);
-    fs.writeFileSync(`${DBG}/pa_${slug(full)}_results.html`, await page.content());
-    rec.resultsText = (await page.innerText('body')).slice(0, 4000);
-    const hit = await page.$(`a:has-text("${num}")`);
-    if (hit) {
-      const [np] = await Promise.all([ctx.waitForEvent('page', { timeout: 8000 }).catch(() => null), hit.click()]);
-      const pg = np || page;
-      await pg.waitForLoadState('networkidle').catch(() => {});
-      await pg.waitForTimeout(4000);
-      rec.detailUrl = pg.url();
-      rec.detailText = (await pg.innerText('body')).slice(0, 12000);
-      fs.writeFileSync(`${DBG}/pa_${slug(full)}.txt`, rec.detailText);
-    }
-  } catch (e) { rec.error = String(e).slice(0, 300); }
-  out.pa.push(rec);
-  console.log('PA', full, rec.error || 'ok');
-}
-
 await browser.close();
-fs.writeFileSync(DIR + '/permits.json', JSON.stringify(out, null, 2));
+
+const d = s => { const [m, dd, y] = (s || '').split('/'); return y ? `${y}-${m}-${dd}` : ''; };
+const sorted = [...all.values()].sort((a, b) => d(b[5]).localeCompare(d(a[5])));
+fs.writeFileSync(FILE, HEAD.join(',') + '\n' + sorted.map(r => r.map(csvq).join(',')).join('\n') + '\n');
+const isFirstRun = old.size === 0;
+fs.writeFileSync(DIR + '/new.csv', HEAD.join(',') + '\n' + (isFirstRun ? '' : fresh.map(r => r.map(csvq).join(',')).join('\n')) + '\n');
+
+// per-home summary: latest roof, latest AC, home set date
+const norm = a => a.toUpperCase().replace(/\bEAST\b/, 'E').replace(/\bWEST\b/, 'W').replace(/\s+/g, ' ').trim();
+const homes = new Map();
+for (const r of sorted) {
+  const a = norm(r[1]); const h = homes.get(a) || { roof: '', ac: '', set: '', open: [] };
+  const t = (r[3] + ' ' + r[6]).toUpperCase();
+  const when = d(r[5]);
+  if (/ROOF/.test(t) && !/PAN ROOF|SCREEN/.test(t) && when > (h.roof.split(' ')[0] || '')) h.roof = `${when} ${/METAL/.test(t) ? 'metal' : 'shingle'}`;
+  if (/MECHANICAL|HVAC|A\/C|HEAT ?PUMP|PKG|PACKAGE/.test(t) && when > (h.ac || '')) h.ac = when;
+  if (/MANUFACTURED|NEW MFG|NEW MOBILE|NEW MH/.test(t) && (!h.set || when < h.set)) h.set = when;
+  if (/EXPIRED/i.test(r[4])) h.open.push(`${r[0]} ${r[3]} ${when}`);
+  homes.set(a, h);
+}
+fs.writeFileSync(DIR + '/by_address.csv', 'address,home_set,latest_roof,latest_ac,expired_permits\n' +
+  [...homes].sort().map(([a, h]) => [a, h.set, h.roof, h.ac, h.open.join('; ')].map(csvq).join(',')).join('\n') + '\n');
+fs.writeFileSync(DIR + '/last_run.txt', `${today}\n${all.size} permits total, ${isFirstRun ? 'first run' : fresh.length + ' new'}\n` + log.join('\n') + '\n');
