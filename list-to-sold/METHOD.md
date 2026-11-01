@@ -9,6 +9,7 @@ First built and verified 2026-10-31 (52 paired Jan 1–Oct 31, 2026 sales).
 | `master_sales.csv` | Every paired sale ever verified | Append/correct only. Never drop a row. |
 | `gaps.csv` | Every sale or stamp that is NOT paired, with reason | Move a row to master only when it gets verified. |
 | `foxfire_sold_seen.csv` | Every Foxfire SOLD card ever seen (id, address, Foxfire price, list date, maker, serial, rent, garage) | Append new ids each run. |
+| `to_check.csv` | Homes the market robot saw disappear (Mon/Thu) that aren't in master, gaps or Sun exits yet. Rebuilt by the robot each run. | Look up every row. Never edit by hand. |
 | `build_report.py` | Builds the report from the two CSVs | `python3 build_report.py YEAR END_DATE OUT.xlsx` |
 
 ## Sources (in this order)
@@ -40,9 +41,10 @@ First built and verified 2026-10-31 (52 paired Jan 1–Oct 31, 2026 sales).
 
 ## Each run (update)
 1. Read the CSVs. Note the latest `sold_date` in master.
-2. Highrises Water Oak sold list → any sale newer than that, or any address not in master/gaps → open its history, apply rules, add to master or gaps.
-3. Foxfire archive → any SOLD id not in `foxfire_sold_seen.csv` → add it, then look the address up on Highrises.
-4. Re-check every `pending` and `stamp_no_sale` row.
-5. Spot-check 3 existing master rows against Highrises; fix anything that changed.
-6. `python3 build_report.py YEAR END_DATE`, recalc, verify counts/medians against the CSV, deliver the .xlsx.
-7. Commit the CSVs (message: "List-to-sold update YYYY-MM-DD: +N sales").
+2. `to_check.csv` → look up every address on Highrises, apply rules, add to master or gaps (Sun rows → Sun exits). It clears itself on the next robot run.
+3. Highrises Water Oak sold list → any sale newer than that, or any address not in master/gaps → open its history, apply rules, add to master or gaps.
+4. Foxfire archive → any SOLD id not in `foxfire_sold_seen.csv` → add it, then look the address up on Highrises.
+5. Re-check every `pending` and `stamp_no_sale` row.
+6. Spot-check 3 existing master rows against Highrises; fix anything that changed.
+7. `python3 build_report.py YEAR END_DATE`, recalc, verify counts/medians against the CSV, deliver the .xlsx.
+8. Commit the CSVs (message: "List-to-sold update YYYY-MM-DD: +N sales").

@@ -1,4 +1,4 @@
-// VERSION 6 — SUN WEBSITE CROSS-CHECK + FIXES (Oct 10). If you see this line on GitHub, the right code is saved.
+// VERSION 7 — HANDS GONE HOMES TO LIST-TO-SOLD (Nov 1). If you see this line on GitHub, the right code is saved.
 
 // Water Oak market robot — Sun sales office (its own MHVillage seller account) + RE/MAX Foxfire
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
@@ -379,3 +379,34 @@ db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.len
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
 console.log('saved', FILE, 'for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
+
+/* ---------- handoff to list-to-sold ----------
+   Every home the robot has seen disappear, that the list-to-sold files don't cover yet,
+   goes into list-to-sold/to_check.csv. Rebuilt each run, so a home drops off once it is
+   added to master_sales.csv, gaps.csv or sun/sun_exits_2026.csv. */
+{
+  const csvAddrs = (file, col) => {
+    if (!fs.existsSync(file)) return [];
+    return fs.readFileSync(file, 'utf8').split(/\r?\n/).slice(1).filter(Boolean).map(line => {
+      const cells = []; let cur = '', q = false;
+      for (const ch of line) {
+        if (ch === '"') q = !q; else if (ch === ',' && !q) { cells.push(cur); cur = ''; } else cur += ch;
+      }
+      cells.push(cur);
+      return cells[col] || '';
+    });
+  };
+  const covered = new Set([
+    ...csvAddrs('list-to-sold/master_sales.csv', 0),
+    ...csvAddrs('list-to-sold/gaps.csv', 1),
+    ...csvAddrs('list-to-sold/sun/sun_exits_2026.csv', 0),
+  ].map(keyOf));
+  const esc = v => v == null ? '' : /[",]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+  const rows = Object.values(db.homes)
+    .filter(h => h.gone && !covered.has(keyOf(h.address || '')))
+    .sort((a, b) => (b.goneDate || '').localeCompare(a.goneDate || ''))
+    .map(h => [h.address, h.source, h.goneDate, h.price, h.prices && h.prices[0] ? h.prices[0].price : '', h.firstSeen, h.url].map(esc).join(','));
+  fs.writeFileSync('list-to-sold/to_check.csv',
+    'address,source,gone_date,last_ask,first_ask_seen,first_seen,url\n' + rows.join('\n') + (rows.length ? '\n' : ''));
+  console.log('list-to-sold/to_check.csv:', rows.length, 'gone homes not yet in list-to-sold');
+}
