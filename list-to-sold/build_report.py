@@ -97,5 +97,27 @@ notes=['Method: (1) RE/MAX Foxfire sold/archive pages for addresses; (2) every a
 'DOM = sold date minus list date of the listing that sold (remove/relist inside the same run counted as one run).',
 '% vs List Used compares each home\'s own sold price to its own list price. List medians are never compared to sold medians.']
 for i,t in enumerate(notes): ws.cell(n+i,1,t).font=F(False,'444444',11)
+
+# ---- Price cuts: RE/MAX vs Sun sales office (added 11/01/2026) ----
+pc=wb.create_sheet('Price Cuts')
+pc['A1']=f'Price cuts — RE/MAX vs Sun sales office, {YEAR}';pc['A1'].font=F(True,NAVY,16)
+pc['A2']='A cut = the last asking price was lower than the first. Only homes with a known first price are counted.';pc['A2'].font=F(False,'555555',12)
+mx=[r for r in rows if r[2] and r[3]]                       # paired sales with an original list price
+mx_cut=[r for r in mx if r[2]>r[3]]
+SE=os.path.join(HERE,'sun','sun_exits_2026.csv')
+sx=[r for r in (csv.DictReader(open(SE)) if os.path.exists(SE) else []) if r['first_ask'] and r['last_ask'] and r['sun_exit_date'] and date(YEAR,1,1)<=D(r['sun_exit_date'])<=END]
+sx_cut=[r for r in sx if float(r['first_ask'])>float(r['last_ask'])]
+def avg(v): return sum(v)/len(v) if v else None
+pc.append([]);pc.append(['Seller','Homes counted','Had a price cut','% that cut','Average cut (homes that cut)'])
+for c in pc[4]: c.font=F(True,'FFFFFF');c.fill=PatternFill('solid',fgColor=NAVY)
+pc.append(['RE/MAX (sold, MLS)',len(mx),len(mx_cut),len(mx_cut)/len(mx) if mx else None,avg([(r[2]-r[3])/r[2] for r in mx_cut])])
+pc.append(['Sun sales office (left the market)',len(sx),len(sx_cut),len(sx_cut)/len(sx) if sx else None,avg([(float(r['first_ask'])-float(r['last_ask']))/float(r['first_ask']) for r in sx_cut])])
+for rr in (5,6):
+    for col in range(1,6): pc.cell(rr,col).font=F()
+    pc.cell(rr,4).number_format='0%';pc.cell(rr,5).number_format='0%'
+pc['A8']=f'RE/MAX sales without a known first list price are left out ({len(rows)-len(mx)} of {len(rows)}). Sun homes are listings that left the market; Sun sold prices are not public.'
+pc['A8'].font=F(False,'444444',11)
+for col,w in zip('ABCDE',(34,16,16,12,28)): pc.column_dimensions[col].width=w
+print('price cuts: RE/MAX',len(mx_cut),'/',len(mx),' Sun',len(sx_cut),'/',len(sx))
 wb.save(OUT)
 print(len(rows))

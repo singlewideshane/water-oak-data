@@ -46,5 +46,5 @@ First built and verified 2026-10-31 (52 paired Jan 1–Oct 31, 2026 sales).
 4. Foxfire archive → any SOLD id not in `foxfire_sold_seen.csv` → add it, then look the address up on Highrises.
 5. Re-check every `pending` and `stamp_no_sale` row.
 6. Spot-check 3 existing master rows against Highrises; fix anything that changed.
-7. `python3 build_report.py YEAR END_DATE`, recalc, verify counts/medians against the CSV, deliver the .xlsx.
+7. `python3 build_report.py YEAR END_DATE`, recalc, verify counts/medians against the CSV, deliver the .xlsx. The report includes a Price Cuts tab (RE/MAX vs Sun cut rate) — give Shane both numbers in one line.
 8. Commit the CSVs (message: "List-to-sold update YYYY-MM-DD: +N sales").
