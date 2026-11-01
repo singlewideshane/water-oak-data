@@ -1,4 +1,5 @@
-# number|street name (no St/Ln/Dr)
+# number|street name (no St/Ln/Dr). Blank number = whole street.
 916|Norman
 219|Littler
 |Norman
+|Littler

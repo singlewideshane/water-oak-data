@@ -63,91 +63,50 @@ for (const a of addrs) {
   console.log(rec.address, rec.error || `${(rec.tables || []).length} tables, ${rec.permits.length} details`);
 }
 
-/* ---------- Town of Lady Lake (Citizenserve, installation 383) ---------- */
-const CS = 'https://www6.citizenserve.com/Portal/PortalController?Action=showSearchPage&ctzPagePrefix=Portal_&installationID=383&original_iid=0&original_contactID=0';
-out.town = [];
-async function dumpInputs(p) {
-  return p.$$eval('input,select,button,a', es => es.map(e => ({
-    tag: e.tagName, type: e.type || '', name: e.name || '', id: e.id || '', val: (e.value || '').slice(0, 40),
-    text: (e.innerText || '').trim().slice(0, 60), opts: e.tagName === 'SELECT' ? [...e.options].map(o => o.value + '=' + o.text).slice(0, 30) : undefined
-  })).filter(x => x.tag !== 'A' || /search|permit/i.test(x.text)));
+/* ---------- Lake County Property Appraiser (year built, roof, size) ---------- */
+out.pa = [];
+const paList = (fs.existsSync(DIR + '/pa_addresses.txt') ? fs.readFileSync(DIR + '/pa_addresses.txt', 'utf8') : '').split('\n').map(s => s.trim()).filter(s => s && !s.startsWith('#'));
+for (const full of paList) {
+  const rec = { address: full, error: null, steps: [] };
+  try {
+    await page.goto('https://www.lakecopropappr.com/', { waitUntil: 'networkidle', timeout: 90000 });
+    rec.steps.push(page.url());
+    const lk = await page.$('a:has-text("Property Search"), a:has-text("Search Records"), a:has-text("Real Estate Search")');
+    if (lk) { await lk.click(); await page.waitForLoadState('networkidle').catch(() => {}); await page.waitForTimeout(3000); }
+    rec.steps.push(page.url());
+    fs.writeFileSync(`${DBG}/pa_search.html`, await page.content());
+    const ins = await page.$$('input[type=text]:visible, input[type=search]:visible, input:not([type]):visible');
+    const meta = [];
+    for (const f of ins) meta.push([await f.getAttribute('name'), await f.getAttribute('id'), await f.getAttribute('placeholder')].join('|'));
+    rec.fields = meta;
+    const [num, ...rest] = full.split(' ');
+    const iNum = meta.findIndex(m => /house|stre?e?tn(um|o)|addrnum|number/i.test(m));
+    const iSt = meta.findIndex(m => /streetname|stname|street(?!num)/i.test(m));
+    const iAd = meta.findIndex(m => /address|situs|location/i.test(m));
+    let target;
+    if (iNum >= 0 && iSt >= 0) { await ins[iNum].fill(num); await ins[iSt].fill(rest[0] === 'E' || rest[0] === 'W' ? rest[1] : rest[0]); target = ins[iSt]; }
+    else if (iAd >= 0) { await ins[iAd].fill(full); target = ins[iAd]; }
+    else throw new Error('no PA address field');
+    const btn = await page.$('input[type=submit]:visible, button[type=submit]:visible, input[value*="Search" i]:visible, button:has-text("Search"):visible');
+    await (btn ? btn.click() : target.press('Enter'));
+    await page.waitForLoadState('networkidle').catch(() => {});
+    await page.waitForTimeout(4000);
+    fs.writeFileSync(`${DBG}/pa_${slug(full)}_results.html`, await page.content());
+    rec.resultsText = (await page.innerText('body')).slice(0, 4000);
+    const hit = await page.$(`a:has-text("${num}")`);
+    if (hit) {
+      const [np] = await Promise.all([ctx.waitForEvent('page', { timeout: 8000 }).catch(() => null), hit.click()]);
+      const pg = np || page;
+      await pg.waitForLoadState('networkidle').catch(() => {});
+      await pg.waitForTimeout(4000);
+      rec.detailUrl = pg.url();
+      rec.detailText = (await pg.innerText('body')).slice(0, 12000);
+      fs.writeFileSync(`${DBG}/pa_${slug(full)}.txt`, rec.detailText);
+    }
+  } catch (e) { rec.error = String(e).slice(0, 300); }
+  out.pa.push(rec);
+  console.log('PA', full, rec.error || 'ok');
 }
-try {
-  await page.goto(CS, { waitUntil: 'networkidle', timeout: 90000 });
-  await page.waitForTimeout(3000);
-  fs.writeFileSync(`${DBG}/town_search.html`, await page.content());
-  fs.writeFileSync(`${DBG}/town_inputs.json`, JSON.stringify(await dumpInputs(page), null, 1));
-  // pick "Permit" in any search-type dropdown
-  for (const s of await page.$$('select')) {
-    const opts = await s.$$eval('option', os => os.map(o => ({ v: o.value, t: o.text })));
-    const o = opts.find(x => /^permits?$/i.test(x.t.trim())) || opts.find(x => /permit/i.test(x.t));
-    if (o) { await s.selectOption(o.v); await page.waitForTimeout(2500); }
-  }
-  fs.writeFileSync(`${DBG}/town_inputs2.json`, JSON.stringify(await dumpInputs(page), null, 1));
-  for (const a of addrs) {
-    const [num, street] = a.split('|').map(s => s.trim());
-    const rec = { address: `${num} ${street}`, error: null };
-    try {
-      await page.goto(CS, { waitUntil: 'networkidle', timeout: 90000 });
-      for (const s of await page.$$('select')) {
-        const opts = await s.$$eval('option', os => os.map(o => ({ v: o.value, t: o.text })));
-        const o = opts.find(x => /^permits?$/i.test(x.t.trim())) || opts.find(x => /permit/i.test(x.t));
-        if (o) { await s.selectOption(o.v); await page.waitForTimeout(2500); }
-      }
-      const fields = await page.$$('input[type=text]:visible');
-      const meta = [];
-      for (const f of fields) meta.push(((await f.getAttribute('name')) || '') + '|' + ((await f.getAttribute('id')) || ''));
-      rec.fields = meta;
-      const byName = re => fields[meta.findIndex(m => re.test(m))];
-      const fNum = byName(/streetnum|stnum|housenum|number/i);
-      const fSt = byName(/streetname|stname|street/i);
-      const fAddr = byName(/address/i);
-      if (fNum && fSt) { await fNum.fill(num); await fSt.fill(street); }
-      else if (fAddr) await fAddr.fill(`${num} ${street}`);
-      else throw new Error('no address field');
-      const btn = await page.$('input[type=submit]:visible, button:has-text("Search"), input[value*="Search" i]:visible, a:has-text("Search"):visible');
-      await (btn ? btn.click() : (fSt || fAddr).press('Enter'));
-      await page.waitForLoadState('networkidle').catch(() => {});
-      await page.waitForTimeout(4000);
-      fs.writeFileSync(`${DBG}/town_${slug(rec.address)}.html`, await page.content());
-      rec.text = (await page.innerText('body')).slice(0, 6000);
-      rec.tables = (await tables()).filter(t => t.length > 1);
-      // open each result row link for detail
-      const links = await page.$$eval('a', as => as.map(x => ({ t: x.innerText.trim(), h: x.href, oc: x.getAttribute('onclick') || '' })).filter(x => /^[A-Z]{0,4}-?\d{2,}/.test(x.t)));
-      rec.details = [];
-      for (const l of links.slice(0, 30)) {
-        try {
-          const p2 = await ctx.newPage();
-          if (l.h && !l.h.startsWith('javascript')) await p2.goto(l.h, { waitUntil: 'networkidle', timeout: 60000 });
-          else { await p2.close(); continue; }
-          await p2.waitForTimeout(1500);
-          rec.details.push({ id: l.t, text: (await p2.innerText('body')).slice(0, 4000) });
-          await p2.close();
-        } catch (e) { rec.details.push({ id: l.t, error: String(e).slice(0, 200) }); }
-      }
-      // if links are javascript, click each in place and capture
-      if (!rec.details.length) {
-        const jl = await page.$$('a');
-        let k = 0;
-        for (const el of jl) {
-          const t = ((await el.innerText()) || '').trim();
-          if (!/^[A-Z]{0,4}-?\d{2,}/.test(t) || k >= 30) continue;
-          k++;
-          try {
-            await el.click();
-            await page.waitForLoadState('networkidle').catch(() => {});
-            await page.waitForTimeout(2500);
-            rec.details.push({ id: t, text: (await page.innerText('body')).slice(0, 4000) });
-            await page.goBack({ waitUntil: 'networkidle' }).catch(() => {});
-            await page.waitForTimeout(2000);
-          } catch (e) { rec.details.push({ id: t, error: String(e).slice(0, 200) }); break; }
-        }
-      }
-    } catch (e) { rec.error = String(e).slice(0, 300); }
-    out.town.push(rec);
-    console.log('TOWN', rec.address, rec.error || `${(rec.tables || []).length} tables, ${rec.details.length} details`);
-  }
-} catch (e) { out.townError = String(e).slice(0, 300); console.log('TOWN ERR', e); }
 
 await browser.close();
 fs.writeFileSync(DIR + '/permits.json', JSON.stringify(out, null, 2));
