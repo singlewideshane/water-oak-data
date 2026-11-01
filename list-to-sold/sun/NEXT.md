@@ -1,5 +1,11 @@
-# Sun side — in progress (stopped 10/31/2026, usage limit)
-- sun_addrs.json = 120 Sun sales-office addresses: Sun website listing pages saved by the Internet Archive (CDX query: url=suncommunities.com, matchType=domain, filter original:.*water-oak.*, from=2025) + robot data/market.json Sun homes + Sept snapshots.
-- NEXT: look up each address on Highrises (search box -> detail page -> Price history). Keep SunCommunities events in 2026: listed date/price, cuts, "Listing removed" date. If the home later appears with RE/MAX/MyStateMLS, label "moved to RE/MAX", not sold.
-- Sun sold prices are not public: report count of 2026 Sun exits, median days on market, median last asking price. Never mix into the RE/MAX 9% number.
-- RE/MAX side re-checked 10/31 evening: no new sales.
+# Sun side — status 11/01/2026
+- sun_addrs.json = 120 Sun sales-office addresses (Internet Archive Sun pages + robot market.json + Sept snapshots).
+- All 120 looked up on Highrises 11/01. Result file: sun_exits_2026.csv (50 Sun runs that ended in 2026).
+  - 36 still active on Highrises (not exits; their price history did not load and was not pulled).
+  - 219 Littler Ln: no Highrises match.
+  - Rest: Sun run ended in 2025 or no Sun exit.
+- Exit rules used: last SunCommunities "Listing removed" with no later Sun Listed/Relisted; a removal followed by a relist within 10 days = same run (covers the 8/26–9/1/26 feed churn). DOM = run start to removal.
+- MyStateMLS "Listing removed" rows dated 6/30/26 with no MLS "Listed" event are treated as feed noise, not RE/MAX moves.
+- Moved to RE/MAX (same street number, RE/MAX listed within days of Sun removal): 696 Cedar Ln (#562), 958 W Norman St (#2834). Kept out of Sun stats.
+- Open questions: 13 removals land on 6/25 and 7/21 — may be Sun feed purges, not sales. Rahm/Sheehan/Stewart $160k–$180k listings look like Sun new-home inventory, not resales.
+- Sun sold prices are not public. Never mix into the RE/MAX 9% number.
