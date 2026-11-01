@@ -1,0 +1,26 @@
+name: Water Oak permit scan
+on:
+  push:
+    paths:
+      - 'permits/permits.mjs'
+      - 'permits/addresses.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node permits/permits.mjs
+      - if: always()
+        run: |
+          git config user.name "permit-bot"
+          git config user.email "permit-bot@users.noreply.github.com"
+          git add permits/
+          git diff --cached --quiet || git commit -m "Permit scan $(date +%F)"
+          git pull --rebase
+          git push
