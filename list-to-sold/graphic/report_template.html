@@ -1,0 +1,82 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Orb;font-weight:400;src:url(node_modules/@fontsource/orbitron/files/orbitron-latin-400-normal.woff2)}
+@font-face{font-family:Orb;font-weight:700;src:url(node_modules/@fontsource/orbitron/files/orbitron-latin-700-normal.woff2)}
+@font-face{font-family:Orb;font-weight:900;src:url(node_modules/@fontsource/orbitron/files/orbitron-latin-900-normal.woff2)}
+@font-face{font-family:Raj;font-weight:500;src:url(node_modules/@fontsource/rajdhani/files/rajdhani-latin-500-normal.woff2)}
+@font-face{font-family:Raj;font-weight:700;src:url(node_modules/@fontsource/rajdhani/files/rajdhani-latin-700-normal.woff2)}
+:root{--bg:#07101c;--panel:#0a1a2c;--line:#1c4466;--cyan:#22c8ff;--cyanSoft:#7fdcff;--orange:#ff8a1f;--txt:#eaf6ff;--mute:#8fa8bf}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1000px;background:var(--bg);color:var(--txt);font-family:Raj,sans-serif;
+ background-image:linear-gradient(rgba(34,200,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(34,200,255,.045) 1px,transparent 1px);background-size:40px 40px;padding:34px 50px 30px}
+.top{font-family:Orb;font-size:15px;letter-spacing:4px;color:var(--cyanSoft);text-align:center}
+h1{font-family:Orb;font-weight:900;font-size:104px;text-align:center;line-height:1.05;margin-top:12px;color:#eaf8ff;text-shadow:0 0 18px rgba(34,200,255,.75),0 0 40px rgba(34,200,255,.35)}
+.sub{font-family:Orb;font-size:28px;letter-spacing:11px;text-align:center;margin-top:8px;color:#dff3ff}
+.panel{background:var(--panel);border:2px solid var(--line);box-shadow:0 0 14px rgba(34,200,255,.12) inset;padding:22px 28px;margin-top:22px}
+.lab{font-family:Orb;font-size:15px;letter-spacing:3px;color:var(--cyanSoft)}
+.row{display:flex;gap:22px}
+.row .panel{flex:1;margin-top:28px}
+.big{font-family:Orb;font-weight:900;font-size:94px;line-height:1;margin-top:10px;color:var(--cyan);text-shadow:0 0 16px rgba(34,200,255,.6)}
+.big.o{color:var(--orange);text-shadow:0 0 16px rgba(255,138,31,.55)}
+.bt{font-family:Orb;font-weight:700;font-size:26px;margin-top:12px}
+.sm{font-size:19px;color:#c3d4e4;letter-spacing:.5px;margin-top:6px}
+.or{border-color:#b85e14}
+.cols{display:flex;justify-content:space-between;margin-top:12px}
+.cols div{flex:1}
+.ch{font-family:Orb;font-weight:700;font-size:30px}
+.cv{font-family:Orb;font-weight:700;font-size:30px;color:var(--cyan);margin-top:4px;text-shadow:0 0 10px rgba(34,200,255,.5)}
+.head{font-family:Orb;font-weight:700;font-size:31px;margin:12px 0 10px}
+.bar{display:flex;align-items:center;margin:14px 0 2px}
+.bar .n{width:200px;font-family:Orb;font-weight:700;font-size:19px;line-height:1.15}
+.blocks{display:flex;gap:3px}
+.blocks i{width:14px;height:30px;border-radius:3px;background:var(--cyan);box-shadow:0 0 8px rgba(34,200,255,.6)}
+.o .blocks i{background:var(--orange);box-shadow:0 0 8px rgba(255,138,31,.6)}
+.bar .c{margin-left:14px;font-size:20px;color:#c3d4e4;flex:1}
+.bar .p{font-family:Orb;font-weight:900;font-size:36px;color:var(--cyan);text-shadow:0 0 10px rgba(34,200,255,.5)}
+.o .n,.o .p{color:var(--orange)}
+.maker{display:flex;align-items:center}
+.maker .w{font-family:Orb;font-weight:900;font-size:66px;color:var(--cyan);text-shadow:0 0 16px rgba(34,200,255,.6)}
+.maker .s{font-family:Orb;font-weight:700;font-size:34px;margin-left:28px}
+.maker .r{margin-left:auto;text-align:right;font-size:19px;color:#c3d4e4;line-height:1.35}
+.sun{border-color:#b85e14}
+.sun .lab{color:#ffb978}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px;margin-top:14px}
+.sg .v{font-family:Orb;font-weight:900;font-size:46px;color:var(--orange);text-shadow:0 0 12px rgba(255,138,31,.5)}
+.sg .k{font-family:Orb;font-weight:700;font-size:18px;margin-top:4px}
+.note{font-size:17px;color:#a9bccd;text-align:center;margin-top:18px;line-height:1.4}
+.foot{font-family:Orb;font-weight:700;font-size:40px;text-align:center;margin-top:30px;color:#eaf8ff;text-shadow:0 0 14px rgba(34,200,255,.7)}
+.vc{display:flex;justify-content:space-around;align-items:flex-end;margin-top:16px;height:300px;border-bottom:2px solid #1c4466;padding:0 20px;position:relative;background:repeating-linear-gradient(0deg,transparent 0 41px,rgba(34,200,255,.08) 41px 42px)}
+.col{display:flex;flex-direction:column;align-items:center;width:150px;position:relative}
+.vp{font-family:Orb;font-weight:900;font-size:34px;color:var(--cyan);text-shadow:0 0 10px rgba(34,200,255,.6);margin-bottom:10px}
+.vb{width:70px;background:linear-gradient(0deg,rgba(34,200,255,.25),#22c8ff);border-top:4px solid #bff0ff;box-shadow:0 0 18px rgba(34,200,255,.55)}
+.vl{position:absolute;bottom:-40px;font-family:Orb;font-weight:700;font-size:19px;letter-spacing:1px;white-space:nowrap}
+.col.o .vp,.col.o .vl{color:var(--orange);text-shadow:0 0 10px rgba(255,138,31,.6)}.col.o .vb{background:linear-gradient(0deg,rgba(255,138,31,.25),#ff8a1f);border-top-color:#ffd2a8;box-shadow:0 0 18px rgba(255,138,31,.55)}
+.vc+*{}</style></head><body>
+<div class="top">• MARKET DATA · UPDATED NOV 1, 2026</div>
+<h1>WATER OAK</h1>
+<div class="sub">LIST-TO-SOLD REPORT · 2026</div>
+
+<div class="row">
+ <div class="panel"><div class="lab">// SALE PRICE VS ASKING</div><div class="big">8.8%</div><div class="bt">UNDER FINAL ASKING</div><div class="sm">MEDIAN · AVERAGE 10.3% · 52 VERIFIED SALES</div></div>
+ <div class="panel or"><div class="lab">// TIME TO SELL</div><div class="big o">133</div><div class="bt">DAYS ON MARKET</div><div class="sm">MEDIAN · AVERAGE 178 DAYS</div></div>
+</div>
+
+<div class="panel"><div class="lab">// DISCOUNT BY PRICE RANGE (AVG)</div>
+ <div class="cols"><div><div class="ch">UNDER $90K</div><div class="cv">-11.5%</div></div><div><div class="ch">$90K–150K</div><div class="cv">-11.0%</div></div><div><div class="ch">$150K+</div><div class="cv">-3.2%</div></div></div>
+ <div class="sm">35 · 10 · 7 SALES — HOMES UNDER $150K TAKE BIGGER CUTS</div></div>
+
+<div class="panel"><div class="lab">// TIME ON MARKET → DISCOUNT (AVG)</div><div class="vc"><div class="col"><div class="vp">-8.7%</div><div class="vb" style="height:119px"></div><div class="vl">UNDER 2 MO</div></div><div class="col"><div class="vp">-10.4%</div><div class="vb" style="height:143px"></div><div class="vl">2–4 MO</div></div><div class="col"><div class="vp">-8.3%</div><div class="vb" style="height:114px"></div><div class="vl">4–7 MO</div></div><div class="col o"><div class="vp">-12.4%</div><div class="vb" style="height:170px"></div><div class="vl">7+ MO</div></div></div><div style="height:44px"></div></div>
+
+<div class="panel"><div class="lab">// TYPICAL SALE PRICE</div>
+ <div class="maker"><div class="w">$75,450</div><div class="r">MEDIAN SOLD PRICE<br>52 VERIFIED SALES · 2026</div></div></div>
+
+<div class="panel sun"><div class="lab">// SUN SALES OFFICE · 2026</div>
+ <div class="sg">
+  <div><div class="v">164</div><div class="k">MEDIAN DAYS LISTED</div></div>
+  <div><div class="v">1 IN 2</div><div class="k">CUT THE PRICE BEFORE COMING OFF</div></div>
+ </div></div></div>
+
+<div class="foot">SINGLEWIDESHANE · 808-631-9258</div>
+<script>document.querySelectorAll('.blocks').forEach(b=>{b.innerHTML='<i></i>'.repeat(+b.dataset.n)})</script>
+</body></html>
