@@ -1,0 +1,689 @@
+<html><!-- InstanceBegin template="/Templates/general.dwt" codeOutsideHTMLIsLocked="false" --><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>Permit Search by Owners Name - Permit Activity Reports</title>
+    <meta name="keywords" content="permit search,owners name,building permits,building permit search,search building permits,building services,growth management,Lake County Florida Government, Lake County, Board of County Commissioners, Lake, Central Florida">
+    <meta name="description" content="Lake County Building permit search by owners name.">
+
+
+    
+
+
+    <!-- InstanceBeginEditable name="code" -->
+    
+
+    <script language="JavaScript" type="text/JavaScript">
+	<!--
+    function MM_openBrWindow(theURL, winName, features) { //v2.0
+        window.open(theURL, winName, features);
+    }
+    function nothing() { }
+    </script>
+
+    <!-- InstanceEndEditable -->
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Barlow+Condensed:100,200,300,400,500,600,700,800,900|Barlow:100,200,300,400,500,600,700,800,900|Roboto+Condensed:300,400,700|Roboto:100,300,400,500,700,900&amp;display=swap"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"><script src="https://docaccess.com/docbox.js" async=""></script><style data-docbox-styles="true">
+                #docbox-overlay {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    width: 100vw !important;
+                    height: 100vh !important;
+                    min-width: 0 !important;
+                    min-height: 0 !important;
+                    max-width: 100vw !important;
+                    max-height: 100vh !important;
+                    inset: 0 !important;
+                    position: fixed !important;
+                    background: transparent !important;
+                    overflow: hidden !important;
+                    color-scheme: normal !important;
+                    transform: none !important;
+                    filter: none !important;
+                    perspective: none !important;
+                    backdrop-filter: none !important;
+                    will-change: auto !important;
+                    contain: none !important;
+                    animation: none !important;
+                    transition: none !important;
+                    mask: none !important;
+                    clip-path: none !important;
+                    translate: none !important;
+                    rotate: none !important;
+                    scale: none !important;
+                    box-shadow: none !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                    z-index: 2147483647 !important;
+                }
+                #docbox-overlay[open] {
+                    display: flex !important;
+                    justify-content: center !important;
+                    align-items: end !important;
+                }
+                #docbox-overlay:not([open]) {
+                    display: none !important;
+                }
+                #docbox-overlay::backdrop {
+                    background-color: rgba(0, 0, 0, 0.8);
+                }
+                .docaccess-sr-only {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                    border: 0;
+                }
+                
+                .docaccess-onclick-activated.docaccess-status-enabled,
+                [data-docaccess-url]:not(a):not(iframe).docaccess-status-enabled {
+                    cursor: pointer;
+                }
+                @keyframes docaccess-pulse {
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+                    }
+                    50% {
+                        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+                    }
+                }
+            </style></head>
+<body>
+    <link id="ctlMyLakeFL_linkStylesMyLakeFL" href="/include/MyLakeFLReskin/StyleSheet.css?v=4" type="text/css" rel="stylesheet">
+
+
+
+
+<style>
+    @keyframes rotate {
+        0% {transform:rotateZ(0deg)}
+        100% {transform:rotateZ(359.99deg)}
+    }
+    #loading {
+        display:flex;
+        /*flex-direction:column;*/
+        /*align-content:center;*/
+        align-items:center;
+        justify-content:center;
+        justify-items:center;
+        position:fixed;
+        width:100%;
+        height:100%;
+        z-index:9999;
+        transition:all .3s;
+    }
+        #loading.open {
+            background:rgba(255,255,255,1);
+            opacity:1;
+        }
+        #loading.closed {
+            pointer-events:none;
+            opacity:0;
+        }
+
+        #loading p {
+            margin:0 20px 0 0;
+            color:#333;
+            font-family:Arial, Helvetica, sans-serif;
+            letter-spacing:normal;
+        }
+        #loading span {
+            display:inline-block;
+            width:0px;
+            height:0px;
+            border:15px solid #ededed;
+            border-left-color:#AAA;
+            animation-name:rotate;
+            animation-duration:.5s;
+            animation-iteration-count: infinite;
+            animation-timing-function:linear;
+            border-radius:50%;
+        }
+
+        /*page title overrides*/
+        #contentstart table tr td table tr td {
+            background: none;
+            border-left: none !important;
+        }
+
+        #contentstart table tr td table tr td .smallHeader{
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #contentstart table tr td table tr td:nth-child(2) {
+            border-bottom: none !important;
+        }
+
+        /*#contentstart table tr td table tr:nth-child(2) td {
+            background: none !important;
+            display: none !important;
+        }*/
+
+</style>
+
+
+
+
+<div id="loading" class="closed">
+    <p>Loading...</p>
+    <span></span>
+</div>
+
+
+
+
+<div id="here">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="navComponent">
+    <div id="navTop">
+        <div class="inner">
+            <a title="Back to the front page" href="https://www.lakecountyfl.gov/">
+                <img alt="Lake County, FL - Real Florida. Real Close." src="/include/MyLakeFLReskin/images/logo-Lake-County-FL-minimal.png">
+            </a>
+            
+            
+
+            
+
+            
+        </div>
+    </div>
+    
+    <div id="navBtm">
+        <div class="inner">
+            <div id="hamburger" title="Open Menu" onclick="toggleNav();">
+                <span></span>
+            </div>
+            
+            <nav id="main" class="closed">
+                
+                
+                <div id="mainNavListContainer">
+                    <p>You're on Lake County's previous website, kept online for job applications, bid postings, and other services during our transition. <a href="https://lakecountyfl.gov/">Visit the new Lake County website →</a></p>
+                    <!--  NAV GETS PLACED HERE  -->
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="bgCover" title="Click to close menu." class="closed" onclick="toggleNav();"></div>
+<script language="javascript" type="text/javascript" src="/js/mylakefl.js"></script>
+
+
+
+
+
+    <div class="container inner-page-container pb-5">
+        <div class="row">
+            <div class="col-sm-12 col-lg-9 main-content order-1">
+                <h1>Permit Search by Address</h1>
+                <p class="lead">This search returns all of the permits for a given permit address. If you do not know the house number simply enter the street name.</p>
+
+
+                <form name="Form1" method="post" action="permit_search_by_address.aspx" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTcyNTMzNDAxMQ8WAh4IU29ydEV4cHIFDlBFUk1JVF9OQlIgQVNDFgICBg9kFgYCAQ8WAh4HVmlzaWJsZWgWAgIEDw8WAh4EVGV4dAUGTm9ybWFuZGQCBQ8WAh8BZxYCZg8PFgIfAgW/AVlvdXIgc2VhcmNoIGZvciBwZXJtaXRzIHdpdGggYW4gYWRkcmVzcyBvZiA8aT4gTm9ybWFuPC9pPiByZXR1cm5lZCB0aGUgZm9sbG93aW5nIHJlc3VsdHMuPHA+IElmIHlvdSB3b3VsZCBsaWtlIHRvIHBlcmZvcm0gYW5vdGhlciBzZWFyY2ggPGEgaHJlZj1wZXJtaXRfc2VhcmNoX2J5X2FkZHJlc3MuYXNweD4gY2xpY2sgaGVyZTwvYT4uZGQCCQ88KwALAQAPFgoeC18hSXRlbUNvdW50AiceCERhdGFLZXlzFgAeEEN1cnJlbnRQYWdlSW5kZXhmHglQYWdlQ291bnQCAR4VXyFEYXRhU291cmNlSXRlbUNvdW50AidkFgJmD2QWTgICD2QWCGYPZBYCZg8VAaMBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTk3MDMwMDIxJywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjk3MDMwMDIxPC9hPmQCAQ9kFgJmDxUBCjgzNSBOT1JNQU5kAgIPDxYCHwIFHk1FQ0hBTklDQUwgLSBSRVNJREVOVElBTCAoT0xEKWRkAgMPDxYCHwIFCSQyLDgwMC4wMGRkAgMPZBYIZg9kFgJmDxUBowE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9OTcwMzAwMjInLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+OTcwMzAwMjI8L2E+ZAIBD2QWAmYPFQEKODM1IE5PUk1BTmQCAg8PFgIfAgUZRUxFQ1RSSUNBTCBTRVJWSUNFUyAoT0xEKWRkAgMPDxYCHwIFBSQwLjAwZGQCBA9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDAxMDYwMDg3JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMDEwNjAwODc8L2E+ZAIBD2QWAmYPFQEKODM1IE5PUk1BTmQCAg8PFgIfAgURUk9PRi1SRVJPT0YgKE9MRClkZAIDDw8WAh8CBQkkMyw5MDAuMDBkZAIFD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMDIwNDA3NjUnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAwMjA0MDc2NTwvYT5kAgEPZBYCZg8VAQo3OTUgTk9STUFOZAICDw8WAh8CBRFST09GLVJFUk9PRiAoT0xEKWRkAgMPDxYCHwIFCSQ0LDAwMC4wMGRkAgYPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAwMjExMDgyOScsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDAyMTEwODI5PC9hPmQCAQ9kFgJmDxUBCjc5NSBOT1JNQU5kAgIPDxYCHwIFG1JFU0lERU5USUFMIEFERElUSU9OUyAoT0xEKWRkAgMPDxYCHwIFCSQyLDg4MC4wMGRkAgcPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAwMzA1MDAyMycsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDAzMDUwMDIzPC9hPmQCAQ9kFgJmDxUBCjgzMCBOT1JNQU5kAgIPDxYCHwIFHk1FQ0hBTklDQUwgLSBSRVNJREVOVElBTCAoT0xEKWRkAgMPDxYCHwIFCSQ0LDUwMC4wMGRkAggPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAwMzEwMDcxMScsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDAzMTAwNzExPC9hPmQCAQ9kFgJmDxUBCjkxNSBOT1JNQU5kAgIPDxYCHwIFEVJPT0YtUkVST09GIChPTEQpZGQCAw8PFgIfAgUJJDQsMDAwLjAwZGQCCQ9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDA0MTIwNjU1JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMDQxMjA2NTU8L2E+ZAIBD2QWAmYPFQEKNzkwIE5PUk1BTmQCAg8PFgIfAgURUk9PRi1SRVJPT0YgKE9MRClkZAIDDw8WAh8CBQkkMSwyMDAuMDBkZAIKD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMDUwMzE5MDEnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAwNTAzMTkwMTwvYT5kAgEPZBYCZg8VAQo4NjAgTk9STUFOZAICDw8WAh8CBRtSRVNJREVOVElBTCBBRERJVElPTlMgKE9MRClkZAIDDw8WAh8CBQkkMywwMjEuMDBkZAILD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMDYwNzA3NDknLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAwNjA3MDc0OTwvYT5kAgEPZBYCZg8VAQo4ODAgTk9STUFOZAICDw8WAh8CBRFST09GLVJFUk9PRiAoT0xEKWRkAgMPDxYCHwIFCSQ2LDMzMC4wMGRkAgwPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAwNzAxMDc0MycsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDA3MDEwNzQzPC9hPmQCAQ9kFgJmDxUBDTE2MzcgTk9STUFORFlkAgIPDxYCHwIFEVJPT0YtUkVST09GIChPTEQpZGQCAw8PFgIfAgUJJDMsOTkwLjAwZGQCDQ9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDA4MDQwMzkwJywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMDgwNDAzOTA8L2E+ZAIBD2QWAmYPFQEKNzk1IE5PUk1BTmQCAg8PFgIfAgUbUkVTSURFTlRJQUwgQURESVRJT05TIChPTEQpZGQCAw8PFgIfAgUJJDgsOTA1LjAwZGQCDg9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDEwMDIwMDc2JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMTAwMjAwNzY8L2E+ZAIBD2QWAmYPFQEKODYwIE5PUk1BTmQCAg8PFgIfAgURUk9PRi1SRVJPT0YgKE9MRClkZAIDDw8WAh8CBQkkNCw3NTAuMDBkZAIPD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMTEwMjAyNjMnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAxMTAyMDI2MzwvYT5kAgEPZBYCZg8VAQo4NjUgTk9STUFOZAICDw8WAh8CBRFST09GLVJFUk9PRiAoT0xEKWRkAgMPDxYCHwIFCSQ0LDAwMC4wMGRkAhAPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAxMTA0MDI2MScsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDExMDQwMjYxPC9hPmQCAQ9kFgJmDxUBCjkzMCBOT1JNQU5kAgIPDxYCHwIFEVJPT0YtUkVST09GIChPTEQpZGQCAw8PFgIfAgUJJDQsMDAwLjAwZGQCEQ9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDEzMTIwNTgxJywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMTMxMjA1ODE8L2E+ZAIBD2QWAmYPFQEKODY1IE5PUk1BTmQCAg8PFgIfAgUeTUVDSEFOSUNBTCAtIFJFU0lERU5USUFMIChPTEQpZGQCAw8PFgIfAgUJJDMsNDc1LjAwZGQCEg9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDE0MDUwMDc3JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMTQwNTAwNzc8L2E+ZAIBD2QWAmYPFQEKODAwIE5PUk1BTmQCAg8PFgIfAgURUk9PRi1SRVJPT0YgKE9MRClkZAIDDw8WAh8CBQkkNSwzMDAuMDBkZAITD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMTUxMTA0NDUnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAxNTExMDQ0NTwvYT5kAgEPZBYCZg8VAQo4MDcgTk9STUFOZAICDw8WAh8CBSdHQVMgLSBMUCBPUiBOQVRVUkFMIC0gUkVTSURFTlRJQUwgKE9MRClkZAIDDw8WAh8CBQckOTE5LjAwZGQCFA9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDE3MDEwODA3JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMTcwMTA4MDc8L2E+ZAIBD2QWAmYPFQEKOTAwIE5PUk1BTmQCAg8PFgIfAgURUk9PRi1SRVJPT0YgKE9MRClkZAIDDw8WAh8CBQkkNSwwMDAuMDBkZAIVD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMTcwNzA2MTMnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAxNzA3MDYxMzwvYT5kAgEPZBYCZg8VAQo3OTAgTk9STUFOZAICDw8WAh8CBRdXSU5ET1dTIEFORCBET09SUyAoT0xEKWRkAgMPDxYCHwIFCSQxLDMxMS41MmRkAhYPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAxODAzMDk3OScsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDE4MDMwOTc5PC9hPmQCAQ9kFgJmDxUBCjgwMCBOT1JNQU5kAgIPDxYCHwIFGUVMRUNUUklDQUwgU0VSVklDRVMgKE9MRClkZAIDDw8WAh8CBQckODAwLjAwZGQCFw9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDE4MDMxMTk2JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMTgwMzExOTY8L2E+ZAIBD2QWAmYPFQEKODAwIE5PUk1BTmQCAg8PFgIfAgUeTUVDSEFOSUNBTCAtIFJFU0lERU5USUFMIChPTEQpZGQCAw8PFgIfAgUJJDQsMDAwLjAwZGQCGA9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDE5MDIwMzE2JywncGVybWl0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bWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMjEwMzA2NzUnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAyMTAzMDY3NTwvYT5kAgEPZBYCZg8VAQo4NjUgTk9STUFOZAICDw8WAh8CBRhFTEVDVFJJQ0FMIC0gUkVTSURFTlRJQUxkZAIDDw8WAh8CBQokNjUsMDAwLjAwZGQCIA9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDIxMDUwNDE3JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMjEwNTA0MTc8L2E+ZAIBD2QWAmYPFQEKODMwIE5PUk1BTmQCAg8PFgIfAgUZUk9PRi1SRVJPT0YgLSBSRVNJREVOVElBTGRkAgMPDxYCHwIFCSQ4LDE1MC4wMGRkAiEPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAyMTA1MDg4NycsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDIxMDUwODg3PC9hPmQCAQ9kFgJmDxUBCjc5MCBOT1JNQU5kAgIPDxYCHwIFGVJPT0YtUkVST09GIC0gUkVTSURFTlRJQUxkZAIDDw8WAh8CBQkkOCwwMDAuMDBkZAIiD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMjEwNjAwNzUnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAyMTA2MDA3NTwvYT5kAgEPZBYCZg8VAQo3OTUgTk9STUFOZAICDw8WAh8CBRlST09GLVJFUk9PRiAtIFJFU0lERU5USUFMZGQCAw8PFgIfAgUJJDcsNDY1LjAwZGQCIw9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDIxMDkwMTUyJywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMjEwOTAxNTI8L2E+ZAIBD2QWAmYPFQEKOTMwIE5PUk1BTmQCAg8PFgIfAgUWU09MQVIgUFYgLSBSRVNJREVOVElBTGRkAgMPDxYCHwIFCiQyMSwwMDAuMDBkZAIkD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMjIxMDA4NzcnLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAyMjEwMDg3NzwvYT5kAgEPZBYCZg8VAQo5MTUgTk9STUFOZAICDw8WAh8CBRlST09GLVJFUk9PRiAtIFJFU0lERU5USUFMZGQCAw8PFgIfAgUJJDcsODAwLjAwZGQCJQ9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDIyMTAxMjUwJywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMjIxMDEyNTA8L2E+ZAIBD2QWAmYPFQEKOTE1IE5PUk1BTmQCAg8PFgIfAgUbTUVDSEFOSUNBTC1SRVNJREVOVElBTC0gTkVXZGQCAw8PFgIfAgUJJDEsMDAwLjAwZGQCJg9kFghmD2QWAmYPFQGnATxhIGhyZWY9ImphdmFzY3JpcHQ6bm90aGluZygpIiBvbkNsaWNrPSJNTV9vcGVuQnJXaW5kb3coJ3Blcm1pdF9kZXRhaWxzLmFzcHg/cGVybWl0X25icj0yMDIyMTEwMzQ3JywncGVybWl0RGV0YWlscycsJ3Rvb2xiYXI9eWVzLHdpZHRoPTUwMCxoZWlnaHQ9NDQwJykiPjIwMjIxMTAzNDc8L2E+ZAIBD2QWAmYPFQEKOTE1IE5PUk1BTmQCAg8PFgIfAgUfV0lORE9XUyBBTkQgRE9PUlMgLSBSRVNJREVOVElBTGRkAgMPDxYCHwIFCSQ5LDMxMi4wMGRkAicPZBYIZg9kFgJmDxUBpwE8YSBocmVmPSJqYXZhc2NyaXB0Om5vdGhpbmcoKSIgb25DbGljaz0iTU1fb3BlbkJyV2luZG93KCdwZXJtaXRfZGV0YWlscy5hc3B4P3Blcm1pdF9uYnI9MjAyMzA0MDA1MicsJ3Blcm1pdERldGFpbHMnLCd0b29sYmFyPXllcyx3aWR0aD01MDAsaGVpZ2h0PTQ0MCcpIj4yMDIzMDQwMDUyPC9hPmQCAQ9kFgJmDxUBCjg4MCBOT1JNQU5kAgIPDxYCHwIFGVJPT0YtUkVST09GIC0gUkVTSURFTlRJQUxkZAIDDw8WAh8CBQkkMSwwMDAuMDBkZAIoD2QWCGYPZBYCZg8VAacBPGEgaHJlZj0iamF2YXNjcmlwdDpub3RoaW5nKCkiIG9uQ2xpY2s9Ik1NX29wZW5CcldpbmRvdygncGVybWl0X2RldGFpbHMuYXNweD9wZXJtaXRfbmJyPTIwMjMwNzE1MDInLCdwZXJtaXREZXRhaWxzJywndG9vbGJhcj15ZXMsd2lkdGg9NTAwLGhlaWdodD00NDAnKSI+MjAyMzA3MTUwMjwvYT5kAgEPZBYCZg8VAQo3OTUgTk9STUFOZAICDw8WAh8CBSJNRUNIQU5JQ0FMIENIQU5HRU9VVCAtIFJFU0lERU5USUFMZGQCAw8PFgIfAgUJJDYsMTIwLjAwZGRkX1CeFfifiqFjX+cbFKezkFlvLtI=">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5EEA442C">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBAL377oGAsbQvMkFAsXQvMkFAsjQvMkFeGcZMYGGcAWQ5P8rw55T2XZCCWs=">
+</div>
+                    
+
+
+                    
+
+                    <span id="lblSearchCriteria">Your search for permits with an address of <i> Norman</i> returned the following results.<p> If you would like to perform another search <a href="permit_search_by_address.aspx"> click here</a>.
+
+                    <span id="lblNumResults" class="smalltext"></span>
+
+                    </p><div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" cellspacing="0" cellpadding="3" rules="all" border="1" id="dgResults" style="width:100%;border-collapse:collapse;">
+	<tbody><tr>
+		<td class="boldsmalltext"><a href="javascript:__doPostBack('dgResults$ctl02$ctl00','')">Permit Number</a></td><td class="boldsmalltext">Permit Address</td><td class="boldsmalltext"><a href="javascript:__doPostBack('dgResults$ctl02$ctl01','')">Permit Description</a></td><td class="boldsmalltext"><a href="javascript:__doPostBack('dgResults$ctl02$ctl02','')">Job Value</a></td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=97030021','permitDetails','toolbar=yes,width=500,height=440')">97030021</a>
+                                    </td><td class="smalltext">
+                                        835 NORMAN
+                                    </td><td class="smalltext">MECHANICAL - RESIDENTIAL (OLD)</td><td class="smalltext" align="right">$2,800.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=97030022','permitDetails','toolbar=yes,width=500,height=440')">97030022</a>
+                                    </td><td class="smalltext">
+                                        835 NORMAN
+                                    </td><td class="smalltext">ELECTRICAL SERVICES (OLD)</td><td class="smalltext" align="right">$0.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2001060087','permitDetails','toolbar=yes,width=500,height=440')">2001060087</a>
+                                    </td><td class="smalltext">
+                                        835 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$3,900.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2002040765','permitDetails','toolbar=yes,width=500,height=440')">2002040765</a>
+                                    </td><td class="smalltext">
+                                        795 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$4,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2002110829','permitDetails','toolbar=yes,width=500,height=440')">2002110829</a>
+                                    </td><td class="smalltext">
+                                        795 NORMAN
+                                    </td><td class="smalltext">RESIDENTIAL ADDITIONS (OLD)</td><td class="smalltext" align="right">$2,880.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2003050023','permitDetails','toolbar=yes,width=500,height=440')">2003050023</a>
+                                    </td><td class="smalltext">
+                                        830 NORMAN
+                                    </td><td class="smalltext">MECHANICAL - RESIDENTIAL (OLD)</td><td class="smalltext" align="right">$4,500.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2003100711','permitDetails','toolbar=yes,width=500,height=440')">2003100711</a>
+                                    </td><td class="smalltext">
+                                        915 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$4,000.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2004120655','permitDetails','toolbar=yes,width=500,height=440')">2004120655</a>
+                                    </td><td class="smalltext">
+                                        790 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$1,200.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2005031901','permitDetails','toolbar=yes,width=500,height=440')">2005031901</a>
+                                    </td><td class="smalltext">
+                                        860 NORMAN
+                                    </td><td class="smalltext">RESIDENTIAL ADDITIONS (OLD)</td><td class="smalltext" align="right">$3,021.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2006070749','permitDetails','toolbar=yes,width=500,height=440')">2006070749</a>
+                                    </td><td class="smalltext">
+                                        880 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$6,330.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2007010743','permitDetails','toolbar=yes,width=500,height=440')">2007010743</a>
+                                    </td><td class="smalltext">
+                                        1637 NORMANDY
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$3,990.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2008040390','permitDetails','toolbar=yes,width=500,height=440')">2008040390</a>
+                                    </td><td class="smalltext">
+                                        795 NORMAN
+                                    </td><td class="smalltext">RESIDENTIAL ADDITIONS (OLD)</td><td class="smalltext" align="right">$8,905.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2010020076','permitDetails','toolbar=yes,width=500,height=440')">2010020076</a>
+                                    </td><td class="smalltext">
+                                        860 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$4,750.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2011020263','permitDetails','toolbar=yes,width=500,height=440')">2011020263</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$4,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2011040261','permitDetails','toolbar=yes,width=500,height=440')">2011040261</a>
+                                    </td><td class="smalltext">
+                                        930 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$4,000.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2013120581','permitDetails','toolbar=yes,width=500,height=440')">2013120581</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">MECHANICAL - RESIDENTIAL (OLD)</td><td class="smalltext" align="right">$3,475.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2014050077','permitDetails','toolbar=yes,width=500,height=440')">2014050077</a>
+                                    </td><td class="smalltext">
+                                        800 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$5,300.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2015110445','permitDetails','toolbar=yes,width=500,height=440')">2015110445</a>
+                                    </td><td class="smalltext">
+                                        807 NORMAN
+                                    </td><td class="smalltext">GAS - LP OR NATURAL - RESIDENTIAL (OLD)</td><td class="smalltext" align="right">$919.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2017010807','permitDetails','toolbar=yes,width=500,height=440')">2017010807</a>
+                                    </td><td class="smalltext">
+                                        900 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$5,000.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2017070613','permitDetails','toolbar=yes,width=500,height=440')">2017070613</a>
+                                    </td><td class="smalltext">
+                                        790 NORMAN
+                                    </td><td class="smalltext">WINDOWS AND DOORS (OLD)</td><td class="smalltext" align="right">$1,311.52</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2018030979','permitDetails','toolbar=yes,width=500,height=440')">2018030979</a>
+                                    </td><td class="smalltext">
+                                        800 NORMAN
+                                    </td><td class="smalltext">ELECTRICAL SERVICES (OLD)</td><td class="smalltext" align="right">$800.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2018031196','permitDetails','toolbar=yes,width=500,height=440')">2018031196</a>
+                                    </td><td class="smalltext">
+                                        800 NORMAN
+                                    </td><td class="smalltext">MECHANICAL - RESIDENTIAL (OLD)</td><td class="smalltext" align="right">$4,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2019020316','permitDetails','toolbar=yes,width=500,height=440')">2019020316</a>
+                                    </td><td class="smalltext">
+                                        807 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$2,000.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2019020540','permitDetails','toolbar=yes,width=500,height=440')">2019020540</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF (OLD)</td><td class="smalltext" align="right">$26,500.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2019030273','permitDetails','toolbar=yes,width=500,height=440')">2019030273</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">WINDOWS AND DOORS (OLD)</td><td class="smalltext" align="right">$10,036.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2019060080','permitDetails','toolbar=yes,width=500,height=440')">2019060080</a>
+                                    </td><td class="smalltext">
+                                        790 NORMAN
+                                    </td><td class="smalltext">PLUMBING - RESIDENTIAL (OLD)</td><td class="smalltext" align="right">$24,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2020090209','permitDetails','toolbar=yes,width=500,height=440')">2020090209</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">MECHANICAL-RESIDENTIAL- NEW</td><td class="smalltext" align="right">$36,000.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2020100871','permitDetails','toolbar=yes,width=500,height=440')">2020100871</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">SOLAR PV - RESIDENTIAL</td><td class="smalltext" align="right">$30,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2021020507','permitDetails','toolbar=yes,width=500,height=440')">2021020507</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">MECHANICAL-RESIDENTIAL- NEW</td><td class="smalltext" align="right">$36,000.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2021030675','permitDetails','toolbar=yes,width=500,height=440')">2021030675</a>
+                                    </td><td class="smalltext">
+                                        865 NORMAN
+                                    </td><td class="smalltext">ELECTRICAL - RESIDENTIAL</td><td class="smalltext" align="right">$65,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2021050417','permitDetails','toolbar=yes,width=500,height=440')">2021050417</a>
+                                    </td><td class="smalltext">
+                                        830 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF - RESIDENTIAL</td><td class="smalltext" align="right">$8,150.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2021050887','permitDetails','toolbar=yes,width=500,height=440')">2021050887</a>
+                                    </td><td class="smalltext">
+                                        790 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF - RESIDENTIAL</td><td class="smalltext" align="right">$8,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2021060075','permitDetails','toolbar=yes,width=500,height=440')">2021060075</a>
+                                    </td><td class="smalltext">
+                                        795 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF - RESIDENTIAL</td><td class="smalltext" align="right">$7,465.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2021090152','permitDetails','toolbar=yes,width=500,height=440')">2021090152</a>
+                                    </td><td class="smalltext">
+                                        930 NORMAN
+                                    </td><td class="smalltext">SOLAR PV - RESIDENTIAL</td><td class="smalltext" align="right">$21,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2022100877','permitDetails','toolbar=yes,width=500,height=440')">2022100877</a>
+                                    </td><td class="smalltext">
+                                        915 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF - RESIDENTIAL</td><td class="smalltext" align="right">$7,800.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2022101250','permitDetails','toolbar=yes,width=500,height=440')">2022101250</a>
+                                    </td><td class="smalltext">
+                                        915 NORMAN
+                                    </td><td class="smalltext">MECHANICAL-RESIDENTIAL- NEW</td><td class="smalltext" align="right">$1,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2022110347','permitDetails','toolbar=yes,width=500,height=440')">2022110347</a>
+                                    </td><td class="smalltext">
+                                        915 NORMAN
+                                    </td><td class="smalltext">WINDOWS AND DOORS - RESIDENTIAL</td><td class="smalltext" align="right">$9,312.00</td>
+	</tr><tr class="AlternatingItemStyle">
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2023040052','permitDetails','toolbar=yes,width=500,height=440')">2023040052</a>
+                                    </td><td class="smalltext">
+                                        880 NORMAN
+                                    </td><td class="smalltext">ROOF-REROOF - RESIDENTIAL</td><td class="smalltext" align="right">$1,000.00</td>
+	</tr><tr>
+		<td class="smalltext">
+                                        <a href="javascript:nothing()" onclick="MM_openBrWindow('permit_details.aspx?permit_nbr=2023071502','permitDetails','toolbar=yes,width=500,height=440')">2023071502</a>
+                                    </td><td class="smalltext">
+                                        795 NORMAN
+                                    </td><td class="smalltext">MECHANICAL CHANGEOUT - RESIDENTIAL</td><td class="smalltext" align="right">$6,120.00</td>
+	</tr><tr class="boldsmalltext">
+		<td colspan="4"><span>1</span></td>
+	</tr>
+</tbody></table>
+                    </div>
+                
+            </span></form></div>
+
+
+
+
+            <div class="col-sm-12 col-lg-3 sidebar my-1 order-2">
+                <div class="sidebar-inner">
+                    <p class="sidebar-title">Helpful Links</p>
+
+
+
+<ul class="link-list">
+    <li><a href="https://www.lakecountyfl.gov/175/Building-Services">Building Services Home</a></li>
+    <li><a href="https://mcdplus.lakecountyfl.gov/oprs_PT/" target="_blank">Online Permitting</a></li>
+    <li><a href="https://www.lakecountyfl.gov/178/Contractor-Licensing">Contractors</a></li>
+    <li><a href="https://www.lakecountyfl.gov/179/Forms-Checklists">Forms</a></li>
+    
+    <li><a href="https://www.lakecountyfl.gov/599/Online-Permitting">Permitting Information</a></li>
+    <li><a href="https://www.lakecountyfl.gov/181/Permitting-Process">Permitting Process</a></li>
+</ul>
+
+
+
+
+<p class="sidebar-title level-2">Contact Building Services </p>
+<div class="contact-info">
+    <p><a href="https://lcbccappt.cxmflow.com/GetByKey/115f5581-9ff8-4fe0-8457-635acbd159b7/APPT/Book" title="Schedule an appointment" target="_blank" class="button button-primary">Book Appointment</a><a href="https://lcbcciwt.cxmflow.com/Office?unitId=2" title="View wait times" target="_blank" class="button button-secondary">View Wait Times</a></p>
+    <p>
+        <span>
+            <strong>Phone:</strong><br>
+            <a href="tel:3523439653" title="Call 352-343-9653">352-343-9653</a></span>
+    </p>
+    <div class="mb-4">
+        <strong>Physical Address:</strong><br>
+        <address>
+            <a href="https://goo.gl/maps/LbnGpKiHwDD9iT8JA" title="Get Directions" target="_blank">320 W. Main St.,<br>
+                Tavares, FL 32778
+            </a>
+        </address>
+    </div>
+    <div>
+        <strong>Mailing Address:</strong><br>
+        <address>
+            P.O. Box 7800<br>
+            Tavares, Florida 32778
+        </address>
+    </div>
+</div>
+<!--  /.contact-info  -->
+
+                </div>
+                <!--  /.sidebar-inner  -->
+            </div>
+            <!--  /.sidebar  -->
+        </div>
+        <!--  /.row  -->
+    </div>
+    <!--  /.container  -->
+
+
+
+
+
+
+
+    
+
+
+<footer id="footer">
+    <div class="lc-footer-content">
+        <div class="lc-footer-col lc-footer-logo-container">
+            <img class="img-fluid lc-footer-logo" src="/include/MyLakeFLReskin/images/logo-Lake-County-Florida.png" alt="Lake County, FL - Real Florida.  Real close.">
+        </div><!--  /.lc-footer-logo-container  -->
+
+
+        <div class="lc-footer-col lc-footer-addresses">
+            <address class="lc-physical">
+                <strong class="lc-heading">Physical Address</strong><br>
+                <a target="_blank" title="Physical Address" href="https://maps.google.com/?q=315 W. Main St.&lt;br&gt;Tavares, FL 32778">
+                    <span>
+                        315 W. Main St.<br>
+                        Tavares, FL 32778
+                    </span>
+                </a>
+            </address>
+            <address class="lc-mailing">
+                <strong class="lc-heading">Mailing Address</strong><br>
+                <span>
+                    P.O. Box 7800<br>
+                    Tavares, FL 34778
+                </span>
+            </address>
+            <div class="clearfix d-md-none"></div>
+        </div><!--  /.lc-footer-addresses  -->
+
+
+        <div class="lc-footer-col lc-footer-connect">
+            
+            
+            <strong class="lc-heading">Social</strong>
+            <div class="lc-footer-social">
+                <span>
+                    <a target="_blank" class="undefined" href="https://www.facebook.com/LakeCountyFLBCC/" title="Like Lake County, FL on Facebook"><img src="/include/MyLakeFLReskin/images/icon-facebook-header.png" alt="Facebook (icon)"></a>
+                </span>
+                <span>
+                    <a target="_blank" class="undefined" href="https://twitter.com/lakegov" title="Follow Lake County, FL on Twitter"><img src="/include/MyLakeFLReskin/images/icon-twitter-header.png" alt="Twitter (icon)"></a>
+                </span>
+                <span>
+                    <a target="_blank" class="undefined" href="https://www.instagram.com/lakecountyflorida" title="Follow Lake County, FL on Instagram"><img src="/include/MyLakeFLReskin/images/icon-instagram-header.png" alt="Instagram (icon)"></a>
+                </span>
+                <span>
+                    <a target="_blank" class="undefined" href="https://www.youtube.com/channel/UCd3YB4jmtmtKA1VkRXw33aQ" title="Watch Lake County, FL\'s videos on YouTube"><img src="/include/MyLakeFLReskin/images/icon-youtube-header.png" alt="YouTube (icon)"></a>
+                </span>
+            </div><!--  /.lc-footer-social  -->
+        </div><!--  /.lc-footer-connect  -->
+        
+        <div class="lc-footer-col lc-footer-related-links">
+            <strong class="lc-heading">Helpful Links</strong><br>
+            <span><a target="_blank" href="http://water.weather.gov/ahps2/hydrograph.php?gage=astf1&amp;wfo=mlb" title="AHPS - St. Johns River Gauge Data">AHPS - St. Johns River Gauge Data</a></span><br>
+            <span><a target="_blank" href="http://alertlake.com" title="AlertLake | Emergency Notification System">AlertLake</a></span><br>
+            <span><a target="_blank" href="http://www.dhs.gov/" title="Department of Homeland Security">Department of Homeland Security</a></span><br>
+            <span><a target="_blank" href="http://www.fema.gov/" title="Federal Emergency Management">Federal Emergency Management</a></span><br>
+            <span><a target="_blank" href="http://www.floodsmart.gov/" title="FloodSmart.gov">FloodSmart.gov</a></span><br>
+            <span><a target="_self" href="https:/lakecountyfl.gov/386/Floodplain-Management" title="Lake County Flood Information">Lake County Flood Information</a></span><br>
+            <span><a target="_blank" href="http://www.myflorida.com/" title="MyFLorida.com">MyFLorida.com</a></span>
+        </div><!--  /.lc-footer-col.lc-footer-related-links  -->
+        <div class="clearfix hidden-lg"></div>
+    </div><!--  /.lc-footer-content  -->
+    
+    
+    
+    
+    <div id="lc-legal">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>
+                        <span class="copyright" ng-reflect-ng-class="copyright">
+                            "Real Florida. Real Close." is a registered trademark of the Lake County Board of County Commissioners.
+                        </span><!--  /.copyright  -->
+                        <span class="disclaimer" ng-reflect-ng-class="disclaimer">
+                            <a href="https://lakecountyfl.gov/disclaimer" target="_blank" title="Lake County BCC Disclaimer">Disclaimer</a>
+                        </span><!--  /.disclaimer  -->
+                    </p>
+                    <div class="lc-footer-ads-alt">
+                        <span>
+                            <a target="x" href="#" title="Featured Content">
+                                <img src="/include/MyLakeFLReskin/images/featured.gif" alt="Featured Content">
+                            </a>
+                        </span>
+                    </div><!--  /.lc-footer-ads-alt  -->
+                </div><!--  /.col  -->
+            </div><!--  /.row  -->
+        </div><!--  /.container  -->
+    </div><!--  /.lc-legal  -->
+    <div class="clearfix"></div>
+</footer>
+
+
+
+<dialog id="docbox-overlay"><div id="docbox-container" style="width: 100%; height: calc(100% - 40px); background-color: transparent; position: relative; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;"><button id="docbox-close" aria-label="Close document" style="position: fixed; top: 5px; right: 5px; cursor: pointer; z-index: 10001; border-radius: 5px; height: 30px; width: auto; line-height: 30px; padding: 0px 15px; font-size: 16px; background: rgb(0, 0, 0) !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; color: white !important;"><span aria-hidden="true">Close <b>&nbsp;×</b></span></button><iframe id="docbox-iframe" allow="clipboard-write" aria-label="Document viewer" allowfullscreen="" style="width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 5px;"></iframe></div></dialog></body><!-- InstanceEnd --></html>

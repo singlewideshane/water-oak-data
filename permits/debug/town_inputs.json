@@ -1,0 +1,772 @@
+[
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "installationID",
+  "id": "installationID",
+  "val": "383",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "original_iid",
+  "id": "original_iid",
+  "val": "0",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "original_contactID",
+  "id": "original_contactID",
+  "val": "0",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "LOGIN"
+ },
+ {
+  "tag": "A",
+  "type": "",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Permits"
+ },
+ {
+  "tag": "A",
+  "type": "",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Search"
+ },
+ {
+  "tag": "SELECT",
+  "type": "select-one",
+  "name": "",
+  "id": "",
+  "val": "#",
+  "text": "Navigate to...Home\n\t\t\t\t\t\t\t   Services\n\t\t\t\t\t\t\t–Development Pr",
+  "opts": [
+   "#=Navigate to...",
+   "javascript:openURLLink('PortalController?Action=showHomePage&ctzPagePrefix=Portal_&installationID=383%27);=Home",
+   "javascript:void(0);=Services",
+   "javascript:openURLLink('PortalController?Action=showDevelopmentApplications&ctzPagePrefix=Portal_&installationID=383%27);=–Development Project",
+   "javascript:openURLLink('PortalController?Action=showPermit&ctzPagePrefix=Portal_&installationID=383%27);=–Permits",
+   "javascript:openURLLink('PortalController?Action=showCodeEnforcement&ctzPagePrefix=Portal_&installationID=383%27);=–Code Complaints",
+   "javascript:openURLLink('PortalController?Action=showSearchPage&ctzPagePrefix=Portal_&installationID=383%27);=Search",
+   "javascript:openURLLink('PortalController?Action=showPortalReports&ctzPagePrefix=Portal_&installationID=383%27);=Reports",
+   "javascript:openURLLink('PortalController?Action=myAccount&ctzPagePrefix=Portal_&installationID=383%27);=My Account",
+   "javascript:openURLLink('PortalController?Action=showContactUs&ctzPagePrefix=Portal_&installationID=383%27);=Contact"
+  ]
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "�Close"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "submit",
+  "name": "",
+  "id": "submit",
+  "val": "",
+  "text": "Yes"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "No"
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "userName",
+  "id": "userName",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "password",
+  "name": "newPassword",
+  "id": "newPassword",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Save"
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "contactEmailAddress",
+  "id": "contactEmailAddress",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Submit"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "successModalBtn",
+  "val": "",
+  "text": "OK"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "No"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Ok"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "required-element",
+  "id": "required-element",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "back-side-model-name",
+  "id": "back-side-model-name",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "pulldown-requiredBtn",
+  "val": "",
+  "text": "OK"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "myrequiredfieldModalBtn",
+  "val": "",
+  "text": "OK"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "No"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "savingConditionsModalBtn",
+  "val": "",
+  "text": "OK"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "Action",
+  "id": "Action",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "customElementID",
+  "id": "customElementID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "cutCustomElementID",
+  "id": "cutCustomElementID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "type",
+  "id": "type",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "rowNum",
+  "id": "rowNum",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "workorderID",
+  "id": "workorderID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "typeOfCustomField",
+  "id": "typeOfCustomField",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "signImageData",
+  "id": "signImageData",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "src",
+  "id": "src",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Save"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Clear"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Cancel"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "Action",
+  "id": "Action",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "customElementID",
+  "id": "customElementID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "cutCustomElementID",
+  "id": "cutCustomElementID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "type",
+  "id": "type",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "rowNum",
+  "id": "rowNum",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "workorderID",
+  "id": "workorderID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "typeOfCustomField",
+  "id": "typeOfCustomField",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "sketchImageData",
+  "id": "sketchImageData",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "src",
+  "id": "src",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Save"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Clear"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Cancel"
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "street1FromAPI",
+  "id": "street1FromAPI",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "street2FromAPI",
+  "id": "street2FromAPI",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "cityFromAPI",
+  "id": "cityFromAPI",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "stateFromAPI",
+  "id": "stateFromAPI",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "zipFromAPI",
+  "id": "zipFromAPI",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "updateSteetAPIAddress",
+  "val": "",
+  "text": "Update"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "cancelSteetAPIAddress",
+  "val": "",
+  "text": "Cancel"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "steetAPIAlertOK",
+  "val": "",
+  "text": "OK"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "required-element",
+  "id": "required-element",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "back-side-model-name",
+  "id": "back-side-model-name",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Yes, make my account public"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "No, keep my account anonymous"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "INPUT",
+  "type": "email",
+  "name": "ForgotEmail",
+  "id": "ForgotEmail",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "Submit"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "×Close"
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "Action",
+  "id": "Action",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "customElementID",
+  "id": "customElementID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "cutCustomElementID",
+  "id": "cutCustomElementID",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "type",
+  "id": "type",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "rowNum",
+  "id": "rowNum",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "No"
+ },
+ {
+  "tag": "BUTTON",
+  "type": "button",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "OK"
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "Action",
+  "id": "Action",
+  "val": "DisplayCasesNPagging",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "uniqueID",
+  "id": "",
+  "val": "ohzQ0yJD3e3zQu1W9J6YQATtV4yuOHwLbDtVV5cM",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "searchPage",
+  "id": "searchPage",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "StartIndex",
+  "id": "StartIndex",
+  "val": "0",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "EndIndex",
+  "id": "EndIndex",
+  "val": "30",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "StreetNumber",
+  "id": "StreetNumber",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "PreDirection",
+  "id": "PreDirection",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "StreetName",
+  "id": "StreetName",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "StreetType",
+  "id": "StreetType",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "hidden",
+  "name": "PostDirection",
+  "id": "PostDirection",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "SELECT",
+  "type": "select-one",
+  "name": "filetype",
+  "id": "filetype",
+  "val": "-999",
+  "text": "Permits\nDevelopment Project\nCode Complaints",
+  "opts": [
+   "-999=",
+   "Permit=Permits",
+   "Development=Development Project",
+   "Code=Code Complaints"
+  ]
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "address",
+  "id": "address",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "INPUT",
+  "type": "text",
+  "name": "parcelNumber",
+  "id": "parcelNumber",
+  "val": "",
+  "text": ""
+ },
+ {
+  "tag": "BUTTON",
+  "type": "submit",
+  "name": "",
+  "id": "",
+  "val": "",
+  "text": "SUBMIT"
+ }
+]

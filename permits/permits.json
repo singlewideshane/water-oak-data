@@ -12,6 +12,260 @@
       "permits": [],
       "error": null,
       "tables": []
+    },
+    {
+      "address": " Norman",
+      "permits": [],
+      "error": null,
+      "tables": [
+        [
+          [
+            "Permit Number",
+            "Permit Address",
+            "Permit Description",
+            "Job Value"
+          ],
+          [
+            "97030021",
+            "835 NORMAN",
+            "MECHANICAL - RESIDENTIAL (OLD)",
+            "$2,800.00"
+          ],
+          [
+            "97030022",
+            "835 NORMAN",
+            "ELECTRICAL SERVICES (OLD)",
+            "$0.00"
+          ],
+          [
+            "2001060087",
+            "835 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$3,900.00"
+          ],
+          [
+            "2002040765",
+            "795 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$4,000.00"
+          ],
+          [
+            "2002110829",
+            "795 NORMAN",
+            "RESIDENTIAL ADDITIONS (OLD)",
+            "$2,880.00"
+          ],
+          [
+            "2003050023",
+            "830 NORMAN",
+            "MECHANICAL - RESIDENTIAL (OLD)",
+            "$4,500.00"
+          ],
+          [
+            "2003100711",
+            "915 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$4,000.00"
+          ],
+          [
+            "2004120655",
+            "790 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$1,200.00"
+          ],
+          [
+            "2005031901",
+            "860 NORMAN",
+            "RESIDENTIAL ADDITIONS (OLD)",
+            "$3,021.00"
+          ],
+          [
+            "2006070749",
+            "880 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$6,330.00"
+          ],
+          [
+            "2007010743",
+            "1637 NORMANDY",
+            "ROOF-REROOF (OLD)",
+            "$3,990.00"
+          ],
+          [
+            "2008040390",
+            "795 NORMAN",
+            "RESIDENTIAL ADDITIONS (OLD)",
+            "$8,905.00"
+          ],
+          [
+            "2010020076",
+            "860 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$4,750.00"
+          ],
+          [
+            "2011020263",
+            "865 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$4,000.00"
+          ],
+          [
+            "2011040261",
+            "930 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$4,000.00"
+          ],
+          [
+            "2013120581",
+            "865 NORMAN",
+            "MECHANICAL - RESIDENTIAL (OLD)",
+            "$3,475.00"
+          ],
+          [
+            "2014050077",
+            "800 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$5,300.00"
+          ],
+          [
+            "2015110445",
+            "807 NORMAN",
+            "GAS - LP OR NATURAL - RESIDENTIAL (OLD)",
+            "$919.00"
+          ],
+          [
+            "2017010807",
+            "900 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$5,000.00"
+          ],
+          [
+            "2017070613",
+            "790 NORMAN",
+            "WINDOWS AND DOORS (OLD)",
+            "$1,311.52"
+          ],
+          [
+            "2018030979",
+            "800 NORMAN",
+            "ELECTRICAL SERVICES (OLD)",
+            "$800.00"
+          ],
+          [
+            "2018031196",
+            "800 NORMAN",
+            "MECHANICAL - RESIDENTIAL (OLD)",
+            "$4,000.00"
+          ],
+          [
+            "2019020316",
+            "807 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$2,000.00"
+          ],
+          [
+            "2019020540",
+            "865 NORMAN",
+            "ROOF-REROOF (OLD)",
+            "$26,500.00"
+          ],
+          [
+            "2019030273",
+            "865 NORMAN",
+            "WINDOWS AND DOORS (OLD)",
+            "$10,036.00"
+          ],
+          [
+            "2019060080",
+            "790 NORMAN",
+            "PLUMBING - RESIDENTIAL (OLD)",
+            "$24,000.00"
+          ],
+          [
+            "2020090209",
+            "865 NORMAN",
+            "MECHANICAL-RESIDENTIAL- NEW",
+            "$36,000.00"
+          ],
+          [
+            "2020100871",
+            "865 NORMAN",
+            "SOLAR PV - RESIDENTIAL",
+            "$30,000.00"
+          ],
+          [
+            "2021020507",
+            "865 NORMAN",
+            "MECHANICAL-RESIDENTIAL- NEW",
+            "$36,000.00"
+          ],
+          [
+            "2021030675",
+            "865 NORMAN",
+            "ELECTRICAL - RESIDENTIAL",
+            "$65,000.00"
+          ],
+          [
+            "2021050417",
+            "830 NORMAN",
+            "ROOF-REROOF - RESIDENTIAL",
+            "$8,150.00"
+          ],
+          [
+            "2021050887",
+            "790 NORMAN",
+            "ROOF-REROOF - RESIDENTIAL",
+            "$8,000.00"
+          ],
+          [
+            "2021060075",
+            "795 NORMAN",
+            "ROOF-REROOF - RESIDENTIAL",
+            "$7,465.00"
+          ],
+          [
+            "2021090152",
+            "930 NORMAN",
+            "SOLAR PV - RESIDENTIAL",
+            "$21,000.00"
+          ],
+          [
+            "2022100877",
+            "915 NORMAN",
+            "ROOF-REROOF - RESIDENTIAL",
+            "$7,800.00"
+          ],
+          [
+            "2022101250",
+            "915 NORMAN",
+            "MECHANICAL-RESIDENTIAL- NEW",
+            "$1,000.00"
+          ],
+          [
+            "2022110347",
+            "915 NORMAN",
+            "WINDOWS AND DOORS - RESIDENTIAL",
+            "$9,312.00"
+          ],
+          [
+            "2023040052",
+            "880 NORMAN",
+            "ROOF-REROOF - RESIDENTIAL",
+            "$1,000.00"
+          ],
+          [
+            "2023071502",
+            "795 NORMAN",
+            "MECHANICAL CHANGEOUT - RESIDENTIAL",
+            "$6,120.00"
+          ],
+          [
+            "1"
+          ]
+        ]
+      ]
     }
-  ]
+  ],
+  "town": [],
+  "townError": "TimeoutError: elementHandle.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - attempting select option action\n    2 × waiting for element to be visible and enabled\n      - element is not visible\n    - retrying select option action\n    - waiting 20ms\n    2 × waiting for element to be visible and "
 }

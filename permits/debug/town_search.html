@@ -1,0 +1,3738 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<title>Search | Citizenserve Online Portal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<meta name="description" content="Your description">
+<meta name="keywords" content="Your keywords">
+<meta name="author" content="Your name">
+<link rel="stylesheet" href="css/bootstrap.css?bustcache=2026111">
+<link rel="stylesheet" href="css/style.css?bustcache=2026111">
+<script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/bSuJ2xBC8cHT21-c68JXN31m/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-JsLjzCwVBD8rExB5DuWsDOoJk3x5gGr1eQkygmTXHqc7sTmcr6zIY4pKkpuKdPep"></script><script src="js/jquery.js?bustcache=2026111"></script>
+<script src="js/jquery.easing.1.3.js?bustcache=2026111"></script>
+<script src="js/superfish.js?bustcache=2026111"></script>
+<script src="js/jquery.mobilemenu.js?bustcache=2026111"></script>
+
+<script src="js/sForm.js?bustcache=2026111"></script>
+<script src="js/jquery.ui.totop.js?bustcache=2026111"></script>
+<script src="js/jquery.equalheights.js?bustcache=2026111"></script>
+<!--[if lt IE 9]>
+  <div style='text-align:center'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div>  
+  <link rel="stylesheet" href="assets/tm/css/tm_docs.css" type="text/css" media="screen">
+  <script src="assets/assets/js/html5shiv.js"></script> 
+  <script src="assets/assets/js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body onload="getSearchFieldsOnFileType();" style="">
+	<div class="main">
+		<!--==============================header start=================================-->
+
+
+
+
+
+
+
+<script src="/Portal/js/bootstrap-datepicker.js?bustcache=2026111"></script>
+<script type="text/javascript" src="/Portal/datePicker.js?bustcache=2026111"></script>
+<script type="text/javascript" src="/Portal/checkdate.js?bustcache=2026111"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.tm-navbar > li > span {
+  color: #4d4d4d;
+  font-size: 16px;
+  line-height: 20px;
+  border-bottom: 3px  solid transparent;
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.tm-navbar > li.sfHover > span,
+.tm-navbar > li.sfHover > span:hover,
+.tm-navbar > li > span:hover,
+.tm-navbar > li.active > span,
+.tm-navbar > li.active > span:hover {
+  border-bottom: 3px  solid #5076C7;
+  background: none;
+}
+.nav>li>span {
+	padding-bottom: 14.5px;
+	position: relative;
+	display: block;
+}
+
+.nav>li>span:hover, .nav>li>span:focus {
+	text-decoration: none;
+	background-color: #eee
+}
+</style>
+
+<script type="text/javascript">
+$( window ).load(function() {
+	//fix for bug #224908 
+	var isIpad = (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1)
+				|| (navigator.userAgent.match(/iPad/i) && navigator.userAgent.match(/Firefox/i));
+	var loc = "/Portal/PortalAjaxController2?Action=detectIpadDevice&isIpad="+isIpad+"&bustcache="+new Date().getTime();
+			$.ajax({
+				url:loc,
+				success:function(result){
+				if (result != "SessionExpired:::www6.citizenserve.com") {
+				} else {
+					var temp = result.split(":::");
+    				var subdomain = temp[1].split('.')[0];
+        			window.location = "https://" + (subdomain.includes("www") ? "login.citizenserve.com" : temp[1]) + "/Admin/Login.jsp?sfailed=!@#ASDF!23";
+				}
+			}
+	});
+	
+	var url = "PortalController?Action=MessageCount"
+	$.ajax({
+		url : url + "&bustcache=" + new Date().getTime(),
+		success : function(result) {
+			if(parseInt(result) > 0){
+				$("#showMessageIcon").show();
+			}
+		}
+	});
+});
+var showModelFlag = true;
+$( window ).load(function() {
+	verifyBrowserTabSession();
+	$("#bannerImage").attr("src", $("#bannerImage").attr("src").length > 0 ? "https://www6.citizenserve.com/Portal/"+ $("#bannerImage").attr("src") : "");
+    $("div#content a").each(function(i) {
+		var $crnt = $(this);
+		var targetValue = $crnt.attr("target");
+		var linkValue = $crnt.attr("href");
+		// Bug #161859
+		if(linkValue.indexOf("PortalController?Action=") != -1){
+			if(linkValue.indexOf("&original_iid=") != -1){
+				linkValue = linkValue.trim() + "&original_iid="+$("#original_iid").val();
+			}
+			if(linkValue.indexOf("&original_contactID=") != -1){
+				linkValue = linkValue.trim() + "&original_contactID="+$("#original_contactID").val();
+			}
+		}
+		if(!(linkValue.indexOf("javascript:") > -1
+				 || linkValue.indexOf("#") == 0
+				 || linkValue.indexOf("mailto:") > -1)) {
+			if(linkValue.indexOf("//maps.google.com") == -1) {
+				$crnt.attr("href","javascript:checkForValidLink('"+linkValue+"','"+targetValue+"')");
+				$crnt.removeAttr("target");
+			}
+		}
+    });
+    
+	
+		openEmailAndUsernameModal();
+	
+    
+    
+    	getReDirectPortalURL();
+    
+    
+    $(function () {
+        var formNames = ["frm_xpress", "frm_paymentus", "frm_payflow", "frm_ACI", "frm_bluefinPayConex", "frm_connexPoint_payment", "frm_Egov", "frm_payment", "frm_VPS"];
+        $.each(formNames, function (_, name) {
+            var $form = $('form[name="' + name + '"]');
+            if ($form.length) {
+                $form
+                    .find(
+                        'input:visible:enabled:not([readonly]):not(fieldset[disabled] *),' +
+                        'select:visible:enabled:not([readonly]):not(fieldset[disabled] *),' +
+                        'textarea:visible:enabled:not([readonly]):not(fieldset[disabled] *)'
+                    )
+                    .first()
+                    .focus();
+                return false;
+            }
+        });
+    });
+ });
+
+function getReDirectPortalURL(){
+	
+		var domain;
+		var url_InstallationID = '383';
+		$.ajax({
+			url: "/Portal/PortalAjaxController",
+			async: false,
+			type: 'POST',
+			data: "Action=getReDirectPortalURL&url_InstallationID="+url_InstallationID,
+			success: function(result){
+				domain = result;
+			}
+		});
+	
+	var serverName = "www6.citizenserve.com";
+	var ipCheck = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/; 
+	var getUrl = window.location;
+	var baseURL = getUrl.href;
+	var hostName = getUrl.host; 
+	if(domain != ""){
+		if(serverName.trim().toLowerCase().indexOf(".citizenserve.com") != -1){  
+			serverName = serverName.substring(0,serverName.indexOf(".citizenserve.com")); 
+		}
+		if(!(serverName.trim().toLowerCase() === domain.trim().toLowerCase())){
+	   		if(hostName != null && hostName != undefined){
+	   			if(domain.trim().toLowerCase().indexOf(".citizenserve.com") == -1){
+			   		if(!domain.match(ipCheck)){
+			   			hostName = domain + ".citizenserve.com";
+					} else {
+						hostName = domain ;
+				   	}
+				 } else {
+					 hostName = domain ;
+		   		}
+		    	baseURL = baseURL.replace(getUrl.host, hostName);	
+		        window.location = baseURL;
+	   		}
+	  	}
+	}
+}
+
+function verifyBrowserTabSession(){
+	var urlInstallationID = '383';
+	$.ajax({
+		url: "/Portal/PortalAjaxController",
+		data: "Action=verifyAjaxBrowserTabSession&urlInstallationID="+urlInstallationID,
+		success: function(result) {
+			if (result === "true") {
+				$('#popup-session').modal({
+		      		show: true
+		      	});
+			} 
+		}
+    });
+}
+
+function closeWindow() {
+	window.open('/Portal/Portal_Unauthorized.jsp','_self').close();
+}
+
+function invalidateSession(){
+	$.ajax({
+		url: "PortalAjaxController",
+		data: "Action=invalidateAjaxBrowserTabSession&installationID="+383,
+		success: function(result) {
+			if (result === "success") {
+				localStorage.setItem("chatOpen", "false");
+				redirectToLoginPage('www6.citizenserve.com','383');
+			} 
+		}
+    });
+}
+
+function logOutAndShowLoginPage(){
+	window.location = "Login?Action=portalLogout&nextPage=showLogin";
+}
+
+var checkForValidLink = function(linkValue,targetValue) {
+	
+		var invalidLink = "PortalController?Action=showInvalidPage&ctzPagePrefix=Portal_&installationID=383&bustcache="+new Date().getTime();
+		checkURL(linkValue,targetValue);
+	
+}
+
+function checkURL(linkValue,targetValue){
+	var invalidLink = "PortalController?Action=showInvalidPage&ctzPagePrefix=Portal_&installationID=383&bustcache="+new Date().getTime();
+	if (linkValue.indexOf("/") == 0) {
+		var text = "&original_iid="+$("#original_iid").val()+"&original_contactID="+$("#original_contactID").val();
+		linkValue = linkValue.replace(text,"");
+		if(linkValue.indexOf("&fileName") > -1){
+			var str = linkValue;
+			var result = str.split("&fileName=");
+			if(result.length > 1){
+				if(result[1].includes("=")){
+					var text1 = result[1].split("=");
+					var text2 = text1[0].split("&");
+					var text3 =  result[1].split("&"+text2[text2.length - 1]);
+					linkValue = linkValue.replace(text3[0], encodeURIComponent(text3[0]));
+				} else {
+					linkValue = linkValue.replace(result[1], encodeURIComponent(result[1]));
+				}
+			}
+		}
+		if(linkValue.indexOf("&departmentid") > -1){
+			var str = linkValue;
+			var result = str.split("&departmentid=");
+			if(result.length > 1){
+				if(result[1].includes("=")){
+					var text1 = result[1].split("=");
+					var text2 = text1[0].split("&");
+					var text3 =  result[1].split("&"+text2[text2.length - 1]);
+					linkValue = linkValue.replace(text3[0], encodeURIComponent(text3[0]));
+				}
+			}
+		}
+		linkValue = "https://www6.citizenserve.com" + linkValue;
+		$.ajax({
+			url: linkValue,
+			success: function(data, textStatus, jqXHR ) {
+				if (targetValue == "_blank") {
+					window.open(linkValue);
+				} else {
+					location = linkValue;
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				location = invalidLink;
+			}
+	    });
+	} else if (linkValue.indexOf("../") == 0) {
+		var text = "&original_iid="+$("#original_iid").val()+"&original_contactID="+$("#original_contactID").val();
+		linkValue = linkValue.replace(text,"");
+		linkValue = "https://www6.citizenserve.com" + linkValue.substring(2);
+		if(linkValue.indexOf("&fileName") > -1){
+			var str = linkValue;
+			var result = str.split("&fileName=");
+			if(result.length > 1){
+				if(result[1].includes("=")) {
+					var text1 = result[1].split("=");
+					var text2 = text1[0].split("&");
+					var text3 =  result[1].split("&"+text2[text2.length - 1]);
+					linkValue = linkValue.replace(text3[0], encodeURIComponent(text3[0]));
+				} else {
+					linkValue = linkValue.replace(result[1], encodeURIComponent(result[1]));
+				}
+			}
+		}
+		if(linkValue.indexOf("&departmentid") > -1){
+			var str = linkValue;
+			var result = str.split("&departmentid=");
+			if(result.length > 1){
+				if(result[1].includes("=")){
+					var text1 = result[1].split("=");
+					var text2 = text1[0].split("&");
+					var text3 =  result[1].split("&"+text2[text2.length - 1]);
+					linkValue = linkValue.replace(text3[0], encodeURIComponent(text3[0]));
+				}
+			}
+		}
+		$.ajax({
+			url: linkValue,
+			success: function(data, textStatus, jqXHR ) {
+				if (targetValue == "_blank") {
+					window.open(linkValue);
+				} else {
+					location = linkValue;
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				location = invalidLink;
+			}
+	    });
+	} else if (linkValue.indexOf("www6.citizenserve.com") > -1) {
+		linkValue = linkValue.replace("https://www6.citizenserve.com","");
+		linkValue = linkValue.replace("http://www6.citizenserve.com","");
+		linkValue = linkValue.replace("www6.citizenserve.com","");
+		$.ajax({
+			url: linkValue,
+			success: function(data, textStatus, jqXHR ) {
+				linkValue = "https://www6.citizenserve.com" + linkValue;
+				if (targetValue == "_blank") {
+					window.open(linkValue);
+				} else {
+					location = linkValue;
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				location = invalidLink;
+			}
+	    });
+	} else if (linkValue.indexOf("http") == -1) {
+		if(linkValue.indexOf("https") == -1 && linkValue.indexOf("/Portal/") == -1 && linkValue.indexOf("Action=viewPortalCase") > -1){
+			linkValue = "https://www6.citizenserve.com/Portal/" + linkValue;
+		} else {
+			linkValue = "http://" + linkValue;
+		}
+		linkValue = encodeURIComponent(linkValue);
+	    $.ajax({
+			url: "PortalAjaxController",
+			data: "Action=checkValidURL&pageUrl="+ linkValue,
+			success: function(result, textStatus, jqXHR ) {
+				if (result == "true") {
+					linkValue = decodeURIComponent(linkValue);
+					if (targetValue == "_blank") {
+						window.open(linkValue);
+					} else {
+						window.location = linkValue;
+					}
+				} else {
+					location = invalidLink;
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				location = invalidLink;
+			}
+	    });
+	} else {
+		linkValue = linkValue;
+		linkValue = encodeURIComponent(linkValue);
+	    $.ajax({
+			url: "PortalAjaxController",
+			data: "Action=checkValidURL&pageUrl="+ linkValue,
+			success: function(result, textStatus, jqXHR ) {
+				if (result == "true") {
+					linkValue = decodeURIComponent(linkValue);
+					if (targetValue == "_blank") {
+						window.open(linkValue);
+					} else {
+						window.location = linkValue;
+					}
+				} else {
+					location = invalidLink;
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				location = invalidLink;
+			}
+	    });
+	}
+}
+
+function openURLLink(url){
+	url = url + "&original_iid="+$("#original_iid").val()+"&original_contactID="+$("#original_contactID").val();
+	
+	
+	if (url.indexOf("/Portal/") > -1) {
+			location = url;
+	} else {
+		location = "/Portal/" + url;
+	}
+}
+
+function openURLLinkNewTab(url) {
+	
+	
+	window.open(url+ "&original_iid="+$("#original_iid").val()+"&original_contactID="+$("#original_contactID").val());
+}
+
+function getProgressBar(){
+	return "<div id=\"progressbox\" style=\"display:none;\"><div class=\"progress\">" + 
+			"<div id=\"progressbar\" class=\"progress-bar progress-bar-success progress-bar-striped\" " +
+			"role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%;\">" +
+			"0%</div></div></div>";
+}
+
+function movingTO(permitID, workOrderID, tab, type) {
+	var nextLoc = "";
+	if (tab == "default") {
+		nextLoc = "openURLLink('PortalController?Action=getPermitDetail" +
+		"&permit_ID=" + permitID + "&type="+type +
+		"&workOrder_ID="+workOrderID+"')";
+	} else if (tab == "review") {
+		nextLoc = "openURLLink('PortalController?Action=listPermitReview&Data=RouteandReviewData" +
+		"&permit_ID=" + permitID + "&type="+type +
+		"&workOrder_ID="+workOrderID+"')";
+	} else if (tab == "documents") {
+		nextLoc = "openURLLink('PortalController?Action=listDocuments"  +
+		"&permit_ID=" + permitID + "&type="+type +
+		"&workOrder_ID="+workOrderID+"')";
+	} else if (tab == "inspections") {
+		nextLoc = "openURLLink('PortalController?Action=listInspections"  +
+		"&permit_ID=" + permitID + "&type="+type +
+		"&workOrder_ID="+workOrderID+"')";
+	} else if (tab == "complaint") {
+		nextLoc = "openURLLink('PortalController?Action=complaintDetail"  +
+		"&workOrder_ID="+workOrderID+"&type="+type+"')";
+	} else if (tab == "activities") {
+		nextLoc = "openURLLink('PortalController?Action=listActivities"  +
+		"&workOrder_ID="+workOrderID+"&type="+type+"')";
+	} else if (tab == "violations") {
+		nextLoc = "openURLLink('PortalController?Action=listViolations"  +
+		"&workOrder_ID="+workOrderID+"&type="+type+"')";
+	}
+	return nextLoc;
+}
+
+function openEmailAndUsernameModal(){
+	$("#savingConditionsModal").modal('hide');
+	showModelFlag = true;
+	
+}
+function redirectToLoginPage(serverName, iid){
+	var url = "https://"+serverName+"/Portal/PortalController?Action=showLogin&installationID="+iid+"&ctzPagePrefix=Portal_";
+	
+		url =  url + "&nextPage=showSearchPage";
+	
+	url =  url + "&type=";
+	
+	
+	window.location = url;
+}
+
+/*
+function autoAddNewCUTRow(event, workorderID, subType, cutCustomElementID, ID, selectPermitSubType, formName, TableType, subTypeID){
+	if(event.keyCode == 9) {
+		addNewCUTRow(workorderID, subType, cutCustomElementID, ID, selectPermitSubType, formName, TableType, subTypeID);
+	}
+}
+*/
+
+function addNewCUTRow(workorderID, subType, cutCustomElementID, ID, selectPermitSubType, formName, TableType, subTypeID){
+	if($("#permitType").val() != undefined){
+		var permitSubType = $("#permitType").val().split(":::");
+	    if (permitSubType.length === 5) {
+	    	selectPermitSubType = permitSubType[2];
+	    }
+	} 
+	if($("#fileTypeSel").val() != undefined){
+		var permitSubType = $("#fileTypeSel").val().split(":::");
+	    if (permitSubType.length === 2) {
+	    	selectPermitSubType = permitSubType[1];
+	    }
+	}
+	var nextRowNum = parseFloat($("#rowNum_"+subType+"_"+cutCustomElementID).val())+1;
+	//ajax call to get empty row
+	var loc = "/Portal/PortalAjaxController?Action=getCUTEmptyRow&workorderID="+workorderID+"&cutCustomElementID="
+		+cutCustomElementID+"&subType="+subType+"&rowNum="+(nextRowNum)+"&ID="+ID+"&selectPermitSubType="
+		+encodeURIComponent(selectPermitSubType)+"&formName="+formName+"&TableType="+TableType+"&subTypeID="+subTypeID;
+	if ($("#"+formName+" #type") != null
+			&& $("#"+formName+" #type").val() == "Code") {
+		if(workorderID > 0){
+			loc += "&fileType=CodeEnforcement";
+		} else if (workorderID == 0 && subType == 2){
+			loc += "&fileType=CodeEnforcement";
+		} else {
+			loc += "&fileType=Code";
+		}
+	} 
+	if ($("#"+formName+" #type") != null
+				&& $("#"+formName+" #type").val() == "Request") {
+		if(workorderID > 0){
+			loc += "&fileType=General";
+		} else if (workorderID == 0 && subType == 7){
+			loc += "&fileType=General";
+		} else {
+			loc += "&fileType=General";
+		}
+	}
+	if ($("#"+formName+" #type") != null && $("#"+formName+" #type").val() == "Permit") {
+		loc += "&fileType=Permit";
+	}
+	if ($("#"+formName+" #type") != null && $("#"+formName+" #type").val() == "Business") {
+		loc += "&fileType=Business";
+	}
+	if ($("#"+formName+" #type") != null && $("#"+formName+" #type").val() == "License") {
+		loc += "&fileType=License";
+	}
+	if($('#fromCaseEditPage').length){
+		loc += "&fromCaseEditPage=true"
+	}
+	$.ajax({
+		url:loc,
+		async:false,
+		success:function(result){
+			if (result != ("SessionExpired:::"+serverName)) {
+				if($("#CUT_"+subType+"_"+cutCustomElementID+" tr").length > 2){
+					$("#CUT_"+subType+"_"+cutCustomElementID+" tr:last").prev().after(result);
+				} else {
+					$("#CUT_"+subType+"_"+cutCustomElementID+" tr:last").before(result);
+				}
+				$("#rowNum_"+subType+"_"+cutCustomElementID).val(nextRowNum)
+				var firstElement = $("#TR_" + subType + "_" + cutCustomElementID + "_" + nextRowNum)
+				    .find('input:text:visible:enabled:not([readonly]), select:visible:enabled:not([readonly]), textarea:visible:enabled:not([readonly])')
+				    .first();
+				
+				if (firstElement.length) {
+				    firstElement.focus();
+				
+				    if (firstElement.is('input:text') || firstElement.is('textarea')) {
+				        setTimeout(function() {
+				            firstElement[0].setSelectionRange(0, 0);
+				        }, 0);
+				    }
+				}
+				showDatefromClassName("jqueryDate");
+				skipReadOnlyElementOnTab("permitCustomFields");
+				skipReadOnlyElementOnTab("fileCustomFields");
+			} else {
+				var temp = result.split(":::");
+				var subdomain = temp[1].split('.')[0];
+    			window.location = "https://" + (subdomain.includes("www") ? "login.citizenserve.com" : temp[1]) + "/Admin/Login.jsp?sfailed=!@#ASDF!23";
+			}
+		}
+	});
+	showSpecialFormatForTXTFields();
+}
+function deleteCUTRow(subType, cutCustomElementID, rowNum, customTabId, SubTypeId, workorderID){
+	//if already existing row then delete all the workordercustomtabids in that row
+	if($("#"+subType+"_"+cutCustomElementID+"_"+rowNum+"_DeletedWoctIDs").length && 
+			($("#"+subType+"_"+cutCustomElementID+"_"+rowNum+"_DeletedWoctIDs").val()).trim().length > 0){
+		var loc = "/Portal/PortalAjaxController?Action=deleteWorkOrderCustomTabRows&deleteWoctIDs="+($("#"+subType+"_"+cutCustomElementID+"_"+rowNum+"_DeletedWoctIDs").val()).trim();
+		loc += "&customTabId="+customTabId+"&SubTypeId="+SubTypeId+"&rowId="+rowNum+"&workorderID="+workorderID;
+		if($("#"+subType+"_"+cutCustomElementID+"_"+rowNum+"_DeletedWoctgIDs").length && 
+				($("#"+subType+"_"+cutCustomElementID+"_"+rowNum+"_DeletedWoctgIDs").val()).trim().length > 0){
+			loc += "&deleteWoctgIDs=" +($("#"+subType+"_"+cutCustomElementID+"_"+rowNum+"_DeletedWoctgIDs").val()).trim();
+		}
+		loc += "&bustcache="+new Date().getTime();
+		$.ajax({
+			url:loc,
+			success:function(result){
+				if (result != ("SessionExpired:::"+serverName)) {
+				} else {
+					var temp = result.split(":::");
+    				var subdomain = temp[1].split('.')[0];
+        			window.location = "https://" + (subdomain.includes("www") ? "login.citizenserve.com" : temp[1]) + "/Admin/Login.jsp?sfailed=!@#ASDF!23";
+				}
+			}
+		});
+	}
+	//and delete row from table
+	$('[id^=TR_'+subType+'_'+cutCustomElementID+'_'+rowNum+']').remove();
+}
+function encryptionCheckForPDF(file){
+	var isEncrypted = true;
+	var isPdfPortfolio = true;
+	var form_data = new FormData();                  
+	form_data.append('file', file);
+	$.ajax({
+		url: "WorkOrderCustomDocAttachment?Action=pdfEncryptionCheck",  
+		dataType: 'text',  
+		cache: false,
+		async:false,
+		contentType: false,
+		processData: false,
+		data: form_data,                         
+		type: 'POST',
+ 		success: function(response){
+			if(response=="Password Required"){
+				isEncrypted=false;
+			} else if(response=="PDF Portfolio files cannot be viewed in the markup tool") {
+				isPdfPortfolio=false;
+			}
+		},
+	});
+	return {"isEncrypted":isEncrypted, "isPdfPortfolio": isPdfPortfolio };
+}
+
+$(document).ready(function() {
+
+    function initTooltips(context) {
+        var $root = context ? $(context) : $(document);
+
+        var $elements = $root.find('[data-toggle="tooltip"]');
+        if ($root.is('[data-toggle="tooltip"]')) {
+            $elements = $elements.add($root);
+        }
+
+        $elements.each(function() {
+            var $el = $(this);
+
+            if ($el.data("tooltip-init-done")) {
+                return;
+            }
+
+            $el.data("tooltip-init-done", true);
+
+            var tooltipText = $el.attr('data-original-title') || $el.attr('title');
+
+            if (tooltipText && tooltipText.trim().length > 0) {
+
+                var ariaLabelValue = '';
+                var $row = $el.closest('.row');
+
+                if ($row.length > 0) {
+                    var $label = $row.find('label[for]').first();
+
+                    if ($label.length > 0) {
+                        ariaLabelValue = $label.text().replace(/\s+/g, ' ').replace(/\*/g, '').replace(/:$/, '').trim();
+                    }
+                }
+
+                if (!ariaLabelValue && $row.length > 0) {
+                    var $field = $row.find('select, textarea, input:not([type="hidden"])').first();
+                    var fieldId = $field.attr('id');
+
+                    if (fieldId) {
+                        var $labelByFor = $row.find('label[for="' + fieldId + '"]');
+
+                        if ($labelByFor.length > 0) {
+                            ariaLabelValue = $labelByFor.text().replace(/\s+/g, ' ').replace(/\*/g, '').replace(/:$/, '').trim();
+                        }
+                    }
+                }
+
+                if (!ariaLabelValue) {
+                    var $container = $el.closest('div').clone();
+
+                    $container.find('[data-toggle="tooltip"]').remove();
+
+                    var containerText = $container.text().replace(/\s+/g, ' ').replace(/\*/g, '').replace(/:$/, '').trim();
+
+                    if (containerText) {
+                        ariaLabelValue = containerText;
+                    }
+                }
+
+                if (!ariaLabelValue) {
+                    ariaLabelValue =
+                        $el.attr('data-original-title') ||
+                        '';
+                }
+
+                ariaLabelValue = ariaLabelValue
+                    .replace(/\s+/g, ' ')
+                    .replace(/:$/, '')
+                    .trim();
+
+                if (ariaLabelValue) {
+                    $el.attr('aria-label', ariaLabelValue + ' info');
+                }
+
+                if (!$el.attr('role')) {
+                    $el.attr('role', 'button');
+                }
+            }
+            if (!$el.attr('tabindex')) {
+                $el.attr('tabindex', '0');
+            }
+
+        });
+
+        $elements.tooltip({
+            trigger: 'manual'
+        });
+
+        $elements.off('mouseenter.tooltip mouseleave.tooltip focus.tooltip blur.tooltip keydown.tooltip');
+        
+        $elements.on('mouseenter.tooltip', function() {
+            var $this = $(this);
+            $this.tooltip('show');
+        }).on('mouseleave.tooltip', function() {
+            var $this = $(this);
+            setTimeout(function() {
+                if (!$this.data('hoveringTooltip')) {
+                    $this.tooltip('hide');
+                }
+            }, 150);
+        }).on('focus.tooltip', function() {
+            $(this).tooltip('show');
+        }).on('blur.tooltip', function() {
+            $(this).tooltip('hide');
+        }).on('keydown.tooltip', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                $(this).tooltip('toggle');
+            }
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                $(this).tooltip('hide');
+            }
+        });
+    }
+
+    $(document).off('mouseenter.tooltipHover mouseleave.tooltipHover', '.tooltip');
+    $(document).on('mouseenter.tooltipHover', '.tooltip', function() {
+        var $tooltip = $(this);
+        var $trigger = $tooltip.data('tooltip-trigger');
+        if ($trigger && $trigger.length) {
+            $trigger.data('hoveringTooltip', true);
+        }
+    }).on('mouseleave.tooltipHover', '.tooltip', function() {
+        var $tooltip = $(this);
+        var $trigger = $tooltip.data('tooltip-trigger');
+        if ($trigger && $trigger.length) {
+            $trigger.data('hoveringTooltip', false);
+            $trigger.tooltip('hide');
+        }
+    });
+
+    if (!$.fn.tooltip.isWrapped) {
+        var originalTooltip = $.fn.tooltip;
+
+        $.fn.tooltip = function(options) {
+            var result = originalTooltip.apply(this, arguments);
+            
+            if (options === 'show') {
+                this.each(function() {
+                    var $this = $(this);
+                    var tooltipInstance = $this.data('bs.tooltip');
+                    if (tooltipInstance && tooltipInstance.tip()) {
+                        var $tooltipEl = $(tooltipInstance.tip());
+                        $tooltipEl.data('tooltip-trigger', $this);
+                    }
+                });
+            }
+            
+            return result;
+        };
+        
+        $.fn.tooltip.isWrapped = true;
+    }
+
+    function cleanTrashTabindex(context) {
+        $(context).find('a:has(i.icon-trash)').each(function() {
+            $(this).removeAttr('tabindex');
+        });
+
+        if ($(context).is('a:has(i.icon-trash)')) {
+            $(context).removeAttr('tabindex');
+        }
+    }
+
+    function fixFocusableTabindex(context) {
+        $(context).find('input, button, select, textarea, a').each(function() {
+            var $el = $(this);
+
+            if ($el.is('a') && !$el.attr('href')) {
+                return;
+            }
+
+            if ($el.is(':disabled')) {
+                $el.attr('tabindex', '-1');
+            } else if ($el.attr('tabindex') === '-1') {
+                $el.removeAttr('tabindex');
+            }
+        });
+    }
+
+    function skipReadonlyFields(context) {
+        $(context).find('input[readonly], textarea[readonly]').each(function () {
+            if (!$(this).is(':disabled')) {
+                $(this).attr('tabindex', '-1');
+            }
+        });
+
+        if ($(context).is('input[readonly], textarea[readonly]') && !$(context).is(':disabled')) {
+            $(context).attr('tabindex', '-1');
+        }
+    }
+
+    function fixRemoveTrashLinks(context) {
+        var $root = context ? $(context) : $(document);
+        var $links = $root
+            .find('a:has(i.icon-trash), a:has(i.fa-trash-alt), a:has(i.fa-trash)')
+            .add($root.filter('a:has(i.icon-trash), a:has(i.fa-trash-alt), a:has(i.fa-trash)'));
+        $links.each(function () {
+            var $link = $(this);
+            var href = ($link.attr('href') || '').toLowerCase();
+            if (href.indexOf('javascript:remove') !== 0 &&
+                href.indexOf('remove') !== 0 &&
+                href.indexOf('javascript:delete') !== 0 &&
+                href.indexOf('delete') !== 0) {
+                return;
+            }
+            var label;
+            if (href.indexOf('javascript:deletecutrow') === 0 || href.indexOf('javascript:deletecontactcutrow') === 0) {
+                label = 'Remove cut row';
+            } else {
+                var $container = $link.closest('div[id*="_SelectButtonTD_"], span[id^="LFNLPN_"], .inline_gap, .col-md-6, .col-md-7, td, li, div');
+                var fileName = $.trim($container
+                    .find('a')
+                    .not($link)
+                    .filter(function () {
+                        var text = $.trim($(this).text());
+                        var linkHref = $(this).attr('href') || '';
+                        return text.length > 0 && linkHref.toLowerCase().indexOf('javascript:') !== 0;
+                    })
+                    .first()
+                    .text());
+                label = fileName ? 'Remove ' + fileName : 'Remove';
+            }
+            if ($link.data('remove-link-a11y-done') &&
+                $link.data('remove-link-a11y-label') === label &&
+                $link.attr('role') === 'button' &&
+                $link.attr('aria-label') === label &&
+                !$link.attr('title')) {
+                return;
+            }
+            $link.attr({ role: 'button', 'aria-label': label });
+            $link.removeAttr('title');
+            $link.data('remove-link-a11y-done', true);
+            $link.data('remove-link-a11y-label', label);
+        });
+    }
+
+    // Initial page load
+    initTooltips(document);
+    cleanTrashTabindex(document);
+    fixRemoveTrashLinks(document);
+    fixFocusableTabindex(document);
+    skipReadonlyFields(document);
+
+    var tooltipObserverScheduled = false;
+    var pendingAddedNodes = [];
+
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            mutation.addedNodes.forEach(function (node) {
+                if (node.nodeType === 1) {
+                    pendingAddedNodes.push(node);
+                }
+            });
+        });
+
+        if (tooltipObserverScheduled) {
+            return;
+        }
+
+        tooltipObserverScheduled = true;
+
+        requestAnimationFrame(function () {
+            var nodes = pendingAddedNodes.slice();
+
+            pendingAddedNodes = [];
+            tooltipObserverScheduled = false;
+
+            nodes.forEach(function (node) {
+                initTooltips(node);
+                cleanTrashTabindex(node);
+                fixRemoveTrashLinks(node);
+                fixFocusableTabindex(node);
+                skipReadonlyFields(node);
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class', 'hidden']
+    });
+
+});
+
+$(document).on('keydown', '.sort-icons i', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        $(this).click();
+    }
+});
+
+jQuery(function ($) {
+  $('.sf-menu').superfish({
+    onShow: function () {
+      const $submenu = $(this);
+      const $link = $submenu
+        .closest('li')
+        .children('a[aria-controls]');
+
+      $link.attr('aria-expanded', 'true');
+    },
+
+    onHide: function () {
+      const $submenu = $(this);
+      const $link = $submenu
+        .closest('li')
+        .children('a[aria-controls]');
+
+      $link.attr('aria-expanded', 'false');
+    }
+  });
+
+  $(document).on('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      var $openItem = $('.sf-menu li.sfHover');
+      if (!$openItem.length) return;
+
+      $('.sf-menu').superfish('hide');
+      $openItem.children('a[aria-controls]').attr('aria-expanded', 'false').focus();
+    }
+  });
+});
+
+(function () {
+  if (!isIOSDevice()) {
+    return;
+  }
+
+  var lastFocusedElementBeforeModal = null;
+  var lastUserInteractedElement = null;
+  var lastSelectChangedElement = null;
+  var lastTriggerSelector = null;
+  var lastTriggerId = null;
+  var lastTriggerName = null;
+
+  function isIOSDevice() {
+    return (
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (
+        navigator.platform === 'MacIntel' &&
+        navigator.maxTouchPoints > 1
+      )
+    );
+  }
+
+  function isModalOpen(modal) {
+    return (
+      modal &&
+      (
+        modal.classList.contains('in') ||
+        modal.classList.contains('show') ||
+        modal.style.display === 'block'
+      )
+    );
+  }
+
+  function getTopOpenModal() {
+    var modals = Array.prototype.slice.call(document.querySelectorAll('.modal'));
+    var openModals = modals.filter(isModalOpen);
+    return openModals.length ? openModals[openModals.length - 1] : null;
+  }
+
+  function closestModal(element) {
+    if (!element || !element.closest) {
+      return null;
+    }
+
+    return element.closest('.modal');
+  }
+
+  function cssEscape(value) {
+    if (window.CSS && typeof window.CSS.escape === 'function') {
+      return window.CSS.escape(value);
+    }
+
+    return String(value).replace(/([ #;?%&,.+*~':"!^$[\]()=>|/@])/g, '\\$1');
+  }
+
+  function getFocusableAncestor(element) {
+    if (!element || element === document.body || element === document.documentElement) {
+      return null;
+    }
+
+    if (
+      element.matches &&
+      element.matches(
+        'input, select, textarea, button, a[href], [role="button"], [tabindex]:not([tabindex="-1"])'
+      )
+    ) {
+      return element;
+    }
+
+    if (element.closest) {
+      return element.closest(
+        'input, select, textarea, button, a[href], [role="button"], [tabindex]:not([tabindex="-1"])'
+      );
+    }
+
+    return null;
+  }
+
+  function isValidTriggerElement(element) {
+    return (
+      element &&
+      element !== document.body &&
+      element !== document.documentElement &&
+      document.body.contains(element) &&
+      !closestModal(element)
+    );
+  }
+
+  function storeTriggerMetadata(element) {
+    if (!isValidTriggerElement(element)) {
+      return;
+    }
+
+    lastFocusedElementBeforeModal = element;
+    lastUserInteractedElement = element;
+    window.lastIOSModalTriggerElement = element;
+
+    lastTriggerId = element.id || null;
+    lastTriggerName = element.name || null;
+
+    if (lastTriggerId) {
+      lastTriggerSelector = '#' + cssEscape(lastTriggerId);
+    } else if (lastTriggerName) {
+      lastTriggerSelector = '[name="' + String(lastTriggerName).replace(/"/g, '\\"') + '"]';
+    } else {
+      lastTriggerSelector = null;
+    }
+  }
+
+  function rememberTriggerElement(element) {
+    var trigger = getFocusableAncestor(element) || element;
+
+    if (isValidTriggerElement(trigger)) {
+      storeTriggerMetadata(trigger);
+    }
+  }
+
+  function rememberSelectTrigger(element) {
+    if (
+      element &&
+      element.tagName &&
+      element.tagName.toLowerCase() === 'select' &&
+      isValidTriggerElement(element)
+    ) {
+      lastSelectChangedElement = element;
+      storeTriggerMetadata(element);
+    }
+  }
+
+  /*
+   * Global trigger capture.
+   * This avoids adding setIOSModalTriggerElement(this) to each onchange.
+   */
+  document.addEventListener('focusin', function (event) {
+    if (!getTopOpenModal()) {
+      rememberTriggerElement(event.target);
+    }
+  }, true);
+
+  document.addEventListener('touchstart', function (event) {
+    if (!getTopOpenModal()) {
+      rememberTriggerElement(event.target);
+    }
+  }, true);
+
+  document.addEventListener('mousedown', function (event) {
+    if (!getTopOpenModal()) {
+      rememberTriggerElement(event.target);
+    }
+  }, true);
+
+  document.addEventListener('pointerdown', function (event) {
+    if (!getTopOpenModal()) {
+      rememberTriggerElement(event.target);
+    }
+  }, true);
+
+  document.addEventListener('click', function (event) {
+    if (!getTopOpenModal()) {
+      rememberTriggerElement(event.target);
+    }
+  }, true);
+
+  /*
+   * Critical for iPhone/iPad select fields inside CUT/custom tables.
+   * iOS Safari often loses document.activeElement after option selection.
+   */
+  document.addEventListener('change', function (event) {
+    if (!getTopOpenModal()) {
+      if (
+        event.target &&
+        event.target.tagName &&
+        event.target.tagName.toLowerCase() === 'select'
+      ) {
+        rememberSelectTrigger(event.target);
+      } else {
+        rememberTriggerElement(event.target);
+      }
+    }
+  }, true);
+
+  document.addEventListener('input', function (event) {
+    if (!getTopOpenModal()) {
+      rememberTriggerElement(event.target);
+    }
+  }, true);
+
+  function isVisible(element) {
+    return !!(
+      element &&
+      (
+        element.offsetWidth ||
+        element.offsetHeight ||
+        element.getClientRects().length
+      )
+    );
+  }
+
+  function getFocusableElements(container) {
+    return Array.prototype.slice.call(
+      container.querySelectorAll(
+        [
+          'a[href]',
+          'area[href]',
+          'input:not([disabled]):not([type="hidden"])',
+          'select:not([disabled])',
+          'textarea:not([disabled])',
+          'button:not([disabled])',
+          'iframe',
+          'object',
+          'embed',
+          '[contenteditable="true"]',
+          '[role="button"]',
+          '[tabindex]:not([tabindex="-1"])'
+        ].join(',')
+      )
+    ).filter(function (element) {
+      return isVisible(element);
+    });
+  }
+
+  function saveOriginalAriaHidden(element) {
+    if (!element.hasAttribute('data-ios-modal-prev-aria-hidden')) {
+      var previousAriaHidden = element.getAttribute('aria-hidden');
+
+      element.setAttribute(
+        'data-ios-modal-prev-aria-hidden',
+        previousAriaHidden === null ? '__NULL__' : previousAriaHidden
+      );
+    }
+  }
+
+  function restoreOriginalAriaHidden(element) {
+    var previousAriaHidden = element.getAttribute('data-ios-modal-prev-aria-hidden');
+
+    if (previousAriaHidden === '__NULL__') {
+      element.removeAttribute('aria-hidden');
+    } else if (previousAriaHidden !== null) {
+      element.setAttribute('aria-hidden', previousAriaHidden);
+    }
+
+    element.removeAttribute('data-ios-modal-prev-aria-hidden');
+    element.removeAttribute('data-ios-modal-background-hidden');
+  }
+
+  function hideElementFromScreenReader(element) {
+    if (
+      !element ||
+      element === document.body ||
+      element === document.documentElement
+    ) {
+      return;
+    }
+
+    if (
+      element.classList &&
+      element.classList.contains('modal-backdrop')
+    ) {
+      return;
+    }
+
+    if (
+      element.classList &&
+      element.classList.contains('modal')
+    ) {
+      return;
+    }
+
+    saveOriginalAriaHidden(element);
+
+    element.setAttribute('aria-hidden', 'true');
+    element.setAttribute('data-ios-modal-background-hidden', 'true');
+  }
+
+  function restoreBackgroundContent() {
+    document
+      .querySelectorAll('[data-ios-modal-background-hidden="true"]')
+      .forEach(function (element) {
+        restoreOriginalAriaHidden(element);
+      });
+
+    document
+      .querySelectorAll('[data-ios-modal-prev-aria-hidden]')
+      .forEach(function (element) {
+        restoreOriginalAriaHidden(element);
+      });
+  }
+
+  function restoreAriaHiddenParentsForElement(element) {
+    var current = element;
+
+    while (current && current !== document.body) {
+      if (
+        current.getAttribute('data-ios-modal-background-hidden') === 'true' ||
+        current.hasAttribute('data-ios-modal-prev-aria-hidden')
+      ) {
+        restoreOriginalAriaHidden(current);
+      }
+
+      current = current.parentElement;
+    }
+  }
+
+  function hideBackgroundExceptModal(modal) {
+    var current = modal;
+
+    while (current && current !== document.body) {
+      var parent = current.parentElement;
+
+      if (!parent) {
+        break;
+      }
+
+      Array.prototype.forEach.call(parent.children, function (sibling) {
+        if (
+          sibling !== current &&
+          !sibling.contains(modal) &&
+          !modal.contains(sibling)
+        ) {
+          hideElementFromScreenReader(sibling);
+        }
+      });
+
+      current = parent;
+    }
+  }
+
+  function updateModalAria(modal, isOpen) {
+    if (isOpen) {
+      if (!modal.hasAttribute('role')) {
+        modal.setAttribute('role', 'dialog');
+      }
+
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-hidden', 'false');
+
+      if (!modal.hasAttribute('tabindex')) {
+        modal.setAttribute('tabindex', '-1');
+      }
+    } else {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.removeAttribute('aria-modal');
+    }
+  }
+
+  function updateAllModalAria() {
+    document.querySelectorAll('.modal').forEach(function (modal) {
+      updateModalAria(modal, isModalOpen(modal));
+    });
+  }
+
+  function moveFocusIntoModal(modal) {
+    window.setTimeout(function () {
+      var focusableElements = getFocusableElements(modal);
+
+      if (focusableElements.length) {
+        focusableElements[0].focus();
+      } else {
+        modal.focus();
+      }
+    }, 150);
+  }
+
+  function storeElementBeforeModalOpen(modal) {
+    var currentFocus =
+      window.lastIOSModalTriggerElement ||
+      lastSelectChangedElement ||
+      lastUserInteractedElement ||
+      lastFocusedElementBeforeModal ||
+      document.activeElement;
+
+    if (
+      currentFocus &&
+      currentFocus !== document.body &&
+      currentFocus !== document.documentElement &&
+      document.body.contains(currentFocus) &&
+      !modal.contains(currentFocus)
+    ) {
+      storeTriggerMetadata(currentFocus);
+    }
+  }
+
+  function activateIOSModalAccessibility(modal) {
+    if (!modal) {
+      return;
+    }
+
+    restoreBackgroundContent();
+    updateAllModalAria();
+    hideBackgroundExceptModal(modal);
+    moveFocusIntoModal(modal);
+  }
+
+  function getCurrentTriggerElement() {
+    var element = null;
+
+    /*
+     * Prefer selector lookup because CUT/custom table rows can be re-rendered.
+     */
+    if (lastTriggerSelector) {
+      try {
+        element = document.querySelector(lastTriggerSelector);
+      } catch (error) {
+        element = null;
+      }
+    }
+
+    if (!element && lastTriggerId) {
+      element = document.getElementById(lastTriggerId);
+    }
+
+    if (!element && lastTriggerName) {
+      try {
+        element = document.querySelector('[name="' + String(lastTriggerName).replace(/"/g, '\\"') + '"]');
+      } catch (error) {
+        element = null;
+      }
+    }
+
+    if (!element && window.lastIOSModalTriggerElement) {
+      element = window.lastIOSModalTriggerElement;
+    }
+
+    if (!element && lastSelectChangedElement) {
+      element = lastSelectChangedElement;
+    }
+
+    if (!element && lastFocusedElementBeforeModal) {
+      element = lastFocusedElementBeforeModal;
+    }
+
+    if (!element && lastUserInteractedElement) {
+      element = lastUserInteractedElement;
+    }
+
+    return element;
+  }
+
+  function isElementActuallyFocusable(element) {
+    if (!element || !document.body.contains(element)) {
+      return false;
+    }
+
+    if (element.disabled) {
+      return false;
+    }
+
+    if (element.closest('[aria-hidden="true"]')) {
+      return false;
+    }
+
+    var style = window.getComputedStyle(element);
+
+    if (
+      style.display === 'none' ||
+      style.visibility === 'hidden'
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function isFocusableElement(element) {
+    return (
+      element &&
+      document.body.contains(element) &&
+      !element.disabled &&
+      isVisible(element) &&
+      !element.closest('[aria-hidden="true"]')
+    );
+  }
+
+  function isInsideCustomTable(element) {
+    return !!(
+      element &&
+      element.closest &&
+      element.closest('table.custom_table, table.generic_table, [id^="CUT_"]')
+    );
+  }
+
+  function focusElementSafely(element) {
+    if (!element) {
+      return;
+    }
+
+    function focusNow() {
+      var currentElement = getCurrentTriggerElement() || element;
+
+      if (!isFocusableElement(currentElement)) {
+        return;
+      }
+
+      restoreAriaHiddenParentsForElement(currentElement);
+
+      if (typeof currentElement.scrollIntoView === 'function') {
+        currentElement.scrollIntoView({
+          block: 'center',
+          inline: 'nearest'
+        });
+      }
+
+      var hadTabIndex = currentElement.hasAttribute('tabindex');
+      var oldTabIndex = currentElement.getAttribute('tabindex');
+
+      if (!hadTabIndex && currentElement.tagName.toLowerCase() !== 'select') {
+        currentElement.setAttribute('tabindex', '-1');
+      }
+
+      try {
+        currentElement.focus({ preventScroll: true });
+      } catch (error) {
+        currentElement.focus();
+      }
+
+      if (!hadTabIndex && currentElement.tagName.toLowerCase() !== 'select') {
+        currentElement.removeAttribute('tabindex');
+      } else if (hadTabIndex) {
+        currentElement.setAttribute('tabindex', oldTabIndex);
+      }
+    }
+
+    window.setTimeout(focusNow, 100);
+    window.setTimeout(focusNow, 350);
+    window.setTimeout(focusNow, 700);
+    window.setTimeout(focusNow, 1100);
+  }
+
+  function waitAndFocusTableTriggerById(triggerId, maxAttempts) {
+    var attempts = 0;
+
+    function tryFocus() {
+      attempts++;
+
+      var element = document.getElementById(triggerId);
+
+      if (element) {
+        restoreAriaHiddenParentsForElement(element);
+      }
+
+      if (isElementActuallyFocusable(element)) {
+        if (typeof element.scrollIntoView === 'function') {
+          element.scrollIntoView({
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+
+        window.setTimeout(function () {
+          try {
+            element.focus({ preventScroll: true });
+          } catch (error) {
+            element.focus();
+          }
+
+          window.setTimeout(function () {
+            try {
+              element.focus({ preventScroll: true });
+            } catch (error) {
+              element.focus();
+            }
+          }, 150);
+        }, 100);
+
+        return;
+      }
+
+      if (attempts < maxAttempts) {
+        window.setTimeout(tryFocus, 300);
+      }
+    }
+
+    tryFocus();
+  }
+
+  function deactivateIOSModalAccessibility(closedModal) {
+    if (closedModal) {
+      updateModalAria(closedModal, false);
+    }
+
+    restoreBackgroundContent();
+    updateAllModalAria();
+
+    window.setTimeout(function () {
+      restoreBackgroundContent();
+
+      var elementToRestoreFocus = getCurrentTriggerElement();
+
+      if (elementToRestoreFocus) {
+        restoreAriaHiddenParentsForElement(elementToRestoreFocus);
+      }
+
+      if (
+        elementToRestoreFocus &&
+        isInsideCustomTable(elementToRestoreFocus) &&
+        elementToRestoreFocus.id
+      ) {
+        waitAndFocusTableTriggerById(elementToRestoreFocus.id, 12);
+      } else {
+        focusElementSafely(elementToRestoreFocus);
+      }
+    }, 150);
+
+    window.setTimeout(function () {
+      var elementToRestoreFocus = getCurrentTriggerElement();
+
+      if (elementToRestoreFocus) {
+        restoreAriaHiddenParentsForElement(elementToRestoreFocus);
+      }
+
+      if (
+        elementToRestoreFocus &&
+        isInsideCustomTable(elementToRestoreFocus) &&
+        elementToRestoreFocus.id
+      ) {
+        waitAndFocusTableTriggerById(elementToRestoreFocus.id, 12);
+      } else {
+        focusElementSafely(elementToRestoreFocus);
+      }
+    }, 700);
+
+    window.setTimeout(function () {
+      lastFocusedElementBeforeModal = null;
+      lastUserInteractedElement = null;
+      lastSelectChangedElement = null;
+      lastTriggerSelector = null;
+      lastTriggerId = null;
+      lastTriggerName = null;
+      window.lastIOSModalTriggerElement = null;
+    }, 2500);
+  }
+
+  function trapTabInsideModal(event) {
+    var modal = getTopOpenModal();
+
+    if (!modal || event.key !== 'Tab') {
+      return;
+    }
+
+    var focusableElements = getFocusableElements(modal);
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      modal.focus();
+      return;
+    }
+
+    var firstElement = focusableElements[0];
+    var lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  }
+
+  document.addEventListener('keydown', trapTabInsideModal);
+
+  if (window.jQuery) {
+    $(document).on('show.bs.modal', '.modal', function () {
+      storeElementBeforeModalOpen(this);
+    });
+
+    $(document).on('shown.bs.modal', '.modal', function () {
+      activateIOSModalAccessibility(this);
+    });
+
+    $(document).on('hide.bs.modal', '.modal', function () {
+      updateModalAria(this, false);
+    });
+
+    $(document).on('hidden.bs.modal', '.modal', function () {
+      var closedModal = this;
+
+      updateModalAria(closedModal, false);
+
+      window.setTimeout(function () {
+        var stillOpenModal = getTopOpenModal();
+
+        if (stillOpenModal) {
+          activateIOSModalAccessibility(stillOpenModal);
+        } else {
+          deactivateIOSModalAccessibility(closedModal);
+        }
+      }, 50);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    restoreBackgroundContent();
+    updateAllModalAria();
+
+    var openModal = getTopOpenModal();
+
+    if (openModal) {
+      activateIOSModalAccessibility(openModal);
+    }
+  });
+
+  /*
+   * Optional helper. Not required for normal select onchange flows,
+   * but available if any modal opens later through AJAX/timer/custom callback.
+   */
+  window.setIOSModalTriggerElement = function (element) {
+    var trigger = getFocusableAncestor(element) || element;
+
+    if (isValidTriggerElement(trigger)) {
+      storeTriggerMetadata(trigger);
+
+      if (
+        trigger.tagName &&
+        trigger.tagName.toLowerCase() === 'select'
+      ) {
+        lastSelectChangedElement = trigger;
+      }
+    }
+  };
+
+  window.restoreIOSModalApplicationAccess = restoreBackgroundContent;
+  window.updateIOSModalAria = updateAllModalAria;
+})();
+	
+</script>
+<input type="hidden" name="installationID" id="installationID" value="383">
+<!-- Below hidden variables for browser tab session issue  -->
+<input type="hidden" name="original_iid" id="original_iid" value="0">
+<input type="hidden" name="original_contactID" id="original_contactID" value="0">
+<header id="header">
+	<div class="container">
+		<div class="row">
+			<div class="cart">
+				<table role="presentation" class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr style="background: none;">
+						<td class="text-center" style="border: none;border-top: none;padding-left: 10px;">
+							
+								<font class="cart-font" aria-hidden="true"><hicons-white-md>
+								<i class="icon-commenting" aria-hidden="true"></i></hicons-white-md><br>
+							</font>
+							
+						</td>
+						<td class="text-center" style="border: none;border-top: none;">
+							
+							<font class="cart-font"><hicons-white-md>
+								<i class="icon-shopping-cart"></i></hicons-white-md><br>
+							</font>
+							
+						</td>
+						<td class="text-center" style="border: none; border-top: none; padding-left: 10px;">
+						  
+						    <span class="cart-font">
+						      <button type="button" class="icon-btn" aria-label="Login" onclick="openURLLink('PortalController?Action=showLogin&amp;ctzPagePrefix=Portal_&amp;installationID=383')">
+						        <hicons-grey-md>
+						          <i class="icon-signin" aria-hidden="true"></i>
+						        </hicons-grey-md>
+						      </button>
+						      <br>
+						
+						      <button type="button" class="icon-btn" onclick="openURLLink('PortalController?Action=showLogin&amp;ctzPagePrefix=Portal_&amp;installationID=383')">
+						        LOGIN
+						      </button>
+						    </span>
+						  
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+		<div class="header-block clearfix">
+			<div class="col-sm-3 col-md-3 col-lg-3" style="padding: 0px;">
+				<a class="navbar-brand" style="padding: 0px;" href="javascript:openURLLink('PortalController?Action=showHomePage&amp;ctzPagePrefix=Portal_&amp;installationID=383');">
+				
+				<img src="https://www6.citizenserve.com/Portal/../Portal/Documents/383/banner.gif?bustcache=1793548430026" id="bannerImage" class="img-responsive" alt="Lady Lake, FL home" style="width: 100%; max-height: 129px;"></a>
+			</div>
+			<div class="col-sm-9 col-md-9 col-lg-9 " style="position: inherit;">
+				<!--main menu-->
+				<ul class="nav tm-navbar navbar-nav sf-menu sf-js-enabled">
+					<li>
+						<a href="javascript:openURLLink('PortalController?Action=showHomePage&amp;ctzPagePrefix=Portal_&amp;installationID=383');">Home</a></li>
+					<li>
+                            <a href="javascript:void(0);" class="sf-with-ul" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="services-submenu">
+							   Services
+							</a>
+						<ul class="sub-menu" style="">
+							
+							<li><a href="javascript:openURLLink('PortalController?Action=showDevelopmentApplications&amp;ctzPagePrefix=Portal_&amp;installationID=383');">Development Project</a></li>
+							
+							<li><a href="javascript:openURLLink('PortalController?Action=showPermit&amp;ctzPagePrefix=Portal_&amp;installationID=383');">Permits</a></li>
+							
+							<li><a href="javascript:openURLLink('PortalController?Action=showCodeEnforcement&amp;ctzPagePrefix=Portal_&amp;installationID=383');">Code Complaints</a></li>
+							
+						</ul></li>
+					
+					<li class="active">
+						<a href="javascript:openURLLink('PortalController?Action=showSearchPage&amp;ctzPagePrefix=Portal_&amp;installationID=383');" aria-current="page">Search</a></li>
+					
+					<li><a href="javascript:openURLLink('PortalController?Action=showPortalReports&amp;ctzPagePrefix=Portal_&amp;installationID=383');">Reports</a></li>
+					
+					<li><a href="javascript:openURLLink('PortalController?Action=myAccount&amp;ctzPagePrefix=Portal_&amp;installationID=383');">My Account</a></li>
+					<li><a href="javascript:openURLLink('PortalController?Action=showContactUs&amp;ctzPagePrefix=Portal_&amp;installationID=383');">Contact</a></li>
+				</ul><select class="select-menu" style="display: inline-block;"><option value="#">Navigate to...</option><option value="javascript:openURLLink('PortalController?Action=showHomePage&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">Home</option><option value="javascript:void(0);">
+							   Services
+							</option><option value="javascript:openURLLink('PortalController?Action=showDevelopmentApplications&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">–Development Project</option><option value="javascript:openURLLink('PortalController?Action=showPermit&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">–Permits</option><option value="javascript:openURLLink('PortalController?Action=showCodeEnforcement&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">–Code Complaints</option><option value="javascript:openURLLink('PortalController?Action=showSearchPage&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">Search</option><option value="javascript:openURLLink('PortalController?Action=showPortalReports&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">Reports</option><option value="javascript:openURLLink('PortalController?Action=myAccount&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">My Account</option><option value="javascript:openURLLink('PortalController?Action=showContactUs&amp;ctzPagePrefix=Portal_&amp;installationID=383%27);">Contact</option></select>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+         <div id="popup-session" class="modal fade pulldown-show disable-pointers" role="dialog" aria-label="Session Model" aria-modal="true" style="display: none;">
+            <div class="modal-dialog modal-sm popup-modal">
+               <div class="modal-content enable-pointers">
+                  <div class="modal-header popup-modal-header">       
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">�</span><span class="sr-only">Close</span></button>
+                  </div>
+                  <div class="modal-body">
+                     <table class="table table-condensed" style="margin-bottom: 0px;">
+                        <tbody>
+                           <tr>
+                              <td style="padding-left: 10px;">
+                                 <hicons-alert><span class="hicons-red"><i class="icon-info-sign"></i></span></hicons-alert>
+                              </td>
+                              <td colspan="2" style="padding-left: 10px;" class="popup-font">
+                              	You are leaving our portal, are you sure you want to log out and leave the portal?
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="modal-footer footer-border">
+                     <div class="col-xs-6 text-right">
+                        <div class="previous" id="invalidate_session"><button class="btn btn-default btn-sm popup-btn" id="submit" onclick="invalidateSession();">Yes</button></div>
+                     </div>
+                     <div class="col-xs-6 text-left">
+                        <div class="next">
+			          		<button type="button" class="btn btn-default btn-sm popup-btn" onclick="closeWindow();" data-dismiss="modal">No</button>
+			       		</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+
+ 
+	<script type="text/javascript" src="/Portal/js/fabric.min.js"></script> 
+	<script type="text/javascript" src="/Portal/js/signature_fabric.js"></script>
+
+<script type="text/javascript">
+	var blueStr = "<hicons-blue-h2><i class=\"icon-info-sign\"></i></hicons-blue-h2>";
+	var redStr = "<hicons-red-h2><i class=\"icon-info-sign\"></i></hicons-red-h2>";
+	function modelBodyHeight() {
+		var fixHeight = document.documentElement.clientHeight * 0.80;
+		return (fixHeight + "px");
+	}
+	
+	function customAlertPopUp(elementID,alertMessage){
+		$("#required-element").val(elementID);
+	    $("#pulldown-required-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-required").modal({
+			show:true
+	    });
+	}
+
+	function customAlertPopUprenwal(elementID,alertMessage, url) {
+		var clickFunction = "openURLLink('"+url+"')";
+		$("#required-element").val(elementID);
+	    $("#pulldown-required-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-requiredBtn").attr("onclick",clickFunction);
+		$("#pulldown-required").modal({
+			show: true
+		});
+	}
+
+	function customAlertPopUpFromModel(elementID,alertMessage,modelId){
+		$("#required-element").val(elementID);
+		$("#back-side-model-name").val(modelId);
+		if ($("#back-side-model-name").val() != "") {
+			$("#"+$("#back-side-model-name").val()).css("pointer-events","none");
+		}
+	    $("#pulldown-required-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-required").modal({
+			show:true
+	    });
+	}
+
+	function customAlertPopUpRequired(elementID,alertMessage){
+		$("#required-element").val(elementID);
+	    $("#pulldown-required-body").html(alertMessage);
+	    $("#infoIcon").html(redStr);
+		$("#pulldown-required").modal({
+			show:true
+	    });
+	}
+	
+	function customAlertPopUpFromModelRequired(elementID,alertMessage,modelId){
+		$("#required-element").val(elementID);
+		$("#back-side-model-name").val(modelId);
+		if ($("#back-side-model-name").val() != "") {
+			$("#"+$("#back-side-model-name").val()).css("pointer-events","none");
+		}
+	    $("#pulldown-required-body").html(alertMessage);
+	    $("#infoIcon").html(redStr);
+		$("#pulldown-required").modal({
+			show:true
+	    });
+	}
+
+	function showContactEmailAddressModal() {
+		$("#emailAddressModal").modal({
+			show : true
+		});
+	}
+	function checkUserNameExistsFromModel(modelId) {
+	    return new Promise(function(resolve, reject) {
+	        var userName = $("#" + modelId + " #userName").val();
+	        userName = encodeURIComponent(userName);
+	        
+	        if (userName != "") {
+	            var url = "PortalController?Action=checkUserNameExists&username=" + userName + "&isUpdate=true&fromPassExpire=true&bustcache=" + new Date().getTime();
+	            $.ajax({
+	                url: url,
+	                success: function(result) {
+	                    if (result == "Record Exists") {
+	                        $("#" + modelId + " #userNameMsg").html("<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red>" +
+	                            "<font class=\"color-11\"> I'm sorry, this username has been taken, please enter a different user name.</font>");
+	                        resolve(false);  // Username exists, return false
+	                    } else {
+	                        $("#" + modelId + " #userNameMsg").html("<hicons-green> <i class=\"icon-ok-sign\"></i></hicons-green>" +
+	                            "<font class=\"color-11\"> Your user name is accepted.</font>");
+	                        resolve(true);  // Username does not exist, return true
+	                    }
+	                },
+	                error: function(xhr, textStatus, errorThrown) {
+	                    handleError("AJAX request failed with status: " + textStatus + ", error: " + errorThrown);
+	                    reject(false);  // Handle error, return false
+	                }
+	            });
+	        } else {
+	            $("#" + modelId + " #userNameMsg").html("<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red>" +
+	                "<font class=\"color-11\"> Please Enter User Name.</font>");
+	            resolve(false);  // Username field is empty, return false
+	        }
+	    });
+	}
+
+	function passwordValidationFromModel(modelId) {
+		var flag = true;
+		var str = $("#"+modelId+" #newPassword, #" + modelId + " #updateContact_newPassword").val();
+		var msg = "";
+		if(str != "") {
+		    if (str.length < 6) {
+		        flag = false;
+		        msg = "<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red><font class=\"color-11\"> Your password must be at least 6 characters</font>";
+		    } else if (str.search(/\d/) == -1) {
+			    msg = "<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red><font class=\"color-11\"> Your password must contain at least one number</font> ";
+		    	flag = false;
+		    } else if (str.search(/[a-zA-Z]/) == -1) {
+			    msg = "<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red><font class=\"color-11\"> Your password must contain at least one letter</font>";
+		    	flag = false;
+		    } else if((str.indexOf("<") > -1) || (str.indexOf(">") > -1)){
+		    	msg = "<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red><font class=\"color-11\"> Your password should not contain < and > </font>";
+		    	flag = false;
+			}
+			if(flag) {   
+				$("#"+modelId+" #passwordMsg").html("<hicons-green> <i class=\"icon-ok-sign\"></i></hicons-green>" +
+				"<font class=\"color-11\"> Your password is accepted.</font>");
+				return true;
+			} else {   
+				$("#"+modelId+" #passwordMsg").html(msg);
+				return false;
+			}
+		} else {
+			$("#"+modelId+" #passwordMsg").html("<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red><font class=\"color-11\"> Please Enter Password</font>");
+			return false;
+		}
+	}
+	function updateContact(){
+		// Use the Promise from checkUserNameExistsFromModel
+        checkUserNameExistsFromModel("changePasswordAndUserName").then(function(isValidUserName) {
+            if (isValidUserName && passwordValidationFromModel("changePasswordAndUserName")) {
+
+        		var userName = encodeURIComponent($("#changePasswordAndUserName #userName").val());
+        		var password = encodeURIComponent($("#changePasswordAndUserName #newPassword").val());
+            	var url = "PortalController?Action=updateContact&bustcache="+new Date().getTime();
+    			$.ajax({
+    				type:'POST',
+    		        url: url, 
+    		        data:"username="+userName+"&password="+password,
+    		        success: function(result){
+    			        if(result == "success"){
+    		        		$('#changePasswordAndUserName').modal('hide');
+    		        		reloadLicenseRenewalPage();
+    			        }
+    		    	}
+    			});
+            }
+        }).catch(function() {
+            // Handle any errors from the AJAX call
+            console.error("An error occurred during username validation.");
+        });
+	
+	}
+	function submitContactEmailAddress() {
+		var email = $("#emailAddressModal #contactEmailAddress").val();
+		if(email == "" ) {
+			customAlertPopUpFromModelRequired("contactEmailAddress","Please Enter a email address","emailAddressModal");
+			return;
+		}
+		
+			var url = "PortalController?Action=updateContactEmailAddress&contactEmailAddress="
+				+ email +"&bustcache="+new Date().getTime();
+			$.ajax({
+				url : url,
+				success : function(result) {
+					if(result == "success") {
+						$("#emailAddressModal").modal('hide');
+						reloadLicenseRenewalPage();
+					}
+				}
+			});
+		
+		
+		
+	}
+
+	function validateEmailAddress(email) {
+		if(emailCheck(email)) {
+			return true;
+		} else {
+			return false;  
+		}
+	}
+
+	function emailCheck(emailStr) {
+		emailStr = emailStr.toLowerCase();
+	    var checkTLD=1;
+	    var knownDomsPat=/^(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|inc)$/;
+	    var emailPat=/^(.+)@(.+)$/;
+	    var specialChars="\\(\\)><@,;:\\\\\\\"\\.\\[\\]";
+	    var validChars="\[^\\s" + specialChars + "\]";
+	    var quotedUser="(\"[^\"]*\")";
+	    var ipDomainPat=/^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/;
+	    var atom=validChars + '+';
+	    var word="(" + atom + "|" + quotedUser + ")";
+	    var userPat=new RegExp("^" + word + "(\\." + word + ")*$");
+	    var domainPat=new RegExp("^" + atom + "(\\." + atom +")*$");
+	    var matchArray=emailStr.match(emailPat);
+	
+	    if (matchArray==null) {
+	        return false;
+	    }
+	    var user=matchArray[1];
+	    var domain=matchArray[2];
+	    for (i=0; i<user.length; i++) {
+	        if (user.charCodeAt(i)>127) {
+	            return false;
+			}
+	    }
+	    for (i=0; i<domain.length; i++) {
+			if (domain.charCodeAt(i)>127) {
+		            return false;
+			}
+	    }
+	
+	    if (user.match(userPat)==null) {
+			return false;
+	    }
+	
+	    var IPArray=domain.match(ipDomainPat);
+	    if (IPArray!=null) {
+			for (var i=1;i<=4;i++) {
+	            if (IPArray[i]>255) {
+	                return false;
+	            }
+			}
+	        return true;
+	    }
+	    var atomPat=new RegExp("^" + atom + "$");
+	    var domArr=domain.split(".");
+	    var len=domArr.length;
+	    for (i=0;i<len;i++) {
+			if (domArr[i].search(atomPat)==-1) {
+	            return false;
+			}
+	    }
+	    if (checkTLD && domArr[domArr.length-1].length!=2 && domArr[domArr.length-1].search(knownDomsPat)==-1) {
+	        return false;
+	    }
+	    if (len<2) {
+			return false;
+	    }
+	    return true;
+	}
+
+	window.onresize = function() {
+		$('[data-toggle="tooltip"]').tooltip({
+		    container: 'body'
+		});
+	}
+
+	function openLogOutModal(linkValue){
+		var nextPage = "";
+		if (linkValue.indexOf("Action=showRegistationPage") != -1) {
+			nextPage = "showRegistationPage";
+		} else if (linkValue.indexOf("Action=showLogin") != -1) {
+			nextPage = "showLogin";
+		}
+		var btn = "<button type=\"button\" class=\"btn btn-default btn-sm popup-btn\" data-dismiss=\"modal\" ";
+		btn = btn + "onClick=\"javascript:openURLLink('Login?Action=portalLogout&ctzPagePrefix=Portal_&installationID=383&nextPage=" + nextPage + "');\">Logout</button>";
+		$("#logoutModalPreviousBtn").html(btn);
+		$("#logoutModal").modal({
+			show : true
+		});
+	}
+	var fileType = "";
+	function noAccessToApplyPermit(){
+		fileType = "Permit";
+		var alertMessage = "I'm sorry your account has been set up as an anonymous registration.  As an anonymous user you cannot apply for a permit. Would you like to change your account to a public registration?";
+	    $("#pulldown-requiredmydiv-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-requiredmydiv").modal({
+			show:true
+	    });
+	}
+
+	function noAccessToApplyLicense(){
+		fileType = "License";
+		var alertMessage = "I'm sorry your account has been set up as an anonymous registration.  As an anonymous user you cannot apply for a license. Would you like to change your account to a public registration?";
+	    $("#pulldown-requiredmydiv-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-requiredmydiv").modal({
+			show:true
+	    });
+	}
+
+	function noAccessToApplyDevelopmentProject(){
+		fileType = "Development";
+		var alertMessage = "I'm sorry your account has been set up as an anonymous registration.  As an anonymous user you cannot apply for a permit. Would you like to change your account to a public registration?";
+	    $("#pulldown-requiredmydiv-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-requiredmydiv").modal({
+			show:true
+	    });
+	}
+
+	function noAccessToSubmitComplaint(){
+		fileType = "Code";
+		var alertMessage = "I'm sorry your account has been set up as an anonymous registration.  As an anonymous user you cannot submit a complaint. Would you like to change your account to a public registration?";
+	    $("#pulldown-requiredmydiv-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-requiredmydiv").modal({
+			show:true
+	    });
+	}
+
+	function noAccessToSubmitRequest(){
+		fileType = "Request";
+		var alertMessage = "I'm sorry your account has been set up as an anonymous registration.  As an anonymous user you cannot submit a request. Would you like to change your account to a public registration?";
+	    $("#pulldown-requiredmydiv-body").html(alertMessage);
+	    $("#infoIcon").html(blueStr);
+		$("#pulldown-requiredmydiv").modal({
+			show:true
+	    });
+	}
+</script>
+<div id="changePasswordAndUserName" class="modal fade pulldown-show disable-pointers" role="dialog" aria-label="Change Password And UserName Model" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-body">
+				<div class="row">
+					<table class="table table-condensed" style="margin-bottom: 0px;">
+						<tbody><tr>
+							<td style="padding-left: 10px;" align="right"><hicons-red-h2>
+								<i class="icon-info-sign" style="padding-left: 34px;"></i></hicons-red-h2></td>
+							<td style="padding-left: 10px;width: 90%;" class="popup-font">Please create a new password.</td>
+						</tr>
+					</tbody></table>
+				</div>
+				<table class="table table-condensed changePasswordAndUserNameTable" style="margin: 3px;">
+					<tbody><tr>
+					    <td class="color-11" style="white-space: nowrap; text-align: left;">
+					        <label for="userName">User Name:</label>
+					    </td>
+					    <td style="width: 80%;">
+					        <input class="form-control" type="text" name="userName" id="userName" value="" maxlength="45" style="width: 90%;" aria-required="true" aria-describedby="userNameMsg">
+					        <span id="userNameMsg"></span><br>
+					    </td>
+					</tr>
+					<tr>
+						<td class="color-11" style="white-space: nowrap; text-align: left;">
+							 <label for="newPassword">Password:</label>
+						</td>
+						<td style="width: 80%;">
+							<input class="form-control" type="password" name="newPassword" id="newPassword" value="" maxlength="20" style="width: 90%;" aria-required="true" aria-describedby="passwordMsg">
+							<span id="passwordMsg"></span><br>
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border" style="padding: 0px 20px 20px;">
+				<button type="button" class="btn btn-default btn-sm active popup-btn center-block" onclick="updateContact();">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$("#changePasswordAndUserName").on('shown.bs.modal',function(){
+		$("#userName").focus();
+	});
+	$("#changePasswordAndUserName").on('hidden.bs.modal',function(){
+		showModelFlag = true;
+		
+	});
+</script>
+<div id="emailAddressModal" class="modal fade pulldown-show disable-pointers" role="dialog" aria-label="Email Address Modal" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-body">
+				<div class="row">
+					<table class="table table-condensed" style="margin-bottom: 0px;">
+						<tbody><tr>
+						
+						 	<td style="padding-left: 10px;" align="right"><hicons-red-h2>
+								<i class="icon-info-sign"></i></hicons-red-h2></td>
+							<td style="padding-left: 10px;" class="popup-font"> 
+						        Please update your email address to login.
+						 	</td>   
+						 
+						</tr>
+					</tbody></table>
+				</div>
+				<table class="table emailAddressModal">
+					<tbody><tr>
+					    <td class="color-11-label" style="white-space: nowrap; text-align: left;">
+					    	<font class="color-required">|</font><label for="contactEmailAddress"> Email Address:</label></td>
+					    
+					    <td width="">
+					    	<input class="form-control" type="text" name="contactEmailAddress" id="contactEmailAddress" aria-required="true" aria-describedby="userEmailMsg" autofocus="">
+							<span id="userEmailMsg"></span><br>
+					    </td>
+					</tr>
+					 
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="submitContactEmailAddress();">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$("#emailAddressModal").on('hidden.bs.modal',function(){
+		showModelFlag = true;
+		
+	});
+	$("#emailAddressModal").on('show.bs.modal',function(){
+		setTimeout(function(){
+			$("#emailAddressModal #contactEmailAddress").focus();
+		}, 250);
+	});
+</script>
+<div id="successModal" class="modal fade pulldown-show disable-pointers" style="z-index: 2050;" role="dialog" aria-labelledby="successModalXIcon" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header" id="successModalXIcon" style="display: ;">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;" align="right" id="infoIcon"><hicons-blue-h2>
+							<i class="icon-info-sign"></i></hicons-blue-h2></td>
+						<td style="padding-left: 10px;" class="popup-font" id="successModalBody" aria-live="assertive"></td>
+					</tr>
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" class="btn btn-default btn-sm popup-btn center-block" data-dismiss="modal" id="successModalBtn">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="popup-deleteLFNandLPN" class="modal fade pulldown-show disable-pointers" tabindex="-10" role="dialog" aria-label="Delete LFN and LPN Model" aria-modal="true" style="z-index: 2500;display: none;">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header popup-modal-header">       
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;"><hicons-alert><span class="hicons-red"><i class="icon-info-sign"></i></span></hicons-alert></td>
+						<td style="padding-left: 10px;" class="popup-font" id="LFNandLPNfieldName"></td>
+					</tr>
+				</tbody></table>					
+			</div>
+			<div class="modal-footer footer-border">
+			<div class="col-xs-6 text-right">
+		        <div class="previous" id="deleteLFNandLPNButton"></div>
+		    </div>
+		    <div class="col-xs-6 text-left">   
+		        <div class="next">
+		          <button type="button" class="btn btn-default btn-sm popup-btn" data-dismiss="modal">No</button>
+		        </div>
+		    </div>							
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function openSuccesModal(message, clickFunction) {
+	$("#successModalBody").html(message);
+	$("#successModalBtn").attr("onclick",clickFunction);
+	$("#successModal").modal({
+		show: true
+	});
+}
+$("#successModal").on('hidden.bs.modal',function(){
+	$("#successModalBody").html("");
+	$("#successModalBtn").attr("onclick","");
+});
+</script>
+<div id="logoutModal" class="modal fade pulldown-show disable-pointers" role="dialog" aria-label="Logout Modal" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-body">
+				<div class="row">
+					<table class="table table-condensed" style="margin-bottom: 0px;">
+						<tbody><tr>
+							<td style="padding-left: 10px;" align="right"><hicons-blue-h2>
+								<i class="icon-info-sign"></i></hicons-blue-h2></td>
+							
+							<td style="padding-left: 10px;" class="popup-font">You are already logged in as . </td>
+						</tr>
+					</tbody></table>
+				</div>
+			</div>
+			<div class="modal-footer footer-border">
+				<div class="col-xs-6 text-right">
+					<div class="previous" id="logoutModalPreviousBtn">
+						
+					</div>
+				</div>
+				<div class="col-xs-6 text-left">
+					<div class="next">
+						<button type="button" class="btn btn-default btn-sm popup-btn" data-dismiss="modal">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="pulldown-required" class="modal fade pulldown-show disable-pointers" style="z-index: 2050;" role="dialog" aria-label="Required Model" aria-modal="true" tabindex="-1">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;" align="right" id="infoIcon"><hicons-blue-h2>
+							<i class="icon-info-sign"></i></hicons-blue-h2></td>
+						<td style="word-break: break-word;padding-left: 10px;" class="popup-font" id="pulldown-required-body" aria-live="assertive"></td>
+					</tr>
+				</tbody></table>
+				<input type="hidden" name="required-element" id="required-element" value="">
+				<input type="hidden" name="back-side-model-name" id="back-side-model-name" value="">
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" id="pulldown-requiredBtn" class="btn btn-default btn-sm popup-btn center-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="myrequiredfieldModal" class="modal fade pulldown-show disable-pointers" style="z-index: 2050;" role="dialog" aria-label="My Required Field Modal" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;" align="right" id="infoIcon"><hicons-blue-h2>
+							<i class="icon-info-sign"></i></hicons-blue-h2></td>
+						<td><p style="margin: 0px;"> The following fields are required:</p></td>
+					</tr>
+					<tr>
+						<td>
+							 </td><td style="padding-left: 10px;" class="popup-font" id="myrequiredfieldModalBody"></td>
+						
+					</tr>
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" id="myrequiredfieldModalBtn" class="btn btn-default btn-sm popup-btn center-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$("#pulldown-required").on('hidden.bs.modal',function(){
+	if ($("#required-element").val() != "") {
+		$("#"+$("#required-element").val()).focus();
+		showDatePickerConditionCheckByObj($("#"+$("#required-element").val()));
+	}
+	if ($("#back-side-model-name").val() != "") {
+		if ($("#"+$("#back-side-model-name").val()).attr("class").indexOf("disable-pointers") < 0) {
+			$("#"+$("#back-side-model-name").val()).css("pointer-events","all");
+		}
+	}
+	$("#required-element").val("");
+	$("#back-side-model-name").val("");
+});
+</script>
+
+<div id="popup-cancelRequestInspection" class="modal fade pulldown-show disable-pointers" tabindex="-10" role="dialog" aria-label="Cancel Request Inspection Model" aria-modal="true" style="display: none;">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header popup-modal-header">       
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;"><hicons-alert><span class="hicons-red"><i class="icon-info-sign"></i></span></hicons-alert></td>
+						<td style="padding-left: 10px;" class="popup-font">
+							Are your sure you want to cancel this inspection? 
+						</td>
+					</tr>
+				</tbody></table>					
+			</div>
+			<div class="modal-footer footer-border">
+			<div class="col-xs-6 text-right">
+		        <div class="previous" id="cancelRequestInspectionButton"></div>
+		    </div>
+		    <div class="col-xs-6 text-left">   
+		        <div class="next">
+		          <button type="button" class="btn btn-default btn-sm popup-btn" data-dismiss="modal">No</button>
+		        </div>
+		    </div>							
+			</div>
+		</div>
+	</div>
+</div>
+<div id="savingConditionsModal" class="modal fade pulldown-show disable-pointers" style="z-index: 2050;" role="dialog" aria-label="Saving Conditions Modal" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;" align="right"></td>
+						<td style="padding-left: 10px;" class="popup-font" id="savingConditionsModalBody"></td>
+					</tr>
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" class="btn btn-default btn-sm popup-btn center-block" data-dismiss="modal" id="savingConditionsModalBtn">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$("#savingConditionsModal").on('hidden.bs.modal',function(){
+	showModelFlag = true;
+});
+function openSavingConditionsModal(message, clickFunction) {
+	showModelFlag = false;
+	$("#savingConditionsModalBody").html(message);
+	$("#savingConditionsModalBtn").attr("onclick",clickFunction);
+	$("#savingConditionsModal").modal({
+		show: true
+	});
+}
+
+let modalQueue = [];
+let isModalShowing = false;
+
+function queueModal(message, clickFunction) {
+    modalQueue.push({ message, clickFunction });
+
+    if (!isModalShowing) {
+        showNextModal();
+    }
+}
+
+function showNextModal() {
+    if (modalQueue.length === 0) {
+        isModalShowing = false;
+        return;
+    }
+
+    isModalShowing = true;
+    const { message, clickFunction } = modalQueue[0];
+
+    window.wrappedClick = function () {
+        if (clickFunction && typeof window[clickFunction] === "function") {
+            window[clickFunction]();
+        }
+
+        modalQueue.shift();
+
+        $("#savingConditionsModal").modal("hide");
+
+        $("#savingConditionsModal").one("hidden.bs.modal", function () {
+            showNextModal();
+        });
+    };
+
+    openSavingConditionsModal(message, "wrappedClick()");
+}
+
+</script>
+<div id="signModal" class="modal fade" role="dialog" aria-label="Sign Modal" aria-modal="true" style="z-index: 2049;">
+	<div class="modal-dialog modal-sm" style="width:95%">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+				</div>
+			<div class="modal-body">
+				<div id="signModalBody">
+					<div style="display: none;">
+						<form action="" name="signForm" id="signForm">
+							<input type="hidden" name="Action" id="Action" value="">
+							<input type="hidden" name="customElementID" id="customElementID" value="">
+							<input type="hidden" name="cutCustomElementID" id="cutCustomElementID" value="">
+							<input type="hidden" name="type" id="type" value="">
+							<input type="hidden" name="rowNum" id="rowNum" value="">
+							<input type="hidden" name="workorderID" id="workorderID" value="">
+							<input type="hidden" name="typeOfCustomField" id="typeOfCustomField" value="">
+							<input type="hidden" name="signImageData" id="signImageData" value="">
+							<input type="hidden" name="src" id="src" value="">
+						</form>
+					</div>
+					<div id="canvasMainDiv" class="row" style="margin-left: 0px; margin-right: 0px;">
+						<div class="col-xs-1 color-11" style="white-space: nowrap;padding-left: 0px;">
+							Sign Here:
+						</div>
+						<div class="col-xs-11" id="canvasDiv">
+							<canvas id="signCanvas" width="550" height="96" style="border:1px solid;color:#000000"></canvas>
+						</div>
+						<div style="display: none;">
+							<canvas id="copySignCanvas" width="228" height="96" style="border:1px solid;background: #ffffff;"></canvas>
+						</div>
+					</div>
+					<div style="display: none;" id="signContentBodyDiv"></div>
+				</div>
+			</div>
+			<div class="modal-footer footer-border">
+				<div class="col-xs-4">
+			        <div class="previous">
+			        	<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="saveSign();">Save</button>
+			        </div>
+			    </div>
+			    <div class="col-xs-4">
+			        <div class="middle">
+			        	<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="clearSign();">Clear</button>
+			        </div>
+			    </div>
+			    <div class="col-xs-4">
+			        <div class="next">
+			        	<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="clearSign();" data-dismiss="modal">Cancel</button>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var signCanvasEle;
+var bodyElement = document.body;
+var htmlElement = document.documentElement;
+var width = Math.max( bodyElement.scrollWidth, bodyElement.offsetWidth, 
+		htmlElement.clientWidth, htmlElement.scrollWidth, htmlElement.offsetWidth );
+width = ((width * 0.9)-120);
+var scrollPos = 0;
+$("#signModal").on('shown.bs.modal',function(){
+	
+	$("#canvasMainDiv").show();
+	document.getElementById("signCanvas").width = width;
+	document.getElementById("signCanvas").height = width/3;
+	initForSignatureModal();
+	
+});
+$("#signModal").on('hidden.bs.modal',function(){
+	
+	
+	var cstmEleID = $("#signForm #customElementID").val();
+	var type = $("#signForm #type").val();
+	var rowNum = $("#signForm #rowNum").val();
+	var cutCustomElementID =$("#signForm #cutCustomElementID").val();
+	
+	$("#signForm input[type='hidden']").each(function(){
+		$(this).val("");
+	});
+	$("#signForm").attr("action","");
+	$("#signModalHeader").html("");
+	$("#canvasMainDiv").show();
+	clearSign();
+	focusOnParticularDiv(type, rowNum,cstmEleID,cutCustomElementID);
+});
+
+function initForSignatureModal() {
+	if(typeof signCanvasEle === 'undefined') {
+		signCanvasEle = new signFabric.Canvas('signCanvas');
+	}
+	signCanvasEle.isDrawingMode = true;
+	signCanvasEle.freeDrawingBrush.width = 4;
+	signCanvasEle.freeDrawingBrush.color = "#0000ff";
+	signCanvasEle.setBackgroundColor('#ffffff', signCanvasEle.renderAll.bind(signCanvasEle));
+	width = Math.max( bodyElement.scrollWidth, bodyElement.offsetWidth, 
+			htmlElement.clientWidth, htmlElement.scrollWidth, htmlElement.offsetWidth );
+	width = ((width * 0.9)-120);
+	signCanvasEle.setWidth(width);
+			
+		signCanvasEle.setHeight(width/3);
+		signCanvasEle.renderAll();
+	
+}
+
+function setTimeForSignature(){	
+	signCanvasEle.calcOffset();	
+	signCanvasEle.setWidth(width);
+	signCanvasEle.renderAll();
+}
+
+function clearSign() {
+	signCanvasEle.clear();
+}
+</script>
+
+
+<div id="sketchModal" class="modal fade" role="dialog" aria-label="Sketch Modal" aria-modal="true" style="z-index: 2049;">
+	<div class="modal-dialog modal-sm" style="width:88%;">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+				</div>
+			<div class="modal-body">
+				<div id="sketchModalBody" class="full-pull-height">
+					<div style="display: none;">
+						<form action="" name="sketchForm" id="sketchForm">
+							<input type="hidden" name="Action" id="Action" value="">
+							<input type="hidden" name="customElementID" id="customElementID" value="">
+							<input type="hidden" name="cutCustomElementID" id="cutCustomElementID" value="">
+							<input type="hidden" name="type" id="type" value="">
+							<input type="hidden" name="rowNum" id="rowNum" value="">
+							<input type="hidden" name="workorderID" id="workorderID" value="">
+							<input type="hidden" name="typeOfCustomField" id="typeOfCustomField" value="">
+							<input type="hidden" name="sketchImageData" id="sketchImageData" value="">
+							<input type="hidden" name="src" id="src" value="">
+						</form>
+					</div>
+					<div id="sketchMainDiv">
+						<div class="col-xs-1 color-11" style="white-space: nowrap;padding-left: 0px;">
+							Draw Here:
+						</div>
+						<div class="col-xs-11" id="canvasDiv">
+							<canvas id="sketchCanvas" width="550" height="96" style="border:1px solid;color:#000000"></canvas>
+						</div>
+					</div>
+					<div style="display: none;" id="sketchContentBodyDiv">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer footer-border">
+				<div class="col-xs-4">
+			        <div class="previous">
+			        	<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="saveSketch();">Save</button>
+			        </div>
+			    </div>
+			    <div class="col-xs-4">
+			        <div class="middle">
+			        	<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="clearSketch();">Clear</button>
+			        </div>
+			    </div>
+			    <div class="col-xs-4">
+			        <div class="next">
+			        	<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="clearSketch();" data-dismiss="modal">Cancel</button>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var sketchCanvasEle;
+var bodyEle = document.body;
+var htmlEle = document.documentElement;
+var modWidth = Math.max( bodyEle.scrollWidth, bodyEle.offsetWidth, 
+		htmlEle.clientWidth, htmlEle.scrollWidth, htmlEle.offsetWidth );
+modWidth = ((modWidth * 0.8)-110);
+var scrollPosition = 0;
+$("#sketchModal").on('shown.bs.modal',function(){
+	
+	$("#sketchCanvasTable").show();
+	document.getElementById("sketchCanvas").width = modWidth;
+	document.getElementById("sketchCanvas").height = modWidth/2;
+	initForSketchModal();
+});
+$("#sketchModal").on('hidden.bs.modal',function(){
+	
+	var cstmEleID = $("#sketchForm #customElementID").val();
+	var type = $("#sketchForm #type").val();
+	var rowNum = $("#sketchForm #rowNum").val();
+	var cutCustomElementID =$("#sketchForm #cutCustomElementID").val();
+	$("#sketchForm input[type='hidden']").each(function(){
+		$(this).val("");
+	});
+	$("#sketchForm").attr("action","");
+	$("#skecthModalHeader").html("");
+	$("#sketchMainDiv").show();
+	clearSketch();
+	focusOnParticularDiv(type, rowNum,cstmEleID,cutCustomElementID);
+});
+
+function initForSketchModal() {
+	if(typeof sketchCanvasEle === 'undefined') {
+		sketchCanvasEle = new fabric.Canvas('sketchCanvas');
+	}
+	sketchCanvasEle.isDrawingMode = true;
+	sketchCanvasEle.freeDrawingBrush.width = 4;
+	sketchCanvasEle.freeDrawingBrush.color = "#0000ff";
+	sketchCanvasEle.setBackgroundColor('#ffffff', sketchCanvasEle.renderAll.bind(sketchCanvasEle));
+	modWidth = Math.max( bodyEle.scrollWidth, bodyEle.offsetWidth, 
+			htmlEle.clientWidth, htmlEle.scrollWidth, htmlEle.offsetWidth );
+	modWidth = ((modWidth * 0.8)-110);
+	sketchCanvasEle.setWidth(modWidth);
+	 		
+		sketchCanvasEle.setHeight(modWidth/2);
+		sketchCanvasEle.renderAll();
+			
+}
+
+function setTime(){	
+	sketchCanvasEle.calcOffset();	
+	sketchCanvasEle.setWidth(modWidth);
+	sketchCanvasEle.renderAll();
+}
+
+function clearSketch() {
+	sketchCanvasEle.clear();
+}
+function checkBackForward(url) {
+	if(performance && performance.navigation && performance.navigation.type == 2) { // checking Back Button is pressed
+		openURLLink(url);
+	}
+}
+</script>
+
+
+<div id="street-api-AddressModal" class="modal fade pulldown-show disable-pointers" tabindex="-10" role="dialog" aria-labelledby="street-api-AddressModalHeader" aria-modal="true" style="display: none;z-index: 2500;">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header color-11-b">
+                 Address Details: <span class="text-capitalize" id="street-api-AddressModalHeader"></span>
+			</div>
+			<div id="street-api-AddressModalBody" class="modal-body">
+				<table class="table table-condensed" style="width: 100%;margin-top: 0px; margin-bottom: 0px;">
+					<tbody>
+						<tr id="street1APIDIV">
+						    <td class="color-11-b" style="width: 30%;">
+						        <label for="street1FromAPI">Address1:</label>
+						    </td>
+						    <td class="color-11" style="width: 70%;">
+						        <input type="text" name="street1FromAPI" id="street1FromAPI" class="color-11" style="width: 90%; height: 20px; line-height: 20px;" value="" readonly="" aria-readonly="true" aria-label="Address line 1 from API" tabindex="-1">
+						    </td>
+						</tr>
+						<tr id="street2APIDIV">
+						    <td class="color-11-b" style="width: 30%;">
+						        <label for="street2FromAPI">Address2:</label>
+						    </td>
+						    <td class="color-11" style="width: 70%;">
+						        <input type="text" name="street2FromAPI" id="street2FromAPI" class="color-11" style="width: 90%; height: 20px; line-height: 20px;" value="" readonly="" aria-readonly="true" aria-label="Address line 2 from API" tabindex="-1">
+						    </td>
+						</tr>
+						<tr id="cityAPIDIV">
+						    <td class="color-11-b" style="width: 30%;">
+						        <label for="cityFromAPI">City:</label>
+						    </td>
+						    <td class="color-11" style="width: 70%;">
+						        <input type="text" name="cityFromAPI" id="cityFromAPI" class="color-11" style="width: 90%; height: 20px; line-height: 20px;" value="" readonly="" aria-readonly="true" aria-label="City from API" tabindex="-1">
+						    </td>
+						</tr>
+						<tr id="stateAPIDIV">
+						    <td class="color-11-b" style="width: 30%;">
+						        <label for="stateFromAPI">State:</label>
+						    </td>
+						    <td class="color-11" style="width: 70%;">
+						        <input type="text" name="stateFromAPI" id="stateFromAPI" class="color-11" style="width: 90%; height: 20px; line-height: 20px;" value="" readonly="" aria-readonly="true" aria-label="State from API" tabindex="-1">
+						    </td>
+						</tr>
+						<tr id="zipAPIDIV">
+						    <td class="color-11-b" style="width: 30%;">
+						        <label for="zipFromAPI">Zip:</label>
+						    </td>
+						    <td class="color-11" style="width: 70%;">
+						        <input type="text" name="zipFromAPI" id="zipFromAPI" class="color-11" style="width: 90%; height: 20px; line-height: 20px;" value="" readonly="" aria-readonly="true" aria-label="Zip code from API" tabindex="-1">
+						    </td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="street-api-responseTXT" style="margin:10px;font-size: 15px;color: blue;">
+				</div>
+			</div>
+			<div class="modal-footer footer-border" id="street-api-AddressModalFooter">
+				<div class="col-xs-6">
+					<button type="button" id="updateSteetAPIAddress" class=" btn btn-default btn-sm popup-btn center-block" onclick="updateStreetAPIAddress('home');">Update</button>
+				</div>
+				<div class="col-xs-6">			
+					<button type="button" id="cancelSteetAPIAddress" class="btn btn-default btn-sm popup-btn center-block" onclick="cancelStreetAPIAddress('home');">Cancel</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$("#street-api-AddressModal").on('hidden.bs.modal',function(){
+	$("#street-api-responseTXT").val("");
+});
+</script>
+<div id="street-api-AlertModal" class="modal fade pulldown-show disable-pointers" tabindex="-10" role="dialog" aria-labelledby="street-api-AlertModalHeader" aria-modal="true" style="display: none;z-index: 2500;">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header popup-modal-header color-11-b">   
+                 Address Details: <span class="text-capitalize" id="street-api-AlertModalHeader"></span>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody>
+					<tr>
+						<td style="padding-left: 10px;" align="right"><hicons-alert><i class="icon-info-sign"></i></hicons-alert></td>
+						<td style="padding-left: 10px;" class="popup-font" id="streetAPIAlertBody">
+							
+						</td>
+					</tr>
+				</tbody></table>					
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" id="steetAPIAlertOK" class="btn btn-default btn-sm popup-btn center-block" onclick="invalidStreetAPIAddress('home');">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="pulldown-requiredmydiv" class="modal fade pulldown-show disable-pointers" style="z-index: 2050;" role="dialog" aria-label="Required My Div Model" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal" style="width: 50%;">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;" align="right" id="infoIcon"><hicons-blue-h2>
+							<i class="icon-info-sign"></i></hicons-blue-h2></td>
+						<td style="padding-left: 10px;" class="popup-font" id="pulldown-requiredmydiv-body"></td>
+					</tr>
+					<tr>
+						<td style="padding-left: 10px;"></td>
+						<td style="padding-left: 10px;">
+							<a href="HowPublicAccountDifferentFromAnonymous.pdf" target="_blank" class="link" style="text-align:center;color:#4D70CF;">How is a public account different from an anonymous account?</a>
+						</td>
+					</tr>
+				</tbody></table>
+				<input type="hidden" name="required-element" id="required-element" value="">
+				<input type="hidden" name="back-side-model-name" id="back-side-model-name" value="">
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="changeContactType();">Yes, make my account public</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">No, keep my account anonymous</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="forgotPassword" class="modal fade pulldown-show disable-pointers" role="dialog" aria-label="Forgot Password Model" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<table class="table table-condensed" style="margin-bottom: 0px;">
+						<tbody><tr>
+							<td style="padding-left: 10px;" align="right"><hicons-red-h2>
+								<i class="icon-info-sign"></i></hicons-red-h2></td>
+							<td style="padding-left: 10px;" class="popup-font">Enter
+								your email address below to have your username sent to you.</td>
+						</tr>
+					</tbody></table>
+				</div>
+				<table class="table">
+					<tbody><tr>
+					    <td class="color-11-label" style="white-space: nowrap;">
+					        <label for="ForgotEmail">Email Address:</label>
+					    </td>
+					    <td>
+					        <input type="email" name="ForgotEmail" id="ForgotEmail" class="form-control" aria-required="true" autocomplete="email" style="width: 90%;">
+					    </td>
+					</tr>
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border">
+				<button type="button" class="btn btn-default btn-sm popup-btn center-block" onclick="checkEmailAddress();">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$("#street-api-AlertModal").on('hidden.bs.modal',function(){
+});
+
+//Implemention of CUT Refresh CDR
+function refreshforCDRCustomFields(subType, cutHiddenRowsArr, selectedCUTable, selCusEleID, selectedRow, selectedContact, divLabel, fileFieldType){
+	var cutID;
+	var noOFRows;
+	var reqValFlag = false;
+	var dataRow;
+	var selectedVal;
+	var selectedVal_2;
+	var tempRows;
+	var tempSeleRows;
+	
+	for (var a = 1; a <= $("div[id^="+fileFieldType+"CUT_]").length; a++) {
+		cutID = ($("div[id^="+fileFieldType+"CUT_]")[a-1].id).split("_")[1];
+		if(cutHiddenRowsArr != null && cutHiddenRowsArr.length > 0){
+			for (var k = 0; k < cutHiddenRowsArr.length; k++) {
+				var tempArr = cutHiddenRowsArr[k].split('_');
+				if(tempArr[1] == cutID){
+					tempRows = tempArr[0];
+	    		}
+				if(tempArr[1] == selectedCUTable){
+					tempSeleRows = tempArr[0];
+	    		}
+			}
+		}
+		if(tempRows != '' && tempRows != undefined){
+			noOFRows = tempRows;
+		} else {
+			noOFRows = $("#rowNum_"+subType+"_"+cutID).val();
+	    }
+		for (var b = 1; b <= noOFRows; b++) {
+			reqValFlag = false;
+			$("#TR_"+subType+"_"+cutID+"_"+b).find('select, textarea, input').each(function() {
+				cutEleName = this.name;
+				if(!reqValFlag && ((cutEleName.indexOf("CDR@@@")>=0))){
+					var tempVar = this.value;
+					var splitName = cutEleName.split("@@@");
+					// replace HTML tags with empty
+					var re = /<\S[^><]*>/g;
+					splitName[1] = splitName[1].replace(re, "");
+					var fieldtype = splitName[0].substring(1);
+					if(tempVar != undefined){
+						var splitTempVar = tempVar.split("_");
+						selCusEleID = splitTempVar[2];
+					}
+					if(fieldtype == "CDR"){
+						if($("#"+divLabel+ " #"+tempVar).html() != undefined){
+							$("#cutHiddenDataDiv #"+tempVar).html($("#"+divLabel+ " #"+tempVar).html());
+							dataRow = tempVar;
+						} else if($("#"+divLabel+ " #"+tempVar).html() == undefined){
+							var tempNotMatch = fileFieldType+"_"+selectedRow+"_"+selCusEleID+"_"+selectedCUTable;
+						    var selectedOptn= $("#cutHiddenDataDiv #"+tempVar).find(":selected").val();
+						    if(selectedOptn != '' && selectedOptn != undefined){
+						    	var splitVal = selectedOptn.split(":::");
+						    	 if(splitVal[1] != -999){
+						    		 selectedVal = splitVal[1];
+						    	 } else {
+						    		 selectedVal = selectedOptn;
+						    	 }
+							}
+						    if(tempVar == tempNotMatch){
+						    	 selectedVal = selectedContact;
+							}
+						    if(dataRow == undefined){
+								dataRow	= fileFieldType+"_"+tempSeleRows+"_"+selCusEleID+"_"+selectedCUTable;
+							}
+						if(dataRow != '' && dataRow != undefined){
+							$("#cutHiddenDataDiv #"+tempVar).html($("#"+divLabel+ " #"+dataRow).html());
+							$("#cutHiddenDataDiv #"+tempVar).find('option').each(function(){
+								$(this).removeAttr('selected');
+						    });
+						    $("#cutHiddenDataDiv #"+tempVar).find('option').each(function(){
+						    	var selectedOptn_2 = $(this).val();
+								if(selectedOptn_2 != '' && selectedOptn_2 != undefined && selectedOptn_2 != 'createNew'){
+									var splitVal_2 = selectedOptn_2.split(":::");
+									selectedVal_2 = splitVal_2[1];
+									if(selectedVal_2 == selectedVal){
+										$(this).attr('selected', 'selected');
+									} else if (selectedOptn_2 == selectedVal && selectedVal != '' && selectedVal != 'createNew'){
+										$(this).attr('selected', 'selected');
+									}
+								}
+						    });
+						    selectedVal = '';
+	    				}
+					 }
+				   } 
+				}
+			});
+		}
+	}
+}
+
+function changeContactType() {
+	openURLLink('/Portal/PortalController?Action=showRegistationPage&UpdateInformation=True&ctzPagePrefix=Portal_&installationID='+383+'&fromAnonymous=true'+'&fileType='+fileType+'&original_contactID='+0);		
+}
+
+function checkEmailExistsForAnonymous() {
+	var email = document.getElementById("anonymousEmail").value;
+	var userName = "";
+	var isUpdate = true;
+	var contactId = 0;
+	if (email != "") {
+			var url = "PortalController?Action=checkEmailExists&email=" + email + "&isUpdate=" + isUpdate 
+				+ "&contactID=" + contactId + "&bustcache="+new Date().getTime();
+			$.ajax({
+		        url: url, 
+				success: function(result){
+					if(result != "No Records Found") {
+						$("#anonymousemailMsg").html("<hicons-red> <i class=\"icon-remove-sign\"></i></hicons-red>" +
+						"<font class=\"color-11\"> I'm sorry, " + result + " already in our system, please enter a different email address or login with your existing account.</font><br/>" +
+		        		"<a href=\"javascript:showForgotPasswordPopUp();\" class=\"link\">" +
+						"Forgot your username</a>");
+		            } else {
+		            	$("#anonymousemailMsg").html("<hicons-green> <i class=\"icon-ok-sign\"></i></hicons-green>" +
+		        			"<font class=\"color-11\"> Your email address is accepted.</font>");
+					}
+		    	}
+		});
+	} else {
+		$("#anonymousemailMsg").html("");
+	}
+}
+
+var enteredconfirmAnonymousEmail = false;
+function enteredconfirmEmail(){
+	enteredconfirmAnonymousEmail = true;
+}
+function validateConfirmEmailForAnonymous(){
+	if(enteredconfirmAnonymousEmail){
+	 	if ($("#anonymousEmail").val() == "" && $("#confirmAnonymousEmail").val() == ""){
+			$("#confirmAnonymousEmailValid").html("");
+			return true;
+		} else if ($("#confirmAnonymousEmail").val() != "" && $("#anonymousEmail").val() != $("#confirmAnonymousEmail").val()) {
+		    $("#confirmAnonymousEmailValid").html("<hicons-red><i class='icon-remove-sign'></i></hicons-red><font class='color-11'> The email addresses entered do not match.</font>");
+		    $("#confirmAnonymousEmailValid").focus();			
+		    return false;
+		} else if ($("#anonymousEmail").val() == $("#confirmAnonymousEmail").val()){
+	     	$("#confirmAnonymousEmailValid").html("<hicons-green> <i class='icon-ok-sign'></i></hicons-green><font class='color-11'> Your email address is accepted. </font>");
+	     	return true;
+	    } else {
+			return true;
+		}
+	} else {
+		return true;
+	}	
+}
+
+function showForgotPasswordPopUp() {
+	$("#forgotPassword").modal({
+		show : true
+	});
+	
+		$("#ForgotEmail").val($("#Email").val());
+	
+
+}
+
+function checkEmailAddress() {
+	$("html,body").css("cursor","wait");
+	var forgotEmail = "";
+	var isforgetModel = false;
+	var fieldId = "";
+	var modelName = "";
+	if($("#forgetWhich") != undefined && $("#forgetWhich") != null && $("#forgetWhich").val() == "1"){
+		forgotEmail = document.getElementById("forgetParam").value;
+		isforgetModel = true;
+		fieldId = "forgetParam";
+		modelName = "forgetModel";
+	} else {
+		forgotEmail = document.getElementById("ForgotEmail").value;
+		fieldId = "ForgotEmail";
+		modelName = "forgotPassword";
+	}
+	var url = "PortalController?Action=checkEmailAddress";
+	if(isforgetModel){
+		url += "&fromPage=login";
+	}
+	url += "&forgotEmailAddress="+ encodeURIComponent(forgotEmail) +"&bustcache="+new Date().getTime();
+	$.ajax({
+		url : url,
+		success : function(result) {
+			var count = parseInt(result);
+			if (count == -1) {
+				if(isforgetModel){
+					$("#forgetModel").modal('hide');
+				} else {
+					$("#forgotPassword").modal('hide');
+				}
+				customAlertPopUpRequired("","Something went wrong while sending the email, "
+						+ "Please contact your municipality for more information.");
+			} else if (count == 0) {
+				// modified the code to fix the PEN test case #9 of bug#256869
+				if(isforgetModel){
+					$("#forgetModel").modal('hide');
+				} else {
+					$("#forgotPassword").modal('hide');
+				}
+				customAlertPopUpRequired("","Your username has been emailed to you.");
+			} else if (count < 50) {
+				if(isforgetModel){
+					$("#forgetModel").modal('hide');
+				} else {
+					$("#forgotPassword").modal('hide');
+				}
+				customAlertPopUpRequired("","Your username has been emailed to you.");
+			} else if (count >= 50) {
+				customAlertPopUpFromModelRequired(fieldId,"The email address you entered is tied to multiple accounts, "
+						+ "please try another email address or contact your municipality to determine "
+						+ "your account information.",modelName);
+			}
+			$("html,body").css("cursor","default");
+		}
+	});
+}
+function trimStr(str) {
+	return str.replace(/^\s*|\s*$/g,"");
+}
+
+function evaluateMathExpr(str, flag) {
+	var url;
+	url ="/Portal/PortalAjaxController?Action=evaluateMathExpr&MathExpr="+str+"&flag="+
+	flag+"&bustcache="+new Date().getTime();
+	var errorStr = "";
+	var requester = getRequester();
+	requester.open("POST", url,false); 
+	requester.send(null);
+	if (requester.readyState == 4) {
+		if (requester.status == 200) {
+			var responseString =  requester.responseText;
+			var splitStr = responseString.split("@@@");
+			errorStr = splitStr[0];
+		}
+	}
+	return errorStr;
+}
+</script>
+
+<div id="popup-deleteAttachedDocument" class="modal fade pulldown-show disable-pointers" tabindex="-10" role="dialog" aria-label="Delete Attached Document Model" aria-modal="true" style="z-index: 2500;display: none;">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header popup-modal-header">       
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			</div>
+			<div class="modal-body">
+				<div style="display: none;">
+					<form action="" name="deleteAttachedDocumentForm" id="deleteAttachedDocumentForm">
+						<input type="hidden" name="Action" id="Action" value="">
+						<input type="hidden" name="customElementID" id="customElementID" value="">
+						<input type="hidden" name="cutCustomElementID" id="cutCustomElementID" value="">
+						<input type="hidden" name="type" id="type" value="">
+						<input type="hidden" name="rowNum" id="rowNum" value="">
+					</form>
+				</div>
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;"><hicons-alert><span class="hicons-red"><i class="icon-info-sign"></i></span></hicons-alert></td>
+						<td style="padding-left: 10px;" class="popup-font">
+							Are you sure you want to delete this document?
+						</td>
+					</tr>
+				</tbody></table>					
+			</div>
+			<div class="modal-footer footer-border">
+			<div class="col-xs-6 text-right">
+		        <div class="previous" id="deleteAttachedDocumentButton"></div>
+		    </div>
+		    <div class="col-xs-6 text-left">   
+		        <div class="next">
+		          <button type="button" class="btn btn-default btn-sm popup-btn" data-dismiss="modal">No</button>
+		        </div>
+		    </div>							
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="validateMultipleEmail" class="modal fade pulldown-show disable-pointers" tabindex="-1" role="dialog" aria-labelledby="validateMultipleEmailTitle" aria-modal="true">
+	<div class="modal-dialog modal-sm popup-modal">
+		<div class="modal-content enable-pointers">
+			<div class="modal-header">
+			<h2 id="validateMultipleEmailTitle" class="modal-title" style="display: none;">Validate Multiple Email</h2>
+			</div>
+			<div class="modal-body ">
+				<table class="table table-condensed" style="margin-bottom: 0px;">
+					<tbody><tr>
+						<td style="padding-left: 10px;"><hicons-alert><span class="hicons-red"><i class="icon-info-sign"></i></span></hicons-alert></td>
+						<td style="padding-left: 10px;" class="popup-font" id="validateEmailModelBody">
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+			<div class="modal-footer footer-border">
+					<button type="button" class="btn btn-default btn-sm popup-btn" data-dismiss="modal" onclick="focusOnCloseModel();">OK</button>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$("#popup-deleteAttachedDocument").on('hidden.bs.modal',function(){
+	
+	var cstmEleID = $("#deleteAttachedDocumentForm #customElementID").val();
+	var type = $("#deleteAttachedDocumentForm #type").val();
+	var rowNum = $("#deleteAttachedDocumentForm #rowNum").val();
+	var cutCustomElementID =$("#deleteAttachedDocumentForm #cutCustomElementID").val();
+	
+	$("#deleteAttachedDocumentForm input[type='hidden']").each(function(){
+		$(this).val("");
+	});
+	$("#deleteAttachedDocumentForm").attr("action","");
+	focusOnParticularDiv(type, rowNum,cstmEleID,cutCustomElementID);
+});
+
+let usernameManuallyEdited = false;
+
+// When email is updated
+$('#emailAddressModal #contactEmailAddress').on('change', function() {
+	if(false) {
+	    const emailValue = $(this).val();	
+	    if (!usernameManuallyEdited) {
+	        $('#emailAddressModal #updateContact_userName').val(emailValue);
+	    }
+	}
+});
+
+// Detect if username is manually edited
+$('#emailAddressModal #updateContact_userName').on('input', function() {
+    if ($(this).val() !== $('#emailAddressModal #contactEmailAddress').val()) {
+        usernameManuallyEdited = true;
+    }
+});
+
+// Reset the flag if the username is cleared
+$('#emailAddressModal #updateContact_userName').on('change', function() {
+    if ($(this).val() === '') {
+        usernameManuallyEdited = false;
+        $('#emailAddressModal #updateContact_userName').val($('#emailAddressModal #contactEmailAddress').val());
+    }
+});
+
+var enteredcnfrmPassword = false;
+var popupcnfPassFlag = false;
+
+function enterdcnfrmPassword(){
+	enteredcnfrmPassword = true;
+}
+function validateConfirmPassword(){
+	if(enteredcnfrmPassword){
+	 	if ($("#emailAddressModal #updateContact_newPassword").val() == "" && $("#cnfpassword").val() == ""){
+			$("#confirmPasswordMsg").html("");
+			popupcnfPassFlag = false;
+		} else if ($("#cnfpassword").val() != "" && $("#emailAddressModal #updateContact_newPassword").val() != "" && ($("#emailAddressModal #updateContact_newPassword").val() != $("#cnfpassword").val())) {
+		    $("#confirmPasswordMsg").html("<hicons-red><i class='icon-remove-sign'></i></hicons-red><font class='color-11'> Your passwords do not match. </font>");
+		    $("#cnfpassword").focus();			
+		    popupcnfPassFlag = false;
+		} else if ($("#emailAddressModal #updateContact_newPassword").val() == $("#cnfpassword").val()){
+	     	$("#confirmPasswordMsg").html("<hicons-green> <i class='icon-ok-sign'></i></hicons-green><font class='color-11'> Your passwords match. </font>");
+	     	popupcnfPassFlag = true;
+	    } else if(($("#cnfpassword").val() == "" || $("#emailAddressModal #updateContact_newPassword").val() == "") && ($("#emailAddressModal #updateContact_newPassword").val() != $("#cnfpassword").val())){
+	    	$("#confirmPasswordMsg").html("<hicons-red><i class='icon-remove-sign'></i></hicons-red><font class='color-11'> Your passwords do not match. </font>");
+			$("#cnfpassword").focus();			
+			popupcnfPassFlag = false;
+		}
+	}
+}
+
+function reloadLicenseRenewalPage(){
+	if (window.location.href.indexOf('showLicenseRenewalPage') > -1 ||
+			window.location.href.indexOf('viewRenewalLicenses') > -1) {
+        window.location.reload();
+    } else {
+		
+    }
+    
+}
+
+function validateMultipleEmail() {
+	var inputString = $.trim($("#Email").val());
+	if (inputString.includes(',') || inputString.includes(':') || inputString.includes('/')) {
+		$("#validateEmailModelBody").html('Please enter multiple email addresses separated by semicolon (;).');
+		$("#validateMultipleEmail").modal({
+			show:true
+	    });
+    }
+}
+
+function focusOnCloseModel() {
+	$("#validateMultipleEmail").css("display", "none");
+	// Remove modal backdrop
+    $('.modal-backdrop').remove();
+	$("#frm_citizenRegister #Email").focus();
+}
+
+(function () {
+    var modalTrigger = null;
+
+    $(document).on('click keydown', function (e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+
+        var target = $(e.target);
+
+        if (
+            target.is('[data-toggle="modal"]') ||
+            target.is('[data-target]') ||
+            target.closest('[data-toggle="modal"]').length ||
+            target.closest('[data-target]').length
+        ) {
+            modalTrigger = e.target;
+        }
+    });
+
+    $(document).on('show.bs.modal', '.modal', function () {
+        if (!modalTrigger) {
+            modalTrigger = document.activeElement;
+        }
+        
+        $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+    });
+
+    $(document).on('shown.bs.modal', '.modal', function () {
+        var modal = $(this);
+
+        modal.find('.close').attr('tabindex', 0);
+
+        function getFocusable() {
+            return modal.find(
+                'a[href]:visible, button:not([disabled]):visible, ' +
+                'textarea:visible, input:not([type="hidden"]):visible, ' +
+                'select:visible, [tabindex]:not([tabindex="-1"]):visible'
+            )
+            .add(modal.find('.close:visible'))
+            .filter(function () {
+                return $(this).is(':visible') && !$(this).prop('disabled');
+            });
+        }
+
+        var focusable = getFocusable();
+        if (!focusable.length) return;
+
+        var firstInput  = focusable.filter('input:visible, textarea:visible, select:visible').first();
+        var firstButton = focusable.not('.close').filter('button:visible, a[href]:visible, [role="button"]:visible').first();
+        var first       = firstInput.length ? firstInput : (firstButton.length ? firstButton : focusable.first());
+
+        setTimeout(function () { first.focus(); }, 200);
+
+        modal.off('keydown.modalFocusTrap').on('keydown.modalFocusTrap', function (e) {
+            if (e.key !== 'Tab') return;
+
+            var current = getFocusable();
+            if (!current.length) return;
+
+            var currentFirst = current.first();
+            var currentLast  = current.last();
+
+            if (e.shiftKey) {
+                if (document.activeElement === currentFirst[0]) {
+                    e.preventDefault();
+                    currentLast.focus();
+                }
+            } else {
+                if (document.activeElement === currentLast[0]) {
+                    e.preventDefault();
+                    currentFirst.focus();
+                }
+            }
+        });
+    });
+
+    $(document).on('hidden.bs.modal', '.modal', function () {
+        $(this).off('keydown.modalFocusTrap');
+        var otherModalsOpen = $('.modal.in, .modal.show').length > 0;
+        if (!otherModalsOpen) {
+            if ($(this).attr('id') === 'pulldown-required') {
+                var requiredElementId = $('#required-element').val();
+                if (requiredElementId && requiredElementId.trim() !== '') {
+                    var requiredField = $('#' + requiredElementId);
+                    if (requiredField.length) {
+                        setTimeout(function () {
+                            requiredField.focus();
+                        }, 200);
+                    }
+                }
+                modalTrigger = null;
+            } else {
+                if (modalTrigger) {
+                    $(modalTrigger).focus();
+                    modalTrigger = null;
+                }
+            }
+        }
+    });
+
+})();
+
+</script>
+<!--==============================header end=================================-->
+		
+
+
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LeKdrMZAAAAAHhaf46zpFeRsB-VLv8kRAqKVrEW"></script>
+
+<!--==============================content start=================================-->
+<main>
+	<div id="content">
+		<div class="container">
+			<div class="row">
+				<h1 class="page-heading"><hicons-blue-h2><i class="icon-search"></i></hicons-blue-h2>Search</h1>
+				<ol class="myheader">
+    <li>Home</li>
+    <li aria-current="page">Search</li>
+</ol>
+		        <div class="configspace-padded">
+		        	<form name="frm_PortalSearch" id="frm_PortalSearch" action="PortalController" method="post">
+		        		<input type="hidden" name="Action" id="Action" value="DisplayCasesNPagging">
+		        		<input type="hidden" name="uniqueID" value="ohzQ0yJD3e3zQu1W9J6YQATtV4yuOHwLbDtVV5cM">
+		        		<input type="hidden" name="searchPage" id="searchPage" value="">
+		        		<input type="hidden" name="StartIndex" id="StartIndex" value="0">
+		        		<input type="hidden" name="EndIndex" id="EndIndex" value="30">
+		        		<input type="hidden" id="StreetNumber" name="StreetNumber" value="">
+						<input type="hidden" id="PreDirection" name="PreDirection" value="">
+						<input type="hidden" id="StreetName" name="StreetName" value="">
+						<input type="hidden" id="StreetType" name="StreetType" value="">
+						<input type="hidden" id="PostDirection" name="PostDirection" value="">
+						
+						
+						<p class="text-info2">
+			     			</p><p><span style="font-size: 12pt;">Registration is not required to search.&nbsp; Start by selecting search type in the dropdown below, then enter various criteria to search for files in our system.&nbsp;&nbsp;</span></p>
+<p><br><span style="font-size: 12pt; color: #be4924;"><strong>IMPORTANT</strong> </span><span style="font-size: 12pt; color: #003745;">- When searching with an alternate key for the property, search by entering it in the Parcel # field.</span></p>
+						<p></p>
+				        <div class="row">
+				            <div class="col-md-2"></div>
+				            <div class="col-md-10"><font class="color-required">|</font><span style="color:#3f3f3f;">indicates a required field</span></div>
+				        </div>
+				        <div class="row">
+				            <div class="col-md-2"><font class="color-required">|</font>
+				            <label class="color-11-label" for="filetype">File Type:</label></div>
+				            <div class="col-md-9">
+				            	<select class="form-control" name="filetype" id="filetype" required="required" onchange="getSearchFieldsOnFileType();">
+				                    <option value="-999"></option>
+			                    
+				                    <option value="Permit">Permits</option>
+			                    
+			                    
+			                    
+				                    <option value="Development">Development Project</option>
+				             	
+			                    
+				                    <option value="Code">Code Complaints</option>
+			                    
+			                    
+				             	</select>
+				             </div>
+				             <div class="col-md-1"></div>
+						</div>
+						<div class="row" id="addressBar" style="display: none;">
+				            <div class="col-md-2">
+				            	<font class="color-notrequired">|</font><label class="color-11-label" for="address">Address:</label>
+				            </div>
+				            <div class="col-md-9">
+				            	<input type="text" class="form-control" name="address" id="address">
+				            </div>
+				            <div class="col-md-1">
+				               <span data-toggle="tooltip" title="" aria-label="Address info" role="button" tabindex="0" data-original-title="You can enter a full address or just a street name.">
+				               <hicons-blue-help><i class="icon-question-sign"></i></hicons-blue-help></span>
+				            </div>
+				        </div>
+				        <div class="row" id="parcelNumberBar" style="display: none;">
+				            <div class="col-md-2">
+				            	<font class="color-notrequired">|</font><label class="color-11-label" for="parcelNumber">Parcel #:</label>
+				            </div>
+				            <div class="col-md-9">
+				            	<input type="text" class="form-control" name="parcelNumber" id="parcelNumber">
+				            </div>
+				            <div class="col-md-1"></div>
+				        </div>
+				        <div id="SearchFieldsOnFileType"></div>
+		        	</form>
+			        <div class="row">
+			        	<div class="col-md-12" id="errorMsg"></div>
+			        </div>
+	           		<div class="row" id="submitRow">
+	            		<div class="col-md-2"></div>
+	            		<div class="col-md-3">
+	            			<button class="btn btn-default" onclick="validateAndSearch();">Submit</button>
+	            		</div>
+	          		</div>
+	          		<div class="row" id="waitRow" style="display: none;">
+	          			<div class="col-md-2"></div>
+	          			<div class="col-md-3">
+	          				<hicons-blue><i class="icon-refresh icon-spin" style="font-size: 35px;margin-top: 25px;"></i></hicons-blue>
+	          			</div>
+	          		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({
+	    container: 'body'
+	});
+});
+function getSearchFieldsOnFileType() {
+	var fileType = $("#filetype").val();
+	if (fileType == "-999") {
+		$("#SearchFieldsOnFileType").html("");
+		$("#address").val("");
+		$("#addressBar").hide();
+		$("#parcelNumber").val("");
+		$("#parcelNumberBar").hide();
+		$("#filetype").focus();
+	} else {
+		var url = "PortalAjaxController?Action=getSearchFieldsOnFileType&fileType="
+			+fileType+"&bustcache="+new Date().getTime();
+		$.ajax({
+			url: url,
+			success: function(data) {
+				if (data != "SessionExpired:::www6.citizenserve.com") {
+					$("#address").val("");
+					$("#addressBar").show();
+					$("#parcelNumber").val("");
+					$("#parcelNumberBar").show();
+					$("#SearchFieldsOnFileType").html(data);
+					showDatefromClassName("jqueryDate");
+					$('[data-toggle="tooltip"]').tooltip({
+					    container: 'body'
+					}); 
+					$("#address").focus();
+				} else {
+					var temp = data.split(":::");
+					window.location = "https://"+temp[1]+"/Portal/PortalController?Action=showLogin&installationID=383&ctzPagePrefix=Portal_";
+				}
+			}
+		});	
+	}
+}
+
+function onChangeOfPermitType(){
+	var permitType = $("#PermitType option:selected").val();
+	var permitLookupID = $("#PermitType option:selected").data("attributeid");
+	$("#permitSubtypeDiv").html("");
+	$("#permitSubtypeDiv").hide();
+	if (permitType.length == 0) {
+		$("#permitSubtypeDiv").html("");
+		$("#permitSubtypeDiv").hide();
+	} else {
+		var url = "PortalAjaxController?Action=getPermitSubTypeOnPermitType&permitLookupID="
+			+permitLookupID+"&bustcache="+new Date().getTime();
+		$.ajax({
+			url: url,
+			success: function(data) {
+				if (data != "SessionExpired:::www6.citizenserve.com") {
+					$("#permitSubtypeDiv").html(data);
+					$("#permitSubtypeDiv").show();
+					$("#PermitSubType").focus();
+				} else {
+					var temp = data.split(":::");
+					window.location = "https://"+temp[1]+"/Portal/PortalController?Action=showLogin&installationID=383&ctzPagePrefix=Portal_";
+				}
+			}
+		});
+	}
+}
+
+function validateAndSearch() {
+	$("#submitRow" ).hide();
+	$("#waitRow" ).show();
+	var fileType = $("#filetype").val();
+	if (fileType == "-999") {
+		customAlertPopUp("filetype","File Type is a required field");
+		$("#submitRow" ).show();
+		$("#waitRow" ).hide();
+		return false;
+	} else {
+		$("#errorMsg" ).html("");
+		parseAddress();
+		grecaptcha.ready(function() {
+			grecaptcha.execute('6LeKdrMZAAAAAHhaf46zpFeRsB-VLv8kRAqKVrEW', {action: 'submit'}).then(function(token) {
+				$('#frm_PortalSearch').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+				$("#frm_PortalSearch").submit();
+			});;
+		});
+	}
+}
+
+$("form").bind("keypress", function (e) {
+    if (e.keyCode == 13) {
+    	validateAndSearch();
+    	return false;
+    }
+});
+
+function REtrim(str) {
+	return str.replace(/^\s*|\s*$/g,"");
+}
+
+function parseAddress(){
+	var streetNumber = "";
+	var streetName = "";
+	var streetType = "";
+	var preDirection = "";
+	var postDirection = "";
+	var postDirFlag = false;
+	var streetTypeflag = false;
+	var preDirectionArr = ["E", "E.", "EAST", "N", "N.", "NORTH", "S", "S.", "SOUTH", "W", "W.", "WEST",
+	               		"NE","NW","SE","SW","NE.","NW.","SE.","SW.","NORTH-EAST","NORTH-WEST","SOUTH-EAST",
+	               		"SOUTH-WEST"];
+						
+	var streetTypeArr = ["ALY","ANX","ARC","AVE","BYU","BCH","BND","BLF","BLFS","BTM","BLVD","BR","BRG","BRK",
+	             		"BRKS","BG","BGS","BYP","CP","CYN","CPE","CSWY","CTR","CTRS","CIR","CIRS","CLF","CLFS",
+	             		"CLB","CMN","COR","CORS","CRSE","CT","CTS","CV","CVS","CRK","CRES","CRST","XING","XRD",
+	             		"CURV","DL","DM","DV","DR","DRS","EST","ESTS","EXPY","EXT","EXTS","FALL","FLS","FRY",
+	             		"FLD","FLDS","FLT","FLTS","FRD","FRDS","FRST","FRG","FRGS","FRK","FRKS","FT","FWY",
+	             		"GDN","GDNS","GTWY","GLN","GLNS","GRN","GRNS","GRV","GRVS","HBR","HBRS","HVN","HTS",
+	             		"HWY","HL","HLS","HOLW","INLT","I","IS","ISS","ISLE","JCT","JCTS","KY","KYS","KNL",
+	             		"KNLS","LK","LKS","LAND","LNDG","LN","LGT","LGTS","LF","LCK","LCKS","LDG","LOOP",
+	             		"MALL","MNR","MNRS","MDW","MDWS","MEWS","ML","MLS","MSN","MHD","MTWY","MT","MTN",
+	             		"MTNS","NCK","ORCH","OVAL","OPAS","PARK","PKWY","PASS","PSGE","PATH","PIKE","PNE",
+	             		"PNES","PL","PLN","PLNS","PLZ","PT","PTS","PRT","PRTS","PR","RADL","RAMP","RNCH",
+	             		"RPD","RPDS","RST","RDG","RDGS","RIV","RD","RDS","RTE","ROW","RUE","RUN","SHL",
+	             		"SHLS","SHR","SHRS","SKWY","SPG","SPGS","SPUR","SQ","SQS","STA","STRM","ST","STS",
+	             		"SMT","TER","TRWY","TRCE","TRAK","TRL","TUNL","TPKE","UPAS","UN","UNS","VLY","VLYS",
+	             		"VIA","VW","VWS","VLG","VLGS","VL","VIS","WALK","WALL","WAY","WAYS","WL","WLS"];
+
+	var streetTypeFullArr = ["alley","annex","arcade","avenue","bayoo","beach","bend","bluff","bluffs",
+	                 		"bottom","boulevard","branch","bridge","brook","brooks","burg","burgs","bypass",
+	                 		"camp","canyon","cape","causeway","center","centers","circle","circles","cliff",
+	                 		"cliffs","club","common","corner","corners","course","court","courts","cove",
+	                 		"coves","creek","crescent","crest","crossing","crossroad","curve","dale","dam",
+	                 		"divide","drive","drives","estate","estates","expressway","extension","extensions",
+	                 		"fall","falls","ferry","field","fields","flat","flats","ford","fords","forest",
+	                 		"forge","forges","fork","forks","fort","freeway","garden","gardens","gateway",
+	                 		"glen","glens","green","greens","grove","groves","harbor","harbors","haven",
+	                 		"heights","highway","hill","hills","hollow","inlet","interstate","island",
+	                 		"islands","isle","junction","junctions","key","keys","knoll","knolls","lake",
+	                 		"lakes","land","landing","lane","light","lights","loaf","lock","locks","lodge",
+	                 		"loop","mall","manor","manors","meadow","meadows","mews","mill","mills","mission",
+	                 		"moorhead","motorway","mount","mountain","mountains","neck","orchard","oval",
+	                 		"overpass","park","parkway","pass","passage","path","pike","pine","pines","place",
+	                 		"plain","plains","plaza","point","points","port","ports","prairie","radial","ramp",
+	                 		"ranch","rapid","rapids","rest","ridge","ridges","river","road","roads","route",
+	                 		"row","rue","run","shoal","shoals","shore","shores","skyway","spring","springs",
+	                 		"spur","square","squares","station","stream","street","streets","summit","terrace",
+	                 		"throughway","trace","track","trail","tunnel","turnpike","underpass","union",
+	                 		"unions","valley","valleys","viaduct","view","views","village","villages","ville",
+	                 		"vista","walk","wall","way","ways","well","wells"];
+	
+	var postDirArr = ["E", "NE", "SE", "N", "S", "W", "NW", "SW", "NORTH", "SOUTH", "WEST", "EAST","NORTH-EAST","NORTH-WEST","SOUTH-EAST",
+	               		"SOUTH-WEST"];
+							
+	var address = $("#address").val();
+	streetNumber = address.split(" ")[0];
+	if(isNaN(streetNumber)) {
+		streetNumber = "";
+	} else {
+		if(address.indexOf(" ") > 0) {
+			address = address.substring(address.indexOf(" "));
+		} else {
+			address = "";
+		}
+	}
+	var addressArr = address.trim().split(" ");
+	for(var i = 0; i < addressArr.length; i++) {
+		if(i == 0 && ($.inArray(REtrim(addressArr[i]).toUpperCase(),preDirectionArr) > -1)) {
+			if(REtrim(addressArr[i].toUpperCase()) == "E"
+					|| REtrim(addressArr[i].toUpperCase()) == "E."
+					|| REtrim(addressArr[i].toUpperCase()) == "EAST") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "W"
+					|| REtrim(addressArr[i].toUpperCase()) == "W."
+					|| REtrim(addressArr[i].toUpperCase()) == "WEST") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "N"
+					|| REtrim(addressArr[i].toUpperCase()) == "N."
+					|| REtrim(addressArr[i].toUpperCase()) == "NORTH") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "S"
+					|| REtrim(addressArr[i].toUpperCase()) == "S."
+					|| REtrim(addressArr[i].toUpperCase()) == "SOUTH") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "NE"
+					|| REtrim(addressArr[i].toUpperCase()) == "NE."
+					|| REtrim(addressArr[i].toUpperCase()) == "NORTH-EAST") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "NW"
+					|| REtrim(addressArr[i].toUpperCase()) == "NW."
+					|| REtrim(addressArr[i].toUpperCase()) == "NORTH-WEST") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "SE"
+					|| REtrim(addressArr[i].toUpperCase()) == "SE."
+					|| REtrim(addressArr[i].toUpperCase()) == "SOUTH-EAST") {
+				preDirection = REtrim(addressArr[i]);
+			} else if(REtrim(addressArr[i].toUpperCase()) == "SW"
+					|| REtrim(addressArr[i].toUpperCase()) == "SW."
+					|| REtrim(addressArr[i].toUpperCase()) == "SOUTH-WEST") {
+				preDirection = REtrim(addressArr[i]);
+			}
+		} else if (i == addressArr.length-1 && ($.inArray(REtrim(addressArr[i]).toUpperCase(),postDirArr) > -1)) {
+			postDirection = REtrim(addressArr[i]);
+			postDirFlag = true;
+		} else if ((i == addressArr.length-1 || i == addressArr.length-2) && (($.inArray(REtrim(addressArr[i]).toUpperCase(),streetTypeArr) > 0) || ($.inArray(REtrim(addressArr[i]).toLowerCase(),streetTypeFullArr) > 0))) {
+			if (REtrim(streetName).length == 0) {
+				streetName = REtrim(addressArr[i]);
+			} else if (REtrim(streetType).length == 0) {
+				streetType = REtrim(addressArr[i]);
+			} else {
+				streetName = REtrim(streetName) + " " + streetType;
+				streetType = REtrim(addressArr[i]);
+			}
+			streetTypeflag = true;
+		} else if (!streetTypeflag && !postDirFlag) {
+			streetName = REtrim(streetName) + " " + REtrim(addressArr[i]); 
+		}
+	}
+	$("#StreetNumber").val(streetNumber);
+	$("#PreDirection").val(preDirection);
+	$("#StreetName").val(streetName);
+	$("#StreetType").val(streetType);
+	$("#PostDirection").val(postDirection);
+}
+</script>
+	</div>
+	
+
+
+
+<script src="js/jquery.tabbable.min.js"></script>
+
+<!--==============================footer start=================================-->
+<!-- fix for bug :- #181638 -->
+<footer>
+ 	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 nopadding">
+				<span>© 2003 - <script>document.write(new Date().getFullYear())</script>2026 ONLINE SOLUTIONS, LLC </span>
+ 				<img src="/Portal/img/cslogo.png" alt="CitizenServe Logo" width="200">
+			</div>  
+			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 nopadding">
+				<a href="https://www6.citizenserve.com/Portal/TermsofUse.pdf" target="_blank" class="linkftr">Terms of Use</a><br>
+				<a href="https://www6.citizenserve.com/Portal/PrivacyPolicy.pdf" target="_blank" class="linkftr">Privacy Policy</a>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--==============================footer end=================================-->
+
+
+
+
+
+	<script src="js/bootstrap.min.js?bustcache=2026111"></script>
+	<script src="js/tm-scripts.js?bustcache=2026111"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-3gsj4bvytqwn" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeKdrMZAAAAAHhaf46zpFeRsB-VLv8kRAqKVrEW&amp;co=aHR0cHM6Ly93d3c2LmNpdGl6ZW5zZXJ2ZS5jb206NDQz&amp;hl=en&amp;v=bSuJ2xBC8cHT21-c68JXN31m&amp;size=invisible&amp;anchor-ms=20000&amp;execute-ms=30000&amp;ovv=CADq00gF&amp;cb=syexzhg024wu"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div><a href="#" id="toTop" title="Page Up" style="margin-right: -72px; right: 50%; display: none;"><span id="toTopHover"></span></a></body></html>
