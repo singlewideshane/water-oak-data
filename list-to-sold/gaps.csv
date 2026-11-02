@@ -14,8 +14,8 @@ no_verified_list,810 E Norman St,2026-02-06,40000,MLS sale,Foxfire price = sold 
 no_verified_list,605 Nicklaus Ct (1st sale),2026-03-19,70000,MLS sale,No list price for this sale (2nd sale 6/11 is paired),https://www.highrises.com/realestateandhomes-detail/M5462825461,2026-10-31
 source_conflict,303 Redbud Ln,2026-06-16,129900,Listed 5/14/26 $89900; MLS shows sold $129900,Sold figure equals its 12/15/2023 sale price (+44% over list),https://www.highrises.com/realestateandhomes-detail/303-Redbud-Ln_Lady-Lake_FL_32159_M98606-00548,2026-10-31
 source_conflict,623 Hickory Hill #335,2026-06-12,63000,Sold list says sold; home history shows listing removed only,Sold list and history disagree,https://www.highrises.com/realestateandhomes-detail/623-Hickory-Hl-335_Lady-Lake_FL_32159_M91223-01519,2026-10-31
-stamp_no_sale,419 Bemen Dr,,,Foxfire SOLD stamp; MLS shows listing removed 6/30/26,No sold price or date,https://www.highrises.com/realestateandhomes-detail/M9393002284,2026-10-31
-pending,818 Sutton St (current),,,Relisted 10/17/26 $124900; pending,Not closed (6/26/26 sale is paired),https://www.highrises.com/realestateandhomes-detail/M7732784596,2026-10-31
+stamp_no_sale,419 Bemen Dr,,,Foxfire SOLD stamp; MLS shows listing removed 6/30/26,No sold price or date,https://www.highrises.com/realestateandhomes-detail/M9393002284,2026-11-02
+pending,818 Sutton St (current),,,Relisted 10/17/26 $124900; pending,Not closed (6/26/26 sale is paired),https://www.highrises.com/realestateandhomes-detail/M7732784596,2026-11-02
 sold_2025,437 Bemen Dr,2025-10-30,143000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9378814619,2026-10-31
 sold_2025,905 Zoeller St,2025-10-16,139000,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9694239957,2026-10-31
 sold_2025,648 Hickory Hill,2025-10-16,124950,MLS sale,Outside 2026,https://www.highrises.com/realestateandhomes-detail/M9801657972,2026-10-31
@@ -31,3 +31,6 @@ sold_2025,149 Chestnut Ln,2025-12-15,56000,MLS sale,Outside 2026,https://www.hig
 not_covered,Sun Communities in-house sales,,,Sun listings show as listing removed with no price,No public sold price,Highrises (SunCommunities source),2026-10-31
 not_covered,MHVillage-only homes,,,Not used for pairing,MHVillage Last Reported Price = asking price,mhvillage.com,2026-10-31
 note,908 Travino Dr vs 908 Lietzke Ln,,,Both sold (9/25/26 and 3/30/26),Kept separate; no source links them,,2026-10-31
+pending,541 Spruce Dr,,,Foxfire SOLD stamp; Highrises Pending $57500 (Foxfire listed 12/21/25),Not closed,https://www.highrises.com/realestateandhomes-detail/M9809109942,2026-11-02
+pending,512 Palmer Dr,,,Highrises Pending $44000 (was $59000),Not closed,https://www.highrises.com/realestateandhomes-detail/M9864563605,2026-11-02
+note,614 Sycamore Sq,,,Listed 11/26/25 $68000; listing removed 10/28/26,No sale recorded,https://www.highrises.com/realestateandhomes-detail/M9581706689,2026-11-02
