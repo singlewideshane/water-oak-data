@@ -1,9 +1,10 @@
-// VERSION 7 — HANDS GONE HOMES TO LIST-TO-SOLD (Nov 1). If you see this line on GitHub, the right code is saved.
+// VERSION 8 — A HOME IS GONE ONLY AFTER TWO CLEAN MISSES (Nov 7). If you see this line on GitHub, the right code is saved.
 
 // Water Oak market robot — Sun sales office (its own MHVillage seller account) + RE/MAX Foxfire
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
 import fs from 'node:fs';
 import { execSync } from 'node:child_process';
+import { keyOf, sourceStatus, recordSeen } from './market.mjs';
 
 execSync('npm i --no-save --no-audit --no-fund playwright', { stdio: 'inherit' });
 execSync('npx playwright install --with-deps chromium', { stdio: 'inherit' });
@@ -317,26 +318,19 @@ console.log('Sun homes:', sun ? sun.length : 'FAILED', '| Foxfire homes:', fox ?
 for (const h of [...(sun || []), ...(fox || [])]) console.log(` ${h.source} | ${h.address} | $${h.price} | ${h.beds}/${h.baths} ${h.sqft || '?'}sf ${h.year || ''} ${h.parking}${h.pending ? ' PENDING' : ''}`);
 
 /* ---------- merge with history ---------- */
-const keyOf = a => a.toLowerCase().replace(/[.,#]/g, ' ')
-  .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g, 'st').replace(/\b(lane|la)\b/g, 'ln')
-  .replace(/\b(circle)\b/g, 'cir').replace(/\b(square)\b/g, 'sq').replace(/\b(court)\b/g, 'ct')
-  .replace(/\b(avenue)\b/g, 'ave').replace(/\b(east)\b/g, 'e').replace(/\b(west)\b/g, 'w')
-  .replace(/\s+/g, ' ').trim();
-
 let db = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8')) : null;
 if (!db || db.version !== 3) db = { version: 3, started: today, updated: null, runs: [], homes: {} };
 
-const ok = {};
-for (const [src, list] of [['Sun', sun], ['Foxfire', fox]]) {
-  const prev = Object.values(db.homes).filter(h => h.source === src && !h.gone).length;
-  ok[src] = !!list && list.length > 0 && !(prev >= 6 && list.length < prev * 0.5);
-  if (!ok[src]) console.log(`${src}: scan looks incomplete, not marking any ${src} homes gone this run.`);
+const ok = sourceStatus(db, sun, fox);
+for (const src of ['Sun', 'Foxfire']) {
+  if (!ok[src]) console.log(`${src}: scan looks incomplete, not marking any ${src} homes gone this run (gone-clock paused).`);
 }
 if (!ok.Sun && !ok.Foxfire) { console.log('Both scans failed.'); process.exit(1); }
 
 // Clean up Sun homes saved under a listing number or a headline instead of a street address.
 // Each is matched to this run by its MHVillage listing number, keeping its first-seen date and price
 // history, so a corrected address never makes a home look like it sold.
+// This repair is not the feed gone-clock: an unmatched key is still closed on this one clean Sun pull.
 if (ok.Sun) {
   const oldByKey = {};
   for (const [id, h] of Object.entries(db.homes)) {
@@ -358,21 +352,7 @@ if (ok.Sun) {
   }
 }
 
-const first = !db.runs.length || db.started === today;
-const seen = {};
-for (const h of [...(ok.Sun ? sun : []), ...(ok.Foxfire ? fox : [])]) {
-  const id = keyOf(h.address); seen[id] = true;
-  const old = db.homes[id];
-  if (!old) db.homes[id] = { ...h, firstSeen: today, lastSeen: today, onAtStart: first, prices: [{ date: today, price: h.price }], gone: false, goneDate: null };
-  else {
-    const lastP = old.prices[old.prices.length - 1];
-    if (!lastP || lastP.price !== h.price) old.prices.push({ date: today, price: h.price });
-    Object.assign(old, h, { lastSeen: today, gone: false, goneDate: null });
-  }
-}
-for (const [id, h] of Object.entries(db.homes)) {
-  if (!seen[id] && !h.gone && ok[h.source]) { h.gone = true; h.goneDate = today; }
-}
+recordSeen(db, { today, sun, fox, ok });
 db.updated = today;
 db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.length : null,
   sunWebsite: sunSite ? sunSite.count : null, sunCheck });
