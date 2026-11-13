@@ -4,7 +4,7 @@
 // (read directly in a real headless Chrome), then keeps a running record in data/market.json.
 import fs from 'node:fs';
 import { execSync } from 'node:child_process';
-import { keyOf, sourceStatus, recordSeen } from './market.mjs';
+import { keyOf, sourceStatus, recordSeen, repeatedCuts } from './market.mjs';
 
 execSync('npm i --no-save --no-audit --no-fund playwright', { stdio: 'inherit' });
 execSync('npx playwright install --with-deps chromium', { stdio: 'inherit' });
@@ -359,6 +359,10 @@ db.runs.push({ date: today, sun: sun ? sun.length : null, foxfire: fox ? fox.len
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync(FILE, JSON.stringify(db, null, 1));
 console.log('saved', FILE, 'for sale now:', Object.values(db.homes).filter(h => !h.gone).length);
+
+const cuts = repeatedCuts(db.homes, today);
+fs.writeFileSync('data/repeated_cuts.json', JSON.stringify(cuts, null, 1) + '\n');
+console.log('data/repeated_cuts.json:', cuts.length, 'homes cut twice within 60 days');
 
 /* ---------- handoff to list-to-sold ----------
    Every home the robot has seen disappear, that the list-to-sold files don't cover yet,
