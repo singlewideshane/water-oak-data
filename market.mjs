@@ -91,3 +91,65 @@ export function applyGoneGuard(db, { today, seenBySource, ok }) {
     console.log(`${src}: ${pending} waiting on a second clean miss, ${marked} marked gone`);
   }
 }
+
+const DAY_MS = 86400000;
+
+// Sun keeps its MHVillage key. Foxfire's id lives only in the listing URL.
+function stableIdOf(h) {
+  if (h.key != null && h.key !== '') return String(h.key);
+  const url = String(h.url || '');
+  const fox = url.match(/[?&]id=(\d+)/i);
+  if (fox) return fox[1];
+  const sun = url.match(/\/homes\/(\d+)/);
+  return sun ? sun[1] : null;
+}
+
+function daysApart(a, b) {
+  return Math.abs(Date.parse(a) - Date.parse(b)) / DAY_MS;
+}
+
+// Step-down dates that have another step-down within 60 days.
+function cutsWithin60(prices) {
+  const dates = [];
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i].price < prices[i - 1].price) dates.push(prices[i].date);
+  }
+  return dates.filter((d, i) => dates.some((other, j) => i !== j && daysApart(d, other) <= 60));
+}
+
+function cutStatus(h) {
+  if (h.gone) return 'gone';
+  if (h.firstAbsent) return 'firstAbsent';
+  return 'active';
+}
+
+// Homes whose stored asking prices step down twice inside 60 days.
+// Uses the series recordSeen already merged. A single miss (firstAbsent) stays
+// in the list and is not called gone. dom is empty: firstSeen is not a list date.
+export function repeatedCuts(homes, asOf) {
+  const list = Array.isArray(homes) ? homes : Object.values(homes || {});
+  const rows = [];
+  for (const h of list) {
+    if (!h) continue;
+    const prices = (h.prices || []).filter(p => p && p.date <= asOf);
+    const cuts = cutsWithin60(prices);
+    if (cuts.length < 2) continue;
+    const first = prices[0].price;
+    const current = prices[prices.length - 1].price;
+    rows.push({
+      address: h.address,
+      source: h.source,
+      stableId: stableIdOf(h),
+      originalAsk: first,
+      currentAsk: current,
+      reductionCount: cuts.length,
+      totalDollars: first - current,
+      percent: first ? (first - current) / first : null,
+      status: cutStatus(h),
+      dom: null
+    });
+  }
+  rows.sort((a, b) => String(a.address).localeCompare(String(b.address))
+    || String(a.stableId).localeCompare(String(b.stableId)));
+  return rows;
+}
