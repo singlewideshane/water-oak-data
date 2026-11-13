@@ -12,7 +12,13 @@
 // A pull that is missing or fails the check does not touch that source, so a
 // first absence already recorded stays put and is not counted twice.
 
-export const keyOf = a => a.toLowerCase().replace(/[.,#]/g, ' ')
+// "Lot 2504" and "Site #WAT-2007" are not part of the street, so two sources
+// still name the same home.
+export function stripLotSite(a) {
+  return String(a ?? '').replace(/\b(?:lot|site)\b\s*:?\s*(?:no\.?\s*)?#?\s*(?:[a-z]{0,8}-)?\d+\b/gi, ' ');
+}
+
+export const keyOf = a => stripLotSite(a).toLowerCase().replace(/[.,#]/g, ' ')
   .replace(/\b(drive)\b/g, 'dr').replace(/\b(street)\b/g, 'st').replace(/\b(lane|la)\b/g, 'ln')
   .replace(/\b(circle)\b/g, 'cir').replace(/\b(square)\b/g, 'sq').replace(/\b(court)\b/g, 'ct')
   .replace(/\b(avenue)\b/g, 'ave').replace(/\b(east)\b/g, 'e').replace(/\b(west)\b/g, 'w')
@@ -94,14 +100,18 @@ export function applyGoneGuard(db, { today, seenBySource, ok }) {
 
 const DAY_MS = 86400000;
 
-// Sun keeps its MHVillage key. Foxfire's id lives only in the listing URL.
+// Sun keeps its MHVillage key when it has one. Foxfire's id lives in the
+// listing URL. A Sun site number is used only when nothing else identifies
+// the home, so a new page url does not replace a key already saved.
 function stableIdOf(h) {
   if (h.key != null && h.key !== '') return String(h.key);
   const url = String(h.url || '');
   const fox = url.match(/[?&]id=(\d+)/i);
   if (fox) return fox[1];
   const sun = url.match(/\/homes\/(\d+)/);
-  return sun ? sun[1] : null;
+  if (sun) return sun[1];
+  if (h.site) return String(h.site);
+  return null;
 }
 
 function daysApart(a, b) {
