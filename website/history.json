@@ -1,0 +1,353 @@
+{
+ "date": "2026-11-15",
+ "homes": {
+  "410 palmer": {
+   "address": "410 Palmer Dr",
+   "price": 189900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "711 e norman": {
+   "address": "711 E. Norman Street",
+   "price": 68500,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "626 cedar": {
+   "address": "626 Cedar La",
+   "price": 59000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "120 w pine": {
+   "address": "120 W Pine St",
+   "price": 49900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "654 hickory": {
+   "address": "654 Hickory Hill",
+   "price": 87000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "643 mickelson": {
+   "address": "643 Mickelson Way",
+   "price": 149900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "401 tulip tree": {
+   "address": "401 Tulip Tree Ln",
+   "price": 52900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "309 juniper": {
+   "address": "309 Juniper Cir",
+   "price": 54000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "747 trevino": {
+   "address": "747 Trevino Dr",
+   "price": 38900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "812 trevino": {
+   "address": "812 Trevino Dr",
+   "price": 79900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "678 cedar": {
+   "address": "678 Cedar La",
+   "price": 59900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "206 bradley": {
+   "address": "206 Bradley Ln",
+   "price": 55300,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "611 nicklaus": {
+   "address": "611 Nicklaus Ct",
+   "price": 159000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "620 sycamore": {
+   "address": "620 Sycamore Sq",
+   "price": 56500,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "735 sutton": {
+   "address": "735 Sutton St",
+   "price": 79900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "736 sutton": {
+   "address": "736 Sutton St",
+   "price": 74900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "201 cottonwood": {
+   "address": "201 Cottonwood Cir",
+   "price": 208900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "217 hogan": {
+   "address": "217 Hogan Dr",
+   "price": 199995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "832 bishop": {
+   "address": "832 Bishop Dr",
+   "price": 199900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "427 bemen": {
+   "address": "427 Bemen Dr",
+   "price": 179900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "898 byrnes": {
+   "address": "898 Byrnes Lp",
+   "price": 167995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "892 byrnes": {
+   "address": "892 Byrnes Lp",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "494 sheehan": {
+   "address": "494 Sheehan Way",
+   "price": 159995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "220 maple": {
+   "address": "220 Maple Dr",
+   "price": 124995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "214 bradley": {
+   "address": "214 Bradley Ln",
+   "price": 109995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "805 sutton": {
+   "address": "805 Sutton St",
+   "price": 94995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "813 e norman": {
+   "address": "813 E Norman St",
+   "price": 95000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "532 spruce": {
+   "address": "532 Spruce Dr",
+   "price": 84995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "704 water oak": {
+   "address": "704 Water Oak Blvd",
+   "price": 82995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "104 magnolia": {
+   "address": "104 Magnolia Dr",
+   "price": 75995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "102 magnolia": {
+   "address": "102 Magnolia Dr",
+   "price": 74000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "416 snead": {
+   "address": "416 Snead Dr",
+   "price": 72900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "644 hickory": {
+   "address": "644 Hickory Hill",
+   "price": 69000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "706 water oak": {
+   "address": "706 Water Oak Blvd",
+   "price": 69900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "923 e norman": {
+   "address": "923 E Norman St",
+   "price": 68900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "214 birch": {
+   "address": "214 Birch St",
+   "price": 63500,
+   "pending": false,
+   "source": "Sun"
+  },
+  "413 bemen": {
+   "address": "413 Bemen Dr",
+   "price": 59000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "880 byrnes": {
+   "address": "880 Byrnes Lp",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "886 byrnes": {
+   "address": "886 Byrnes Lp",
+   "price": 167995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "962 w norman": {
+   "address": "962 W Norman St",
+   "price": 128995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "434 watson": {
+   "address": "434 Watson Drive",
+   "price": 265000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "450 watson": {
+   "address": "450 WATSON DRIVE",
+   "price": 289000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "944 w norman": {
+   "address": "944 W Norman St",
+   "price": 199999,
+   "pending": false,
+   "source": "Sun"
+  },
+  "304 redbud": {
+   "address": "304 Redbud Ln",
+   "price": 129995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "912 w norman": {
+   "address": "912 W Norman St",
+   "price": 75000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "646 hickory": {
+   "address": "646 Hickory Hill",
+   "price": 64900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "114 magnolia": {
+   "address": "114 Magnolia Dr",
+   "price": 79900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "921 strange": {
+   "address": "921 Strange St",
+   "price": 132500,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "209 sanders": {
+   "address": "209 Sanders Ln",
+   "price": 92900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "224 bradley": {
+   "address": "224 Bradley Ln",
+   "price": 128000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "816 trevino": {
+   "address": "816 Trevino Dr",
+   "price": 78000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "138 evergreen": {
+   "address": "138 Evergreen Ln",
+   "price": 134900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "705 bishop": {
+   "address": "705 Bishop Dr",
+   "price": 97900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "508 palmer": {
+   "address": "508 Palmer Drive",
+   "price": 114000,
+   "pending": false,
+   "source": "MHVillage"
+  },
+  "709 sutton": {
+   "address": "709 Sutton Street Lot 2504",
+   "price": 77777,
+   "pending": false,
+   "source": "MHVillage"
+  },
+  "208 magnolia": {
+   "address": "208 Magnolia Drive",
+   "price": 64900,
+   "pending": false,
+   "source": "MHVillage"
+  },
+  "219 littler": {
+   "address": "219 Littler Ln",
+   "price": 159999,
+   "pending": false,
+   "source": "Shane"
+  },
+  "916 e norman": {
+   "address": "916 E Norman St.",
+   "price": 84900,
+   "pending": false,
+   "source": "Shane"
+  }
+ }
+}
