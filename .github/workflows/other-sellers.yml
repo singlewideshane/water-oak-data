@@ -3,7 +3,7 @@ name: Water Oak other sellers
 # Separate from the market robot: writes only data/other_sellers.json.
 on:
   schedule:
-    - cron: '12 12 * * *'   # every morning, 7:12am Eastern (winter) / 8:12am (summer)
+    - cron: '12 8 * * *'    # 3:12am Eastern (winter) / 4:12am (summer), ready before the 5am report
   push:
     branches: [main]
     paths: [other-sellers.mjs, others.mjs, .github/workflows/other-sellers.yml]
