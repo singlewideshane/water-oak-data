@@ -2,7 +2,7 @@
  "updated": "2026-11-15",
  "total_for_sale": 58,
  "total_for_sale_explainer": "Active homes for sale in Water Oak from every source — the sales office, brokerages, and for-sale-by-owner listings — with pending sales removed and each home counted once.",
- "pending_or_under_contract": 0,
+ "pending_or_under_contract": 1,
  "stats_basis": "Median, price range and price bands use all 58 homes for sale.",
  "median_ask": 85998,
  "price_range": [

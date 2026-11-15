@@ -34,7 +34,7 @@ export function collect({ market, others, stats, manual }) {
   };
   for (const h of Object.values(market?.homes || {})) if (!h.gone) add(h.address, h.price, h.pending, h.source);
   for (const h of Object.values(others?.homes || {})) if (!h.gone) add(h.address, h.price, h.status === 'pending', 'MHVillage');
-  for (const a of others?.pendingOnMhv?.addresses || []) { const h = homes.get(matchKey(a)); if (h) h.pending = true; }
+  for (const a of others?.pendingOnMhv?.addresses || []) { const h = homes.get(matchKey(a)); if (h) h.pending = true; else add(a, null, true, 'MHVillage'); }
   for (const l of stats?.listings || []) {
     if (!['active', 'pending'].includes(String(l.status).toLowerCase())) continue;
     const ph = l.priceHistory || [];
