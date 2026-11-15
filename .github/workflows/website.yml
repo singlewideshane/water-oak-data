@@ -1,0 +1,31 @@
+name: Website — restore video counters + market link
+# Run by hand only. Copies the live site, adds the video-views function, points
+# the market box at data/water-oak-market.json on GitHub, and deploys it all
+# together, so the function is never left out. Needs the NETLIFY_AUTH_TOKEN secret.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: website-deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: 827b9554-a0a8-4394-ab89-fe6b27aa8108
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node website/mirror.mjs
+      - run: npm install --prefix website --no-audit --no-fund
+      - run: npx -y netlify-cli@latest deploy --prod --dir site --functions website/functions --site "$NETLIFY_SITE_ID" --message "Restore video counters + market data from GitHub (water-oak-data robot)"
+      - name: Check the live site
+        run: |
+          sleep 20
+          curl -fsS "https://singlewideshane.com/api/video-views?ids=test-check" | tee /dev/stderr | grep -q '"test-check"'
+          curl -fsS https://singlewideshane.com/ | grep -q "raw.githubusercontent.com/SinglewideSHANE/water-oak-data"
+          echo "Video counter and market link are live."

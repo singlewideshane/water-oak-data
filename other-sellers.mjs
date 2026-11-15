@@ -40,7 +40,6 @@ async function detail(item) {
   const url = `${MHV}/homes/${key}`;
   const sellerKey = String(item.relationships?.salesCenter?.key ?? '');
   const base = { key, url, sellerKey };
-  if (isTracked(sellerKey)) return base;               // Sun / Foxfire: no page read needed
   const html = await get(url);
   if (!html) return { ...base, readFailed: true };
   const t = text(html);
@@ -51,7 +50,7 @@ async function detail(item) {
   // Owner names are never stored. Businesses are stored by name.
   const seller = sellerType === 'Owner' ? 'Owner'
     : ((t.match(/Listed by:\s*(.{2,80}?)(?:\s+(?:Member of|For Sale By|MHVillage Member|View Our|Follow Us|License))/i) || [])[1] || 'unknown').trim();
-  return { ...base, address, price, sellerType, seller, pending: /sale pending/i.test(t) };
+  return { ...base, address, price, sellerType, seller, pending: /sale pending/i.test(t), tracked: isTracked(sellerKey) };
 }
 
 const items = await readFeed();
@@ -66,6 +65,9 @@ if (!items || !items.length) {
   const failed = rows.filter(r => r.readFailed);
   const market = fs.existsSync('data/market.json') ? JSON.parse(fs.readFileSync('data/market.json', 'utf8')) : { homes: {} };
   const { homes, dropped } = pickOthers(rows.filter(r => !r.readFailed), market);
+  // MHVillage often shows "Sale Pending" on Sun/Foxfire homes before their own sites do.
+  // Saved so the website count can take pending homes out. Read-only for market.json.
+  db.pendingOnMhv = { date: today, addresses: rows.filter(r => r.tracked && r.pending && r.address).map(r => r.address) };
   for (const d of dropped) console.log('skipped:', d.address || d.key, '-', d.why);
   if (failed.length) {
     // A home page we could not open might be one of the others: don't call anything gone this run.

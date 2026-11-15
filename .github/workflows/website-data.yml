@@ -1,0 +1,29 @@
+name: Website market data (weekly)
+# Rebuilds data/water-oak-market.json every Friday morning, after Thursday's
+# market scan. The website reads this file straight from GitHub, so there is
+# no Netlify deploy and nothing on the site can be wiped.
+on:
+  schedule:
+    - cron: '12 10 * * 5'   # Fridays 5:12am Eastern (winter) / 6:12am (summer)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: website-data
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node --test test/website.test.mjs
+      - run: node website/build-market.mjs
+      - run: |
+          git config user.name "website-data-bot"
+          git config user.email "website-data-bot@users.noreply.github.com"
+          git add data/water-oak-market.json website/history.json
+          git diff --cached --quiet || git commit -m "Website market data $(date +%F)"
+          git pull --rebase
+          git push
