@@ -32,7 +32,16 @@ export function collect({ market, others, stats, manual }) {
     if (!h) homes.set(k, { key: k, address, price: price || null, pending: !!pending, source });
     else { if (pending) h.pending = true; if (!h.price && price) h.price = price; }
   };
-  for (const h of Object.values(market?.homes || {})) if (!h.gone) add(h.address, h.price, h.pending, h.source);
+  // Sun: use the market robot's Sun list only if its last good Sun read is at least as new as
+  // MHVillage's Sun list; otherwise use MHVillage's Sun sales-office list (fresher).
+  const lastSun = [...(market?.runs || [])].reverse().find(r => r.sun != null)?.date || '';
+  const mhvSun = others?.sunOnMhv;
+  const useMhvSun = !!(mhvSun?.homes?.length && mhvSun.date > lastSun);
+  for (const h of Object.values(market?.homes || {})) {
+    if (h.gone || (useMhvSun && h.source === 'Sun')) continue;
+    add(h.address, h.price, h.pending, h.source);
+  }
+  if (useMhvSun) for (const h of mhvSun.homes) add(h.address, h.price, h.pending, 'Sun');
   for (const h of Object.values(others?.homes || {})) if (!h.gone) add(h.address, h.price, h.status === 'pending', 'MHVillage');
   for (const a of others?.pendingOnMhv?.addresses || []) { const h = homes.get(matchKey(a)); if (h) h.pending = true; else add(a, null, true, 'MHVillage'); }
   for (const l of stats?.listings || []) {
@@ -40,8 +49,10 @@ export function collect({ market, others, stats, manual }) {
     const ph = l.priceHistory || [];
     add(l.address, ph.length ? ph[ph.length - 1].price : l.listPrice, String(l.status).toLowerCase() === 'pending', 'Shane');
   }
+  const cutoff = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
   for (const r of manual || []) {
     const st = String(r.status || 'active').toLowerCase();
+    if (r.date_seen && r.date_seen < cutoff) continue;   // not re-confirmed in 30 days: left out
     if (!['active', 'pending'].includes(st)) continue;
     add(r.address, Number(String(r.price || '').replace(/[$,]/g, '')) || null, st === 'pending', r.source || 'Manual');
   }

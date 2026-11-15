@@ -67,6 +67,10 @@ if (!items || !items.length) {
   const { homes, dropped } = pickOthers(rows.filter(r => !r.readFailed), market);
   // MHVillage often shows "Sale Pending" on Sun/Foxfire homes before their own sites do.
   // Saved so the website count can take pending homes out. Read-only for market.json.
+  // Sun's own website often blocks robots. MHVillage's Sun sales-office listings (seller 3211)
+  // are kept here daily as a backup Sun list for the report and website.
+  db.sunOnMhv = { date: today, homes: rows.filter(r => r.sellerKey === '3211' && r.address)
+    .map(r => ({ address: r.address, price: r.price, pending: r.pending })) };
   db.pendingOnMhv = { date: today, addresses: rows.filter(r => r.tracked && r.pending && r.address).map(r => r.address) };
   for (const d of dropped) console.log('skipped:', d.address || d.key, '-', d.why);
   if (failed.length) {

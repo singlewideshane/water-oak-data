@@ -20,6 +20,12 @@ for (const g of order) out.push(`${g}: ${forSale.filter(h => group(h) === g).len
 out.push(`Under contract: ${pending.length}`);
 const lastM = (market.runs || []).at(-1), lastO = (others.runs || []).at(-1);
 const notes = [];
-if (lastO && lastO.status !== 'ok') notes.push(`MHVillage not checked ${lastO.date}`);
-out.push(`Checked: sales office/RE/MAX ${lastM?.date || '?'}${lastO ? ` · other brokers ${lastO.date}` : ''}${notes.length ? ' · ' + notes.join(' · ') : ''}`);
+const days = d => d ? Math.floor((Date.now() - Date.parse(d)) / 86400000) : 99;
+if (days(lastM?.date) > 5) notes.push(`RE/MAX numbers are ${days(lastM?.date)} days old`);
+if (!lastO || days(lastO.date) > 2) notes.push('MHVillage not checked in 2+ days');
+const cutoff = new Date(Date.now() - 23 * 86400000).toISOString().slice(0, 10);
+const aging = manual.filter(r => r.date_seen && r.date_seen < cutoff).length;
+if (aging) notes.push(`${aging} owner listing(s) need rechecking soon`);
+if (lastO && lastO.status === 'not checked') notes.push('MHVillage could not be read today');
+if (notes.length) out.push('', 'Heads up: ' + notes.join('; ') + '.');
 console.log(out.join('\n'));

@@ -30,3 +30,18 @@ test("what's moving compares with last week", () => {
   assert.deepEqual(out.whats_moving, { since: '2026-11-13', went_pending_count: 1, went_pending_range: [90000, 90000],
     left_list_count: 1, left_list_range: [50000, 50000] });
 });
+
+test('Sun falls back to MHVillage when the Sun site read is older', () => {
+  const market = { runs: [{ date: '2026-11-13', sun: null }, { date: '2026-11-10', sun: 28 }],
+    homes: { a: { address: '1 Old Sun Dr', price: 1, source: 'Sun', gone: false },
+             b: { address: '2 Fox Ct', price: 2, source: 'Foxfire', gone: false } } };
+  const others = { homes: {}, sunOnMhv: { date: '2026-11-15', homes: [{ address: '9 New Sun Dr', price: 9 }] } };
+  const homes = collect({ market, others, stats: {}, manual: [] });
+  assert.deepEqual(homes.map(h => h.address).sort(), ['2 Fox Ct', '9 New Sun Dr']);
+});
+
+test('owner listings not re-confirmed in 30 days drop out', () => {
+  const homes = collect({ market: { homes: {} }, others: {}, stats: {}, manual: [
+    { address: '1 A St', price: '1', date_seen: '2020-01-01' }, { address: '2 B St', price: '2', date_seen: new Date().toISOString().slice(0, 10) }] });
+  assert.deepEqual(homes.map(h => h.address), ['2 B St']);
+});
