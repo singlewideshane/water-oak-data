@@ -22,7 +22,7 @@ export function csvRows(text) {
 
 // All sources -> one row per home. First source to name a home wins its price;
 // pending anywhere makes the home pending.
-export function collect({ market, others, stats, manual }) {
+export function collect({ market, others, stats, manual, live }) {
   const homes = new Map();
   const add = (address, price, pending, source) => {
     if (!address) return;
@@ -55,6 +55,12 @@ export function collect({ market, others, stats, manual }) {
     if (r.date_seen && r.date_seen < cutoff) continue;   // not re-confirmed in 30 days: left out
     if (!['active', 'pending'].includes(st)) continue;
     add(r.address, Number(String(r.price || '').replace(/[$,]/g, '')) || null, st === 'pending', r.source || 'Manual');
+  }
+  // Weekly live check (Shane's browser): valid 8 days. Adds owner listings and pending tags
+  // the robot can't see (Sun's own site, Zillow, Facebook).
+  if (live?.date && (Date.now() - Date.parse(live.date)) / 86400000 <= 8) {
+    for (const h of live.owner_active || []) add(h.address, h.price, false, h.source || 'Owner');
+    for (const a of live.pending || []) { const h = homes.get(matchKey(a)); if (h) h.pending = true; else add(a, null, true, 'Live check'); }
   }
   return [...homes.values()];
 }
@@ -103,7 +109,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (!market || !Object.keys(market.homes || {}).length) { console.log('market.json missing or empty — website file left unchanged.'); process.exit(0); }
   const stats = read('data/stats.json', { listings: [] });
   const manual = fs.existsSync('data/fsbo_manual.csv') ? csvRows(fs.readFileSync('data/fsbo_manual.csv', 'utf8')) : [];
-  const homes = collect({ market, others, stats, manual });
+  const live = read('data/live_check.json', null);
+  const homes = collect({ market, others, stats, manual, live });
   const prev = read('website/history.json', null);
   const out = build(homes, prev, today);
   fs.writeFileSync('data/water-oak-market.json', JSON.stringify(out, null, 1) + '\n');

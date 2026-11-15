@@ -7,9 +7,10 @@ const market = read('data/market.json', { homes: {}, runs: [] });
 const others = read('data/other_sellers.json', { homes: {}, runs: [] });
 const stats = read('data/stats.json', { listings: [] });
 const manual = fs.existsSync('data/fsbo_manual.csv') ? csvRows(fs.readFileSync('data/fsbo_manual.csv', 'utf8')) : [];
-const homes = collect({ market, others, stats, manual });
+const live = read('data/live_check.json', null);
+const homes = collect({ market, others, stats, manual, live });
 
-const GROUP = { Sun: 'Sales office', Foxfire: 'RE/MAX', MHVillage: 'Other brokers', Shane: 'Owners (FSBO)' };
+const GROUP = { Sun: 'Sales office', Foxfire: 'RE/MAX', MHVillage: 'Other brokers', Shane: 'Owners (FSBO)', 'Live check': 'Other brokers' };
 const group = h => GROUP[h.source] || 'Owners (FSBO)';
 const order = ['Sales office', 'RE/MAX', 'Other brokers', 'Owners (FSBO)'];
 const forSale = homes.filter(h => !h.pending), pending = homes.filter(h => h.pending);
@@ -25,6 +26,7 @@ if (days(lastM?.date) > 5) notes.push(`RE/MAX numbers are ${days(lastM?.date)} d
 if (!lastO || days(lastO.date) > 2) notes.push('MHVillage not checked in 2+ days');
 const cutoff = new Date(Date.now() - 23 * 86400000).toISOString().slice(0, 10);
 const aging = manual.filter(r => r.date_seen && r.date_seen < cutoff).length;
+if (!live || days(live.date) > 8) notes.push('weekly live check is due (say "do the live check")');
 if (aging) notes.push(`${aging} owner listing(s) need rechecking soon`);
 if (lastO && lastO.status === 'not checked') notes.push('MHVillage could not be read today');
 if (notes.length) out.push('', 'Heads up: ' + notes.join('; ') + '.');
