@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: 22
       - run: node website/morning-report.mjs > report.txt && cat report.txt
-      - run: curl -fsS -H "Title: Water Oak report" --data-binary @report.txt https://ntfy.sh/water-oak-shane-9b030b93
+      - run: |
+          curl -fsS -H "Title: Water Oak report" --data-binary @report.txt https://ntfy.sh/water-oak-shane-9b030b93
       - if: failure()
-        run: curl -fsS -H "Title: Water Oak report" -d "Water Oak report didn't run today. Tell Claude." https://ntfy.sh/water-oak-shane-9b030b93
+        run: |
+          curl -fsS -H "Title: Water Oak report" -d "Water Oak report didn't run today. Tell Claude." https://ntfy.sh/water-oak-shane-9b030b93
