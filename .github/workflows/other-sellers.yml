@@ -1,0 +1,32 @@
+name: Water Oak other sellers
+# Every Water Oak home on MHVillage that is not Sun's sales office or RE/MAX Foxfire.
+# Separate from the market robot: writes only data/other_sellers.json.
+on:
+  schedule:
+    - cron: '12 12 * * *'   # every morning, 7:12am Eastern (winter) / 8:12am (summer)
+  push:
+    branches: [main]
+    paths: [other-sellers.mjs, others.mjs, .github/workflows/other-sellers.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: water-oak-other-sellers
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node --test test/others.test.mjs
+      - run: node other-sellers.mjs
+      - run: |
+          git config user.name "other-sellers-bot"
+          git config user.email "other-sellers-bot@users.noreply.github.com"
+          git add data/other_sellers.json
+          git diff --cached --quiet || git commit -m "Other sellers $(date +%F)"
+          git pull --rebase
+          git push
