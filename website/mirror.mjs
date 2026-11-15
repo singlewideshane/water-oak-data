@@ -18,6 +18,9 @@ let failed = 0;
 for (const f of files) {
   const rel = f.path.replace(/^\/+/, '');
   if (!rel || rel.startsWith('.netlify')) continue;
+  // The live deploy's netlify.toml is inert: Netlify reports "No redirect rules / No header
+  // rules processed" for it, and its contents can't be downloaded. Leaving it out changes nothing.
+  if (rel === 'netlify.toml') { console.log('skipped netlify.toml (inert in the live deploy)'); continue; }
   let ok = false;
   for (let i = 0; i < 3 && !ok; i++) {
     try {
