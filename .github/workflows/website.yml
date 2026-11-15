@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: node website/mirror.mjs
       - run: npm install --prefix website --no-audit --no-fund
       - run: npx -y netlify-cli@latest deploy --prod --dir site --functions website/functions --site "$NETLIFY_SITE_ID" --message "Restore video counters + market data from GitHub (water-oak-data robot)"

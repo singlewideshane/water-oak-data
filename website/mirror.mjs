@@ -31,15 +31,26 @@ for (const f of files) {
       } else if (r.status === 404) {
         // Some deploy files (netlify.toml, _redirects, _headers) are never served publicly.
         // Read those straight from Netlify instead.
-        const a = await fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}/files/${rel.split('/').map(encodeURIComponent).join('/')}`,
-          { headers: { Authorization: `Bearer ${TOKEN}`, Accept: 'application/vnd.bitballoon.v1.raw' } });
-        if (a.ok) {
-          const buf = Buffer.from(await a.arrayBuffer());
+        let buf = null;
+        const enc = rel.split('/').map(encodeURIComponent).join('/');
+        const tries = [
+          [`https://api.netlify.com/api/v1/deploys/${f.deploy_id}/files/${enc}`, 'application/vnd.bitballoon.v1.raw'],
+          [`https://api.netlify.com/api/v1/sites/${SITE_ID}/files/${enc}`, 'application/vnd.bitballoon.v1.raw'],
+          [`https://api.netlify.com/api/v1/deploys/${f.deploy_id}/files/${enc}`, 'application/octet-stream'],
+        ];
+        for (const [u, accept] of tries) {
+          const a = await fetch(u, { headers: { Authorization: `Bearer ${TOKEN}`, Accept: accept } });
+          if (!a.ok) { console.log('Netlify API', a.status, u); continue; }
+          const b = Buffer.from(await a.arrayBuffer());
+          if (/^\s*\{"id":/.test(b.toString('utf8', 0, 20))) { console.log('got file info, not contents:', u); continue; }
+          buf = b; break;
+        }
+        if (buf) {
           fs.mkdirSync(path.dirname('site/' + rel), { recursive: true });
           fs.writeFileSync('site/' + rel, buf);
           ok = true;
           console.log('read from Netlify (not public):', rel);
-        } else console.log('HTTP 404 on site, Netlify API', a.status, rel);
+        } else console.log('could not read from Netlify either:', rel);
       } else console.log('HTTP', r.status, rel);
     } catch (e) { console.log('fetch error', rel, e.message); }
   }
