@@ -1,0 +1,68 @@
+{
+ "started": "2026-11-15",
+ "runs": [
+  {
+   "date": "2026-11-15",
+   "status": "ok",
+   "feed": 50,
+   "others": 3
+  }
+ ],
+ "homes": {
+  "508 palmer": {
+   "address": "508 Palmer Drive",
+   "price": 114000,
+   "status": "active",
+   "seller": "Pamela O'Grady Four Star Homes",
+   "sellerType": "Community",
+   "url": "https://www.mhvillage.com/homes/3587037",
+   "firstSeen": "2026-11-15",
+   "lastSeen": "2026-11-15",
+   "prices": [
+    {
+     "date": "2026-11-15",
+     "price": 114000
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "709 sutton": {
+   "address": "709 Sutton Street Lot 2504",
+   "price": 77777,
+   "status": "active",
+   "seller": "GINA FERGUSON Right Realty Connection, Inc.",
+   "sellerType": "Dealer",
+   "url": "https://www.mhvillage.com/homes/3231323",
+   "firstSeen": "2026-11-15",
+   "lastSeen": "2026-11-15",
+   "prices": [
+    {
+     "date": "2026-11-15",
+     "price": 77777
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  },
+  "208 magnolia": {
+   "address": "208 Magnolia Drive",
+   "price": 64900,
+   "status": "active",
+   "seller": "Geoffrey Chernault Right Realty Connection, Inc.",
+   "sellerType": "Dealer",
+   "url": "https://www.mhvillage.com/homes/3521821",
+   "firstSeen": "2026-11-15",
+   "lastSeen": "2026-11-15",
+   "prices": [
+    {
+     "date": "2026-11-15",
+     "price": 64900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
+  }
+ },
+ "updated": "2026-11-15"
+}
