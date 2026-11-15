@@ -28,6 +28,18 @@ for (const f of files) {
         fs.writeFileSync('site/' + rel, buf);
         ok = f.size == null || buf.length === f.size || /\.html?$/.test(rel);
         if (!ok) console.log('size mismatch', rel, buf.length, f.size);
+      } else if (r.status === 404) {
+        // Some deploy files (netlify.toml, _redirects, _headers) are never served publicly.
+        // Read those straight from Netlify instead.
+        const a = await fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}/files/${rel.split('/').map(encodeURIComponent).join('/')}`,
+          { headers: { Authorization: `Bearer ${TOKEN}`, Accept: 'application/vnd.bitballoon.v1.raw' } });
+        if (a.ok) {
+          const buf = Buffer.from(await a.arrayBuffer());
+          fs.mkdirSync(path.dirname('site/' + rel), { recursive: true });
+          fs.writeFileSync('site/' + rel, buf);
+          ok = true;
+          console.log('read from Netlify (not public):', rel);
+        } else console.log('HTTP 404 on site, Netlify API', a.status, rel);
       } else console.log('HTTP', r.status, rel);
     } catch (e) { console.log('fetch error', rel, e.message); }
   }
@@ -49,3 +61,9 @@ walk('site');
 fs.mkdirSync('site/data', { recursive: true });
 fs.copyFileSync('data/water-oak-market.json', 'site/data/water-oak-market.json');
 console.log('pages patched:', patched, '| fallback data copied');
+if (patched < 1) { console.log('Market fetch line not found in any page. Not deploying.'); process.exit(1); }
+// netlify.toml is project config, not a page: it belongs next to the site folder.
+if (fs.existsSync('site/netlify.toml')) {
+  fs.renameSync('site/netlify.toml', 'netlify.toml');
+  console.log('--- netlify.toml from the live site ---\n' + fs.readFileSync('netlify.toml', 'utf8'));
+}
