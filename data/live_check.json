@@ -1,11 +1,57 @@
 {
  "note": "Weekly live check done in Shane's browser (Sun site with pending tags, RE/MAX, MHVillage, Zillow FSBO, Facebook). Used by the report and website for 8 days after 'date'.",
  "date": "2026-11-15",
- "pending": ["413 Bemen Dr", "214 Birch St", "805 Sutton St", "880 Byrnes Lp", "892 Byrnes Lp", "898 Byrnes Lp", "832 Bishop Dr", "541 Spruce Dr"],
+ "pending": [
+  "413 Bemen Dr",
+  "214 Birch St",
+  "805 Sutton St",
+  "880 Byrnes Lp",
+  "892 Byrnes Lp",
+  "898 Byrnes Lp",
+  "832 Bishop Dr",
+  "541 Spruce Dr"
+ ],
  "owner_active": [
-  {"address": "739 Sutton St", "price": 70000, "source": "Zillow FSBO"},
-  {"address": "402 Toskis Dr", "price": 75000, "source": "Zillow FSBO"},
-  {"address": "916 E Norman St", "price": 84900, "source": "Zillow FSBO"},
-  {"address": "219 Littler Ln", "price": 159400, "source": "Zillow FSBO"}
+  {
+   "address": "739 Sutton St",
+   "price": 70000,
+   "source": "Zillow FSBO"
+  },
+  {
+   "address": "402 Toskis Dr",
+   "price": 75000,
+   "source": "Zillow FSBO"
+  },
+  {
+   "address": "916 E Norman St",
+   "price": 84900,
+   "source": "Zillow FSBO"
+  },
+  {
+   "address": "219 Littler Ln",
+   "price": 159400,
+   "source": "Zillow FSBO"
+  },
+  {
+   "address": "444 Snead Dr",
+   "price": 159000,
+   "source": "Facebook FSBO",
+   "link": "https://facebook.com/groups/263480606038566/permalink/1122116250174993/",
+   "posted": "2026-10-15"
+  }
+ ],
+ "facebook_leads_no_address": [
+  {
+   "price": 68000,
+   "posted": "2026-11-05",
+   "link": "https://facebook.com/groups/350446579383231/permalink/1831916044569603/"
+  }
+ ],
+ "facebook_duplicates": [
+  {
+   "address": "209 Sanders Ln",
+   "facebook_price": 139900,
+   "note": "Already counted under the Sun sales office ($92,900)"
+  }
  ]
 }
