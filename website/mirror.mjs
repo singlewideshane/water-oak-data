@@ -76,6 +76,23 @@ fs.mkdirSync('site/data', { recursive: true });
 fs.copyFileSync('data/water-oak-market.json', 'site/data/water-oak-market.json');
 console.log('pages patched:', patched, '| fallback data copied');
 if (patched < 1) { console.log('Market fetch line not found in any page. Not deploying.'); process.exit(1); }
+// Homepage hero edits (Nov 16, 2026): new bio wording + remove the diagonal light streak.
+// Safe to re-run: each change only applies if it isn't already there.
+{
+  const p = 'site/index.html';
+  let s = fs.readFileSync(p, 'utf8');
+  const OLD_BIO = 'With my background in construction, landscaping, and photography, I help you get';
+  const NEW_BIO = 'I bring real estate experience from my years as a Texas Realtor, along with a background in construction, landscaping, and photography. I help you get';
+  if (s.includes(OLD_BIO)) { s = s.replace(OLD_BIO, NEW_BIO); console.log('hero bio updated'); }
+  const MARK = '<!-- hero-no-streak -->';
+  if (!s.includes(MARK)) {
+    const css = MARK + '<style>body .hero{background-image:radial-gradient(40% 50% at 78% 42%,rgba(214,182,118,.07),rgba(0,0,0,0) 65%),linear-gradient(180deg,rgba(255,255,255,.2) 0,rgba(255,255,255,.05) 2px,rgba(255,255,255,0) 8px)!important}</style>';
+    s = s.replace('</body>', css + '\n</body>');
+    console.log('hero light streak removed');
+  }
+  fs.writeFileSync(p, s);
+}
+
 // netlify.toml is project config, not a page: it belongs next to the site folder.
 if (fs.existsSync('site/netlify.toml')) {
   fs.renameSync('site/netlify.toml', 'netlify.toml');
