@@ -24,6 +24,12 @@
    "status": "ok",
    "feed": 50,
    "others": 3
+  },
+  {
+   "date": "2026-11-16",
+   "status": "ok",
+   "feed": 49,
+   "others": 3
   }
  ],
  "homes": {
@@ -35,7 +41,7 @@
    "sellerType": "Community",
    "url": "https://www.mhvillage.com/homes/3587037",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-15",
+   "lastSeen": "2026-11-16",
    "prices": [
     {
      "date": "2026-11-15",
@@ -53,7 +59,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3231323",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-15",
+   "lastSeen": "2026-11-16",
    "prices": [
     {
      "date": "2026-11-15",
@@ -71,7 +77,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3521821",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-15",
+   "lastSeen": "2026-11-16",
    "prices": [
     {
      "date": "2026-11-15",
@@ -82,15 +88,16 @@
    "goneDate": null
   }
  },
- "updated": "2026-11-15",
+ "updated": "2026-11-16",
  "pendingOnMhv": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "addresses": [
-   "541 Spruce Dr"
+   "410 Palmer Dr",
+   "747 Trevino Dr"
   ]
  },
  "sunOnMhv": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "homes": [
    {
     "address": "201 Cottonwood Cir",
