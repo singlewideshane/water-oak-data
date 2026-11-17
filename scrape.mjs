@@ -5,7 +5,7 @@
 // the saved Sun homes alone and does not use MHVillage.
 import fs from 'node:fs';
 import { execSync } from 'node:child_process';
-import { keyOf, sourceStatus, recordSeen, repeatedCuts } from './market.mjs';
+import { keyOf, sourceStatus, recordSeen, repeatedCuts, priceCuts } from './market.mjs';
 import { readSunPage } from './sunpage.mjs';
 
 execSync('npm i --no-save --no-audit --no-fund playwright', { stdio: 'inherit' });
@@ -190,6 +190,9 @@ console.log('saved', FILE, 'for sale now:', Object.values(db.homes).filter(h => 
 const cuts = repeatedCuts(db.homes, today);
 fs.writeFileSync('data/repeated_cuts.json', JSON.stringify(cuts, null, 1) + '\n');
 console.log('data/repeated_cuts.json:', cuts.length, 'homes cut twice within 60 days');
+const allCuts = priceCuts(db.homes, today);
+fs.writeFileSync('data/price_cuts.json', JSON.stringify(allCuts, null, 1) + '\n');
+console.log('data/price_cuts.json:', allCuts.length, 'homes with at least one price cut');
 
 /* ---------- handoff to list-to-sold ----------
    Every home the robot has seen disappear, that the list-to-sold files don't cover yet,

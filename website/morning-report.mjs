@@ -1,6 +1,7 @@
 // Prints the 5am Water Oak morning report (plain text). Read-only.
 import fs from 'node:fs';
 import { collect, csvRows } from './build-market.mjs';
+import { priceCutSummary } from '../market.mjs';
 
 const read = (f, d) => fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : d;
 const market = read('data/market.json', { homes: {}, runs: [] });
@@ -19,6 +20,10 @@ const $ = p => p ? '$' + Number(p).toLocaleString('en-US') : 'no price';
 const out = ['Good morning. Here\'s your Water Oak report.', '', `${forSale.length} homes for sale`];
 for (const g of order) out.push(`${g}: ${forSale.filter(h => group(h) === g).length}`);
 out.push(`Under contract: ${pending.length}`);
+// Fridays only: weekly price-cut lines (Eastern time). REPORT_WEEKDAY overrides for tests.
+const weekday = process.env.REPORT_WEEKDAY || new Date().toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'short' });
+const todayET = process.env.REPORT_DATE || new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+if (weekday === 'Fri') out.push('', ...priceCutSummary(market.homes, todayET));
 const lastM = (market.runs || []).at(-1), lastO = (others.runs || []).at(-1);
 const notes = [];
 const days = d => d ? Math.floor((Date.now() - Date.parse(d)) / 86400000) : 99;
