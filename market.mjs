@@ -41,13 +41,45 @@ export function sourceStatus(db, sun, fox) {
   return ok;
 }
 
+// The listing's own id on its source site: Foxfire's id in the listing URL,
+// Sun's site number (WAT-1234). Used only as a backup when the address key
+// misses, so a re-spelled address is the same home, not a new one.
+export function listingIdOf(h) {
+  if (!h) return null;
+  if (h.source === 'Foxfire') {
+    const m = String(h.url || '').match(/[?&]id=(\d+)/i);
+    return m ? m[1] : null;
+  }
+  if (h.source === 'Sun' && h.site) return String(h.site).toUpperCase();
+  return null;
+}
+
+// Saved record for this listing id, or null. Ambiguous (two records with the
+// same id and source) is treated as no match: never guess.
+function findByListingId(db, h, claimed) {
+  const lid = listingIdOf(h);
+  if (!lid) return null;
+  const hits = Object.keys(db.homes).filter(k =>
+    !claimed.has(k) && db.homes[k].source === h.source && listingIdOf(db.homes[k]) === lid);
+  if (hits.length === 1) return hits[0];
+  const live = hits.filter(k => !db.homes[k].gone);
+  return live.length === 1 ? live[0] : null;
+}
+
 // Merge this pull's clean listings into db.homes (prices, lastSeen, reappearance),
 // then advance the gone-clock. Incomplete sources are omitted by the caller via `ok`.
+// Match order: address key first (unchanged), then the listing id.
 export function recordSeen(db, { today, sun, fox, ok }) {
   const first = !db.runs.length || db.started === today;
   const seenBySource = { Sun: [], Foxfire: [] };
-  for (const h of [...(ok.Sun ? sun : []), ...(ok.Foxfire ? fox : [])]) {
-    const id = keyOf(h.address);
+  const pull = [...(ok.Sun ? sun : []), ...(ok.Foxfire ? fox : [])];
+  const claimed = new Set(pull.map(h => keyOf(h.address)).filter(k => db.homes[k]));
+  for (const h of pull) {
+    let id = keyOf(h.address);
+    if (!db.homes[id]) {
+      const byListing = findByListingId(db, h, claimed);
+      if (byListing) { id = byListing; claimed.add(id); }
+    }
     if (seenBySource[h.source]) seenBySource[h.source].push(id);
     const old = db.homes[id];
     if (!old) db.homes[id] = { ...h, firstSeen: today, lastSeen: today, onAtStart: first, prices: [{ date: today, price: h.price }], gone: false, goneDate: null };
@@ -162,4 +194,55 @@ export function repeatedCuts(homes, asOf) {
   rows.sort((a, b) => String(a.address).localeCompare(String(b.address))
     || String(a.stableId).localeCompare(String(b.stableId)));
   return rows;
+}
+
+// Every home with at least one asking-price cut in its stored history, up to asOf.
+// Each cut: the run date it was first seen, old and new price, dollars and percent.
+// Totals run from the first price the robot saw to the current one.
+// Read-only: works from the prices list recordSeen already keeps.
+export function priceCuts(homes, asOf) {
+  const list = Array.isArray(homes) ? homes : Object.values(homes || {});
+  const rows = [];
+  for (const h of list) {
+    if (!h) continue;
+    const prices = (h.prices || []).filter(p => p && p.date <= asOf);
+    const cuts = [];
+    for (let i = 1; i < prices.length; i++) {
+      const from = prices[i - 1].price, to = prices[i].price;
+      if (to < from) cuts.push({ date: prices[i].date, from, to, dollars: from - to, percent: from ? (from - to) / from : null });
+    }
+    if (!cuts.length) continue;
+    const first = prices[0].price, current = prices[prices.length - 1].price;
+    rows.push({
+      address: h.address,
+      source: h.source,
+      stableId: stableIdOf(h),
+      status: cutStatus(h),
+      firstAskSeen: first,
+      currentAsk: current,
+      cutCount: cuts.length,
+      totalDollars: first - current,
+      percent: first ? (first - current) / first : null,
+      cuts
+    });
+  }
+  rows.sort((a, b) => String(a.address).localeCompare(String(b.address))
+    || String(a.stableId).localeCompare(String(b.stableId)));
+  return rows;
+}
+
+// Three plain lines for the weekly (Friday) morning email. Counts only.
+export function priceCutSummary(homes, asOf) {
+  const day = d => Date.parse(asOf) - Date.parse(d);
+  const rows = priceCuts(homes, asOf);
+  const week = rows.map(r => r.cuts.filter(c => day(c.date) >= 0 && day(c.date) < 7 * DAY_MS)).filter(c => c.length);
+  const weekCuts = week.flat();
+  const avg = weekCuts.length ? weekCuts.reduce((s, c) => s + c.percent, 0) / weekCuts.length : 0;
+  const month = rows.filter(r => r.cuts.some(c => day(c.date) >= 0 && day(c.date) < 30 * DAY_MS)).length;
+  const twice = repeatedCuts(homes, asOf).length;
+  return [
+    `Price cuts, last 7 days: ${week.length} home${week.length === 1 ? '' : 's'}` + (week.length ? `, average ${(avg * 100).toFixed(1)}% off` : ''),
+    `Homes with a cut, last 30 days: ${month}`,
+    `Cut twice within 60 days: ${twice}`
+  ];
 }
