@@ -28,7 +28,7 @@ jobs:
       - run: node website/mirror.mjs
       - run: node website/editorial.mjs site
       - run: npm install --prefix website --no-audit --no-fund
-      - run: npx -y netlify-cli@latest deploy --prod --dir site --functions website/functions --site "$NETLIFY_SITE_ID" --message "Editorial redesign: porch hero + ivory theme (water-oak-data robot)"
+      - run: npx -y netlify-cli@latest deploy --prod --dir site --functions website/functions --site "$NETLIFY_SITE_ID" --message "Editorial redesign - porch hero and ivory theme (water-oak-data robot)"
       - name: Check the live site
         run: |
           sleep 20
