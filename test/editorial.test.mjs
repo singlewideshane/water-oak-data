@@ -11,7 +11,7 @@ test('rebuilds the hero without changing a single visible word', () => {
   assert.deepEqual(visibleText(html), visibleText(page));
   assert.match(html, /class="hero ed-hero"/);
   assert.match(html, /class="ed-band"[\s\S]*\$900<\/strong> flat fee/);
-  assert.match(html, /class="ed-intro"[\s\S]*shane-walker-tight\.webp/);
+  assert.doesNotMatch(html, /shane-walker-tight\.webp/);
   assert.match(html, /<link rel="stylesheet" href="editorial.css" \/>\n<\/head>/);
   assert.equal((html.match(/class="hero-portrait"/g) || []).length, 0);
 });
@@ -24,6 +24,14 @@ test('keeps links, forms, tracking and scripts as they were', () => {
   assert.deepEqual(scripts(html), scripts(page));
   assert.deepEqual(html.match(/<form[^>]*>/g), page.match(/<form[^>]*>/g));
   assert.match(html, /G-D3LJPYPN20/);
+});
+
+test('takes the portrait off a page that already has the redesign', () => {
+  const old = applyEditorial(page).html.replace('<div class="ed-intro-copy">', '<figure class="ed-portrait">\n<img src="assets/shane-walker-tight.webp" alt="Shane Fuller" />\n</figure>\n<div class="ed-intro-copy">');
+  const { html, changed } = applyEditorial(old);
+  assert.equal(changed, true);
+  assert.doesNotMatch(html, /ed-portrait|shane-walker-tight/);
+  assert.deepEqual(visibleText(html), visibleText(old));
 });
 
 test('safe to run twice', () => {
