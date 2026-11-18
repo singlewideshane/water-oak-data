@@ -266,3 +266,22 @@ html body .ed-intro{padding:72px 0}
   html body #main img, html body #main video{max-width:100%;height:auto}
   html body .wrap{padding-left:20px!important;padding-right:20px!important}
 }
+
+/* ---------- Nov 18 b: light header, dark logo, no sideways scroll ---------- */
+html, html body{overflow-x:clip}
+html body .site-header{background:var(--ed-paper)!important;border-bottom:1px solid var(--ed-rule)!important;
+  --ink:var(--ed-ink); --oak-deep:var(--ed-char); --muted:var(--ed-muted)}
+html body .site-header img[src*="logo-wordmark"]{filter:invert(1) hue-rotate(180deg)}
+html body .site-header .brand-name{color:var(--ed-char)!important}
+html body .site-header .nav a{color:var(--ed-ink)!important}
+html body .site-header .nav a:hover{color:var(--ed-gold-text)!important}
+html body .site-header .menu-btn{border-color:var(--ed-rule)!important;background:transparent!important}
+html body .site-header .menu-btn span{background:var(--ed-char)!important}
+html body .site-header .nav.open{background:var(--ed-paper)!important;border:1px solid var(--ed-rule)!important}
+html body .site-header .header-call{background:transparent!important;color:var(--ed-char)!important;border:1px solid var(--ed-char)!important}
+html body .site-header .header-call::after{color:var(--ed-char)!important}
+html body .site-header .header-call:hover{background:var(--ed-char)!important;color:#F6F1E7!important}
+html body .site-header .header-call:hover::after{color:#F6F1E7!important}
+/* logo placed on a light background in the pricing section */
+html body #main .gp img[src*="logo-wordmark"]{filter:invert(1) hue-rotate(180deg)}
+html body #main .gp .fee-card img[src*="logo-wordmark"]{filter:none}
