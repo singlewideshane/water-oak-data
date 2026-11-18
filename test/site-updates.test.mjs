@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import fs from 'node:fs';
-import { updateCostsPage, useDarkHeaderLogo, updateHomeCostStrip, FEE_TOTAL } from '../website/site-updates.mjs';
+import { updateCostsPage, useDarkHeaderLogo, updateHomeCostStrip, addGlassButtons, FEE_TOTAL } from '../website/site-updates.mjs';
 import { visibleText } from '../website/editorial.mjs';
 
 const page = fs.readFileSync(new URL('./fixtures/costs-index.html', import.meta.url), 'utf8');
@@ -61,4 +61,12 @@ test('header logo swaps to the dark copy; footer logo stays', () => {
 
 test('homepage cost strip matches the costs page', () => {
   assert.equal(updateHomeCostStrip('for a standard lot, about $901 with fees.').html, 'for a standard lot, about $902 with fees.');
+});
+
+test('glass button stylesheet goes in last, once', () => {
+  const h = '<head><link rel="stylesheet" href="editorial.css" />\n</head><body></body>';
+  const { html, changed } = addGlassButtons(h);
+  assert.equal(changed, true);
+  assert.match(html, /editorial\.css" \/>\n<link rel="stylesheet" href="\/glass-buttons\.css" \/>\n<\/head>/);
+  assert.equal(addGlassButtons(html).changed, false);
 });

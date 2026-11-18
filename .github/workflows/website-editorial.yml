@@ -44,4 +44,6 @@ jobs:
           curl -fsS https://singlewideshane.com/water-oak-2027-costs/ | grep -q 'class="back-home" href="/"'
           curl -fsS https://singlewideshane.com/water-oak-2027-costs/ | grep -q '\$91.46'
           curl -fsS https://singlewideshane.com/water-oak-2027-costs/ | grep -q 'logo-wordmark-dark.png'
+          curl -fsS -o /dev/null https://singlewideshane.com/glass-buttons.css
+          curl -fsS https://singlewideshane.com/ | grep -q 'glass-buttons.css'
           echo "Redesign, costs page, dark header logo, video counter and market link are live."
