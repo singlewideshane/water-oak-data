@@ -67,12 +67,12 @@ test('glass button stylesheet goes in last, once', () => {
   const h = '<head><link rel="stylesheet" href="editorial.css" />\n</head><body></body>';
   const { html, changed } = addGlassButtons(h);
   assert.equal(changed, true);
-  assert.match(html, /editorial\.css" \/>\n<link rel="stylesheet" href="\/glass-buttons\.css\?v=4" \/>\n<\/head>/);
+  assert.match(html, /editorial\.css" \/>\n<link rel="stylesheet" href="\/glass-buttons\.css\?v=5" \/>\n<\/head>/);
   assert.equal(addGlassButtons(html).changed, false);
 });
 
 test('glass stylesheet link is bumped so browsers load the new look', () => {
   const { html, changed } = addGlassButtons('<head><link rel="stylesheet" href="/glass-buttons.css" />\n</head>');
   assert.equal(changed, true);
-  assert.match(html, /href="\/glass-buttons\.css\?v=4"/);
+  assert.match(html, /href="\/glass-buttons\.css\?v=5"/);
 });

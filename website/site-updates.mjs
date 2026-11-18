@@ -93,7 +93,7 @@ export function updateHomeCostStrip(html) {
 
 // 4) Emerald glass buttons on every page (stylesheet loaded last).
 export function addGlassButtons(html) {
-  const V = '/glass-buttons.css?v=4';
+  const V = '/glass-buttons.css?v=5';
   if (html.includes(V) || !html.includes('</head>')) return { html, changed: false };
   if (html.includes('/glass-buttons.css')) return { html: html.replace(/\/glass-buttons\.css(\?v=\d+)?/, V), changed: true };
   const i = html.lastIndexOf('</head>');
