@@ -317,3 +317,8 @@ html body .play{background:rgba(11,58,43,.80)!important}
 :root{ --em-1:#063D36; --em-2:#063D36; --em-grad:#063D36; }
 html body .closing{background:#063D36!important}
 html body .closing::before{background:rgba(6,61,54,.82)!important}
+
+/* ---------- Nov 18 e: green sections = solid custom emerald #043827 ---------- */
+:root{ --em-1:#043827; --em-2:#043827; --em-grad:#043827; }
+html body .closing{background:#043827!important}
+html body .closing::before{background:rgba(4,56,39,.82)!important}
