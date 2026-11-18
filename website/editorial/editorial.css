@@ -322,3 +322,10 @@ html body .closing::before{background:rgba(6,61,54,.82)!important}
 :root{ --em-1:#043827; --em-2:#043827; --em-grad:#043827; }
 html body .closing{background:#043827!important}
 html body .closing::before{background:rgba(4,56,39,.82)!important}
+
+/* ---------- Nov 18 f: green sections = solid botanical emerald #183F32; tighter green band ---------- */
+:root{ --em-1:#183F32; --em-2:#183F32; --em-grad:#183F32; }
+html body .closing{background:#183F32!important}
+html body .closing::before{background:rgba(24,63,50,.82)!important}
+html body #main .roles{padding-top:76px!important;padding-bottom:76px!important}
+@media (max-width:860px){ html body #main .roles{padding-top:56px!important;padding-bottom:56px!important} }
