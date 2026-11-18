@@ -1,0 +1,41 @@
+/* =========================================================
+   SingleWideShane — emerald glass buttons (Nov 18, 2026)
+   Loaded last on every page. Only green buttons change;
+   gold buttons and the homepage's outlined header button stay as they are.
+   ========================================================= */
+:root{
+  --gb-emerald:#183F32; --gb-emerald-hi:#21523F; --gb-ivory:#F6F1E7;
+  --gb-gold:rgba(217,191,142,.55); --gb-gold-hi:#D9BF8E;
+  --gb-face:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 46%,rgba(255,255,255,0) 54%,rgba(0,0,0,.12) 100%);
+  --gb-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(0,0,0,.28),0 1px 2px rgba(10,30,22,.18),0 8px 22px -6px rgba(10,30,22,.35);
+  --gb-shadow-hover:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(0,0,0,.28),0 2px 4px rgba(10,30,22,.18),0 14px 30px -8px rgba(10,30,22,.42);
+}
+
+/* every green button (high specificity so older theme rules don't win) */
+html body :is(#main, .site-header, .site-footer, main, header, footer) :is(a, button).btn-solid:not(.fee-cta):not(.header-call):not(:is(.cs, .closing, .gx-stage) *),
+html body:not(:has(.ed-hero)) .site-header a.btn-solid.header-call,
+html body .wc a.back-home{
+  background:var(--gb-face),var(--gb-emerald)!important;
+  color:var(--gb-ivory)!important;
+  border:1px solid var(--gb-gold)!important;
+  border-radius:2px!important;
+  box-shadow:var(--gb-shadow)!important;
+  -webkit-backdrop-filter:blur(6px) saturate(140%);backdrop-filter:blur(6px) saturate(140%);
+  text-shadow:0 1px 0 rgba(0,0,0,.28)!important;
+  letter-spacing:.12em;
+  transition:background .25s ease, box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+}
+html body :is(#main, .site-header, .site-footer, main, header, footer) :is(a, button).btn-solid:not(.fee-cta):not(.header-call):not(:is(.cs, .closing, .gx-stage) *):is(:hover, :focus-visible),
+html body:not(:has(.ed-hero)) .site-header a.btn-solid.header-call:is(:hover, :focus-visible),
+html body .wc a.back-home:is(:hover, :focus-visible){
+  background:var(--gb-face),var(--gb-emerald-hi)!important;
+  color:#FFFFFF!important;
+  border-color:var(--gb-gold-hi)!important;
+  box-shadow:var(--gb-shadow-hover)!important;
+  transform:translateY(-1px);
+}
+html body :is(#main, .site-header, .site-footer, main, header, footer) :is(a, button).btn-solid:not(.fee-cta):not(.header-call):not(:is(.cs, .closing, .gx-stage) *):active,
+html body .wc a.back-home:active{transform:translateY(0);box-shadow:var(--gb-shadow)!important}
+@media (prefers-reduced-motion: reduce){
+  html body :is(a, button).btn-solid, html body .wc a.back-home{transition:none!important;transform:none!important}
+}

@@ -91,6 +91,13 @@ export function updateHomeCostStrip(html) {
   return { html: html.replace('about $901 with fees', 'about $902 with fees'), changed: true };
 }
 
+// 4) Emerald glass buttons on every page (stylesheet loaded last).
+export function addGlassButtons(html) {
+  if (html.includes('glass-buttons.css') || !html.includes('</head>')) return { html, changed: false };
+  const i = html.lastIndexOf('</head>');
+  return { html: html.slice(0, i) + '<link rel="stylesheet" href="/glass-buttons.css" />\n' + html.slice(i), changed: true };
+}
+
 function htmlFiles(dir) {
   const out = [];
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -112,10 +119,14 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const home = path.join(dir, 'index.html');
   const h = updateHomeCostStrip(fs.readFileSync(home, 'utf8'));
   if (h.changed) fs.writeFileSync(home, h.html);
-  let n = 0;
+  fs.copyFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'editorial', 'glass-buttons.css'), path.join(dir, 'glass-buttons.css'));
+  let n = 0, g = 0;
   for (const f of htmlFiles(dir)) {
-    const r = useDarkHeaderLogo(fs.readFileSync(f, 'utf8'));
-    if (r.changed) { fs.writeFileSync(f, r.html); n++; }
+    const before = fs.readFileSync(f, 'utf8');
+    const a = useDarkHeaderLogo(before), b = addGlassButtons(a.html);
+    if (a.changed) n++;
+    if (b.changed) g++;
+    if (b.html !== before) fs.writeFileSync(f, b.html);
   }
-  console.log(`Dark header logo on ${n} page(s).`);
+  console.log(`Dark header logo on ${n} page(s); glass buttons on ${g} page(s).`);
 }
