@@ -312,3 +312,8 @@ html body .btn-solid:hover, html body #main .btn-solid:hover, html body #main fo
 html body .back-top{background:var(--em-solid)!important}
 html body .pz-photos figcaption{background:rgba(11,58,43,.88)!important}
 html body .play{background:rgba(11,58,43,.80)!important}
+
+/* ---------- Nov 18 d: green sections = solid Deep Luxury Emerald #063D36 ---------- */
+:root{ --em-1:#063D36; --em-2:#063D36; --em-grad:#063D36; }
+html body .closing{background:#063D36!important}
+html body .closing::before{background:rgba(6,61,54,.82)!important}
