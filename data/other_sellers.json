@@ -36,6 +36,12 @@
    "status": "ok",
    "feed": 48,
    "others": 3
+  },
+  {
+   "date": "2026-11-18",
+   "status": "ok",
+   "feed": 49,
+   "others": 3
   }
  ],
  "homes": {
@@ -47,7 +53,7 @@
    "sellerType": "Community",
    "url": "https://www.mhvillage.com/homes/3587037",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-17",
+   "lastSeen": "2026-11-18",
    "prices": [
     {
      "date": "2026-11-15",
@@ -65,7 +71,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3231323",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-17",
+   "lastSeen": "2026-11-18",
    "prices": [
     {
      "date": "2026-11-15",
@@ -83,7 +89,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3521821",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-17",
+   "lastSeen": "2026-11-18",
    "prices": [
     {
      "date": "2026-11-15",
@@ -94,16 +100,16 @@
    "goneDate": null
   }
  },
- "updated": "2026-11-17",
+ "updated": "2026-11-18",
  "pendingOnMhv": {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "addresses": [
    "410 Palmer Dr",
    "747 Trevino Dr"
   ]
  },
  "sunOnMhv": {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "homes": [
    {
     "address": "201 Cottonwood Cir",
@@ -123,6 +129,11 @@
    {
     "address": "832 Bishop Dr",
     "price": 199900,
+    "pending": false
+   },
+   {
+    "address": "513 Palmer Dr",
+    "price": 189900,
     "pending": false
    },
    {
@@ -201,13 +212,13 @@
     "pending": false
    },
    {
-    "address": "532 Spruce Dr",
-    "price": 84995,
+    "address": "704 Water Oak Blvd",
+    "price": 82995,
     "pending": false
    },
    {
-    "address": "704 Water Oak Blvd",
-    "price": 82995,
+    "address": "532 Spruce Dr",
+    "price": 79900,
     "pending": false
    },
    {
@@ -226,13 +237,13 @@
     "pending": false
    },
    {
-    "address": "706 Water Oak Blvd",
-    "price": 69900,
+    "address": "644 Hickory Hill",
+    "price": 69000,
     "pending": false
    },
    {
-    "address": "644 Hickory Hill",
-    "price": 69000,
+    "address": "706 Water Oak Blvd",
+    "price": 66900,
     "pending": false
    },
    {
