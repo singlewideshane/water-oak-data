@@ -347,3 +347,6 @@ html body :is(.cs,.closing,.site-footer,.gx-stage,.fee-card,.roles) img[src*="lo
 html body #main img[src*="logo-wordmark"], html body .site-footer img[src*="logo-wordmark"]{
   display:block!important;width:auto!important;height:auto!important;max-width:min(100%,280px)!important;
   margin:28px auto 0!important;position:static!important;transform:none!important;opacity:1!important}
+
+/* ---------- Nov 18 i: header uses the dark-lettered copy of the original logo (no filter) ---------- */
+html body img[src*="logo-wordmark-dark"]{filter:none!important}
