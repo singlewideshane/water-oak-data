@@ -340,3 +340,10 @@ html body .ed-hero .fx-eyebrow,
 html body #main .role,
 html body .ed-intro .fx-lead{font-family:var(--ed-display)!important;font-weight:400!important}
 html body .ed-band .fx-offer strong, html body #main .gp .fee-amount{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+
+/* ---------- Nov 18 h: logo on light backgrounds = black letters; logos sized + centered ---------- */
+html body img[src*="logo-wordmark"]{filter:invert(1) hue-rotate(180deg)!important}
+html body :is(.cs,.closing,.site-footer,.gx-stage,.fee-card,.roles) img[src*="logo-wordmark"]{filter:none!important}
+html body #main img[src*="logo-wordmark"], html body .site-footer img[src*="logo-wordmark"]{
+  display:block!important;width:auto!important;height:auto!important;max-width:min(100%,280px)!important;
+  margin:28px auto 0!important;position:static!important;transform:none!important;opacity:1!important}
