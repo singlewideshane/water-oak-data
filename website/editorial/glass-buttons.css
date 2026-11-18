@@ -47,7 +47,6 @@ html body #main .fee-card.fee-card{
   position:relative;overflow:hidden;
   background:
     linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.07) 22%,rgba(255,255,255,0) 34%),
-    linear-gradient(115deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.07) 48%,rgba(255,255,255,0) 56%),
     radial-gradient(120% 45% at 50% 108%,rgba(120,220,170,.22) 0%,rgba(120,220,170,0) 70%),
     linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.22) 100%),
     var(--gb-emerald)!important;
@@ -76,8 +75,6 @@ html body #main .fee-card.fee-card{
   background:
     /* glossy curved highlight across the top */
     radial-gradient(140% 55% at 50% -8%,rgba(255,255,255,.38) 0%,rgba(255,255,255,.14) 38%,rgba(255,255,255,0) 62%) padding-box,
-    /* thin diagonal light streak */
-    linear-gradient(118deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.10) 47%,rgba(255,255,255,0) 53%) padding-box,
     /* emerald glow reflecting up from the bottom */
     radial-gradient(110% 40% at 50% 112%,rgba(90,210,150,.30) 0%,rgba(90,210,150,0) 70%) padding-box,
     /* deep saturated emerald body */
