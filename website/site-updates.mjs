@@ -93,9 +93,11 @@ export function updateHomeCostStrip(html) {
 
 // 4) Emerald glass buttons on every page (stylesheet loaded last).
 export function addGlassButtons(html) {
-  if (html.includes('glass-buttons.css') || !html.includes('</head>')) return { html, changed: false };
+  const V = '/glass-buttons.css?v=2';
+  if (html.includes(V) || !html.includes('</head>')) return { html, changed: false };
+  if (html.includes('/glass-buttons.css')) return { html: html.replace(/\/glass-buttons\.css(\?v=\d+)?/, V), changed: true };
   const i = html.lastIndexOf('</head>');
-  return { html: html.slice(0, i) + '<link rel="stylesheet" href="/glass-buttons.css" />\n' + html.slice(i), changed: true };
+  return { html: html.slice(0, i) + `<link rel="stylesheet" href="${V}" />\n` + html.slice(i), changed: true };
 }
 
 function htmlFiles(dir) {
