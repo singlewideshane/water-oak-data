@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 /* =========================================================
    SingleWideShane — Editorial theme (Nov 2026)
    Loaded last. Visual only: no wording, links or forms change.
@@ -329,3 +330,13 @@ html body .closing{background:#183F32!important}
 html body .closing::before{background:rgba(24,63,50,.82)!important}
 html body #main .roles{padding-top:76px!important;padding-bottom:76px!important}
 @media (max-width:860px){ html body #main .roles{padding-top:56px!important;padding-bottom:56px!important} }
+
+/* ---------- Nov 18 g: Cormorant Garamond for the $900 and display headlines ---------- */
+:root{ --ed-display:"Cormorant Garamond","Libre Caslon Display",Georgia,serif; }
+html body .ed-band .fx-offer strong,
+html body #main .gp .fee-amount{font-family:var(--ed-display)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important}
+html body #main h1, html body #main h2,
+html body .ed-hero .fx-eyebrow,
+html body #main .role,
+html body .ed-intro .fx-lead{font-family:var(--ed-display)!important;font-weight:400!important}
+html body .ed-band .fx-offer strong, html body #main .gp .fee-amount{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
