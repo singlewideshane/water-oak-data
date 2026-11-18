@@ -1,0 +1,40 @@
+name: Website — editorial redesign (porch hero)
+# Copies the LIVE site (same as the video-counter job), applies the editorial look to the
+# homepage, and deploys. Every word on the live page is kept: the step stops with no deploy
+# if any visible text would change. Runs when this redesign's files change, or by hand.
+# Undo: Netlify > Deploys > pick the previous deploy > "Publish deploy".
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [website/editorial.mjs, website/editorial/**, .github/workflows/website-editorial.yml]
+permissions:
+  contents: read
+concurrency:
+  group: website-deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: 827b9554-a0a8-4394-ab89-fe6b27aa8108
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test test/editorial.test.mjs
+      - run: node website/mirror.mjs
+      - run: node website/editorial.mjs site
+      - run: npm install --prefix website --no-audit --no-fund
+      - run: npx -y netlify-cli@latest deploy --prod --dir site --functions website/functions --site "$NETLIFY_SITE_ID" --message "Editorial redesign: porch hero + ivory theme (water-oak-data robot)"
+      - name: Check the live site
+        run: |
+          sleep 20
+          curl -fsS https://singlewideshane.com/ | grep -q 'href="editorial.css"'
+          curl -fsS -o /dev/null https://singlewideshane.com/editorial.css
+          curl -fsS -o /dev/null https://singlewideshane.com/assets/hero-porch.webp
+          curl -fsS "https://singlewideshane.com/api/video-views?ids=test-check" | grep -q '"test-check"'
+          curl -fsS https://singlewideshane.com/ | grep -q "raw.githubusercontent.com/SinglewideSHANE/water-oak-data"
+          echo "Redesign, video counter and market link are live."

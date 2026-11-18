@@ -1,0 +1,249 @@
+/* =========================================================
+   SingleWideShane — Editorial theme (Nov 2026)
+   Loaded last. Visual only: no wording, links or forms change.
+   To roll back: remove the editorial.css <link> in index.html.
+   ========================================================= */
+
+:root{
+  --ed-ivory:#F6F1E7; --ed-paper:#FBF8F2; --ed-cream:#EFE7D8;
+  --ed-char:#1C1B18; --ed-char2:#24221E; --ed-ink:#23211D; --ed-muted:#57514A;
+  --ed-gold:#C2A06A; --ed-gold-hi:#D9BF8E; --ed-gold-text:#7A5C22;
+  --ed-rule:rgba(122,92,34,.28); --ed-rule-dark:rgba(194,160,106,.35);
+}
+
+/* ---------- light base (re-map the site's variables) ---------- */
+html body{
+  --oak:var(--ed-gold-text); --oak-deep:var(--ed-char); --leaf:var(--ed-gold-text);
+  --ink:var(--ed-ink); --muted:var(--ed-muted); --sage:var(--ed-cream);
+  --line:var(--ed-rule); --white:var(--ed-paper); --gold:#A9864C; --gold-hi:#8C6A2E;
+  background:var(--ed-ivory)!important; color:var(--ed-ink);
+}
+html,html body{background:var(--ed-ivory)!important}
+html body a{color:var(--ed-gold-text)}
+html body a:hover{color:var(--ed-char)}
+
+/* dark islands keep light-on-dark variables */
+html body .ed-hero, html body .site-header, html body .cs, html body .closing,
+html body .site-footer, html body .gx-stage, html body .cost-strip, html body .roles{
+  --oak:var(--ed-gold); --oak-deep:#F3EDE2; --leaf:var(--ed-gold); --ink:#ECE6DA;
+  --muted:#C4BBAC; --sage:var(--ed-char2); --line:var(--ed-rule-dark); --white:var(--ed-char);
+  --gold:var(--ed-gold); --gold-hi:var(--ed-gold-hi);
+}
+
+/* ---------- strip gloss, glows, heavy shadows ---------- */
+html body .orient-card, html body .cs, html body .gx-card, html body .mk-card, html body .gp .fee-card,
+html body .why-card, html body .ik-card, html body .ik-form, html body .faq-item, html body .cost-strip,
+html body .gd-chart, html body .gx-stats div, html body .cs-list li, html body .intake .tip,
+html body .home-card, html body .bx-card, html body .realtors, html body .worth > .wrap.worth-grid,
+html body .worth .form, html body .bx-packet, html body .cs-photo, html body .orient{
+  background-image:none!important; box-shadow:none!important;
+  -webkit-backdrop-filter:none!important; backdrop-filter:none!important; border-radius:0!important;
+}
+html body .cs::after, html body .gx-card::after, html body .gp .fee-card::after,
+html body .why-card::after, html body .ik-card::after{display:none!important}
+html body .gx-stage{background-image:none!important}
+html body *{text-shadow:none!important}
+
+/* ---------- typography ---------- */
+html body h1, html body h2, html body h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;color:var(--oak-deep)}
+html body h2{line-height:1.12}
+html body p, html body li, html body dd{line-height:1.7}
+
+/* ---------- header ---------- */
+html body .site-header{background:rgba(28,27,24,.97)!important;border-bottom:1px solid var(--ed-rule-dark)!important}
+html body .menu-btn{border-color:var(--ed-rule-dark)!important}
+html body .menu-btn span{background:var(--ed-gold)!important}
+html body .site-header .nav a{color:#ECE6DA}
+html body .site-header .nav a:hover{color:var(--ed-gold-hi)}
+html body .nav.open{background:var(--ed-char)!important;box-shadow:none!important}
+html body .site-header .header-call{background:transparent!important;color:var(--ed-gold-hi)!important;border:1px solid var(--ed-gold)!important}
+html body .site-header .header-call:hover{background:var(--ed-gold)!important;color:var(--ed-char)!important}
+
+/* ---------- buttons ---------- */
+html body .btn{border-radius:0!important;box-shadow:none!important;letter-spacing:.06em}
+html body .btn-solid{background:var(--ed-char)!important;color:#F6F1E7!important;border-color:var(--ed-char)!important}
+html body .btn-solid:hover{background:#3A3732!important;border-color:#3A3732!important;color:#fff!important}
+html body .btn-line{background:transparent!important;color:var(--ed-char)!important;border:1.5px solid var(--ed-char)!important}
+html body .cs .btn-solid, html body .closing .btn-solid{background:var(--ed-gold)!important;color:var(--ed-char)!important;border-color:var(--ed-gold)!important}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+html body .ed-hero{position:relative;padding:0!important;background:#0E0D0B!important;overflow:hidden;
+  min-height:clamp(560px,56.25vw,860px);display:flex;align-items:center}
+html body .ed-hero-bg{position:absolute;inset:0;margin:0}
+html body .ed-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:28% 50%;display:block}
+html body .ed-hero-inner{position:relative;z-index:1;width:100%;display:flex;justify-content:flex-end}
+html body .ed-hero-text{width:min(46%,600px);padding:72px 0}
+html body .ed-hero .fx-eyebrow{font-family:var(--display)!important;font-style:normal!important;color:#FFFFFF!important;
+  font-size:clamp(44px,4.6vw,72px)!important;line-height:1.04!important;letter-spacing:0!important;margin:0 0 28px!important}
+html body .ed-hero h1{font-family:var(--serif)!important;font-style:italic;font-weight:400;color:var(--ed-gold-hi)!important;
+  font-size:clamp(22px,1.9vw,30px)!important;line-height:1.35!important;max-width:24em!important;margin:0!important;
+  padding-top:24px;border-top:1px solid var(--ed-rule-dark)}
+html body .ed-hero .uline{background:none!important;padding:0!important;color:inherit}
+
+@media (max-width:760px){
+  html body .ed-hero{display:block;min-height:0}
+  html body .ed-hero-bg{position:relative;inset:auto}
+  html body .ed-hero-bg img{height:auto;aspect-ratio:4/4.2;object-position:50% 60%}
+  html body .ed-hero-inner{display:block}
+  html body .ed-hero-text{width:auto;padding:36px 0 44px}
+  html body .ed-hero .fx-eyebrow{font-size:clamp(38px,10.5vw,48px)!important;margin-bottom:22px!important}
+  html body .ed-hero h1{font-size:22px!important}
+}
+
+/* ---------- $900 band ---------- */
+html body .ed-band{background:var(--ed-cream);border-bottom:1px solid var(--ed-rule)}
+html body .ed-band .hero-offer{display:flex;align-items:center;justify-content:space-between;gap:28px;margin:0!important;padding:34px 0}
+html body .ed-band .fx-offer{font-family:var(--serif)!important;color:var(--ed-ink)!important;font-size:clamp(20px,1.8vw,24px)!important;margin:0!important;line-height:1.4}
+html body .ed-band .fx-offer strong{font-family:var(--display);font-weight:400;color:var(--ed-char)!important;font-size:2.3em;vertical-align:-.12em;margin-right:6px;
+  padding-right:22px;border-right:1px solid var(--ed-gold);display:inline-block;line-height:1}
+html body .ed-band .hero-actions{margin:0!important;flex:none}
+@media (max-width:760px){
+  html body .ed-band .hero-offer{flex-direction:column;align-items:flex-start;gap:22px;padding:30px 0}
+  html body .ed-band .fx-offer strong{display:block;border-right:0;padding:0 0 10px;margin:0 0 10px;border-bottom:1px solid var(--ed-gold);font-size:2.6em}
+  html body .ed-band .hero-actions,html body .ed-band .hero-actions .btn{width:100%}
+}
+
+/* ---------- intro (portrait + opening copy) ---------- */
+html body .ed-intro{background:var(--ed-paper);padding:96px 0}
+html body .ed-intro-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center}
+html body .ed-portrait{margin:0;background:var(--ed-cream);aspect-ratio:4/5;overflow:hidden;border-bottom:1px solid var(--ed-gold)}
+html body .ed-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+html body .ed-intro .fx-flow{color:var(--ed-ink)!important;font-size:21px!important;margin:0 0 8px!important;max-width:32em}
+html body .ed-intro .fx-lead{font-family:var(--display)!important;font-style:normal!important;color:var(--ed-char)!important;font-size:1.75em!important;display:block;line-height:1.15!important;margin-bottom:12px}
+html body .ed-intro .hero-lines{color:var(--ed-muted)!important;font-size:19px!important}
+html body .ed-intro .fx-think{border-color:var(--ed-rule)!important;max-width:32em}
+html body .ed-intro .fx-think h2{color:var(--ed-gold-text)!important;font-family:var(--serif)!important}
+html body .ed-intro .fx-think p{color:var(--ed-ink)!important}
+html body .ed-intro .fx-think b{color:var(--ed-char)!important}
+@media (max-width:860px){
+  html body .ed-intro{padding:64px 0}
+  html body .ed-intro-grid{grid-template-columns:1fr;gap:40px}
+  html body .ed-portrait{max-width:460px}
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+html body .orient{background:var(--ed-ivory)!important;padding-top:56px!important;padding-bottom:16px!important}
+html body .orient-card{background:transparent!important;border:0!important;border-top:1px solid var(--ed-rule)!important;border-bottom:1px solid var(--ed-rule)!important;color:var(--ed-ink)!important}
+html body .orient-line{color:var(--ed-ink)!important;font-family:var(--serif)}
+
+html body .homes, html body .worth, html body .pz, html body .basics{background:var(--ed-ivory)!important}
+html body .data, html body #market, html body .shorts, html body .why, html body .intake, html body .gp, html body .faq{background:var(--ed-paper)!important;border-top:1px solid var(--ed-rule)!important}
+html body .data h2, html body .shorts h2, html body .why h2, html body .intake h2, html body .gp h2, html body .faq h2,
+html body .data h3, html body .shorts h3, html body .why h3, html body .intake h3, html body .gp h3{color:var(--ed-char)!important}
+html body .data p, html body .shorts p, html body .why p, html body .intake p, html body .gp p, html body .gp dd, html body .faq p,
+html body .intake li, html body .shorts-foot{color:var(--ed-ink)!important}
+
+/* cards on light grounds: paper + hairline */
+html body .home-card, html body .bx-card, html body .realtors, html body .worth > .wrap.worth-grid,
+html body .mk-card, html body .why-card, html body .ik-card, html body .faq-item, html body .intake .tip, html body .bx-packet{
+  background:var(--ed-paper)!important;border:1px solid var(--ed-rule)!important;color:var(--ed-ink)!important}
+html body .worth .form, html body .ik-form{background:#FFFFFF!important;border:1px solid var(--ed-rule)!important;border-top:2px solid var(--ed-gold)!important}
+html body .gp .fee-card{background:var(--ed-char)!important;border:0!important;color:#ECE6DA!important}
+html body .gp .fee-card .fee-label, html body .gp .fee-card li{color:#ECE6DA!important}
+html body .gp .fee-amount{color:var(--ed-gold-hi)!important;-webkit-text-fill-color:var(--ed-gold-hi)!important}
+html body .gp .fee-card .gl{border-color:var(--ed-rule-dark)!important;color:var(--ed-gold)!important}
+
+/* form fields */
+html body .field input, html body .field textarea, html body .ik-form .field input, html body .ik-form .field textarea{
+  background:#FDFBF7!important;border:1px solid #BFB4A0!important;color:var(--ed-ink)!important;border-radius:0!important}
+html body .field label{color:var(--ed-ink)!important}
+html body .ik-form .field input[type=file]::file-selector-button{background:var(--ed-cream)!important;color:var(--ed-ink)!important;border:1px solid #BFB4A0!important}
+
+/* icons: thin gold line, no tiles */
+html body .mk-icon, html body .gl, html body .pz-icon, html body .ik-icon{background:transparent!important;border:1px solid var(--ed-rule)!important;color:var(--ed-gold-text)!important;box-shadow:none!important}
+
+/* realtors + quotes */
+html body .realtors-quote blockquote{font-family:var(--serif);font-style:italic;color:var(--ed-char)!important}
+
+/* case study (dark island) */
+html body .cs{background:var(--ed-char)!important;border:0!important}
+html body .cs-photo{border:0!important;background:#111!important}
+html body .cs-list li{background:transparent!important;border:0!important;border-left:1px solid var(--ed-gold)!important;color:#E2DCD0!important}
+
+/* lot-rent strip (dark island; overrides its inline style) */
+html body a.cost-strip{background:var(--ed-char)!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#ECE6DA!important}
+html body a.cost-strip b{color:var(--ed-gold-hi)!important}
+
+/* weekly market card */
+html body .gx-stage{background:var(--ed-char)!important}
+html body .gx-card{background:var(--ed-char2)!important;border:1px solid var(--ed-rule-dark)!important}
+html body .gx-phone a{color:var(--ed-gold-hi)!important}
+
+/* "Think of it like this" band */
+html body .roles{background:var(--ed-char)!important}
+
+/* photos: no rounding or frames */
+html body main img{border-radius:0!important}
+html body .pz-photos figcaption{background:rgba(28,27,24,.85)!important;border:0!important;color:#F3EDE2!important}
+html body .play{background:rgba(28,27,24,.75)!important;border:1px solid var(--ed-gold)!important;color:#F3EDE2!important}
+
+/* section divider device: short gold hairline */
+html body .pz-head::after, html body .bx-head::after, html body .homes .section-head h2::after{background:var(--ed-gold)!important;height:1px!important}
+
+/* closing (photo + dark overlay keeps its look) */
+html body .closing h2, html body .closing p{color:#F6F1E7!important}
+html body .closing .closing-phone{color:var(--ed-gold-hi)!important}
+html body .closing .uline{background:none!important;color:var(--ed-gold-hi)!important}
+
+/* back-to-top + footer (override inline styles) */
+html body .back-top-wrap{background:var(--ed-ivory)!important}
+html body .back-top{background:var(--ed-char)!important;border-radius:0!important}
+html body .site-footer{background:var(--ed-char)!important;color:#C4BBAC!important;border-top:1px solid var(--ed-rule-dark)}
+html body .site-footer h2{color:#ECE6DA!important}
+html body .site-footer p, html body .site-footer span{color:#C4BBAC!important}
+html body .site-footer a{color:var(--ed-gold-hi)!important}
+
+/* ---------- pass 2 ---------- */
+html body main *, html body .site-header *, html body .site-footer *{box-shadow:none!important}
+html body .btn, html body .gx-btn, html body .bx-btn{background-image:none!important}
+html body .ed-band .hero-actions .btn-solid, html body .orient-actions .btn-solid{background:var(--ed-char)!important;color:#F6F1E7!important;border-color:var(--ed-char)!important}
+html body .orient-actions .btn-line{background:transparent!important;color:var(--ed-char)!important;border:1.5px solid var(--ed-char)!important}
+html body .ed-intro .hero-lines, html body .ed-intro .hero-lines p{color:var(--ed-muted)!important;font-size:19px!important}
+html body .cs h2, html body .cs .cs-zero{background:none!important;-webkit-text-fill-color:currentColor!important;color:var(--ed-gold-hi)!important;font-weight:400!important}
+html body .cs h2::before, html body .cs h2::after{display:none!important}
+html body .gx-stats div, html body .gd-chart{background:#2C2A25!important;border:1px solid var(--ed-rule-dark)!important}
+html body .gx-btn{background:var(--ed-gold)!important;color:var(--ed-char)!important;border-color:var(--ed-gold)!important}
+html body .gx-btn2{background:transparent!important;color:var(--ed-gold-hi)!important}
+html body .gd-bar i{background:var(--ed-gold)!important}
+
+/* ---------- pass 3: win over older id/class-heavy rules ---------- */
+html body #main *{box-shadow:none!important}
+html body #main .btn, html body #main button.btn, html body #main .gx-btn{background-image:none!important}
+html body #main .worth .form .btn-solid, html body #main .ik-form .btn-solid, html body #main .bx-packet .btn-solid,
+html body #main form .btn-solid{background:var(--ed-char)!important;color:#F6F1E7!important;border:1px solid var(--ed-char)!important}
+html body #main .gp .services h2, html body #main .gp .services dt{color:var(--ed-char)!important}
+html body #main .gp .services-lead, html body #main .gp .services dd{color:var(--ed-muted)!important}
+html body #main .gp .fee-cta{background:var(--ed-gold)!important;color:var(--ed-char)!important;border:1px solid var(--ed-gold)!important}
+html body #main .data-photo img, html body #main .short-media, html body #main .mosaic img, html body #main .pz-photos figure, html body #main .cs-photo{box-shadow:none!important;border-radius:0!important}
+
+/* ---------- pass 4: readable text on every light section ---------- */
+html body #main :is(.orient,.homes,.data,.worth,.gp,.pz,.shorts,.why,.intake,.basics,.faq) :is(h2,h3,dt,summary){color:var(--ed-char)!important}
+html body #main :is(.orient,.homes,.data,.worth,.gp,.pz,.shorts,.why,.intake,.basics,.faq) :is(p,li,dd,label,small,.opt){color:var(--ed-ink)!important}
+html body #main :is(.why,.intake,.faq) :is(h2,h3,p,li,label,summary){-webkit-text-fill-color:currentColor!important;opacity:1!important}
+html body #main .why-accent{color:var(--ed-gold-text)!important;-webkit-text-fill-color:var(--ed-gold-text)!important}
+html body #main .intake .tip, html body #main .intake .tip *{color:var(--ed-gold-text)!important}
+/* dark islands inside light sections keep light text */
+html body #main .homes .cs :is(h2,h3,p,li,span,b), html body #main .homes .gx-stage :is(h3,p,span,strong,b),
+html body #main .homes a.cost-strip, html body #main .gp .fee-card :is(p,li,span){color:#ECE6DA!important}
+html body #main .homes .cs :is(.cs-kicker,.cs-tag,.cs-intro,.cs-big,.cs-huge,.cs-num,.cs-result), html body #main .homes .cs li b,
+html body #main .homes .gx-stage :is(.gx-date,.gx-sec,.gd-ct), html body #main .gp .fee-card .fee-amount{color:var(--ed-gold-hi)!important}
+html body #main .homes .cs h2{color:var(--ed-gold-hi)!important}
+html body #main .homes .cs .cs-pending{color:#fff!important}
+html body #main .homes a.cost-strip b{color:var(--ed-gold-hi)!important}
+html body #main .pz-photos figcaption, html body #main .duration{color:#F3EDE2!important}
+/* headings the old 18px floor shrank */
+html body #main .faq > .wrap > h2{font-size:clamp(34px,3.4vw,46px)!important;margin-bottom:28px}
+html body #main .closing .wrap > h2{font-size:clamp(32px,3.6vw,52px)!important;line-height:1.15!important;max-width:18em;margin-left:auto;margin-right:auto}
+html body #main .closing .wrap > p{font-size:20px!important}
+/* back to top */
+html body .back-top{color:var(--ed-gold-hi)!important}
+html body #main .gx-stage .gx-btn:not(.gx-btn2){background:var(--ed-gold)!important;color:var(--ed-char)!important;border:1px solid var(--ed-gold)!important}
+html body #main .gx-stage .gx-btn2{background:transparent!important;color:var(--ed-gold-hi)!important;border:1px solid var(--ed-gold)!important}
+
+/* generic intro copy (covers any wording in the old hero) */
+html body #main .ed-intro-copy :is(p,li){color:var(--ed-ink)!important;max-width:34em}
+html body #main .ed-intro-copy :is(h2,h3){color:var(--ed-gold-text)!important}
