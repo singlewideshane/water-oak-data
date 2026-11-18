@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [website/editorial.mjs, website/editorial/**, .github/workflows/website-editorial.yml]
+    paths: [website/editorial.mjs, website/editorial/**, website/site-updates.mjs, website/dark_logo.py, .github/workflows/website-editorial.yml]
 permissions:
   contents: read
 concurrency:
@@ -24,9 +24,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --test test/editorial.test.mjs
+      - run: node --test test/editorial.test.mjs test/site-updates.test.mjs
       - run: node website/mirror.mjs
       - run: node website/editorial.mjs site
+      - run: pip install --quiet pillow
+      - run: python website/dark_logo.py site/assets/logo-wordmark.png site/assets/logo-wordmark-dark.png
+      - run: node website/site-updates.mjs site
       - run: npm install --prefix website --no-audit --no-fund
       - run: npx -y netlify-cli@latest deploy --prod --dir site --functions website/functions --site "$NETLIFY_SITE_ID" --message "Editorial redesign - porch hero and ivory theme (water-oak-data robot)"
       - name: Check the live site
@@ -37,4 +40,8 @@ jobs:
           curl -fsS -o /dev/null https://singlewideshane.com/assets/hero-porch.webp
           curl -fsS "https://singlewideshane.com/api/video-views?ids=test-check" | grep -q '"test-check"'
           curl -fsS https://singlewideshane.com/ | grep -q "raw.githubusercontent.com/SinglewideSHANE/water-oak-data"
-          echo "Redesign, video counter and market link are live."
+          curl -fsS -o /dev/null https://singlewideshane.com/assets/logo-wordmark-dark.png
+          curl -fsS https://singlewideshane.com/water-oak-2027-costs/ | grep -q 'class="back-home" href="/"'
+          curl -fsS https://singlewideshane.com/water-oak-2027-costs/ | grep -q '\$91.46'
+          curl -fsS https://singlewideshane.com/water-oak-2027-costs/ | grep -q 'logo-wordmark-dark.png'
+          echo "Redesign, costs page, dark header logo, video counter and market link are live."
