@@ -43,8 +43,17 @@ export function visibleText(html) {
     .split('\u0000').map(t => t.replace(/\s+/g, ' ').trim()).filter(Boolean);
 }
 
+// Nov 18: the portrait no longer shows on the homepage.
+export function dropPortrait(html) {
+  const f = find(html, /<figure\b[^>]*class="ed-portrait"[^>]*>/, 'figure');
+  return f ? html.slice(0, f.start) + html.slice(f.end) : html;
+}
+
 export function applyEditorial(html) {
-  if (html.includes(MARK)) return { html, changed: false };
+  if (html.includes(MARK)) {
+    const out = dropPortrait(html);
+    return { html: out, changed: out !== html };
+  }
 
   const hero = find(html, /<section\b[^>]*class="hero"[^>]*>/, 'section');
   if (!hero) throw new Error('hero section not found');
@@ -102,7 +111,7 @@ export function applyEditorial(html) {
       </div>
     </section>`;
 
-  let out = html.slice(0, hero.start) + newHero + html.slice(hero.end);
+  let out = dropPortrait(html.slice(0, hero.start) + newHero + html.slice(hero.end));
   const head = '<link rel="preload" as="image" href="assets/hero-porch.webp" media="(min-width:761px)" />\n' +
     '<link rel="preload" as="image" href="assets/hero-porch-mobile.webp" media="(max-width:760px)" />\n' +
     '<link rel="stylesheet" href="editorial.css" />\n</head>';
