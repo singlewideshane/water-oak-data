@@ -4,12 +4,13 @@
    gold buttons and the homepage's outlined header button stay as they are.
    ========================================================= */
 :root{
-  --gb-emerald:#183F32; --gb-emerald-hi:#21523F; --gb-ivory:#F6F1E7;
-  --gb-gold:rgba(217,191,142,.85); --gb-gold-hi:#D9BF8E;
-  /* stronger glass: bright upper sheen with a crisp split, deep lower half */
-  --gb-face:linear-gradient(180deg,rgba(255,255,255,.34) 0%,rgba(255,255,255,.14) 47%,rgba(255,255,255,.02) 50%,rgba(0,0,0,0) 72%,rgba(0,0,0,.22) 100%);
-  --gb-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 0 1px rgba(255,255,255,.08),inset 0 -2px 3px rgba(0,0,0,.30),0 2px 3px rgba(10,30,22,.25),0 12px 26px -8px rgba(10,30,22,.55);
-  --gb-shadow-hover:inset 0 1px 0 rgba(255,255,255,.65),inset 0 0 0 1px rgba(255,255,255,.12),inset 0 -2px 3px rgba(0,0,0,.30),0 3px 6px rgba(10,30,22,.25),0 18px 34px -10px rgba(10,30,22,.6);
+  --gb-emerald:#1B4A3A; --gb-emerald-hi:#24604A; --gb-ivory:#F6F1E7;
+  --gb-gold:#C9A869; --gb-gold-hi:#D9BF8E;
+  /* bold glass: glossy upper half, glowing lower edge, gold rim, deep drop shadow */
+  --gb-face:linear-gradient(180deg,rgba(255,255,255,.50) 0%,rgba(255,255,255,.22) 45%,rgba(255,255,255,.04) 50%,rgba(0,0,0,.06) 70%,rgba(0,0,0,.30) 100%),
+            radial-gradient(120% 70% at 50% 115%,rgba(120,220,170,.35) 0%,rgba(120,220,170,0) 60%);
+  --gb-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 0 0 1px rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.35),0 2px 3px rgba(10,30,22,.30),0 14px 30px -8px rgba(10,30,22,.65);
+  --gb-shadow-hover:inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.20),inset 0 -3px 6px rgba(0,0,0,.35),0 3px 6px rgba(10,30,22,.30),0 20px 38px -10px rgba(10,30,22,.70);
 }
 
 /* every green button (high specificity so older theme rules don't win) */
@@ -19,7 +20,7 @@ html body .wc a.back-home{
   background:var(--gb-face),var(--gb-emerald)!important;
   color:var(--gb-ivory)!important;
   border:1px solid var(--gb-gold)!important;
-  border-radius:2px!important;
+  border-radius:3px!important;
   box-shadow:var(--gb-shadow)!important;
   -webkit-backdrop-filter:blur(6px) saturate(140%);backdrop-filter:blur(6px) saturate(140%);
   text-shadow:0 1px 0 rgba(0,0,0,.28)!important;
