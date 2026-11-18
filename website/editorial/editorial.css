@@ -285,3 +285,30 @@ html body .site-header .header-call:hover::after{color:#F6F1E7!important}
 /* logo placed on a light background in the pricing section */
 html body #main .gp img[src*="logo-wordmark"]{filter:invert(1) hue-rotate(180deg)}
 html body #main .gp .fee-card img[src*="logo-wordmark"]{filter:none}
+
+/* ---------- Nov 18 c: every black block becomes emerald ---------- */
+:root{ --em-1:#155C44; --em-2:#0B3A2B; --em-solid:#0F4A37; --em-hover:#176B50;
+  --em-grad:linear-gradient(160deg,var(--em-1) 0%,var(--em-2) 100%); }
+html body .ed-hero{background:var(--em-grad)!important}
+html body #main .homes .cs, html body #main .cs{background:var(--em-grad)!important}
+html body #main .roles{background:var(--em-grad)!important}
+html body #main .gp .fee-card{background:var(--em-grad)!important}
+html body #main .gx-stage{background:var(--em-grad)!important}
+html body #main .gx-card{background:rgba(255,255,255,.04)!important;border-color:rgba(217,191,142,.35)!important}
+html body #main .gx-stats div, html body #main .gd-chart{background:rgba(0,0,0,.18)!important;border-color:rgba(217,191,142,.28)!important}
+html body #main .gd-bar{background:rgba(255,255,255,.10)!important}
+html body #main a.cost-strip, html body #main .homes a.cost-strip{background:var(--em-grad)!important}
+html body #main .cs-photo{background:var(--em-2)!important}
+html body .closing{background:var(--em-2)!important}
+html body .closing::before{background:linear-gradient(180deg,rgba(11,58,43,.80),rgba(11,58,43,.70) 50%,rgba(11,58,43,.92))!important}
+html body .site-footer{background:var(--em-grad)!important;border-top:1px solid rgba(217,191,142,.35)!important}
+html body .site-footer p, html body .site-footer span{color:#D6E2DB!important}
+/* black buttons -> emerald */
+html body .btn-solid, html body #main .btn-solid, html body #main form .btn-solid,
+html body #main .worth .form .btn-solid, html body #main .ik-form .btn-solid, html body #main .bx-packet .btn-solid,
+html body .ed-band .hero-actions .btn-solid, html body .orient-actions .btn-solid{
+  background:var(--em-solid)!important;border-color:var(--em-solid)!important;color:#F6F1E7!important}
+html body .btn-solid:hover, html body #main .btn-solid:hover, html body #main form .btn-solid:hover{background:var(--em-hover)!important;border-color:var(--em-hover)!important}
+html body .back-top{background:var(--em-solid)!important}
+html body .pz-photos figcaption{background:rgba(11,58,43,.88)!important}
+html body .play{background:rgba(11,58,43,.80)!important}
