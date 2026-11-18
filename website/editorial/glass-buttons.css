@@ -41,3 +41,30 @@ html body .wc a.back-home:active{transform:translateY(0);box-shadow:var(--gb-sha
 @media (prefers-reduced-motion: reduce){
   html body :is(a, button).btn-solid, html body .wc a.back-home{transition:none!important;transform:none!important}
 }
+
+/* ---------- $900 price card: same emerald glass ---------- */
+html body #main .fee-card.fee-card{
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.07) 22%,rgba(255,255,255,0) 34%),
+    linear-gradient(115deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.07) 48%,rgba(255,255,255,0) 56%),
+    radial-gradient(120% 45% at 50% 108%,rgba(120,220,170,.22) 0%,rgba(120,220,170,0) 70%),
+    linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.22) 100%),
+    var(--gb-emerald)!important;
+  border:1px solid var(--gb-gold)!important;
+  border-radius:4px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 0 1px rgba(255,255,255,.10),inset 0 -4px 10px rgba(0,0,0,.30),
+    0 3px 6px rgba(10,30,22,.25),0 28px 50px -18px rgba(10,30,22,.60)!important;
+}
+/* gold call button inside the card: matching gold glass */
+html body #main .fee-card.fee-card a.fee-cta.fee-cta{
+  background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.22) 45%,rgba(255,255,255,.04) 50%,rgba(0,0,0,0) 70%,rgba(90,60,10,.25) 100%),#C9A35E!important;
+  color:#1C1B18!important;border:1px solid #E8D3A6!important;border-radius:3px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -3px 6px rgba(90,60,10,.30),0 2px 3px rgba(10,30,22,.30),0 12px 24px -8px rgba(10,30,22,.6)!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.35)!important;letter-spacing:.12em;
+  transition:background .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+html body #main .fee-card.fee-card a.fee-cta.fee-cta:is(:hover,:focus-visible){
+  background:linear-gradient(180deg,rgba(255,255,255,.65) 0%,rgba(255,255,255,.28) 45%,rgba(255,255,255,.06) 50%,rgba(0,0,0,0) 70%,rgba(90,60,10,.22) 100%),#D6B26C!important;
+  transform:translateY(-1px);
+}
