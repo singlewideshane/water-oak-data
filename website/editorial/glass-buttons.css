@@ -68,3 +68,29 @@ html body #main .fee-card.fee-card a.fee-cta.fee-cta:is(:hover,:focus-visible){
   background:linear-gradient(180deg,rgba(255,255,255,.65) 0%,rgba(255,255,255,.28) 45%,rgba(255,255,255,.06) 50%,rgba(0,0,0,0) 70%,rgba(90,60,10,.22) 100%),#D6B26C!important;
   transform:translateY(-1px);
 }
+
+/* ---------- $900 price card v2: deep, thick, glossy slab ---------- */
+html body #main .fee-card.fee-card{
+  border:3px solid transparent!important;
+  border-radius:6px!important;
+  background:
+    /* glossy curved highlight across the top */
+    radial-gradient(140% 55% at 50% -8%,rgba(255,255,255,.38) 0%,rgba(255,255,255,.14) 38%,rgba(255,255,255,0) 62%) padding-box,
+    /* thin diagonal light streak */
+    linear-gradient(118deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.10) 47%,rgba(255,255,255,0) 53%) padding-box,
+    /* emerald glow reflecting up from the bottom */
+    radial-gradient(110% 40% at 50% 112%,rgba(90,210,150,.30) 0%,rgba(90,210,150,0) 70%) padding-box,
+    /* deep saturated emerald body */
+    linear-gradient(180deg,#155B44 0%,#0E4433 55%,#0A3326 100%) padding-box,
+    /* metallic gold bevel edge */
+    linear-gradient(160deg,#F6E3B4 0%,#C9A35E 30%,#8C6A2E 55%,#E3C886 78%,#7A5B22 100%) border-box!important;
+  box-shadow:
+    inset 0 2px 1px rgba(255,255,255,.55),
+    inset 0 0 0 1px rgba(255,255,255,.14),
+    inset 0 -10px 22px rgba(0,0,0,.40),
+    0 6px 0 #6E5222,
+    0 8px 0 #4A3714,
+    0 16px 24px -4px rgba(0,0,0,.40),
+    0 40px 70px -24px rgba(6,30,20,.65)!important;
+  transform:translateY(-4px);
+}
