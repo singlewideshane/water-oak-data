@@ -34,24 +34,19 @@
   },
   {
    "address": "444 Snead Dr",
-   "price": 159000,
+   "price": 157000,
    "source": "Facebook FSBO",
    "link": "https://facebook.com/groups/263480606038566/permalink/1122116250174993/",
-   "posted": "2026-10-15"
+   "posted": "2026-11-11"
   }
  ],
- "facebook_leads_no_address": [
-  {
-   "price": 68000,
-   "posted": "2026-11-05",
-   "link": "https://facebook.com/groups/350446579383231/permalink/1831916044569603/"
-  }
- ],
+ "facebook_leads_no_address": [],
  "facebook_duplicates": [
   {
    "address": "209 Sanders Ln",
    "facebook_price": 139900,
-   "note": "Already counted under the Sun sales office ($92,900)"
+   "posted": "2026-10-08",
+   "note": "Address from listing photo, not post text. Already counted under the Sun sales office ($92,900)"
   }
  ]
 }
