@@ -42,6 +42,12 @@
    "status": "ok",
    "feed": 49,
    "others": 3
+  },
+  {
+   "date": "2026-11-19",
+   "status": "ok",
+   "feed": 49,
+   "others": 3
   }
  ],
  "homes": {
@@ -53,7 +59,7 @@
    "sellerType": "Community",
    "url": "https://www.mhvillage.com/homes/3587037",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-18",
+   "lastSeen": "2026-11-19",
    "prices": [
     {
      "date": "2026-11-15",
@@ -71,7 +77,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3231323",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-18",
+   "lastSeen": "2026-11-19",
    "prices": [
     {
      "date": "2026-11-15",
@@ -89,7 +95,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3521821",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-18",
+   "lastSeen": "2026-11-19",
    "prices": [
     {
      "date": "2026-11-15",
@@ -100,16 +106,16 @@
    "goneDate": null
   }
  },
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "pendingOnMhv": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "addresses": [
    "410 Palmer Dr",
    "747 Trevino Dr"
   ]
  },
  "sunOnMhv": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "homes": [
    {
     "address": "201 Cottonwood Cir",
@@ -167,11 +173,6 @@
     "pending": false
    },
    {
-    "address": "304 Redbud Ln",
-    "price": 129995,
-    "pending": false
-   },
-   {
     "address": "962 W Norman St",
     "price": 128995,
     "pending": false
@@ -182,6 +183,11 @@
     "pending": false
    },
    {
+    "address": "304 Redbud Ln",
+    "price": 124995,
+    "pending": false
+   },
+   {
     "address": "220 Maple Dr",
     "price": 124995,
     "pending": false
@@ -189,6 +195,11 @@
    {
     "address": "214 Bradley Ln",
     "price": 109995,
+    "pending": false
+   },
+   {
+    "address": "808 E Norman St",
+    "price": 99900,
     "pending": false
    },
    {
@@ -249,11 +260,6 @@
    {
     "address": "214 Birch St",
     "price": 63500,
-    "pending": false
-   },
-   {
-    "address": "413 Bemen Dr",
-    "price": 59000,
     "pending": false
    }
   ]
