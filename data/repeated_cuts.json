@@ -1,1 +1,14 @@
-[]
+[
+ {
+  "address": "401 Tulip Tree Ln",
+  "source": "Foxfire",
+  "stableId": "27218",
+  "originalAsk": 59900,
+  "currentAsk": 49900,
+  "reductionCount": 2,
+  "totalDollars": 10000,
+  "percent": 0.1669449081803005,
+  "status": "active",
+  "dom": null
+ }
+]
