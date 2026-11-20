@@ -1,12 +1,6 @@
 {
- "date": "2026-11-15",
+ "date": "2026-11-20",
  "homes": {
-  "410 palmer": {
-   "address": "410 Palmer Dr",
-   "price": 189900,
-   "pending": false,
-   "source": "Foxfire"
-  },
   "711 e norman": {
    "address": "711 E. Norman Street",
    "price": 68500,
@@ -16,12 +10,6 @@
   "626 cedar": {
    "address": "626 Cedar La",
    "price": 59000,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "120 w pine": {
-   "address": "120 W Pine St",
-   "price": 49900,
    "pending": false,
    "source": "Foxfire"
   },
@@ -39,19 +27,13 @@
   },
   "401 tulip tree": {
    "address": "401 Tulip Tree Ln",
-   "price": 52900,
+   "price": 49900,
    "pending": false,
    "source": "Foxfire"
   },
   "309 juniper": {
    "address": "309 Juniper Cir",
    "price": 54000,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "747 trevino": {
-   "address": "747 Trevino Dr",
-   "price": 38900,
    "pending": false,
    "source": "Foxfire"
   },
@@ -97,58 +79,10 @@
    "pending": false,
    "source": "Foxfire"
   },
-  "434 watson": {
-   "address": "434 Watson Drive",
-   "price": 265000,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "450 watson": {
-   "address": "450 WATSON DRIVE",
-   "price": 289000,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "912 w norman": {
-   "address": "912 W Norman St",
-   "price": 75000,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "646 hickory": {
-   "address": "646 Hickory Hill",
-   "price": 64900,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "114 magnolia": {
-   "address": "114 Magnolia Dr",
-   "price": 79900,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "921 strange": {
-   "address": "921 Strange St",
-   "price": 132500,
-   "pending": false,
-   "source": "Foxfire"
-  },
-  "816 trevino": {
-   "address": "816 Trevino Dr",
-   "price": 78000,
-   "pending": false,
-   "source": "Foxfire"
-  },
   "201 cottonwood": {
    "address": "201 Cottonwood Cir",
    "price": 208900,
-   "pending": false,
-   "source": "Sun"
-  },
-  "944 w norman": {
-   "address": "944 W Norman St",
-   "price": 199999,
-   "pending": false,
+   "pending": true,
    "source": "Sun"
   },
   "217 hogan": {
@@ -169,24 +103,6 @@
    "pending": false,
    "source": "Sun"
   },
-  "886 byrnes": {
-   "address": "886 Byrnes Lp",
-   "price": 167995,
-   "pending": false,
-   "source": "Sun"
-  },
-  "898 byrnes": {
-   "address": "898 Byrnes Lp",
-   "price": 167995,
-   "pending": true,
-   "source": "Sun"
-  },
-  "880 byrnes": {
-   "address": "880 Byrnes Lp",
-   "price": 164995,
-   "pending": true,
-   "source": "Sun"
-  },
   "892 byrnes": {
    "address": "892 Byrnes Lp",
    "price": 164995,
@@ -196,30 +112,6 @@
   "494 sheehan": {
    "address": "494 Sheehan Way",
    "price": 159995,
-   "pending": false,
-   "source": "Sun"
-  },
-  "138 evergreen": {
-   "address": "138 Evergreen Ln",
-   "price": 134900,
-   "pending": false,
-   "source": "Sun"
-  },
-  "304 redbud": {
-   "address": "304 Redbud Ln",
-   "price": 129995,
-   "pending": false,
-   "source": "Sun"
-  },
-  "962 w norman": {
-   "address": "962 W Norman St",
-   "price": 128995,
-   "pending": false,
-   "source": "Sun"
-  },
-  "224 bradley": {
-   "address": "224 Bradley Ln",
-   "price": 128000,
    "pending": false,
    "source": "Sun"
   },
@@ -235,10 +127,10 @@
    "pending": false,
    "source": "Sun"
   },
-  "705 bishop": {
-   "address": "705 Bishop Dr",
-   "price": 97900,
-   "pending": false,
+  "805 sutton": {
+   "address": "805 Sutton St",
+   "price": 94995,
+   "pending": true,
    "source": "Sun"
   },
   "813 e norman": {
@@ -247,21 +139,9 @@
    "pending": false,
    "source": "Sun"
   },
-  "805 sutton": {
-   "address": "805 Sutton St",
-   "price": 94995,
-   "pending": true,
-   "source": "Sun"
-  },
-  "209 sanders": {
-   "address": "209 Sanders Ln",
-   "price": 92900,
-   "pending": false,
-   "source": "Sun"
-  },
   "532 spruce": {
    "address": "532 Spruce Dr",
-   "price": 84995,
+   "price": 79900,
    "pending": false,
    "source": "Sun"
   },
@@ -289,15 +169,15 @@
    "pending": false,
    "source": "Sun"
   },
-  "706 water oak": {
-   "address": "706 Water Oak Blvd",
-   "price": 69900,
-   "pending": false,
-   "source": "Sun"
-  },
   "644 hickory": {
    "address": "644 Hickory Hill",
    "price": 69000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "706 water oak": {
+   "address": "706 Water Oak Blvd",
+   "price": 66900,
    "pending": false,
    "source": "Sun"
   },
@@ -311,6 +191,126 @@
    "address": "413 Bemen Dr",
    "price": 59000,
    "pending": true,
+   "source": "Sun"
+  },
+  "880 byrnes": {
+   "address": "880 Byrnes Lp",
+   "price": 164995,
+   "pending": true,
+   "source": "Sun"
+  },
+  "886 byrnes": {
+   "address": "886 Byrnes Lp",
+   "price": 167995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "962 w norman": {
+   "address": "962 W Norman St",
+   "price": 128995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "434 watson": {
+   "address": "434 Watson Drive",
+   "price": 265000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "450 watson": {
+   "address": "450 WATSON DRIVE",
+   "price": 289000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "944 w norman": {
+   "address": "944 W Norman St",
+   "price": 199999,
+   "pending": true,
+   "source": "Sun"
+  },
+  "304 redbud": {
+   "address": "304 Redbud Ln",
+   "price": 124995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "646 hickory": {
+   "address": "646 Hickory Hill",
+   "price": 64900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "114 magnolia": {
+   "address": "114 Magnolia Dr",
+   "price": 79900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "921 strange": {
+   "address": "921 Strange St",
+   "price": 124900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "209 sanders": {
+   "address": "209 Sanders Ln",
+   "price": 92900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "224 bradley": {
+   "address": "224 Bradley Ln",
+   "price": 128000,
+   "pending": false,
+   "source": "Sun"
+  },
+  "816 trevino": {
+   "address": "816 Trevino Dr",
+   "price": 78000,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "138 evergreen": {
+   "address": "138 Evergreen Ln",
+   "price": 134900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "705 bishop": {
+   "address": "705 Bishop Dr",
+   "price": 97900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "213 sanders": {
+   "address": "213 Sanders Ln",
+   "price": 106900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "621 sycamore": {
+   "address": "621 Sycamore Sq",
+   "price": 64900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "111 magnolia": {
+   "address": "111 Magnolia Dr",
+   "price": 49900,
+   "pending": false,
+   "source": "Foxfire"
+  },
+  "808 e norman": {
+   "address": "808 E Norman St",
+   "price": 99900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "513 palmer": {
+   "address": "513 Palmer Dr",
+   "price": 189900,
+   "pending": false,
    "source": "Sun"
   },
   "508 palmer": {
@@ -331,8 +331,14 @@
    "pending": false,
    "source": "MHVillage"
   },
-  "541 spruce": {
-   "address": "541 Spruce Dr",
+  "410 palmer": {
+   "address": "410 Palmer Dr",
+   "price": null,
+   "pending": true,
+   "source": "MHVillage"
+  },
+  "747 trevino": {
+   "address": "747 Trevino Dr",
    "price": null,
    "pending": true,
    "source": "MHVillage"
@@ -363,9 +369,21 @@
   },
   "444 snead": {
    "address": "444 Snead Dr",
-   "price": 159000,
+   "price": 157000,
    "pending": false,
    "source": "Facebook FSBO"
+  },
+  "898 byrnes": {
+   "address": "898 Byrnes Lp",
+   "price": null,
+   "pending": true,
+   "source": "Live check"
+  },
+  "541 spruce": {
+   "address": "541 Spruce Dr",
+   "price": null,
+   "pending": true,
+   "source": "Live check"
   }
  }
 }

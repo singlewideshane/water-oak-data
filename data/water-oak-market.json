@@ -1,22 +1,22 @@
 {
- "updated": "2026-11-15",
- "total_for_sale": 53,
+ "updated": "2026-11-20",
+ "total_for_sale": 52,
  "total_for_sale_explainer": "Active homes for sale in Water Oak from every source — the sales office, brokerages, and for-sale-by-owner listings — with pending sales removed and each home counted once.",
- "pending_or_under_contract": 8,
- "stats_basis": "Median, price range and price bands use all 53 homes for sale.",
- "median_ask": 84900,
+ "pending_or_under_contract": 12,
+ "stats_basis": "Median, price range and price bands use all 52 homes for sale.",
+ "median_ask": 83948,
  "price_range": [
-  38900,
+  49900,
   289000
  ],
  "price_bands": [
   {
    "band": "Under $60K",
-   "count": 8
+   "count": 7
   },
   {
    "band": "$60K–$80K",
-   "count": 17
+   "count": 18
   },
   {
    "band": "$80K–$100K",
@@ -24,25 +24,25 @@
   },
   {
    "band": "$100K–$150K",
-   "count": 9
+   "count": 10
   },
   {
    "band": "$150K+",
-   "count": 12
+   "count": 10
   }
  ],
  "whats_moving": {
   "since": "2026-11-15",
-  "went_pending_count": 0,
+  "went_pending_count": 4,
   "went_pending_range": [
-   0,
-   0
+   199999,
+   208900
   ],
-  "left_list_count": 0,
+  "left_list_count": 2,
   "left_list_range": [
-   0,
-   0
+   49900,
+   75000
   ]
  },
- "takeaway": "The most common price range in Water Oak right now is $60K–$80K (17 of 53 homes)."
+ "takeaway": "The most common price range in Water Oak right now is $60K–$80K (18 of 52 homes)."
 }
