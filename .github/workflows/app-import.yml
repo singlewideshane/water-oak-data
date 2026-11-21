@@ -1,5 +1,5 @@
 name: Listings app — copy live app into repo
-# Run by hand. Copies the live Listings app (lambent-bublanina) from Netlify into app/site
+# Run by hand. Copies the live Listings app (lambent-bublanina) from Netlify into app/src
 # and commits it, so the app's code lives here. Reads the live app only; deploys nothing.
 on:
   workflow_dispatch:
@@ -20,5 +20,5 @@ jobs:
       - run: |
           git config user.name "water-oak-data robot"
           git config user.email "actions@users.noreply.github.com"
-          git add app/site
-          git diff --cached --quiet && echo "No changes." || (git commit -m "Copy live Listings app into app/site" && git push)
+          git add app/src
+          git diff --cached --quiet && echo "No changes." || (git commit -m "Copy live Listings app into app/src" && git push)
