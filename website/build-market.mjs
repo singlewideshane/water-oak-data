@@ -46,8 +46,8 @@ export function collect({ market, others, stats, manual, live }) {
   for (const a of others?.pendingOnMhv?.addresses || []) { const h = homes.get(matchKey(a)); if (h) h.pending = true; else add(a, null, true, 'MHVillage'); }
   for (const l of stats?.listings || []) {
     if (!['active', 'pending'].includes(String(l.status).toLowerCase())) continue;
-    const ph = l.priceHistory || [];
-    add(l.address, ph.length ? ph[ph.length - 1].price : l.listPrice, String(l.status).toLowerCase() === 'pending', 'Shane');
+    // listPrice is the current asking price; priceHistory holds the OLD prices before each cut.
+    add(l.address, l.listPrice, String(l.status).toLowerCase() === 'pending', 'Shane');
   }
   const cutoff = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
   for (const r of manual || []) {

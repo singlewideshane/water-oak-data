@@ -1,0 +1,31 @@
+name: Listings app — deploy
+# Deploys app/src to the Listings app (lambent-bublanina) whenever it changes on main.
+# Same link as before, so the home-screen icon and the data saved on the phone are untouched.
+# Undo: Netlify > lambent-bublanina > Deploys > pick the previous deploy > "Publish deploy".
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [app/src/**, .github/workflows/app-deploy.yml]
+permissions:
+  contents: read
+concurrency:
+  group: app-deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: 096f9065-4006-4148-a47b-a65ee3ff88c1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx -y netlify-cli@latest deploy --prod --dir app/src --site "$NETLIFY_SITE_ID" --message "Listings app (water-oak-data robot)"
+      - name: Check the live app
+        run: |
+          sleep 15
+          curl -fsS https://lambent-bublanina-a695d4.netlify.app/ | grep -q "2026-11-21"
+          echo "Listings app is live."
