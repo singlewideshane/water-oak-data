@@ -9,7 +9,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-export const ASSETS = ['hero-porch.jpg', 'hero-porch.webp', 'hero-porch-mobile.jpg', 'hero-porch-mobile.webp'];
+export const ASSETS = ['hero-porch.jpg', 'hero-porch.webp', 'hero-porch-mobile.jpg', 'hero-porch-mobile.webp',
+  // Shane's edited billiard room photo (Nov 21, 2026), replaces the live mosaic tile of the same name.
+  'water-oak-billiards.jpg'];
 const MARK = 'href="editorial.css"';
 
 // Find the full element that starts at `start` (an opening <tag ...>), balancing nested same-name tags.

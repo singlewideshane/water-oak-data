@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import fs from 'node:fs';
-import { applyEditorial, visibleText } from '../website/editorial.mjs';
+import { applyEditorial, visibleText, ASSETS } from '../website/editorial.mjs';
 
 const page = fs.readFileSync(new URL('./fixtures/site-index.html', import.meta.url), 'utf8');
 
@@ -51,4 +51,10 @@ test('works with the live bio wording from Nov 16', () => {
   const { html } = applyEditorial(live);
   assert.deepEqual(visibleText(html), visibleText(live));
   assert.match(html, /class="ed-intro-copy">[\s\S]*Texas Realtor/);
+});
+
+test('ships the new billiard room photo over the live one', () => {
+  assert.ok(ASSETS.includes('water-oak-billiards.jpg'));
+  assert.ok(fs.existsSync(new URL('../website/editorial/water-oak-billiards.jpg', import.meta.url)));
+  assert.match(page, /src="assets\/water-oak-billiards\.jpg"/);
 });
