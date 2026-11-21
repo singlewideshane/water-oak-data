@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Listings</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Listings">
+<meta name="theme-color" content="#1B4D3E">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png">
+<link rel="icon" href="apple-touch-icon-180.png">
+<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<style>
+  :root{
+    --pine:#1B4D3E;
+    --pine-deep:#0F2E25;
+    --paper:#EFF2EE;
+    --card:#FFFFFF;
+    --rule:#D6DCD6;
+    --marigold:#B8801A;
+    --brick:#8C3A2B;
+    --ink:#18201B;
+    --muted:#5C6961;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:18px 16px 90px}
+  /* main screen sits above the fixed bottom button; JS refines this to the exact height */
+  #mainWrap{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+
+  header.top{padding:4px 0 18px}
+  .brand{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.15;color:var(--pine-deep);margin:0}
+  .pulse{margin:8px 0 0;color:var(--muted);font-size:16px}
+
+  .card{
+    background:var(--card);border:1px solid var(--rule);border-radius:12px;
+    padding:15px 16px 15px 19px;margin-bottom:12px;position:relative;overflow:hidden;
+    cursor:pointer;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--pine)}
+  .card.pending::before{background:var(--marigold)}
+  .card.sold::before{background:#98A79D}
+  .addr{font-family:Georgia,serif;font-size:20px;line-height:1.25;margin:0 0 2px;color:var(--pine-deep)}
+  .who{color:var(--muted);font-size:15.5px;margin:0 0 11px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 20px;align-items:baseline}
+  .price{font-size:20px;font-weight:600}
+  .dom{font-size:15.5px;color:var(--muted)}
+  .tally{font-size:15.5px;color:var(--muted);margin-top:9px}
+  .tally b{color:var(--ink);font-weight:600}
+  .cut{color:var(--brick);font-size:15.5px;margin-top:6px}
+
+  h2.sec{font-family:Georgia,serif;font-size:19px;color:var(--pine-deep);margin:26px 0 11px;font-weight:400}
+  .empty{background:var(--card);border:1px dashed var(--rule);border-radius:12px;padding:22px 18px;color:var(--muted)}
+
+  button{font:inherit;cursor:pointer}
+  .btn{
+    display:block;width:100%;padding:15px;border-radius:11px;border:1px solid var(--pine);
+    background:var(--pine);color:#fff;font-size:17.5px;font-weight:600;margin-bottom:10px;
+  }
+  .btn.ghost{background:transparent;color:var(--pine)}
+  .btn.warn{background:transparent;color:var(--brick);border-color:var(--brick)}
+  .fab{
+    position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:var(--paper);border-top:1px solid var(--rule);
+  }
+  .fab .btn{max-width:608px;margin:0 auto}
+
+  .sheet{position:fixed;inset:0;padding-top:env(safe-area-inset-top);background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:20}
+  .sheetbar{
+    position:sticky;top:0;background:var(--paper);padding:16px 16px 12px;min-height:60px;
+    border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;
+  }
+  .link{background:none;border:0;color:var(--pine);font-size:18px;padding:12px 6px;font-weight:600}
+  .link.del{color:var(--brick)}
+
+  .counter{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .counter .lab{font-size:16.5px;color:var(--muted);margin-bottom:10px}
+  .cbox{display:flex;align-items:center;gap:14px}
+  .cnum{font-family:Georgia,serif;font-size:38px;min-width:56px;text-align:center;color:var(--pine-deep)}
+  .step{
+    flex:1;padding:16px;border-radius:11px;border:1px solid var(--pine);background:var(--pine);
+    color:#fff;font-size:22px;font-weight:600;
+  }
+  .step.minus{background:transparent;color:var(--pine)}
+  .recent{margin-top:9px;font-size:15.5px;color:var(--muted)}
+
+  .facts{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:6px 16px;margin-bottom:14px}
+  .fact{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:16.5px}
+  .fact:last-child{border-bottom:0}
+  .fact span{color:var(--muted)}
+  .fact b{font-weight:600;text-align:right}
+
+  label{display:block;margin:14px 0 6px;font-size:16px;color:var(--muted)}
+  input,textarea,select{
+    width:100%;padding:13px 12px;font:17px -apple-system,BlinkMacSystemFont,sans-serif;
+    border:1px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink);
+  }
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--pine);outline-offset:1px}
+  .two{display:flex;gap:10px}
+  .two>div{flex:1}
+  textarea{min-height:88px;resize:vertical}
+  .note{color:var(--muted);font-size:15.5px;margin:16px 0 0;line-height:1.5}
+  .banner{background:#E4EDE6;border:1px solid #BCCFC0;border-radius:10px;padding:12px 14px;font-size:16px;margin-bottom:14px}
+
+  .tabs{display:flex;border:1px solid var(--rule);border-radius:11px;overflow:hidden;margin:0 0 18px;background:var(--card)}
+  .tabs button{flex:1;padding:13px 8px;border:0;background:transparent;color:var(--muted);font-size:16.5px;font-weight:600}
+  .tabs button.on{background:var(--pine);color:#fff}
+
+  .band{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px 16px 16px 19px;margin-bottom:12px;position:relative;overflow:hidden}
+  .band::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--pine)}
+  .band.slow::before{background:#98A79D}
+  .band .lab{font-size:16px;color:var(--muted);margin-bottom:5px}
+  .band .big{font-family:Georgia,serif;font-size:25px;line-height:1.25;color:var(--pine-deep)}
+  .band .sub{font-size:15.5px;color:var(--muted);margin-top:6px}
+
+  .mrow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--rule);border-radius:11px;padding:12px 14px;margin-bottom:8px}
+  .mrow .info{flex:1;min-width:0}
+  .mrow .a{font-size:17px;margin:0;color:var(--ink)}
+  .mrow .p{font-size:15.5px;color:var(--muted);margin:2px 0 0}
+  .mrow.off{opacity:.72}
+  .gonebtn{padding:14px 15px;border-radius:9px;border:1px solid var(--rule);background:transparent;color:var(--muted);font-size:16px;font-weight:600;white-space:nowrap;min-width:92px}
+  .band.chg::before{background:var(--marigold)}
+  .band.chg .big{font-size:20px}
+  .fact.mark{background:#FBF3E2;margin:0 -16px;padding:11px 16px;border-bottom:1px solid #EBD9B2}
+  .fact.mark span,.fact.mark b{color:#7A5410}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips .gonebtn{min-width:0}
+  .gonebtn.on{background:var(--marigold);border-color:var(--marigold);color:#fff}
+
+  /* fact sheet */
+  .chip{display:inline-block;font-size:14.5px;font-weight:600;padding:3px 10px;border-radius:999px;margin-top:6px}
+  .chip.confirmed{background:#E4EDE6;color:var(--pine)}
+  .chip.needs{background:#FBF3E2;color:#7A5410}
+  .chip.unknown{background:#ECEEEC;color:var(--muted)}
+  .chipdate{font-size:14.5px;color:var(--muted);margin-left:6px}
+  .frow{padding:12px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+  .frow:last-child{border-bottom:0}
+  .frow.fixed{cursor:default}
+  .frow .fl{font-size:15.5px;color:var(--muted)}
+  .frow .fv{font-size:17px;margin-top:2px;white-space:pre-wrap;word-wrap:break-word}
+  .frow .fv.unk{color:var(--muted);font-style:italic}
+  .qa{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer}
+  .qa .q{font-weight:600;font-size:17px;margin:0}
+  .qa .ans{font-size:16.5px;margin:6px 0 0;white-space:pre-wrap;word-wrap:break-word}
+  .qa .ans.unk{color:var(--muted);font-style:italic}
+  .btn.sm{padding:11px;font-size:16.5px;margin:12px 0 0}
+  .preview{white-space:pre-wrap;word-wrap:break-word;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;font-size:17px;margin-bottom:14px}
+  .banner.warnb{background:#F6E6E2;border-color:#E2BFB6;color:var(--brick)}
+  .checkrow{display:flex;align-items:center;gap:12px;margin:16px 0 0;font-size:17px;color:var(--ink)}
+  .checkrow input{width:26px;height:26px;margin:0;flex:none}
+  .hide{display:none}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="mainWrap">
+  <header class="top">
+    <h1 class="brand">Water Oak listings</h1>
+    <p class="pulse" id="pulse">Loading your listings…</p>
+  </header>
+  <div class="tabs">
+    <button id="tabL" class="on">My listings</button>
+    <button id="tabM">Market</button>
+    <button id="tabV">Views &amp; saves</button>
+  </div>
+  <div id="main"></div>
+</div>
+
+<div class="fab"><button class="btn" id="addBtn">Add a listing</button></div>
+<div id="sheet"></div>
+
+<script>
+const KEY = 'wo-listings-v1';
+let state = { listings: [], market: [], checks: [] };
+let view = 'listings';
+let saveTimer = null;
+
+const $ = id => document.getElementById(id);
+const ymd = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+const today = () => ymd(new Date());
+const yesterday = () => { const d = new Date(); d.setDate(d.getDate()-1); return ymd(d); };
+// "2026-10-9" -> "2026-10-09"; anything that isn't a real date -> ''
+function cleanDate(v){
+  const m = String(v||'').trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if(!m) return '';
+  const d = new Date(+m[1], +m[2]-1, +m[3]);
+  return (d.getMonth() === +m[2]-1 && d.getDate() === +m[3]) ? ymd(d) : '';
+}
+function askDate(msg, def){
+  for(;;){
+    const t = prompt(msg, def);
+    if(t === null || t.trim() === '') return null;
+    const d = cleanDate(t);
+    if(d) return d;
+    alert('Type the date like 2026-10-09.');
+    def = t;
+  }
+}
+const uid = () => 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money = n => (n===''||n==null||isNaN(n)) ? '—' : '$' + Number(n).toLocaleString('en-US');
+const num = v => { const n = parseFloat(String(v).replace(/[^0-9.]/g,'')); return isNaN(n) ? '' : n; };
+
+function daysBetween(a, b){
+  if(!a) return null;
+  const d1 = new Date(a + 'T12:00:00'), d2 = new Date((b || today()) + 'T12:00:00');
+  return Math.max(0, Math.round((d2 - d1) / 86400000));
+}
+function dom(l){
+  if(l.status === 'pending' || l.status === 'sold') return daysBetween(l.listDate, l.contractDate || (l.status === 'sold' ? l.soldDate : null));
+  return daysBetween(l.listDate, null);
+}
+function since(days){
+  const cut = Date.now() - days*86400000;
+  return arr => (arr||[]).filter(t => t >= cut).length;
+}
+const last7 = since(7);
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw) state = JSON.parse(raw);
+  }catch(e){ /* first run, nothing saved yet */ }
+  if(!Array.isArray(state.listings)) state.listings = [];
+  if(!Array.isArray(state.market))   state.market   = [];
+  if(!Array.isArray(state.checks))   state.checks   = [];
+  state.listings.forEach(l => {
+    const h = l.priceHistory || [];
+    l.priceHistory = h.filter((p, i) => Number(p.price) !== Number(i + 1 < h.length ? h[i+1].price : l.listPrice));
+  });
+  const fixed = fixDates();
+  if(seedKnownFacts() || fixed) save();
+  render();
+}
+// Repairs bad or doubled days in views and saves. The Oct 18 fixes run once.
+function fixDates(){
+  let changed = false;
+  state.fixes = state.fixes || [];
+  state.listings.forEach(l => {
+    if(!Array.isArray(l.metrics)) return;
+    const seen = new Set(), out = [];
+    l.metrics.forEach(e => {
+      const d = cleanDate(e.date) || e.date;
+      if(d !== e.date){ e.date = d; changed = true; }
+      const k = e.date + '|' + e.views + '|' + e.saves;
+      if(seen.has(k)){ changed = true; return; }   // exact same day logged twice
+      seen.add(k); out.push(e);
+    });
+    l.metrics = out;
+  });
+  if(!state.fixes.includes('2026-10-18')){
+    // Oct 1 was logged twice on every house with no Sep 30; the first one becomes Sep 30.
+    // 725 Sutton had Sep 20 twice with no Sep 21; the second one becomes Sep 21.
+    const move = [['littler','2026-10-01',8,'2026-09-30'], ['norman','2026-10-01',35,'2026-09-30'],
+                  ['sutton','2026-10-01',12,'2026-09-30'], ['sutton','2026-09-20',18,'2026-09-21']];
+    move.forEach(([w, from, views, to]) => {
+      const l = state.listings.find(x => String(x.address||'').toLowerCase().includes(w));
+      if(!l || !l.metrics) return;
+      const same = l.metrics.filter(e => e.date === from);
+      const hit = same.find(e => Number(e.views) === views);
+      if(same.length > 1 && hit && !l.metrics.some(e => e.date === to)){ hit.date = to; changed = true; }
+    });
+    state.fixes.push('2026-10-18'); changed = true;
+  }
+  return changed;
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch(e){ alert('Could not save. Your phone storage may be full.'); }
+  if(typeof queueSync === 'function') queueSync();
+}
+
+/* ---------- backup ---------- */
+function backupText(){
+  const lines = ['SingleWideShane listings backup', 'Saved ' + new Date().toLocaleString('en-US'), ''];
+  state.listings.forEach(l => {
+    const d = dom(l);
+    lines.push((l.address||'Untitled') + '  [' + l.status + ']');
+    lines.push('  Client: ' + (l.client||'-') + '   ' + (l.phone||''));
+    lines.push('  Listed ' + (l.listDate||'-') + ' at ' + money(l.listPrice));
+    lines.push('  ' + (d==null?'-':d) + ' days   ' + (l.calls||[]).length + ' calls   ' + (l.showings||[]).length + ' showings');
+    if((l.metrics||[]).length) lines.push('  Views logged: ' + l.metrics.length + ' days, ' +
+      l.metrics.reduce((n,e)=>n+(Number(e.views)||0),0) + ' total views, ' +
+      l.metrics.reduce((n,e)=>n+(Number(e.saves)||0),0) + ' total saves');
+    (l.changes||[]).forEach(c => lines.push('  Change ' + c.date + ': ' + (c.types||[]).join(', ') + (c.note ? ' - ' + c.note : '')));
+    if(l.contractPrice) lines.push('  Under contract at ' + money(l.contractPrice) + ' on ' + (l.contractDate||'-'));
+    if(l.status==='sold') lines.push('  SOLD ' + money(l.soldPrice) + ' on ' + (l.soldDate||'-'));
+    if((l.priceHistory||[]).length) lines.push('  Reductions: ' + l.priceHistory.map(p=>money(p.price)).join(' -> ') + ' -> ' + money(l.listPrice));
+    if(l.notes) lines.push('  Notes: ' + l.notes.replace(/\n/g,' / '));
+    lines.push('');
+  });
+  if(state.market.length){
+    lines.push('MARKET HOMES TRACKED');
+    state.market.forEach(m => {
+      lines.push('  ' + (m.address||'Untitled') + '  ' + money(m.price) + '  ' + (m.source||'') +
+        (m.gone ? '  OFF MARKET ' + (m.goneDate||'') + (m.withdrawn ? ' (withdrawn)' : '') : '  still listed'));
+    });
+    lines.push('');
+  }
+  lines.push('--- restore data below, keep this part ---');
+  lines.push(JSON.stringify(state));
+  return lines.join('\n');
+}
+function doBackup(){
+  const txt = backupText();
+  if(navigator.share){
+    navigator.share({ title:'Listings backup', text: txt }).catch(()=>{});
+  } else {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'}));
+    a.download = 'listings-backup-' + today() + '.txt';
+    a.click();
+  }
+}
+function doRestore(){
+  const t = prompt('Paste the backup text here. This replaces everything currently in the app.');
+  if(!t) return;
+  const i = t.indexOf('{"listings"');
+  if(i < 0){ alert('That does not look like a backup. Paste the whole thing including the line at the bottom.'); return; }
+  try{
+    const parsed = JSON.parse(t.slice(i));
+    if(!Array.isArray(parsed.listings)) throw 0;
+    state = parsed;
+    if(!Array.isArray(state.market)) state.market = [];
+    if(!Array.isArray(state.checks)) state.checks = [];
+    seedKnownFacts();
+    save(); render();
+    alert('Restored ' + state.listings.length + ' listings and ' + state.market.length + ' market homes.');
+  }catch(e){ alert('Could not read that backup.'); }
+}
+
+/* ---------- keep the last buttons clear of the fixed bottom bar ---------- */
+function fitBottom(){
+  const fab = document.querySelector('.fab');
+  const wrap = $('mainWrap');
+  if(!fab || !wrap) return;
+  wrap.style.paddingBottom = (fab.offsetHeight + 28) + 'px';
+}
+window.addEventListener('resize', fitBottom);
+window.addEventListener('orientationchange', () => setTimeout(fitBottom, 250));
+
+/* ---------- tab switching ---------- */
+function render(){
+  $('tabL').classList.toggle('on', view === 'listings');
+  $('tabM').classList.toggle('on', view === 'market');
+  $('tabV').classList.toggle('on', view === 'metrics');
+  if(view === 'market') renderMarket();
+  else if(view === 'metrics') renderViews();
+  else renderListings();
+  fitBottom();
+}
+
+/* ---------- home ---------- */
+function renderListings(){
+  $('addBtn').textContent = 'Add a listing';
+  $('addBtn').onclick = () => openForm(null);
+  const act = state.listings.filter(l => l.status !== 'sold');
+  const sold = state.listings.filter(l => l.status === 'sold');
+  act.sort((a,b) => (b.listDate||'').localeCompare(a.listDate||''));
+  sold.sort((a,b) => (b.soldDate||'').localeCompare(a.soldDate||''));
+
+  const shows = act.reduce((n,l) => n + last7(l.showings), 0);
+  const calls = act.reduce((n,l) => n + last7(l.calls), 0);
+  $('pulse').textContent = state.listings.length === 0
+    ? 'Nothing tracked yet. Add your first listing below.'
+    : `${act.length} active. Last 7 days: ${calls} call${calls===1?'':'s'}, ${shows} showing${shows===1?'':'s'}.`;
+
+  let html = '';
+  if(act.length) html += act.map(cardHTML).join('');
+  else if(state.listings.length) html += '<div class="empty">No active listings right now.</div>';
+
+  if(sold.length){
+    const avg = Math.round(sold.reduce((n,l) => n + (dom(l)||0), 0) / sold.length);
+    const rated = sold.filter(l => l.soldPrice && l.listPrice);
+    const pct = rated.length
+      ? (rated.reduce((n,l) => n + l.soldPrice/l.listPrice, 0) / rated.length * 100).toFixed(1)
+      : null;
+    html += `<h2 class="sec">Sold — ${sold.length} home${sold.length===1?'':'s'}, ${avg} days on market on average${pct ? `, ${pct}% of asking` : ''}</h2>`;
+    html += sold.map(cardHTML).join('');
+  }
+  html += `<div style="margin-top:34px;border-top:1px solid var(--rule);padding-top:18px">
+      <button class="btn ghost" id="bk">Back up my data</button>
+      <button class="btn ghost" id="rs">Restore from a backup</button>
+      <p class="note">Your listings are saved on this phone only. Back up once a month and email it to yourself.</p>
+      <button class="btn ghost" id="sync" style="margin-top:18px">${syncToken() ? 'Claude can read my numbers: ON' : 'Let Claude read my numbers'}</button>
+      <p class="note" id="syncLine">${esc(syncLineText())}</p>
+    </div>`;
+  $('main').innerHTML = html;
+  $('bk').onclick = doBackup;
+  $('rs').onclick = doRestore;
+  $('sync').onclick = connectSync;
+  [...document.querySelectorAll('.card')].forEach(c =>
+    c.onclick = () => openDetail(c.dataset.id));
+}
+
+function cardHTML(l){
+  const d = dom(l);
+  const cuts = (l.priceHistory||[]).length;
+  return `<div class="card ${esc(l.status)}" data-id="${esc(l.id)}">
+    <p class="addr">${esc(l.address || 'Untitled listing')}</p>
+    <p class="who">${esc(l.client || 'No client name')}${l.beds ? ' · ' + esc(l.beds) + ' bed' : ''}${l.sqft ? ' · ' + Number(l.sqft).toLocaleString() + ' sq ft' : ''}</p>
+    <div class="row">
+      <span class="price">${l.status==='sold' ? money(l.soldPrice) : money(l.listPrice)}</span>
+      <span class="dom">${d==null ? 'No list date' : d + ' days' + (l.status==='active' ? ' on market' : ' to contract')}</span>
+    </div>
+    <div class="tally"><b>${(l.calls||[]).length}</b> calls · <b>${(l.showings||[]).length}</b> showings${
+      l.status!=='sold' && (last7(l.calls)+last7(l.showings)) ? ` · ${last7(l.calls)+last7(l.showings)} this week` : ''}</div>
+    ${cuts ? `<div class="cut">${cuts} price reduction${cuts===1?'':'s'} — started at ${money(l.priceHistory[0].price)}</div>` : ''}
+    ${l.status==='pending' ? `<div class="cut" style="color:var(--marigold)">Under contract${l.contractPrice ? ' at ' + money(l.contractPrice) : ''}</div>` : ''}
+    ${l.status==='sold' && l.contractPrice ? `<div class="tally">Under contract at ${money(l.contractPrice)}</div>` : ''}
+  </div>`;
+}
+
+/* ---------- sold summary ---------- */
+function soldSummaryHTML(l, d){
+  const hist = l.priceHistory || [];
+  const original = hist.length ? hist[0].price : l.listPrice;
+  const fmt = dt => new Date(dt+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  const cuts = hist.length
+    ? hist.map((p, i) => {
+        const to = i + 1 < hist.length ? hist[i+1].price : l.listPrice;
+        return `<div class="fact"><span>${fmt(p.date)}</span><b>${money(p.price)} to ${money(to)}</b></div>`;
+      }).join('')
+    : `<div class="fact"><span>Price reductions</span><b>None</b></div>`;
+  return `<h2 class="sec" style="margin-top:0">Sold summary</h2>
+    <div class="facts">
+      <div class="fact"><span>Days on market</span><b>${d==null ? '—' : d}</b></div>
+      <div class="fact"><span>Original list price</span><b>${money(original)}</b></div>
+      ${l.contractPrice ? `<div class="fact"><span>Contract price</span><b>${money(l.contractPrice)}</b></div>` : ''}
+      <div class="fact"><span>Sold price</span><b>${money(l.soldPrice)}</b></div>
+      ${hist.length ? `<div class="fact"><span>Price reductions</span><b>${hist.length}</b></div>` : ''}
+      ${cuts}
+    </div>`;
+}
+
+/* ---------- detail ---------- */
+function openDetail(id){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const d = dom(l);
+  const sheet = $('sheet');
+
+  const facts = [
+    ['Client', esc(l.client) || '—'],
+    ['Phone', l.phone ? `<a href="tel:${esc(l.phone.replace(/[^0-9+]/g,''))}" style="color:var(--pine)">${esc(l.phone)}</a>` : '—'],
+    ['Listed', l.listDate ? new Date(l.listDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'],
+    [l.status==='active' ? 'Days on market' : 'Days to contract', d==null ? '—' : d],
+    ...(l.contractPrice ? [['Contract price', money(l.contractPrice)]] : []),
+    ...(l.contractDate ? [['Under contract', new Date(l.contractDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})]] : []),
+    ['Asking now', money(l.listPrice)],
+    ['Home', [l.beds?l.beds+' bed':'', l.baths?l.baths+' bath':'', l.sqft?Number(l.sqft).toLocaleString()+' sq ft':'', l.garage?'garage':''].filter(Boolean).join(', ') || '—'],
+    ['Lot rent', l.lotRent ? money(l.lotRent) + '/mo' : '—'],
+  ];
+  if(l.status === 'sold'){
+    facts.push(['Sold for', money(l.soldPrice)]);
+    if(l.soldPrice && l.listPrice) facts.push(['Of asking', (l.soldPrice/l.listPrice*100).toFixed(1) + '%']);
+    facts.push(['Closed', l.soldDate ? new Date(l.soldDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—']);
+  }
+
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="back">Done</button>
+      <button class="link" id="edit">Edit</button>
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px">${esc(l.address || 'Untitled listing')}</h1>
+      <p class="pulse" style="margin-bottom:18px">${l.status==='sold' ? 'Sold' : l.status==='pending' ? 'Under contract' : 'Active'}${d!=null ? ` · ${d} days` : ''}</p>
+
+      ${l.status==='sold' ? soldSummaryHTML(l, d) : ''}
+
+      ${l.status!=='sold' ? `
+      <div class="counter">
+        <div class="lab">Calls${last7(l.calls) ? ` — ${last7(l.calls)} in the last 7 days` : ''}</div>
+        <div class="cbox">
+          <button class="step minus" data-k="calls" data-v="-1">−</button>
+          <div class="cnum">${(l.calls||[]).length}</div>
+          <button class="step" data-k="calls" data-v="1">+</button>
+        </div>
+        ${lastStamp(l.calls)}
+      </div>
+      <div class="counter">
+        <div class="lab">Showings${last7(l.showings) ? ` — ${last7(l.showings)} in the last 7 days` : ''}</div>
+        <div class="cbox">
+          <button class="step minus" data-k="showings" data-v="-1">−</button>
+          <div class="cnum">${(l.showings||[]).length}</div>
+          <button class="step" data-k="showings" data-v="1">+</button>
+        </div>
+        ${lastStamp(l.showings)}
+      </div>` : `
+      <div class="facts"><div class="fact"><span>Calls taken</span><b>${(l.calls||[]).length}</b></div>
+      <div class="fact"><span>Showings held</span><b>${(l.showings||[]).length}</b></div></div>`}
+
+      <button class="btn ghost" id="fsBtn">Fact sheet and buyer questions</button>
+
+      <div class="facts">${facts.map(f => `<div class="fact"><span>${f[0]}</span><b>${f[1]}</b></div>`).join('')}</div>
+
+      ${(l.priceHistory||[]).length ? `<h2 class="sec">Price history</h2><div class="facts">
+        ${l.priceHistory.map(p => `<div class="fact"><span>${new Date(p.date+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><b>${money(p.price)}</b></div>`).join('')}
+        <div class="fact"><span>Now</span><b>${money(l.listPrice)}</b></div></div>` : ''}
+
+      ${l.notes ? `<h2 class="sec">Notes</h2><div class="facts"><div class="fact" style="display:block"><b style="text-align:left;font-weight:400">${esc(l.notes).replace(/\n/g,'<br>')}</b></div></div>` : ''}
+
+      <div style="margin-top:22px">
+        ${l.status!=='sold' ? `<button class="btn ghost" id="cut">Log a price reduction</button>` : ''}
+        ${l.status==='active' ? `<button class="btn ghost" id="pend">Mark under contract</button>` : ''}
+        ${l.status==='pending' ? `<button class="btn ghost" id="setcp">${l.contractPrice ? 'Change contract price' : 'Enter contract price'}</button>` : ''}
+        ${l.status==='pending' ? `<button class="btn ghost" id="unpend">Contract fell through</button>` : ''}
+        ${l.status!=='sold' ? `<button class="btn" id="sold">Mark sold</button>` : `<button class="btn ghost" id="reopen">Put back on market</button>`}
+        <button class="btn warn" id="del">Delete this listing</button>
+      </div>
+      <button class="btn ghost" id="back2" style="margin-top:6px">Back to all listings</button>
+      <p class="note">Everything saves on this device as you tap.</p>
+    </div>
+  </div>`;
+
+  $('back').onclick = () => { sheet.innerHTML=''; render(); };
+  const b2 = document.getElementById('back2'); if(b2) b2.onclick = $('back').onclick;
+  $('edit').onclick = () => openForm(l.id);
+  $('fsBtn').onclick = () => openFactSheet(l.id);
+  [...sheet.querySelectorAll('.step')].forEach(b => b.onclick = () => {
+    const k = b.dataset.k, arr = l[k] || (l[k] = []);
+    if(b.dataset.v === '1') arr.push(Date.now()); else arr.pop();
+    save(); openDetail(id);
+  });
+  const cut = $('cut'); if(cut) cut.onclick = () => {
+    const v = num(prompt('New asking price?', l.listPrice || ''));
+    if(v === '' || Number(v) === Number(l.listPrice)) return;
+    (l.priceHistory = l.priceHistory || []).push({ date: today(), price: l.listPrice });
+    l.listPrice = v; save(); openDetail(id);
+  };
+  const pend = $('pend'); if(pend) pend.onclick = () => {
+    const cp = num(prompt('Contract price?', l.listPrice || ''));
+    if(cp === '') return;
+    const dt = askDate('Date it went under contract (YYYY-MM-DD)', today());
+    if(!dt) return;
+    l.status='pending'; l.contractPrice = cp; l.contractDate = dt; save(); openDetail(id);
+  };
+  const setcp = $('setcp'); if(setcp) setcp.onclick = () => {
+    const cp = num(prompt('Contract price?', l.contractPrice || l.listPrice || ''));
+    if(cp === '') return;
+    l.contractPrice = cp; save(); openDetail(id);
+  };
+  const unpend = $('unpend'); if(unpend) unpend.onclick = () => {
+    if(!confirm('Contract fell through? This puts it back on the market and restarts the day count.')) return;
+    l.status='active'; l.contractDate=''; l.contractPrice=''; save(); openDetail(id);
+  };
+  const so = $('sold'); if(so) so.onclick = () => {
+    const p = num(prompt('Sold price?', l.contractPrice || l.listPrice || ''));
+    if(p === '') return;
+    const dt = askDate('Closing date (YYYY-MM-DD)', today());
+    if(!dt) return;
+    l.soldPrice = p; l.soldDate = dt; l.status = 'sold'; save(); openDetail(id);
+  };
+  const re = $('reopen'); if(re) re.onclick = () => { l.status='active'; l.soldPrice=''; l.soldDate=''; l.contractDate=''; l.contractPrice=''; save(); openDetail(id); };
+  $('del').onclick = () => {
+    if(!confirm('Delete this listing and everything logged on it?')) return;
+    state.listings = state.listings.filter(x => x.id !== id);
+    save(); sheet.innerHTML=''; render();
+  };
+  window.scrollTo(0,0);
+}
+
+function lastStamp(arr){
+  if(!arr || !arr.length) return '';
+  const d = new Date(arr[arr.length-1]);
+  return `<div class="recent">Last one ${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})} at ${d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</div>`;
+}
+
+/* ---------- add / edit ---------- */
+function openForm(id){
+  const l = id ? state.listings.find(x => x.id === id) : null;
+  const v = k => l && l[k] != null ? esc(l[k]) : '';
+  $('sheet').innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="cancel">Cancel</button>
+      <button class="link" id="saveTop">Save</button>
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:16px">${l ? 'Edit listing' : 'New listing'}</h1>
+      <div class="banner">Address and list date are all you need to start. Fill in the rest whenever.</div>
+
+      <label for="f_address">Address</label>
+      <input id="f_address" value="${v('address')}" placeholder="Street address" autocapitalize="words">
+
+      <label for="f_client">Client name</label>
+      <input id="f_client" value="${v('client')}" placeholder="First name" autocapitalize="words">
+
+      <label for="f_phone">Client phone</label>
+      <input id="f_phone" type="tel" value="${v('phone')}" placeholder="Phone number">
+
+      <div class="two">
+        <div><label for="f_listDate">Date listed</label><input id="f_listDate" type="date" value="${v('listDate') || today()}"></div>
+        <div><label for="f_listPrice">Asking price</label><input id="f_listPrice" type="text" inputmode="numeric" value="${v('listPrice')}" placeholder="Dollars"></div>
+      </div>
+
+      <div class="two">
+        <div><label for="f_beds">Beds</label><input id="f_beds" type="text" inputmode="numeric" value="${v('beds')}" placeholder="#"></div>
+        <div><label for="f_baths">Baths</label><input id="f_baths" type="text" inputmode="decimal" value="${v('baths')}" placeholder="#"></div>
+      </div>
+
+      <div class="two">
+        <div><label for="f_sqft">Square feet</label><input id="f_sqft" type="text" inputmode="numeric" value="${v('sqft')}" placeholder="Sq ft"></div>
+        <div><label for="f_lotRent">Lot rent / month</label><input id="f_lotRent" type="text" inputmode="numeric" value="${v('lotRent')}" placeholder="Dollars"></div>
+      </div>
+
+      <label for="f_garage">Garage</label>
+      <select id="f_garage">
+        <option value="">No garage</option>
+        <option value="1" ${l && l.garage ? 'selected' : ''}>Has a garage</option>
+      </select>
+
+      <label for="f_notes">Notes</label>
+      <textarea id="f_notes" placeholder="Serial numbers, data plate location, what the seller wants…">${v('notes')}</textarea>
+
+      <div style="height:26px"></div>
+      <button class="btn" id="save2">Save listing</button>
+      <button class="btn ghost" id="cancel2">Cancel</button>
+      <div style="height:24px"></div>
+    </div>
+  </div>`;
+
+  const bail = () => { $('sheet').innerHTML=''; id ? openDetail(id) : render(); };
+  $('cancel').onclick = bail;
+  $('cancel2').onclick = bail;
+  const commit = () => {
+    const rec = l || { id: uid(), status:'active', calls:[], showings:[], priceHistory:[] };
+    rec.address  = $('f_address').value.trim();
+    rec.client   = $('f_client').value.trim();
+    rec.phone    = $('f_phone').value.trim();
+    rec.listDate = $('f_listDate').value;
+    rec.listPrice= num($('f_listPrice').value);
+    rec.beds     = num($('f_beds').value);
+    rec.baths    = num($('f_baths').value);
+    rec.sqft     = num($('f_sqft').value);
+    rec.lotRent  = num($('f_lotRent').value);
+    rec.garage   = $('f_garage').value === '1';
+    rec.notes    = $('f_notes').value.trim();
+    if(!rec.address && !rec.client){ alert('Give it an address or a client name first.'); return; }
+    if(!l) state.listings.push(rec);
+    seedKnownFacts();
+    save();
+    $('sheet').innerHTML='';
+    openDetail(rec.id);
+  };
+  $('saveTop').onclick = commit;
+  $('save2').onclick = commit;
+  window.scrollTo(0,0);
+}
+
+/* ---------- market: the maths ---------- */
+const SOURCES = ['Sun', 'Foxfire', 'MHVillage', 'Zillow', 'Other'];
+const k = n => '$' + Math.round(n / 1000) + 'k';
+
+function mDays(m){ return daysBetween(m.firstSeen, m.gone ? m.goneDate : null); }
+
+/* quartiles: the middle half is the honest "band", the full spread is context */
+function bandOf(prices){
+  const s = prices.filter(p => p && !isNaN(p)).map(Number).sort((a, b) => a - b);
+  if(!s.length) return null;
+  const q = p => { const i = (s.length - 1) * p, lo = Math.floor(i), hi = Math.ceil(i);
+                   return s[lo] + (s[hi] - s[lo]) * (i - lo); };
+  return { n: s.length, min: s[0], max: s[s.length - 1], lo: q(.25), mid: q(.5), hi: q(.75) };
+}
+
+function marketStats(){
+  const live = state.market.filter(m => !m.gone);
+  const gone = state.market.filter(m => m.gone && !m.withdrawn);
+  const first = state.market.map(m => m.firstSeen).filter(Boolean).sort()[0];
+  const spanDays = first ? daysBetween(first) : 0;
+  const months = spanDays / 30.44;
+  /* needs real history before this means anything: 6+ weeks tracked and 3+ homes gone */
+  const perMonth = months >= 1.5 && gone.length >= 3 ? gone.length / months : null;
+  const supply = perMonth ? live.length / perMonth : null;
+  const times = gone.map(mDays).filter(d => d != null);
+  const avgDays = times.length ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : null;
+  return { live, gone, months, perMonth, supply, avgDays,
+           moving: bandOf(gone.map(m => m.price)), sitting: bandOf(live.map(m => m.price)) };
+}
+
+/* ---------- market: home screen ---------- */
+function renderMarketManual(){
+  if(state.market.length){
+    $('addBtn').textContent = 'Log this week\u2019s check';
+    $('addBtn').onclick = openCheck;
+  } else {
+    $('addBtn').textContent = 'Add a home to track';
+    $('addBtn').onclick = () => openMarketForm(null);
+  }
+
+  const s = marketStats();
+  $('pulse').textContent = state.market.length === 0
+    ? 'Nothing tracked yet. Add homes you see for sale in Water Oak.'
+    : `${s.live.length} still listed · ${s.gone.length} came off market.`;
+
+  let html = '';
+
+  if(!state.market.length){
+    html += `<div class="empty">Add a few homes you see for sale on Sun, Foxfire or MHVillage — an address and an asking price is enough to start.
+      Every Monday, tap the ones that have vanished. After a few weeks this shows you the price band homes actually leave at,
+      instead of the band everyone is asking.</div>`;
+  } else {
+    if(s.moving){
+      html += `<div class="band">
+        <div class="lab">Where homes are leaving the market</div>
+        <div class="big">${s.moving.lo === s.moving.hi ? k(s.moving.mid) : `${k(s.moving.lo)} to ${k(s.moving.hi)}`}</div>
+        <div class="sub">Middle half of ${s.moving.n} home${s.moving.n === 1 ? '' : 's'} that came off market.
+          Midpoint ${money(Math.round(s.moving.mid))}. Full spread ${k(s.moving.min)} to ${k(s.moving.max)}.
+          ${s.avgDays != null ? `Took ${s.avgDays} days on average.` : ''}</div>
+      </div>`;
+    }
+    if(s.sitting){
+      html += `<div class="band slow">
+        <div class="lab">Where homes are still sitting</div>
+        <div class="big">${s.sitting.lo === s.sitting.hi ? k(s.sitting.mid) : `${k(s.sitting.lo)} to ${k(s.sitting.hi)}`}</div>
+        <div class="sub">Middle half of ${s.sitting.n} home${s.sitting.n === 1 ? '' : 's'} still listed.
+          Midpoint ${money(Math.round(s.sitting.mid))}.</div>
+      </div>`;
+    }
+    if(s.supply != null){
+      html += `<div class="band slow">
+        <div class="lab">How fast the community clears</div>
+        <div class="big">${s.supply.toFixed(1)} months of inventory</div>
+        <div class="sub">${s.perMonth.toFixed(1)} homes leaving per month against ${s.live.length} still listed.
+          Under 6 months is a seller's market.</div>
+      </div>`;
+    }
+    if(s.moving && s.moving.n < 5){
+      html += `<div class="banner">Only ${s.moving.n} home${s.moving.n === 1 ? '' : 's'} off market so far.
+        Read this as a hint, not a number, until you have five or six.</div>`;
+    }
+    if(!s.moving){
+      html += `<div class="banner">Nothing has come off market yet. The bands appear once homes start disappearing.</div>`;
+    }
+
+    const live = s.live.slice().sort((a, b) => (a.price || 0) - (b.price || 0));
+    const off  = state.market.filter(m => m.gone)
+                   .sort((a, b) => (b.goneDate || '').localeCompare(a.goneDate || ''));
+
+    if(live.length){
+      html += `<h2 class="sec">Still listed — ${live.length}</h2>`;
+      html += live.map(mrowHTML).join('');
+    }
+    if(off.length){
+      html += `<h2 class="sec">Came off market — ${off.length}</h2>`;
+      html += off.map(mrowHTML).join('');
+    }
+  }
+
+  if(state.market.length)
+    html += `<div style="margin-top:30px"><button class="btn ghost" id="addMkt">Add a home to track</button></div>`;
+
+  if(state.checks.length){
+    const recent = state.checks.slice(-6).reverse();
+    html += `<h2 class="sec">Weekly counts</h2><div class="facts">
+      ${recent.map(c => `<div class="fact"><span>${new Date(c.date + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric' })}</span>
+        <b>${[c.sun !== '' ? 'Sun ' + c.sun : '', c.fox !== '' ? 'Foxfire ' + c.fox : '', c.mhv !== '' ? 'MHVillage ' + c.mhv : ''].filter(Boolean).join(' · ') || '—'}</b></div>`).join('')}
+    </div>`;
+  }
+
+  html += `<div style="margin-top:30px;border-top:1px solid var(--rule);padding-top:18px">
+      <button class="btn ghost" id="bk2">Back up my data</button>
+      <button class="btn ghost" id="rs2">Restore from a backup</button>
+      <p class="note">A home vanishing usually means it sold, but it can also mean the seller pulled it.
+        If you find out it was pulled, open it and mark it withdrawn so it stays out of the math.</p>
+    </div>`;
+
+  $('main').innerHTML = html;
+  const am = $('addMkt'); if(am) am.onclick = () => openMarketForm(null);
+  $('bk2').onclick = doBackup;
+  $('rs2').onclick = doRestore;
+  [...document.querySelectorAll('.mrow[data-id]')].forEach(r =>
+    r.onclick = () => openMarketDetail(r.dataset.id));
+}
+
+function mrowHTML(m){
+  const d = mDays(m);
+  return `<div class="mrow ${m.gone ? 'off' : ''}" data-id="${esc(m.id)}" style="cursor:pointer">
+    <div class="info">
+      <p class="a">${esc(m.address || 'Untitled')}</p>
+      <p class="p">${money(m.price)}${m.source ? ' · ' + esc(m.source) : ''}${d != null ? ' · ' + d + ' days' : ''}${m.withdrawn ? ' · withdrawn' : ''}</p>
+    </div>
+  </div>`;
+}
+
+
+/* ---------- market: automatic feed (filled every Monday by the market robot) ---------- */
+const FEED_KEY = 'wo-feed-user';
+let feed = null, feedErr = '', feedLoading = false;
+const feedUser = () => { try{ return localStorage.getItem(FEED_KEY) || ''; }catch(e){ return ''; } };
+const feedURL = u => `https://raw.githubusercontent.com/${u}/water-oak-data/main/data/market.json`;
+const fDate = d => d ? new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric' }) : '';
+
+async function loadFeed(){
+  const u = feedUser(); if(!u) return;
+  feedLoading = true;
+  try{
+    const r = await fetch(feedURL(u) + '?t=' + Date.now(), { cache:'no-store' });
+    if(!r.ok) throw new Error(r.status === 404 ? 'No market data yet. Run the scan once on GitHub.' : 'Could not load market data.');
+    feed = await r.json(); feedErr = '';
+  }catch(e){ feedErr = e.message || 'Could not load market data.'; }
+  feedLoading = false;
+  if(view === 'market') render();
+}
+
+function feedHomes(){
+  if(!feed) return { live:[], gone:[] };
+  const all = Object.values(feed.homes || {});
+  const yearAgo = addDays(today(), -365);
+  return {
+    live: all.filter(h => !h.gone),
+    gone: all.filter(h => h.gone && (h.goneDate || '') >= yearAgo)
+  };
+}
+const weeksOn = h => {
+  const d = daysBetween(h.firstSeen, h.gone ? h.goneDate : null);
+  if(d == null) return '';
+  const w = Math.max(1, Math.round(d / 7));
+  return (h.onAtStart ? 'over ' : '') + w + ' wk' + (w === 1 ? '' : 's');
+};
+const specLine = h => [
+  h.beds && h.baths ? `${h.beds}/${h.baths}` : '',
+  h.sqft ? Number(h.sqft).toLocaleString('en-US') + ' sq ft' : '',
+  h.year || '', h.parking && h.parking !== 'None' ? h.parking : ''
+].filter(Boolean).join(', ');
+
+function renderMarket(){
+  const u = feedUser();
+  if(!u){
+    $('addBtn').textContent = 'Connect market data';
+    $('addBtn').onclick = connectFeed;
+    $('pulse').textContent = 'Market data fills in by itself every Monday.';
+    $('main').innerHTML = `<label for="ghUser">Your GitHub username</label>
+      <input id="ghUser" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+    fitBottom(); return;
+  }
+  if(!feed && !feedErr){
+    $('pulse').textContent = 'Loading market data…';
+    $('main').innerHTML = '';
+    if(!feedLoading) loadFeed();
+    return;
+  }
+  $('addBtn').textContent = 'Price a home';
+  $('addBtn').onclick = openPricer;
+
+  if(feedErr && !feed){
+    $('pulse').textContent = feedErr;
+    $('main').innerHTML = `<button class="btn ghost" id="retry">Try again</button>
+      <button class="btn ghost" id="chgUser">Change GitHub username</button>`;
+    $('retry').onclick = () => { feedErr = ''; render(); };
+    $('chgUser').onclick = () => { try{ localStorage.removeItem(FEED_KEY); }catch(e){} feed = null; feedErr=''; render(); };
+    fitBottom(); return;
+  }
+
+  const { live, gone } = feedHomes();
+  $('pulse').textContent = `${live.length} for sale · ${gone.length} gone · updated ${fDate(feed.updated)}`;
+
+  const moving = bandOf(gone.map(h => h.price));
+  const sitting = bandOf(live.map(h => h.price));
+  let html = '';
+  if(moving) html += `<div class="band"><div class="lab">Homes that went</div>
+      <div class="big">${k(moving.min)} to ${k(moving.max)}</div>
+      <div class="sub">Most went between ${k(moving.lo)} and ${k(moving.hi)}.</div></div>`;
+  if(sitting) html += `<div class="band slow"><div class="lab">Homes for sale right now</div>
+      <div class="big">${k(sitting.min)} to ${k(sitting.max)}</div>
+      <div class="sub">Most are between ${k(sitting.lo)} and ${k(sitting.hi)}.</div></div>`;
+
+  const row = (h, wentLine) => `<div class="mrow ${h.gone ? 'off' : ''}">
+    <div class="info"><p class="a">${esc(h.address)}</p>
+    <p class="p">${money(h.price)}${h.pending && !h.gone ? ' · pending' : ''} · ${esc(h.source)}${wentLine ? ' · ' + wentLine : ''}</p>
+    ${specLine(h) ? `<p class="p">${esc(specLine(h))}</p>` : ''}</div></div>`;
+
+  if(gone.length){
+    html += `<h2 class="sec">Gone — ${gone.length}</h2>`;
+    html += gone.slice().sort((a,b) => (b.goneDate||'').localeCompare(a.goneDate||''))
+      .map(h => row(h, `gone ${fDate(h.goneDate)} after ${weeksOn(h)}`)).join('');
+  }
+  html += `<h2 class="sec">For sale — ${live.length}</h2>`;
+  html += live.slice().sort((a,b) => a.price - b.price).map(h => row(h, weeksOn(h))).join('');
+
+  html += `<div style="margin-top:30px;border-top:1px solid var(--rule);padding-top:18px">
+      <button class="btn ghost" id="bk2">Back up my data</button>
+      <button class="btn ghost" id="rs2">Restore from a backup</button></div>`;
+  $('main').innerHTML = html;
+  $('bk2').onclick = doBackup;
+  $('rs2').onclick = doRestore;
+  fitBottom();
+}
+
+function connectFeed(){
+  const v = ($('ghUser') ? $('ghUser').value : '').trim().replace(/^@/, '');
+  if(!v){ $('ghUser') && $('ghUser').focus(); return; }
+  try{ localStorage.setItem(FEED_KEY, v); }catch(e){}
+  feed = null; feedErr = ''; render();
+}
+
+/* ---------- price a home ---------- */
+function compScore(s, c){
+  let sc = 0;
+  if(s.sqft && c.sqft) sc += Math.abs(c.sqft - s.sqft) / s.sqft * 100; else sc += 15;
+  if(s.beds && c.beds) sc += Math.abs(c.beds - s.beds) * 15;
+  if(s.baths && c.baths) sc += Math.abs(c.baths - s.baths) * 10;
+  const g = p => p === 'Garage' ? 2 : p === 'Carport' || p === 'Cart garage' ? 1 : 0;
+  sc += Math.abs(g(s.parking) - g(c.parking || 'None')) === 2 ? 40 : Math.abs(g(s.parking) - g(c.parking || 'None')) * 10;
+  if(s.year && c.year) sc += Math.min(30, Math.abs(c.year - s.year));
+  return sc;
+}
+/* size doesn't scale price 1:1 — move 60% of the way */
+const sized = (s, c) => s.sqft && c.sqft ? c.price * (1 + 0.6 * (s.sqft / c.sqft - 1)) : c.price;
+const round1k = v => Math.round(v / 1000) * 1000;
+
+function priceIt(s){
+  const { live, gone } = feedHomes();
+  const soldish = gone.concat(live.filter(h => h.pending));
+  const rank = arr => arr.map(c => ({ c, sc: compScore(s, c) })).filter(x => x.sc < 70)
+                         .sort((a,b) => a.sc - b.sc).slice(0, 5);
+  const comps = rank(soldish);
+  const rivals = rank(live.filter(h => !h.pending)).slice(0, 4);
+  const est = comps.map(x => sized(s, x.c)).sort((a,b) => a - b);
+  let lo, hi, conf;
+  if(est.length >= 3){
+    const b = bandOf(est); lo = b.lo; hi = b.hi;
+    const avg = comps.slice(0,3).reduce((n,x) => n + x.sc, 0) / 3;
+    conf = avg < 35 ? 'High' : 'Medium';
+  } else if(est.length){
+    lo = est[0]; hi = est[est.length - 1]; conf = 'Medium';
+    if(est.length === 1){ lo = est[0] * 0.95; hi = est[0] * 1.03; conf = 'Low'; }
+  } else if(rivals.length){
+    const r = rivals.map(x => sized(s, x.c)).sort((a,b) => a - b);
+    lo = r[0] * 0.92; hi = r[0] * 0.98; conf = 'Low';
+  }
+  if(lo != null && hi - lo < 4000){ const m = (lo + hi) / 2; lo = m - 2000; hi = m + 2000; }
+  return { lo: lo != null ? round1k(lo) : null, hi: hi != null ? round1k(hi) : null, conf, comps, rivals };
+}
+
+function openPricer(prev){
+  const s = prev || {};
+  const sheet = $('sheet');
+  const opt = (v, cur) => `<option${v === cur ? ' selected' : ''}>${v}</option>`;
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar"><button class="link" id="pClose">Close</button><b>Price a home</b><span style="width:60px"></span></div>
+    <div class="wrap">
+      <div class="two"><div><label>Square feet</label><input id="pSq" inputmode="numeric" value="${esc(s.sqft||'')}"></div>
+        <div><label>Year built</label><input id="pYr" inputmode="numeric" value="${esc(s.year||'')}"></div></div>
+      <div class="two"><div><label>Beds</label><input id="pBd" inputmode="numeric" value="${esc(s.beds||'')}"></div>
+        <div><label>Baths</label><input id="pBa" inputmode="decimal" value="${esc(s.baths||'')}"></div></div>
+      <label>Parking</label><select id="pPk">${['Garage','Carport','None'].map(v => opt(v, s.parking || 'Carport')).join('')}</select>
+      <div style="margin-top:20px"><button class="btn" id="pGo">Get price range</button></div>
+      <div id="pOut"></div>
+    </div></div>`;
+  $('pClose').onclick = () => { sheet.innerHTML = ''; };
+  $('pGo').onclick = () => {
+    const q = { sqft: num($('pSq').value), year: num($('pYr').value), beds: num($('pBd').value),
+                baths: num($('pBa').value), parking: $('pPk').value };
+    const r = priceIt(q);
+    const line = x => `<div class="fact"><span>${esc(x.c.address)}<br>${esc(specLine(x.c))}${x.c.gone ? `<br>gone ${fDate(x.c.goneDate)} after ${weeksOn(x.c)}` : x.c.pending ? '<br>pending' : `<br>${weeksOn(x.c)} on market`}</span><b>${money(x.c.price)}</b></div>`;
+    let h = '';
+    if(r.lo == null){
+      h = `<div class="banner">No homes close enough yet. This fills in as weeks of data build up.</div>`;
+    } else {
+      h = `<div class="band"><div class="lab">List at</div>
+        <div class="big">${money(r.lo)} to ${money(r.hi)}</div>
+        <div class="sub">Confidence: ${r.conf}</div></div>`;
+    }
+    if(r.comps.length) h += `<h2 class="sec">Homes like it that went</h2><div class="facts">${r.comps.map(line).join('')}</div>`;
+    if(r.rivals.length) h += `<h2 class="sec">Its competition right now</h2><div class="facts">${r.rivals.map(line).join('')}</div>`;
+    $('pOut').innerHTML = h;
+    $('pOut').scrollIntoView({ behavior:'smooth', block:'start' });
+  };
+  window.scrollTo(0, 0);
+}
+
+/* ---------- market: the Monday check (old manual flow, no longer shown) ---------- */
+function openCheck(){
+  const live = state.market.filter(m => !m.gone).sort((a, b) => (a.price || 0) - (b.price || 0));
+  const picked = new Set();
+  const counts = { sun: '', fox: '', mhv: '' };
+  const sheet = $('sheet');
+
+  const grab = () => {
+    if($('c_sun')) counts.sun = $('c_sun').value.trim();
+    if($('c_fox')) counts.fox = $('c_fox').value.trim();
+    if($('c_mhv')) counts.mhv = $('c_mhv').value.trim();
+  };
+
+  function paint(){
+    sheet.innerHTML = `<div class="sheet">
+      <div class="sheetbar">
+        <button class="link" id="cancel">Cancel</button>
+        <button class="link" id="saveTop">Save</button>
+      </div>
+      <div class="wrap">
+        <h1 class="brand" style="font-size:24px;margin-bottom:14px">This week\u2019s check</h1>
+        <div class="banner">Open Sun, Foxfire and MHVillage. Tap any home below that you can no longer find. Leave the rest alone.</div>
+
+        <div class="two">
+          <div><label for="c_sun">Sun total</label><input id="c_sun" type="text" inputmode="numeric" value="${esc(counts.sun)}" placeholder="How many"></div>
+          <div><label for="c_fox">Foxfire total</label><input id="c_fox" type="text" inputmode="numeric" value="${esc(counts.fox)}" placeholder="How many"></div>
+        </div>
+        <label for="c_mhv">MHVillage total</label>
+        <input id="c_mhv" type="text" inputmode="numeric" value="${esc(counts.mhv)}" placeholder="How many">
+
+        <h2 class="sec">Homes you are tracking — ${live.length}</h2>
+        ${live.length ? live.map(m => `
+          <div class="mrow">
+            <div class="info">
+              <p class="a">${esc(m.address || 'Untitled')}</p>
+              <p class="p">${money(m.price)}${m.source ? ' · ' + esc(m.source) : ''}</p>
+            </div>
+            <button class="gonebtn ${picked.has(m.id) ? 'on' : ''}" data-id="${esc(m.id)}">${picked.has(m.id) ? 'Gone' : 'Still up'}</button>
+          </div>`).join('') : '<div class="empty">No homes tracked yet. Save this, then add some.</div>'}
+
+        <div style="height:22px"></div>
+        <button class="btn" id="save2">Save this week\u2019s check</button>
+        <button class="btn ghost" id="addM">Save, then add a new home</button>
+        <button class="btn ghost" id="cancel2">Cancel</button>
+        <div style="height:24px"></div>
+      </div></div>`;
+
+    [...sheet.querySelectorAll('.gonebtn')].forEach(b => b.onclick = () => {
+      const id = b.dataset.id;
+      picked.has(id) ? picked.delete(id) : picked.add(id);
+      const on = picked.has(id);
+      b.classList.toggle('on', on);
+      b.textContent = on ? 'Gone' : 'Still up';
+      const row = b.closest('.mrow');
+      if(row) row.classList.toggle('off', on);
+    });
+    const bail = () => { sheet.innerHTML = ''; render(); };
+    $('cancel').onclick = bail;
+    $('cancel2').onclick = bail;
+    $('saveTop').onclick = () => { commit(); sheet.innerHTML = ''; render(); };
+    $('save2').onclick = $('saveTop').onclick;
+    $('addM').onclick = () => { commit(); sheet.innerHTML = ''; openMarketForm(null); };
+  }
+
+  function commit(){
+    grab();
+    const stamp = today();
+    picked.forEach(id => {
+      const m = state.market.find(x => x.id === id);
+      if(m){ m.gone = true; m.goneDate = stamp; }
+    });
+    state.market.forEach(m => { if(!m.gone) m.lastSeen = stamp; });
+    if(counts.sun !== '' || counts.fox !== '' || counts.mhv !== '')
+      state.checks.push({ date: stamp, sun: counts.sun, fox: counts.fox, mhv: counts.mhv });
+    save();
+  }
+
+  paint();
+  window.scrollTo(0, 0);
+}
+
+/* ---------- market: one home ---------- */
+function openMarketDetail(id){
+  const m = state.market.find(x => x.id === id);
+  if(!m) return;
+  const d = mDays(m);
+  const sheet = $('sheet');
+
+  const facts = [
+    ['Asking', money(m.price)],
+    ['Seen on', esc(m.source) || '—'],
+    ['First seen', m.firstSeen ? new Date(m.firstSeen + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—'],
+    [m.gone ? 'Days before it went' : 'Days listed', d == null ? '—' : d],
+    ['Home', [m.beds ? m.beds + ' bed' : '', m.sqft ? Number(m.sqft).toLocaleString() + ' sq ft' : '', m.garage ? 'garage' : ''].filter(Boolean).join(', ') || '—'],
+  ];
+  if(m.gone) facts.push(['Came off', m.goneDate ? new Date(m.goneDate + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—']);
+
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="back">Done</button>
+      <button class="link" id="edit">Edit</button>
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px">${esc(m.address || 'Untitled')}</h1>
+      <p class="pulse" style="margin-bottom:18px">${m.gone ? (m.withdrawn ? 'Withdrawn — left out of the math' : 'Came off market') : 'Still listed'}</p>
+
+      <div class="facts">${facts.map(f => `<div class="fact"><span>${f[0]}</span><b>${f[1]}</b></div>`).join('')}</div>
+
+      ${(m.priceHistory || []).length ? `<h2 class="sec">Price history</h2><div class="facts">
+        ${m.priceHistory.map(p => `<div class="fact"><span>${new Date(p.date + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric' })}</span><b>${money(p.price)}</b></div>`).join('')}
+        <div class="fact"><span>Now</span><b>${money(m.price)}</b></div></div>` : ''}
+
+      ${m.notes ? `<h2 class="sec">Notes</h2><div class="facts"><div class="fact" style="display:block"><b style="text-align:left;font-weight:400">${esc(m.notes).replace(/\n/g, '<br>')}</b></div></div>` : ''}
+
+      <div style="margin-top:22px">
+        ${!m.gone ? `<button class="btn ghost" id="mcut">Log a price reduction</button>
+                     <button class="btn" id="mgone">Mark it came off market</button>`
+                  : `<button class="btn ghost" id="mwd">${m.withdrawn ? 'Count it as a sale after all' : 'It was withdrawn, not sold'}</button>
+                     <button class="btn ghost" id="mback">Put it back on the list</button>`}
+        <button class="btn warn" id="mdel">Delete this home</button>
+      </div>
+      <button class="btn ghost" id="back2" style="margin-top:6px">Back to the market</button>
+    </div>
+  </div>`;
+
+  const done = () => { sheet.innerHTML = ''; render(); };
+  $('back').onclick = done;
+  $('back2').onclick = done;
+  $('edit').onclick = () => openMarketForm(id);
+
+  const cut = $('mcut'); if(cut) cut.onclick = () => {
+    const v = num(prompt('New asking price?', m.price || ''));
+    if(v === '') return;
+    (m.priceHistory = m.priceHistory || []).push({ date: today(), price: m.price });
+    m.price = v; save(); openMarketDetail(id);
+  };
+  const g = $('mgone'); if(g) g.onclick = () => {
+    const dt = askDate('Date you noticed it gone (YYYY-MM-DD)', today());
+    if(!dt) return;
+    m.gone = true; m.goneDate = dt; save(); openMarketDetail(id);
+  };
+  const wd = $('mwd'); if(wd) wd.onclick = () => { m.withdrawn = !m.withdrawn; save(); openMarketDetail(id); };
+  const bk = $('mback'); if(bk) bk.onclick = () => { m.gone = false; m.goneDate = ''; m.withdrawn = false; save(); openMarketDetail(id); };
+  $('mdel').onclick = () => {
+    if(!confirm('Delete this home from your market tracking?')) return;
+    state.market = state.market.filter(x => x.id !== id);
+    save(); done();
+  };
+  window.scrollTo(0, 0);
+}
+
+/* ---------- market: add / edit ---------- */
+function openMarketForm(id){
+  const m = id ? state.market.find(x => x.id === id) : null;
+  const v = key => m && m[key] != null ? esc(m[key]) : '';
+  $('sheet').innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="cancel">Cancel</button>
+      <button class="link" id="saveTop">Save</button>
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:16px">${m ? 'Edit home' : 'Add a home to track'}</h1>
+      <div class="banner">Address and asking price is enough. This is somebody else\u2019s listing, not yours — you are only tracking whether it disappears.</div>
+
+      <label for="m_address">Address</label>
+      <input id="m_address" value="${v('address')}" placeholder="Street address" autocapitalize="words">
+
+      <div class="two">
+        <div><label for="m_price">Asking price</label><input id="m_price" type="text" inputmode="numeric" value="${v('price')}" placeholder="Dollars"></div>
+        <div><label for="m_firstSeen">First seen</label><input id="m_firstSeen" type="date" value="${v('firstSeen') || today()}"></div>
+      </div>
+
+      <label for="m_source">Where you saw it</label>
+      <select id="m_source">
+        ${SOURCES.map(s => `<option value="${s}" ${m && m.source === s ? 'selected' : ''}>${s}</option>`).join('')}
+      </select>
+
+      <div class="two">
+        <div><label for="m_beds">Beds</label><input id="m_beds" type="text" inputmode="numeric" value="${v('beds')}" placeholder="#"></div>
+        <div><label for="m_sqft">Square feet</label><input id="m_sqft" type="text" inputmode="numeric" value="${v('sqft')}" placeholder="Sq ft"></div>
+      </div>
+
+      <label for="m_garage">Garage</label>
+      <select id="m_garage">
+        <option value="">No garage</option>
+        <option value="1" ${m && m.garage ? 'selected' : ''}>Has a garage</option>
+      </select>
+
+      <label for="m_notes">Notes</label>
+      <textarea id="m_notes" placeholder="Incentives, condition, anything that explains the price…">${v('notes')}</textarea>
+
+      <div style="height:26px"></div>
+      <button class="btn" id="save2">Save home</button>
+      <button class="btn ghost" id="cancel2">Cancel</button>
+      <div style="height:24px"></div>
+    </div>
+  </div>`;
+
+  const bail = () => { $('sheet').innerHTML = ''; id ? openMarketDetail(id) : render(); };
+  $('cancel').onclick = bail;
+  $('cancel2').onclick = bail;
+  const commit = () => {
+    const rec = m || { id: uid(), gone: false, goneDate: '', withdrawn: false, priceHistory: [] };
+    rec.address   = $('m_address').value.trim();
+    rec.price     = num($('m_price').value);
+    rec.firstSeen = $('m_firstSeen').value;
+    rec.lastSeen  = rec.lastSeen || $('m_firstSeen').value;
+    rec.source    = $('m_source').value;
+    rec.beds      = num($('m_beds').value);
+    rec.sqft      = num($('m_sqft').value);
+    rec.garage    = $('m_garage').value === '1';
+    rec.notes     = $('m_notes').value.trim();
+    if(!rec.address){ alert('Give it an address first.'); return; }
+    if(!m) state.market.push(rec);
+    save();
+    $('sheet').innerHTML = '';
+    openMarketDetail(rec.id);
+  };
+  $('saveTop').onclick = commit;
+  $('save2').onclick = commit;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- views & saves: stats ---------- */
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function metricsSorted(l){ return (l.metrics||[]).slice().sort((a,b) => a.date.localeCompare(b.date)); }
+
+function viewStats(l){
+  const m = metricsSorted(l);
+  if(!m.length) return null;
+  const totalViews = m.reduce((n,e) => n + (Number(e.views)||0), 0);
+  const totalSaves = m.reduce((n,e) => n + (Number(e.saves)||0), 0);
+  const cut = Date.now() - 7*86400000;
+  const recent = m.filter(e => new Date(e.date+'T12:00:00').getTime() >= cut);
+  const avg7 = recent.length ? recent.reduce((n,e) => n + (Number(e.views)||0), 0) / recent.length : null;
+  let bestDay = null;
+  if(m.length >= 10){
+    const buckets = {};
+    m.forEach(e => {
+      const dow = new Date(e.date+'T12:00:00').getDay();
+      (buckets[dow] = buckets[dow] || []).push(Number(e.views)||0);
+    });
+    let top = null;
+    Object.keys(buckets).forEach(k => {
+      const arr = buckets[k], avg = arr.reduce((a,b) => a+b, 0) / arr.length;
+      if(!top || avg > top.avg) top = { dow: Number(k), avg };
+    });
+    if(top) bestDay = DOW[top.dow];
+  }
+  return { m, totalViews, totalSaves, avg7, bestDay, last: m[m.length-1] };
+}
+
+/* ---------- views & saves: home screen ---------- */
+function renderViews(){
+  const active = state.listings.filter(l => l.status !== 'sold');
+  $('addBtn').textContent = 'Log yesterday\u2019s numbers';
+  $('addBtn').onclick = openViewsCheck;
+
+  $('pulse').textContent = active.length === 0
+    ? 'Add a listing first, then log its daily Zillow views and saves here.'
+    : `Logging views and saves for ${active.length} active listing${active.length===1?'':'s'}.`;
+
+  let html = '';
+  if(!active.length){
+    html += `<div class="empty">Once you have an active listing, come back here each day and enter that day\u2019s views and saves from your Zillow email.
+      A pattern — like which day gets the most eyes, or whether a price drop moved the numbers — shows up after a couple of weeks.</div>`;
+  } else {
+    html += active.map(viewsRowHTML).join('');
+  }
+  html += `<div style="margin-top:30px;border-top:1px solid var(--rule);padding-top:18px">
+      <p class="note">Entering these daily takes a few seconds and builds a picture of which day to post or drop a price.
+        This is separate from the calls and showings you log on the listing itself.</p>
+    </div>`;
+  $('main').innerHTML = html;
+  [...document.querySelectorAll('.mrow[data-vid]')].forEach(r =>
+    r.onclick = () => openViewsDetail(r.dataset.vid));
+}
+
+function viewsRowHTML(l){
+  const s = viewStats(l);
+  const sub = s
+    ? `${s.last.date === today() ? 'Today' : new Date(s.last.date+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})}: ${s.last.views||0} views, ${s.last.saves||0} saves${s.avg7!=null ? ' \u00b7 7-day avg ' + s.avg7.toFixed(1) : ''}`
+    : 'No numbers logged yet';
+  return `<div class="mrow" data-vid="${esc(l.id)}" style="cursor:pointer">
+    <div class="info">
+      <p class="a">${esc(l.address || 'Untitled listing')}</p>
+      <p class="p">${sub}</p>
+      ${recentChangeLine(l)}
+    </div>
+  </div>`;
+}
+
+/* ---------- views & saves: daily batch entry ---------- */
+function openViewsCheck(){
+  const active = state.listings.filter(l => l.status !== 'sold');
+  if(!active.length){ alert('Add a listing first.'); return; }
+  let entryDate = yesterday();
+  const draft = {};
+  const loadDraft = () => active.forEach(l => {
+    const found = metricsSorted(l).find(e => e.date === entryDate);
+    draft[l.id] = { views: found ? String(found.views) : '', saves: found ? String(found.saves) : '' };
+  });
+  loadDraft();
+  const sheet = $('sheet');
+
+  function grab(){
+    active.forEach(l => {
+      const vEl = $('v_'+l.id+'_v'), sEl = $('v_'+l.id+'_s');
+      if(vEl) draft[l.id].views = vEl.value.trim();
+      if(sEl) draft[l.id].saves = sEl.value.trim();
+    });
+  }
+
+  function paint(){
+    sheet.innerHTML = `<div class="sheet">
+      <div class="sheetbar">
+        <button class="link" id="cancel">Cancel</button>
+        <button class="link" id="saveTop">Save</button>
+      </div>
+      <div class="wrap">
+        <h1 class="brand" style="font-size:24px;margin-bottom:14px">Log views and saves</h1>
+        <div class="banner">Pull up today\u2019s Zillow email and enter what it shows for each listing. Leave any of them blank to skip.</div>
+
+        <label for="v_date">Date</label>
+        <input id="v_date" type="date" value="${entryDate}">
+
+        ${active.map(l => `
+          <h2 class="sec" style="margin:22px 0 8px">${esc(l.address || 'Untitled listing')}</h2>
+          <div class="two">
+            <div><label for="v_${l.id}_v">Views</label><input id="v_${l.id}_v" type="text" inputmode="numeric" value="${esc(draft[l.id].views)}" placeholder="0"></div>
+            <div><label for="v_${l.id}_s">Saves</label><input id="v_${l.id}_s" type="text" inputmode="numeric" value="${esc(draft[l.id].saves)}" placeholder="0"></div>
+          </div>`).join('')}
+
+        <div style="height:22px"></div>
+        <button class="btn" id="save2">Save these numbers</button>
+        <button class="btn ghost" id="cancel2">Cancel</button>
+        <div style="height:24px"></div>
+      </div></div>`;
+
+    $('v_date').onchange = () => {
+      grab();
+      entryDate = cleanDate($('v_date').value) || yesterday();
+      loadDraft();
+      paint();
+    };
+    const bail = () => { sheet.innerHTML = ''; render(); };
+    $('cancel').onclick = bail;
+    $('cancel2').onclick = bail;
+    $('saveTop').onclick = () => { commit(); sheet.innerHTML = ''; render(); };
+    $('save2').onclick = $('saveTop').onclick;
+  }
+
+  function commit(){
+    grab();
+    const stamp = cleanDate(entryDate) || yesterday();
+    active.forEach(l => {
+      const v = draft[l.id].views, s = draft[l.id].saves;
+      if(v === '' && s === '') return;
+      l.metrics = l.metrics || [];
+      const existing = l.metrics.find(e => e.date === stamp);
+      const rec = { date: stamp, views: num(v) === '' ? 0 : num(v), saves: num(s) === '' ? 0 : num(s) };
+      if(existing){ existing.views = rec.views; existing.saves = rec.saves; }
+      else l.metrics.push(rec);
+    });
+    save();
+  }
+
+  paint();
+  window.scrollTo(0, 0);
+}
+
+/* ---------- views & saves: one listing's history ---------- */
+function openViewsDetail(id){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const s = viewStats(l);
+  const sheet = $('sheet');
+  const rows = s ? s.m.slice().reverse() : [];
+  const chgs = allChanges(l);
+  const mark = c => `<div class="fact mark"><span>Changed ${shortDate(c.date)}</span><b>${esc(c.label)}</b></div>`;
+  // newest first; a change sits just below the first day it applies to
+  const dayList = rows.map((e, i) => {
+    const older = rows[i+1] ? rows[i+1].date : '';
+    const top = i === 0 ? chgs.filter(c => c.date > e.date).map(mark).join('') : '';
+    return top + `<div class="fact" data-edit="${esc(e.date)}" style="cursor:pointer">
+          <span>${new Date(e.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</span>
+          <b>${e.views||0} views \u00b7 ${e.saves||0} saves</b></div>` +
+      chgs.filter(c => c.date <= e.date && c.date > older).reverse().map(mark).join('');
+  }).join('');
+
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="back">Done</button>
+      <div><button class="link" id="addChg">Log a change</button><button class="link" id="addOne">Add a day</button></div>
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px">${esc(l.address || 'Untitled listing')}</h1>
+      <p class="pulse" style="margin-bottom:18px">${s ? `${s.m.length} day${s.m.length===1?'':'s'} logged` : 'Nothing logged yet'}</p>
+
+      ${s ? `<div class="facts">
+        <div class="fact"><span>Total views</span><b>${s.totalViews}</b></div>
+        <div class="fact"><span>Total saves</span><b>${s.totalSaves}</b></div>
+        ${s.avg7 != null ? `<div class="fact"><span>7-day average</span><b>${s.avg7.toFixed(1)} views/day</b></div>` : ''}
+      </div>` : ''}
+
+      ${s && s.bestDay ? `<div class="banner">Best day so far for views: <b>${s.bestDay}</b>. Based on ${s.m.length} days logged.</div>`
+        : s ? `<div class="banner">Log a few more days \u2014 the best-day pattern needs at least 10 before it\u2019s worth trusting.</div>` : ''}
+
+      ${chgs.length ? `<h2 class="sec">Changes</h2>${chgs.slice().reverse().map(c => changeCardHTML(l, c, chgs)).join('')}` : ''}
+
+      ${rows.length ? `<h2 class="sec">Day by day</h2><div class="facts">
+        ${dayList}
+      </div>` : `<div class="empty">Add today\u2019s views and saves to get started.</div>`}
+
+      <button class="btn ghost" id="back2" style="margin-top:22px">Back to views and saves</button>
+      <p class="note">Tap a day to edit or remove it.</p>
+    </div>
+  </div>`;
+
+  const done = () => { sheet.innerHTML = ''; render(); };
+  $('back').onclick = done;
+  $('back2').onclick = done;
+  $('addOne').onclick = () => openViewsDayForm(id, null);
+  $('addChg').onclick = () => openChangeForm(id, null);
+  [...sheet.querySelectorAll('[data-chg]')].forEach(r =>
+    r.onclick = () => openChangeForm(id, r.dataset.chg));
+  [...sheet.querySelectorAll('[data-edit]')].forEach(r =>
+    r.onclick = () => openViewsDayForm(id, r.dataset.edit));
+  window.scrollTo(0, 0);
+}
+
+function openViewsDayForm(id, date){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  l.metrics = l.metrics || [];
+  const existing = date ? l.metrics.find(e => e.date === date) : null;
+  const dt = askDate('Date (YYYY-MM-DD)', date || yesterday());
+  if(!dt) return;
+  const onDay = existing || l.metrics.find(e => e.date === dt);
+  const vIn = prompt('Views that day', onDay ? onDay.views : '');
+  if(vIn === null) return;
+  const sIn = prompt('Saves that day', onDay ? onDay.saves : '');
+  if(sIn === null) return;
+  l.metrics = l.metrics.filter(e => e !== existing && e.date !== dt);
+  if(vIn.trim() !== '' || sIn.trim() !== ''){
+    l.metrics.push({ date: dt, views: num(vIn) === '' ? 0 : num(vIn), saves: num(sIn) === '' ? 0 : num(sIn) });
+  }
+  save();
+  openViewsDetail(id);
+}
+
+/* ---------- fact sheet: one source of facts per home ---------- */
+const FS_STATUS = { confirmed:'Confirmed', needs:'Needs confirmation', unknown:'Unknown' };
+const FS_SECTIONS = [
+  ['Property basics', [
+    { k:'address',  label:'Address',        type:'text',  link:'address' },
+    { k:'price',    label:'Asking price',   type:'money', link:'listPrice' },
+    { k:'status',   label:'Status',         type:'status' },
+    { k:'beds',     label:'Bedrooms',       type:'num',   link:'beds' },
+    { k:'baths',    label:'Bathrooms',      type:'num',   link:'baths' },
+    { k:'sqft',     label:'Square footage', type:'num',   link:'sqft' },
+    { k:'yearBuilt',label:'Year built',     type:'year' },
+  ]],
+  ['Monthly costs', [
+    { k:'lotRent',     label:'Lot rent',                  type:'money', link:'lotRent' },
+    { k:'lotIncludes', label:'What lot rent includes',    type:'long' },
+    { k:'otherFees',   label:'Other known fees',          type:'long' },
+    { k:'costsDate',   label:'Date costs were confirmed', type:'date' },
+  ]],
+  ['Roof and A/C', [
+    { k:'roofMaterial', label:'Roof material',              type:'text' },
+    { k:'roofAge',      label:'Roof installed or age',      type:'when', kind:'install' },
+    { k:'acAge',        label:'A/C installed or age',       type:'when', kind:'install' },
+    { k:'acService',    label:'A/C last service date',      type:'when', kind:'service' },
+    { k:'acCondition',  label:'A/C working condition',      type:'text' },
+  ]],
+  ['Condition and features', [
+    { k:'cosmetic',    label:'Cosmetic updates needed',       type:'long' },
+    { k:'appliances',  label:'Appliances included',           type:'long' },
+    { k:'furnishings', label:'Furnishings included',          type:'long' },
+    { k:'parking',     label:'Parking, garage and storage',   type:'long' },
+    { k:'features',    label:'Other features',                type:'long' },
+    { k:'issues',      label:'Other known repairs or issues', type:'long' },
+  ]],
+];
+const FS_DEFS = {};
+FS_SECTIONS.forEach(s => s[1].forEach(d => FS_DEFS[d.k] = d));
+
+const fmtLong  = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+const fmtShort = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+const fmtMonth = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'long', year:'numeric' });
+const lcFirst  = s => s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+const ucFirst  = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+const noDot    = s => String(s).trim().replace(/[.\s]+$/, '');
+const dot      = s => /[.!?]$/.test(s.trim()) ? s.trim() : s.trim() + '.';
+/* buyer text never gets em or en dashes */
+const clean    = s => String(s).replace(/\s*[—–]\s*/g, ', ').replace(/\s+--\s+/g, ', ');
+
+function ensureFS(l){
+  if(!l.factSheet){
+    l.factSheet = { facts:{}, qa:[] };
+    /* the old record only stores "has a garage" as yes/blank; only a yes is information */
+    if(l.garage === true) l.factSheet.facts.parking = { v:'Garage', s:'needs', src:'From the listing record', d:'' };
+  }
+  const fs = l.factSheet;
+  if(!fs.facts) fs.facts = {};
+  if(!Array.isArray(fs.qa)) fs.qa = [];
+  return fs;
+}
+
+function whenHas(w){
+  if(!w || typeof w !== 'object' || !w.m) return false;
+  if(w.m === 'year') return String(w.y || '').trim() !== '';
+  if(w.m === 'ago')  return String(w.n || '').trim() !== '';
+  if(w.m === 'date') return !!w.date;
+  return false;
+}
+function isBlank(v){
+  if(v == null) return true;
+  if(typeof v === 'object') return !whenHas(v);
+  return String(v).trim() === '';
+}
+
+/* one fact, read from its single home: the listing record for linked fields, the fact sheet otherwise */
+function fsGet(l, k){
+  const d = FS_DEFS[k];
+  const meta = (l.factSheet && l.factSheet.facts && l.factSheet.facts[k]) || {};
+  let v = d.link ? l[d.link] : meta.v;
+  if(d.type === 'status') v = l.status;
+  const has = !isBlank(v);
+  let s = meta.s || (has ? 'needs' : 'unknown');
+  if(!has && s === 'confirmed') s = 'unknown';      // a blank can never be a confirmed fact
+  return { v, s, src: meta.src || '', d: meta.d || '', approx: !!meta.approx, has };
+}
+const isConf = f => f.has && f.s === 'confirmed';
+
+function whenText(w, kind, long){
+  const fd = long ? fmtLong : fmtShort, ab = !!w.approx;
+  if(w.m === 'year'){
+    return kind === 'install' ? `Installed ${ab ? 'about ' : 'in '}${w.y}` : `${ab ? 'About' : 'In'} ${w.y}`;
+  }
+  if(w.m === 'date'){
+    const dt = ab ? fmtMonth(w.date) : fd(w.date);
+    return kind === 'install' ? `Installed ${ab ? 'about ' : 'on '}${dt}` : `${ab ? 'About ' : 'On '}${dt}`;
+  }
+  if(w.m === 'ago'){
+    const n = Number(w.n);
+    if(kind === 'install'){
+      const yrs = n === 1 ? '1 year' : w.n + ' years';
+      return `${ab ? 'About ' : ''}${yrs} old${w.asOf ? ' as of ' + fd(w.asOf) : ''}`;
+    }
+    const yrs = n === 1 ? (ab ? 'a year' : '1 year') : w.n + ' years';
+    return `${ab ? 'About ' : ''}${yrs} ${w.asOf ? 'before ' + fd(w.asOf) : 'ago'}`;
+  }
+  return '';
+}
+
+/* how a value reads; long=true is the buyer-facing wording */
+function valText(l, k, f, long){
+  const d = FS_DEFS[k];
+  if(!f.has) return '';
+  switch(d.type){
+    case 'money':  return money(f.v);
+    case 'num':    return String(f.v);
+    case 'year':   return (f.approx ? 'About ' : '') + String(f.v).trim();
+    case 'date':   return long ? fmtLong(f.v) : fmtShort(f.v);
+    case 'when':   return whenText(f.v, d.kind, long);
+    case 'status': return f.v === 'sold' ? 'Sold' : f.v === 'pending' ? 'Pending' : 'Active';
+    default:       return String(f.v).trim();
+  }
+}
+/* buyer-facing value: confirmed only, otherwise null */
+function P(l, k){
+  const f = fsGet(l, k);
+  return isConf(f) ? clean(valText(l, k, f, true)) : null;
+}
+
+/* ---------- buyer-facing answers, built fresh from current facts every time ---------- */
+function ageSentence(subject, l, k){
+  const f = fsGet(l, k);
+  const t = P(l, k);
+  if(!t) return null;
+  return f.v.m === 'ago' ? `${subject} is ${lcFirst(t)}.` : `${subject} was ${lcFirst(t)}.`;
+}
+function roofAnswer(l){
+  const mat = P(l, 'roofMaterial'), age = P(l, 'roofAge');
+  if(!mat && !age) return null;
+  const parts = [];
+  if(mat && age){
+    const f = fsGet(l, 'roofAge');
+    parts.push(f.v.m === 'ago' ? `${ucFirst(noDot(mat))} roof, ${lcFirst(age)}.` : `${ucFirst(noDot(mat))} roof, ${lcFirst(age)}.`);
+  } else if(mat){
+    parts.push(`${ucFirst(noDot(mat))} roof.`, 'The roof’s age still needs confirmation.');
+  } else {
+    parts.push(ageSentence('The roof', l, 'roofAge'), 'The roof material still needs confirmation.');
+  }
+  return parts.join(' ');
+}
+function acAnswer(l){
+  const age = ageSentence('The A/C', l, 'acAge');
+  const svc = P(l, 'acService'), cond = P(l, 'acCondition');
+  if(!age && !svc && !cond) return null;
+  const parts = [];
+  if(cond){
+    const f = fsGet(l, 'acCondition');
+    parts.push(`A/C condition: ${lcFirst(noDot(cond))}${f.d ? ' as of ' + fmtLong(f.d) : ''}.`);
+  }
+  if(svc) parts.push(`The A/C was last serviced ${lcFirst(svc)}.`);
+  if(age) parts.push(age);
+  else parts.push('The A/C’s age still needs confirmation.');   // a service date is never its age
+  return parts.join(' ');
+}
+function costsAnswer(l){
+  const lr = P(l, 'lotRent'), inc = P(l, 'lotIncludes'), fees = P(l, 'otherFees'), cd = P(l, 'costsDate');
+  if(!lr && !inc && !fees) return null;
+  const parts = [];
+  if(lr) parts.push(`Lot rent is ${lr} per month${cd ? ' as of ' + cd : ''}.`);
+  else parts.push('The lot rent amount still needs confirmation.');
+  if(inc) parts.push(`It includes ${lcFirst(noDot(inc.replace(/^(it\s+)?(includes?|including)\s*:?\s*/i, '')))}.`);
+  if(fees) parts.push(`Other fees: ${lcFirst(noDot(fees))}.`);
+  return parts.join(' ');
+}
+const LINKS = [
+  ['costs', 'Lot rent and fees'], ['roof', 'Roof'], ['ac', 'A/C'],
+  ['yearBuilt', 'Year built'], ['cosmetic', 'Cosmetic updates'], ['appliances', 'Appliances'],
+  ['furnishings', 'Furnishings'], ['parking', 'Parking, garage and storage'],
+  ['features', 'Other features'], ['issues', 'Repairs or issues'],
+];
+function linkedAnswer(l, link){
+  if(link === 'costs') return costsAnswer(l);
+  if(link === 'roof')  return roofAnswer(l);
+  if(link === 'ac')    return acAnswer(l);
+  const t = P(l, link);
+  if(!t) return null;
+  if(link === 'yearBuilt') return `The home was built ${/^about/i.test(t) ? lcFirst(t) : 'in ' + t}.`;
+  return dot(ucFirst(t));
+}
+/* returns { text, ok } where ok means a confirmed answer exists */
+function qaAnswer(l, q){
+  if(q.link){
+    const t = linkedAnswer(l, q.link);
+    return { text: t || '', ok: !!t };
+  }
+  const has = String(q.a || '').trim() !== '';
+  return { text: has ? dot(q.a) : '', ok: has && q.s === 'confirmed' };
+}
+
+function buildAnswerText(l, q){
+  const a = qaAnswer(l, q);
+  let body;
+  if(a.ok) body = 'Thanks for asking. ' + a.text;
+  else if(q.scope === 'community')
+    body = 'Thanks for asking. That one is handled by the Water Oak office, and I’m confirming it with them now. I’ll get back to you as soon as I hear.';
+  else
+    body = 'Thanks for asking. I don’t have a confirmed answer on that yet. I’m checking and will get back to you as soon as I do.';
+  return clean(body + '\n\nShane');
+}
+
+function buildFAQ(l){
+  const out = [], left = [];
+  const add = (q, a) => out.push(`Q: ${q}\nA: ${a}`);
+  const miss = (...ks) => ks.forEach(k => { if(!isConf(fsGet(l, k))) left.push(FS_DEFS[k].label); });
+
+  const yb = linkedAnswer(l, 'yearBuilt'); if(yb) add('What year was the home built?', yb);
+  const c = costsAnswer(l); if(c) add('What is the lot rent, and what does it include?', c);
+  const r = roofAnswer(l);  if(r) add('Tell me about the roof.', r);
+  const a = acAnswer(l);    if(a) add('How old is the A/C, and when was it last serviced?', a);
+  const simple = [
+    ['cosmetic', 'Does the home need any updates?'],
+    ['appliances', 'Which appliances are included?'],
+    ['furnishings', 'Is any furniture included?'],
+    ['parking', 'What parking and storage does it have?'],
+    ['features', 'Any other features worth knowing about?'],
+    ['issues', 'Are there any known repairs or issues?'],
+  ];
+  simple.forEach(([k, q]) => { const t = P(l, k); if(t) add(q, dot(ucFirst(t))); });
+  miss('yearBuilt', 'lotRent', 'lotIncludes', 'otherFees', 'roofMaterial', 'roofAge', 'acAge', 'acService', 'acCondition',
+       'cosmetic', 'appliances', 'furnishings', 'parking', 'features', 'issues');
+
+  (l.factSheet ? l.factSheet.qa : []).forEach(q => {
+    if(q.link || !String(q.q || '').trim()) return;   // linked ones are already covered above
+    const ans = qaAnswer(l, q);
+    if(ans.ok) add(dot(q.q).replace(/\.$/, '?').replace(/\?\?$/, '?'), ans.text);
+    else left.push('Buyer question: ' + q.q);
+  });
+
+  const addr = P(l, 'address');
+  const head = 'Frequently asked questions' + (addr ? ': ' + addr : '');
+  const text = out.length ? clean(head + '\n\n' + out.join('\n\n')) : '';
+  return { text, left };
+}
+
+function buildSummary(l){
+  const s = [], left = [];
+  const addr = P(l, 'address'), beds = P(l, 'beds'), baths = P(l, 'baths'), sqft = P(l, 'sqft'), yb = P(l, 'yearBuilt');
+  const spec = [beds ? beds + ' bed' : '', baths ? baths + ' bath' : '', sqft ? Number(fsGet(l, 'sqft').v).toLocaleString('en-US') + ' sq ft' : ''].filter(Boolean).join(', ');
+  let first = '';
+  if(addr) first = addr + (spec ? ': ' + spec : '');
+  else if(spec) first = ucFirst(spec);
+  if(yb) first += (first ? ', ' : '') + (/^about/i.test(yb) ? 'built ' + lcFirst(yb) : 'built in ' + yb);
+  if(first) s.push(dot(first));
+  const pr = P(l, 'price'); if(pr) s.push(`Asking ${pr}.`);
+  const c = costsAnswer(l); if(c) s.push(c);
+  const r = roofAnswer(l);  if(r) s.push(r);
+  const a = acAnswer(l);    if(a) s.push(a);
+  [['cosmetic', 'Updates needed'], ['appliances', 'Appliances included'], ['furnishings', 'Furnishings included'],
+   ['parking', 'Parking and storage'], ['features', 'Other features'], ['issues', 'Known repairs or issues']]
+    .forEach(([k, lab]) => { const t = P(l, k); if(t) s.push(`${lab}: ${noDot(t)}.`); });
+  Object.keys(FS_DEFS).forEach(k => {
+    if(k === 'status' || k === 'costsDate') return;
+    if(!isConf(fsGet(l, k))) left.push(FS_DEFS[k].label);
+  });
+  return { text: clean(s.join(' ')), left };
+}
+
+/* words that suggest private seller or negotiation info slipped into buyer text */
+const PRIVATE_WORDS = /\b(motivat\w*|bottom line|minimum|will take|would take|lowest (?:offer|price)|negotiat\w*|desperate|must sell|divorce|passed away|walk away)\b/gi;
+
+function copyText(t){
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-1000px';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, t.length);
+    let ok = false; try{ ok = document.execCommand('copy'); }catch(e){}
+    ta.remove(); return ok;
+  };
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(t).catch(fallback);
+    return true;
+  }
+  return fallback();
+}
+
+/* ---------- seeding: owner-confirmed facts for 916 E Norman St only ---------- */
+const IS_916 = a => /\b916\s+e(?:ast|\.)?\s+norman\b/i.test(String(a || ''));
+const AC_WORD = /\b(?:a\/c|a\.c\.?|ac|hvac|air[\s-]?condition\w*)(?![\w])/i;
+const AC_ONE_YEAR = /\b(?:1|one)[\s-]*(?:yr|year)s?\b|\ba[\s-]+(?:yr|year)[\s-]+(?:old|ago)\b|\b(?:brand[\s-])?new\b/i;
+const AC_SERVICE = /servic|maint|tune|check|inspect|clean/i;
+const AC_FIX = 'A/C age unknown, serviced about a year before Oct 8, 2026 (corrected Oct 8, 2026)';
+
+/* rewrite only the clauses that claim the A/C is about a year old */
+function scrubAcClaim(text, log){
+  if(!text) return text;
+  return String(text).split(/([.;,!?\n]+)/).map(part => {
+    if(AC_WORD.test(part) && AC_ONE_YEAR.test(part) && !AC_SERVICE.test(part)){
+      log.push(part.trim());
+      return (/^\s/.test(part) ? ' ' : '') + AC_FIX;
+    }
+    return part;
+  }).join('');
+}
+
+function seedKnownFacts(){
+  let changed = false;
+  state.listings.forEach(l => {
+    if(!IS_916(l.address)) return;
+    const fs = ensureFS(l);
+    if(fs.seed916) return;
+    const D = '2026-10-08', SRC = 'Owner/Shane confirmed';
+    Object.assign(fs.facts, {
+      roofMaterial: { v:'Metal', s:'confirmed', src:SRC, d:D },
+      roofAge:      { v:{ m:'ago', n:'6', asOf:D, approx:true }, s:'confirmed', src:SRC, d:D },
+      acAge:        { v:'', s:'unknown', src:'Age unknown. The A/C was SERVICED about a year ago. That is not its age. An earlier claim that the A/C is one year old was wrong.', d:D },
+      acService:    { v:{ m:'ago', n:'1', asOf:D, approx:true }, s:'confirmed', src:SRC, d:D },
+      acCondition:  { v:'In working order', s:'confirmed', src:SRC, d:D },
+      cosmetic:     { v:'Flooring in some rooms and possibly fresh paint. Further updates depend on the buyer’s preferences.', s:'confirmed', src:SRC, d:D },
+    });
+    /* replace any old "A/C is one year old" claim in this home's notes */
+    const log = [];
+    l.notes = scrubAcClaim(l.notes, log);
+    (l.changes || []).forEach(c => { c.note = scrubAcClaim(c.note, log); });
+    fs.qa.forEach(q => { q.a = scrubAcClaim(q.a, log); });
+    if(log.length) fs.corrections = log;
+    fs.seed916 = true;
+    changed = true;
+  });
+  return changed;
+}
+
+/* ---------- Copy Facts: plain list, no questions ---------- */
+const LISTING_KEYS = ['address','price','beds','baths','sqft','lotRent'];
+/* your own listing entries count unless marked Unknown; everything else must be Confirmed */
+function F(l, k){
+  const f = fsGet(l, k);
+  if(!f.has) return null;
+  if(f.s === 'confirmed' || (LISTING_KEYS.includes(k) && f.s !== 'unknown')) return f;
+  return null;
+}
+const monYr = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month:'long', year:'numeric' });
+function installYear(w){
+  if(w.m === 'year') return Number(w.y) || null;
+  if(w.m === 'date') return Number(String(w.date).slice(0,4)) || null;
+  if(w.m === 'ago' && w.asOf) return Number(w.asOf.slice(0,4)) - Number(w.n);
+  return null;
+}
+function ageLine(w){
+  const y = installYear(w), ab = w.approx ? 'about ' : '', ar = w.approx ? 'around ' : 'in ';
+  if(y){
+    const age = new Date().getFullYear() - y;
+    return `${ab}${age} year${age === 1 ? '' : 's'} old (installed ${ar}${y})`;
+  }
+  return lcFirst(whenText(w, 'install', false));
+}
+function serviceLine(w){
+  if(w.m === 'ago' && w.asOf){
+    const d = new Date(w.asOf + 'T12:00:00'); d.setFullYear(d.getFullYear() - Number(w.n));
+    return `${w.approx ? 'around ' : 'in '}${d.toLocaleDateString('en-US', { month:'long', year:'numeric' })}`;
+  }
+  if(w.m === 'date') return w.approx ? 'around ' + monYr(w.date) : 'on ' + fmtShort(w.date);
+  if(w.m === 'year') return (w.approx ? 'around ' : 'in ') + w.y;
+  return '';
+}
+function buildFacts(l){
+  const out = [], left = [];
+  const t = (k, lab, fn) => { const f = F(l, k); if(f) out.push(`${lab}: ${fn ? fn(f) : noDot(String(f.v))}`); else left.push(FS_DEFS[k].label); };
+  const addr = F(l, 'address');
+  if(addr) out.push(String(addr.v).trim());
+  t('price', 'Price', f => money(f.v));
+  t('beds', 'Bedrooms', f => String(f.v));
+  t('baths', 'Bathrooms', f => String(f.v));
+  t('sqft', 'Square feet', f => Number(f.v).toLocaleString('en-US'));
+  t('yearBuilt', 'Year built', f => (f.approx ? 'About ' : '') + String(f.v).trim());
+  const lr = F(l, 'lotRent'), inc = F(l, 'lotIncludes');
+  if(lr) out.push(`Lot rent: ${money(lr.v)} a month${inc ? ' (includes ' + lcFirst(noDot(String(inc.v).replace(/^(it\s+)?(includes?|including)\s*:?\s*/i, ''))) + ')' : ''}`);
+  else left.push('Lot rent');
+  t('otherFees', 'Other fees');
+  const mat = F(l, 'roofMaterial'), ra = F(l, 'roofAge');
+  if(mat || ra) out.push('Roof: ' + [mat ? ucFirst(noDot(mat.v)) : '', ra ? ageLine(ra.v) : 'age unknown'].filter(Boolean).join(', '));
+  else left.push('Roof');
+  const cond = F(l, 'acCondition'), svc = F(l, 'acService'), aa = F(l, 'acAge');
+  if(cond || svc || aa){
+    const p = [];
+    if(cond) p.push(ucFirst(noDot(cond.v)) + (cond.d ? ' as of ' + fmtShort(cond.d) : ''));
+    if(svc) p.push('last serviced ' + serviceLine(svc.v));
+    p.push(aa ? ageLine(aa.v) : 'age unknown');   // a service date is never the A/C's age
+    out.push('A/C: ' + p.join(', '));
+  } else left.push('A/C');
+  t('cosmetic', 'Updates needed');
+  t('appliances', 'Appliances included');
+  t('furnishings', 'Furnishings included');
+  t('parking', 'Parking and storage');
+  t('features', 'Other features');
+  t('issues', 'Known repairs or issues');
+  return { text: out.length ? clean(out.join('\n')) : '', left };
+}
+
+/* ---------- fact sheet screen ---------- */
+function chipHTML(f, showDate){
+  return `<span class="chip ${f.s}">${FS_STATUS[f.s]}</span>${showDate && f.d ? `<span class="chipdate">${fmtShort(f.d)}</span>` : ''}`;
+}
+
+function openFactSheet(id){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const fs = ensureFS(l);
+  const sheet = $('sheet');
+  const keys = Object.keys(FS_DEFS).filter(k => k !== 'status');
+  const nConf = keys.filter(k => isConf(fsGet(l, k))).length;
+
+  const row = k => {
+    const d = FS_DEFS[k], f = fsGet(l, k);
+    if(d.type === 'status') return `<div class="frow fixed"><div class="fl">${d.label}</div>
+      <div class="fv">${valText(l, k, f)}</div><div class="note" style="margin:4px 0 0">Change it with the buttons on the listing.</div></div>`;
+    let v = valText(l, k, f);
+    if(k === 'lotRent' && v) v += ' / month';
+    return `<div class="frow" data-fk="${k}"><div class="fl">${d.label}</div>
+      <div class="fv ${v ? '' : 'unk'}">${v ? esc(v) : 'Unknown'}</div>
+      <div>${chipHTML(f, f.s === 'confirmed')}</div></div>`;
+  };
+  const qaHTML = q => {
+    const a = qaAnswer(l, q);
+    const shown = q.link ? (a.text || 'Nothing confirmed on the fact sheet yet') : (String(q.a || '').trim() || 'No answer yet');
+    const f = { s: q.link ? (a.ok ? 'confirmed' : 'needs') : (q.s || 'needs'), d: q.link ? '' : q.d };
+    return `<div class="qa" data-qa="${esc(q.id)}">
+      <p class="q">${esc(q.q || 'Untitled question')}</p>
+      <p class="ans ${(q.link ? a.text : String(q.a || '').trim()) ? '' : 'unk'}">${esc(shown)}</p>
+      <div>${chipHTML(f, f.s === 'confirmed')}${q.link ? '<span class="chipdate">from the fact sheet</span>' : ''}</div>
+      <button class="btn ghost sm" data-copyqa="${esc(q.id)}">Copy Answer</button>
+    </div>`;
+  };
+  const propQ = fs.qa.filter(q => q.scope !== 'community');
+  const commQ = fs.qa.filter(q => q.scope === 'community');
+
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="fsBack">Done</button>
+      <span></span>
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px">${esc(l.address || 'Untitled listing')}</h1>
+      <p class="pulse" style="margin-bottom:16px">Fact sheet · ${nConf} of ${keys.length} facts confirmed</p>
+
+      ${fs.corrections && fs.corrections.length && !fs.correctionSeen ? `<div class="banner">
+        Corrected an old note that said the A/C was about one year old. It was serviced about a year ago. Its age is unknown.
+        <div style="margin-top:8px;color:var(--muted)">Replaced: ${fs.corrections.map(c => '“' + esc(c) + '”').join(', ')}</div>
+        <button class="btn ghost sm" id="fsSeen">Got it</button></div>` : ''}
+
+      <button class="btn" id="cpFacts">Copy Facts</button>
+
+      ${FS_SECTIONS.map(([title, defs]) => `<h2 class="sec">${title}</h2>
+        <div class="facts">${defs.map(d => row(d.k)).join('')}</div>`).join('')}
+
+      <h2 class="sec">Internal notes</h2>
+      <div class="facts"><div class="frow" id="fsNotes">
+        <div class="fl">Private. Never copied into buyer text.</div>
+        <div class="fv ${l.notes ? '' : 'unk'}">${l.notes ? esc(l.notes) : 'No notes'}</div></div></div>
+
+      <button class="btn ghost" id="fsBack2" style="margin-top:18px">Back to the listing</button>
+      <div style="height:24px"></div>
+    </div>
+  </div>`;
+
+  const back = () => openDetail(id);
+  $('fsBack').onclick = back;
+  $('fsBack2').onclick = back;
+  const seen = $('fsSeen'); if(seen) seen.onclick = () => { fs.correctionSeen = true; save(); openFactSheet(id); };
+  [...sheet.querySelectorAll('[data-fk]')].forEach(r => r.onclick = () => openFactEdit(id, r.dataset.fk));
+  $('cpFacts').onclick = () => {
+    const r = buildFacts(l);
+    const ok = r.text ? copyText(r.text) : false;
+    openCopyPreview(id, 'Facts', r.text, r.left, ok);
+  };
+  $('fsNotes').onclick = () => openNotesEdit(id);
+  window.scrollTo(0, 0);
+}
+
+function openCopyPreview(id, title, text, left, ok){
+  const sheet = $('sheet');
+  const hits = text ? [...new Set((text.match(PRIVATE_WORDS) || []).map(w => w.toLowerCase()))] : [];
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar"><button class="link" id="cpBack">Done</button><span></span></div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:14px">${esc(title)}</h1>
+      ${text ? `<div class="banner">${ok ? 'Copied. Review it, then paste it where you want it.' : 'Tap Copy below, then paste it where you want it.'}</div>
+        ${hits.length ? `<div class="banner warnb">Check before posting: this mentions “${hits.map(esc).join('”, “')}”.</div>` : ''}
+        <div class="preview" id="cpText">${esc(text)}</div>
+        <button class="btn" id="cpAgain">Copy</button>`
+      : `<div class="empty">Nothing confirmed yet, so there is nothing to copy. Mark facts as confirmed first.</div>`}
+      ${left.length ? `<h2 class="sec">Left out, blank or not confirmed</h2>
+        <div class="facts">${left.map(x => `<div class="fact"><span>${esc(x)}</span></div>`).join('')}</div>
+        <p class="note">This list is only for you. It is not copied.</p>` : ''}
+      <button class="btn ghost" id="cpBack2" style="margin-top:18px">Back to the fact sheet</button>
+    </div></div>`;
+  const back = () => openFactSheet(id);
+  $('cpBack').onclick = back;
+  $('cpBack2').onclick = back;
+  const again = $('cpAgain'); if(again) again.onclick = () => { copyText(text); again.textContent = 'Copied'; };
+  window.scrollTo(0, 0);
+}
+
+function statusChips(cur){
+  return `<label>Verification</label><div class="chips" id="stChips">${Object.keys(FS_STATUS).map(s =>
+    `<button class="gonebtn${s === cur ? ' on' : ''}" data-st="${s}">${FS_STATUS[s]}</button>`).join('')}</div>`;
+}
+function wireChips(sheet, onPick){
+  [...sheet.querySelectorAll('[data-st]')].forEach(b => b.onclick = () => {
+    sheet.querySelectorAll('[data-st]').forEach(x => x.classList.toggle('on', x === b));
+    onPick(b.dataset.st);
+  });
+}
+
+function openFactEdit(id, k){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const fs = ensureFS(l), d = FS_DEFS[k], f = fsGet(l, k);
+  let st = f.s;
+  const sheet = $('sheet');
+  const raw = f.v == null ? '' : f.v;
+  const w = (d.type === 'when' && typeof raw === 'object') ? raw : { m:'', approx:false };
+  const isInstall = d.kind === 'install';
+
+  let input = '';
+  if(d.type === 'long') input = `<textarea id="fxV">${esc(raw)}</textarea>`;
+  else if(d.type === 'date') input = `<input id="fxV" type="date" value="${esc(raw)}">`;
+  else if(d.type === 'money' || d.type === 'num') input = `<input id="fxV" type="text" inputmode="decimal" value="${esc(raw)}" placeholder="${d.type === 'money' ? 'Dollars' : 'Number'}">`;
+  else if(d.type === 'year') input = `<input id="fxV" type="text" inputmode="numeric" value="${esc(raw)}" placeholder="Year">
+      <label class="checkrow"><input type="checkbox" id="fxApprox" ${f.approx ? 'checked' : ''}> This is approximate</label>`;
+  else if(d.type === 'when') input = `
+      <div class="chips" id="wModes">
+        ${[['year', isInstall ? 'Year installed' : 'Year'], ['ago', isInstall ? 'Age in years' : 'Years before a date'], ['date', 'Exact date']]
+          .map(([m, t]) => `<button class="gonebtn${w.m === m ? ' on' : ''}" data-m="${m}">${t}</button>`).join('')}
+      </div>
+      <div id="w_year" class="${w.m === 'year' ? '' : 'hide'}"><label for="wY">Year</label>
+        <input id="wY" type="text" inputmode="numeric" value="${esc(w.y || '')}" placeholder="e.g. 2020"></div>
+      <div id="w_ago" class="${w.m === 'ago' ? '' : 'hide'}">
+        <div class="two"><div><label for="wN">${isInstall ? 'Years old' : 'Years before'}</label>
+          <input id="wN" type="text" inputmode="decimal" value="${esc(w.n || '')}" placeholder="#"></div>
+          <div><label for="wAsOf">As of</label><input id="wAsOf" type="date" value="${esc(w.asOf || today())}"></div></div></div>
+      <div id="w_date" class="${w.m === 'date' ? '' : 'hide'}"><label for="wD">Date</label>
+        <input id="wD" type="date" value="${esc(w.date || '')}"></div>
+      <label class="checkrow"><input type="checkbox" id="fxApprox" ${w.approx ? 'checked' : ''}> This is approximate</label>
+      <button class="btn ghost sm" id="wClear">Clear, it’s unknown</button>`;
+  else input = `<input id="fxV" type="text" value="${esc(raw)}" autocapitalize="sentences">`;
+
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar"><button class="link" id="fxCancel">Cancel</button><button class="link" id="fxSaveTop">Save</button></div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:4px">${esc(d.label)}</h1>
+      <p class="pulse">${esc(l.address || 'Untitled listing')}</p>
+      ${k === 'acService' ? '<div class="banner" style="margin-top:14px">When it was serviced. This is not how old the A/C is.</div>' : ''}
+      ${k === 'acAge' ? '<div class="banner" style="margin-top:14px">How old the A/C itself is. Not the last service date.</div>' : ''}
+      <label>${d.type === 'when' ? 'How do you know it' : 'Value'}</label>
+      ${input}
+      <p class="note" style="margin-top:8px">Leave it blank if you don’t know. Blank stays Unknown.</p>
+      ${statusChips(st)}
+      <label for="fxSrc">Source or note</label>
+      <input id="fxSrc" type="text" value="${esc(f.src)}" placeholder="Who told you, or where it came from">
+      <label for="fxD">Date confirmed</label>
+      <input id="fxD" type="date" value="${esc(f.d)}">
+      ${d.link ? '<p class="note">This also updates the listing.</p>' : ''}
+      <div style="height:22px"></div>
+      <button class="btn" id="fxSave">Save</button>
+      <button class="btn ghost" id="fxCancel2">Cancel</button>
+      <div style="height:24px"></div>
+    </div></div>`;
+
+  let mode = w.m;
+  if(d.type === 'when'){
+    [...sheet.querySelectorAll('[data-m]')].forEach(b => b.onclick = () => {
+      mode = b.dataset.m;
+      sheet.querySelectorAll('[data-m]').forEach(x => x.classList.toggle('on', x === b));
+      ['year', 'ago', 'date'].forEach(m => $('w_' + m).classList.toggle('hide', m !== mode));
+    });
+    $('wClear').onclick = () => {
+      mode = ''; $('wY').value = ''; $('wN').value = ''; $('wD').value = ''; $('fxApprox').checked = false;
+      sheet.querySelectorAll('[data-m]').forEach(x => x.classList.remove('on'));
+      ['year', 'ago', 'date'].forEach(m => $('w_' + m).classList.add('hide'));
+    };
+  }
+  wireChips(sheet, s => { st = s; if(s === 'confirmed' && !$('fxD').value) $('fxD').value = today(); });
+
+  const cancel = () => openFactSheet(id);
+  $('fxCancel').onclick = cancel;
+  $('fxCancel2').onclick = cancel;
+  const commit = () => {
+    let v;
+    if(d.type === 'when'){
+      v = { m: mode, approx: $('fxApprox').checked };
+      if(mode === 'year') v.y = $('wY').value.trim();
+      if(mode === 'ago'){ v.n = String(num($('wN').value)); v.asOf = $('wAsOf').value; }
+      if(mode === 'date') v.date = $('wD').value;
+      if(!whenHas(v)) v = '';
+    } else if(d.type === 'money' || d.type === 'num'){
+      v = num($('fxV').value);
+    } else {
+      v = $('fxV').value.trim();
+    }
+    const has = !isBlank(v);
+    let s = st;
+    if(!has && s === 'confirmed') s = 'unknown';
+    if(has && s === 'unknown') s = 'needs';
+    const meta = { s, src: $('fxSrc').value.trim(), d: $('fxD').value };
+    if(d.type === 'year') meta.approx = $('fxApprox').checked;
+
+    if(d.link){
+      if(k === 'address' && !v && !l.client){ alert('A listing needs an address or a client name.'); return; }
+      if(k === 'price' && l.listPrice !== '' && l.listPrice != null && v !== '' && Number(v) !== Number(l.listPrice))
+        (l.priceHistory = l.priceHistory || []).push({ date: today(), price: l.listPrice });
+      l[d.link] = v;
+    } else {
+      meta.v = v;
+    }
+    fs.facts[k] = meta;
+    save();
+    openFactSheet(id);
+  };
+  $('fxSave').onclick = commit;
+  $('fxSaveTop').onclick = commit;
+  window.scrollTo(0, 0);
+}
+
+function openQAEdit(id, qid, scope){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const fs = ensureFS(l);
+  const q = qid ? fs.qa.find(x => x.id === qid) : null;
+  const cur = q || { q:'', a:'', link:'', s:'needs', src:'', d:'', scope: scope || 'property' };
+  let st = cur.s || 'needs';
+  const sheet = $('sheet');
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar"><button class="link" id="qCancel">Cancel</button>
+      ${q ? '<button class="link del" id="qDel">Delete</button>' : '<button class="link" id="qSaveTop">Save</button>'}</div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:4px">${q ? 'Edit question' : 'New question'}</h1>
+      <p class="pulse">${esc(l.address || 'Untitled listing')}</p>
+      <label for="qScope">Type</label>
+      <select id="qScope">
+        <option value="property" ${cur.scope !== 'community' ? 'selected' : ''}>About this home</option>
+        <option value="community" ${cur.scope === 'community' ? 'selected' : ''}>Community, needs the Water Oak office</option>
+      </select>
+      <label for="qQ">Question</label>
+      <textarea id="qQ" style="min-height:64px" placeholder="What the buyer asked">${esc(cur.q)}</textarea>
+      <label for="qLink">Answer</label>
+      <select id="qLink">
+        <option value="">I’ll type the answer</option>
+        ${LINKS.map(([v, t]) => `<option value="${v}" ${cur.link === v ? 'selected' : ''}>Use the fact sheet: ${t}</option>`).join('')}
+      </select>
+      <div id="qLinked" class="${cur.link ? '' : 'hide'}">
+        <div class="preview" id="qLinkPrev" style="margin-top:12px"></div>
+        <p class="note" style="margin-top:0">This answer always uses the current fact sheet, so it stays up to date.</p>
+      </div>
+      <div id="qManual" class="${cur.link ? 'hide' : ''}">
+        <textarea id="qA" placeholder="Your answer">${esc(cur.a)}</textarea>
+        ${statusChips(st)}
+        <label for="qSrc">Source or note</label>
+        <input id="qSrc" type="text" value="${esc(cur.src)}" placeholder="Who told you, or where it came from">
+        <label for="qD">Date confirmed</label>
+        <input id="qD" type="date" value="${esc(cur.d)}">
+      </div>
+      <div style="height:22px"></div>
+      <button class="btn" id="qSave">Save question</button>
+      <button class="btn ghost" id="qCancel2">Cancel</button>
+      <div style="height:24px"></div>
+    </div></div>`;
+
+  const paintLink = () => {
+    const lk = $('qLink').value;
+    $('qLinked').classList.toggle('hide', !lk);
+    $('qManual').classList.toggle('hide', !!lk);
+    if(lk){
+      const t = linkedAnswer(l, lk);
+      $('qLinkPrev').textContent = t || 'Nothing confirmed on the fact sheet for this yet. Copy Answer will say it needs confirmation.';
+    }
+  };
+  $('qLink').onchange = paintLink;
+  paintLink();
+  wireChips(sheet, s => { st = s; if(s === 'confirmed' && !$('qD').value) $('qD').value = today(); });
+
+  const cancel = () => openFactSheet(id);
+  $('qCancel').onclick = cancel;
+  $('qCancel2').onclick = cancel;
+  if(q) $('qDel').onclick = () => {
+    if(!confirm('Delete this question?')) return;
+    fs.qa = fs.qa.filter(x => x !== q);
+    save(); openFactSheet(id);
+  };
+  const commit = () => {
+    const text = $('qQ').value.trim();
+    if(!text){ alert('Type the question first.'); return; }
+    const rec = q || { id: uid() };
+    rec.q = text;
+    rec.scope = $('qScope').value;
+    rec.link = $('qLink').value;
+    rec.a = $('qA').value.trim();
+    let s = st;
+    if(!rec.a && s === 'confirmed') s = 'needs';
+    rec.s = s;
+    rec.src = $('qSrc').value.trim();
+    rec.d = $('qD').value;
+    if(!q) fs.qa.push(rec);
+    save(); openFactSheet(id);
+  };
+  $('qSave').onclick = commit;
+  const top = $('qSaveTop'); if(top) top.onclick = commit;
+  window.scrollTo(0, 0);
+}
+
+function openNotesEdit(id){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const sheet = $('sheet');
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar"><button class="link" id="nCancel">Cancel</button><button class="link" id="nSaveTop">Save</button></div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:4px">Internal notes</h1>
+      <p class="pulse">${esc(l.address || 'Untitled listing')}</p>
+      <div class="banner" style="margin-top:14px">Private. Seller plans, price limits, negotiation. Never copied into buyer text.</div>
+      <textarea id="nT" style="min-height:180px">${esc(l.notes || '')}</textarea>
+      <div style="height:22px"></div>
+      <button class="btn" id="nSave">Save notes</button>
+      <button class="btn ghost" id="nCancel2">Cancel</button>
+    </div></div>`;
+  const cancel = () => openFactSheet(id);
+  $('nCancel').onclick = cancel;
+  $('nCancel2').onclick = cancel;
+  const commit = () => { l.notes = $('nT').value.trim(); save(); openFactSheet(id); };
+  $('nSave').onclick = commit;
+  $('nSaveTop').onclick = commit;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- go ---------- */
+/* ---------- views & saves: listing changes ---------- */
+const CHANGE_TYPES = ['Incentive','Description','Photos','Other'];
+const shortDate = d => new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+function addDays(d, n){ const t = new Date(d+'T12:00:00'); t.setDate(t.getDate()+n); return ymd(t); }
+
+function allChanges(l){
+  const out = (l.changes||[]).map(c => ({ ...c, label: (c.types||[]).join(' + ') || 'Change' }));
+  const h = l.priceHistory || [];
+  h.forEach((p, i) => {
+    const next = i + 1 < h.length ? h[i+1].price : l.listPrice;
+    out.push({ id: 'price' + i, date: p.date, auto: true, label: 'Price',
+      note: money(p.price) + ' to ' + money(next) });
+  });
+  return out.sort((a,b) => a.date.localeCompare(b.date));
+}
+
+function windowStats(m){
+  if(!m.length) return null;
+  const v = m.reduce((n,e) => n + (Number(e.views)||0), 0);
+  const sv = m.reduce((n,e) => n + (Number(e.saves)||0), 0);
+  return { days: m.length, perDay: v / m.length, rate: v ? sv / v * 100 : null, views: v };
+}
+
+function changeCardHTML(l, c, all){
+  const m = metricsSorted(l);
+  const before = windowStats(m.filter(e => e.date >= addDays(c.date,-7) && e.date < c.date));
+  const after  = windowStats(m.filter(e => e.date >= c.date && e.date < addDays(c.date,7)));
+  const pct = r => r == null ? '\u2014' : Math.round(r) + '%';
+  const others = all.filter(o => o.id !== c.id && o.date >= addDays(c.date,-6) && o.date <= addDays(c.date,6));
+
+  let body, status = [];
+  if(!before){
+    body = `<div class="sub">No days logged in the week before this change, so there\u2019s nothing to compare against.</div>`;
+  } else if(!after){
+    body = `<div class="sub">Nothing logged since this change yet.</div>`;
+  } else {
+    body = `<div class="facts" style="margin:12px 0 0">
+      <div class="fact"><span>Views per day</span><b>${before.perDay.toFixed(1)} \u2192 ${after.perDay.toFixed(1)}</b></div>
+      <div class="fact"><span>Save rate</span><b>${pct(before.rate)} \u2192 ${pct(after.rate)}</b></div>
+    </div>`;
+    status.push(after.days < 7 ? `Too early to trust: ${after.days} of 7 days logged since.` : 'Full week logged since.');
+    if(before.days < 4) status.push(`Only ${before.days} day${before.days===1?'':'s'} logged before.`);
+    if(after.views < 50) status.push('Small numbers, so a couple of saves swing the rate a lot.');
+  }
+  if(others.length) status.push('Another change on ' + others.map(o => shortDate(o.date)).join(', ') + ', so their effects can\u2019t be separated.');
+
+  return `<div class="band chg" ${c.auto ? '' : `data-chg="${esc(c.id)}" style="cursor:pointer"`}>
+    <div class="lab">${shortDate(c.date)}, ${esc(c.label)}</div>
+    ${c.note ? `<div class="big">${esc(c.note)}</div>` : ''}
+    ${body}
+    ${status.length ? `<div class="sub">${status.join(' ')}</div>` : ''}
+  </div>`;
+}
+
+function recentChangeLine(l){
+  const c = allChanges(l).filter(x => x.date <= today()).pop();
+  if(!c) return '';
+  const d = daysBetween(c.date, null);
+  if(d > 14) return '';
+  return `<p class="p">Changed ${d === 0 ? 'today' : d === 1 ? 'yesterday' : d + ' days ago'}: ${esc(c.label)}</p>`;
+}
+
+function openChangeForm(id, cid){
+  const l = state.listings.find(x => x.id === id);
+  if(!l) return;
+  const c = cid ? (l.changes||[]).find(x => x.id === cid) : null;
+  const picked = new Set(c ? c.types : []);
+  const sheet = $('sheet');
+  sheet.innerHTML = `<div class="sheet">
+    <div class="sheetbar">
+      <button class="link" id="cancel">Cancel</button>
+      ${c ? '<button class="link del" id="del">Delete</button>' : ''}
+    </div>
+    <div class="wrap">
+      <h1 class="brand" style="font-size:24px;margin-bottom:4px">${c ? 'Edit change' : 'Log a change'}</h1>
+      <p class="pulse">${esc(l.address || 'Untitled listing')}</p>
+      <label>What changed</label>
+      <div class="chips">${CHANGE_TYPES.map(t =>
+        `<button class="gonebtn${picked.has(t) ? ' on' : ''}" data-t="${t}">${t}</button>`).join('')}</div>
+      <label for="cDate">Date</label>
+      <input id="cDate" type="date" value="${esc(c ? c.date : today())}">
+      <label for="cNote">Note</label>
+      <input id="cNote" type="text" value="${esc(c ? c.note : '')}" placeholder="e.g. New opening line, 1 month free lot rent">
+      <button class="btn" id="saveChg" style="margin-top:22px">Save change</button>
+      <p class="note">Price changes show up here on their own when you change the price on the listing.</p>
+    </div>
+  </div>`;
+  [...sheet.querySelectorAll('[data-t]')].forEach(b => b.onclick = () => {
+    const t = b.dataset.t;
+    picked.has(t) ? picked.delete(t) : picked.add(t);
+    b.classList.toggle('on', picked.has(t));
+  });
+  $('cancel').onclick = () => openViewsDetail(id);
+  if(c) $('del').onclick = () => {
+    if(!confirm('Delete this change?')) return;
+    l.changes = l.changes.filter(x => x !== c);
+    save(); openViewsDetail(id);
+  };
+  $('saveChg').onclick = () => {
+    const date = $('cDate').value || today();
+    const types = CHANGE_TYPES.filter(t => picked.has(t));
+    if(!types.length){ alert('Tap at least one thing that changed.'); return; }
+    const note = $('cNote').value.trim();
+    if(c){ c.date = date; c.types = types; c.note = note; }
+    else (l.changes = l.changes || []).push({ id: uid(), date, types, note });
+    save(); openViewsDetail(id);
+  };
+  window.scrollTo(0, 0);
+}
+
+/* ---------- updates from Claude (Shane says the numbers, Claude saves them to GitHub, the app picks them up) ---------- */
+const LOG_OWNER = 'SinglewideSHANE';
+const logUser = () => feedUser() || LOG_OWNER;
+const normAddr = s => String(s||'').toLowerCase().replace(/[.,#]/g,' ')
+  .replace(/\beast\b/g,'e').replace(/\bwest\b/g,'w').replace(/\bnorth\b/g,'n').replace(/\bsouth\b/g,'s')
+  .replace(/\b(street|st|drive|dr|lane|ln|way|road|rd|avenue|ave|court|ct|circle|cir|boulevard|blvd)\b/g,'')
+  .split(/\s+/).filter(Boolean);
+function matchListing(name){
+  const want = normAddr(name);
+  if(!want.length) return null;
+  const hits = state.listings.filter(l => { const have = normAddr(l.address); return want.every(w => have.includes(w)); });
+  return hits.length === 1 ? hits[0] : null;
+}
+function dayCountSet(l, key, date, n){
+  const arr = l[key] = l[key] || [];
+  const onDay = t => new Date(t).toLocaleDateString('en-CA') === date;
+  const have = arr.filter(onDay).length;
+  if(n > have){ const base = new Date(date + 'T12:00:00').getTime(); for(let i = have; i < n; i++) arr.push(base + i*60000); }
+  else if(n < have){ let drop = have - n; for(let i = arr.length - 1; i >= 0 && drop; i--) if(onDay(arr[i])){ arr.splice(i,1); drop--; } }
+  arr.sort((a,b) => a - b);
+}
+function applyLogEntry(e, l){
+  const d = cleanDate(e.date) || e.date;
+  if(e.views != null || e.saves != null){
+    l.metrics = l.metrics || [];
+    let m = l.metrics.find(x => x.date === d);
+    if(!m){ m = { date: d, views: 0, saves: 0 }; l.metrics.push(m); }
+    if(e.views != null) m.views = Number(e.views) || 0;
+    if(e.saves != null) m.saves = Number(e.saves) || 0;
+    l.metrics.sort((a,b) => a.date.localeCompare(b.date));
+  }
+  if(e.showings != null) dayCountSet(l, 'showings', d, Number(e.showings) || 0);
+  if(e.calls != null) dayCountSet(l, 'calls', d, Number(e.calls) || 0);
+  if(e.change){
+    let types = (e.change.types || []).filter(t => CHANGE_TYPES.includes(t));
+    if(!types.length) types = ['Other'];
+    (l.changes = l.changes || []).push({ id: 'log-' + e.id, date: d, types, note: e.change.note || '' });
+  }
+  if(e.price != null && Number(e.price) && Number(e.price) !== Number(l.listPrice)){
+    (l.priceHistory = l.priceHistory || []).push({ date: d, price: l.listPrice });
+    l.listPrice = Number(e.price);
+  }
+}
+let logBusy = false;
+async function pullClaudeLog(){
+  if(logBusy) return; logBusy = true;
+  try{
+    const u = logUser();
+    let data = null;
+    try{
+      const r = await fetch(`https://api.github.com/repos/${u}/water-oak-data/contents/data/log.json?t=${Date.now()}`,
+        { headers:{ Accept:'application/vnd.github.raw+json' }, cache:'no-store' });
+      if(r.ok) data = await r.json();
+    }catch(e){}
+    if(!data){
+      const r = await fetch(`https://raw.githubusercontent.com/${u}/water-oak-data/main/data/log.json?t=${Date.now()}`, { cache:'no-store' });
+      if(r.ok) data = await r.json();
+    }
+    if(!data || !Array.isArray(data.entries)) return;
+    state.logApplied = state.logApplied || [];
+    const done = new Set(state.logApplied);
+    const msgs = [], missed = [];
+    data.entries.forEach(e => {
+      if(!e || !e.id || done.has(e.id) || !cleanDate(e.date)) return;
+      const l = matchListing(e.listing);
+      if(!l){ missed.push(e.listing); return; }
+      applyLogEntry(e, l);
+      state.logApplied.push(e.id);
+      const bits = [];
+      if(e.views != null) bits.push(e.views + ' views');
+      if(e.saves != null) bits.push(e.saves + ' saves');
+      if(e.showings != null) bits.push(e.showings + ' showing' + (e.showings == 1 ? '' : 's'));
+      if(e.calls != null) bits.push(e.calls + ' call' + (e.calls == 1 ? '' : 's'));
+      if(e.change) bits.push('change: ' + ((e.change.types||[]).join(' + ') || 'Other') + (e.change.note ? ' (' + esc(e.change.note) + ')' : ''));
+      if(e.price != null) bits.push('price ' + money(e.price));
+      msgs.push(esc(l.address) + ', ' + fDate(e.date) + ': ' + bits.join(', '));
+    });
+    if(msgs.length){ save(); render(); }
+    if(msgs.length || missed.length) showLogToast(msgs, missed);
+  }catch(e){ /* offline or no log yet: nothing to do */ }
+  finally{ logBusy = false; }
+}
+function showLogToast(msgs, missed){
+  let t = document.getElementById('logToast');
+  if(!t){ t = document.createElement('div'); t.id = 'logToast'; document.body.appendChild(t); }
+  t.style.cssText = 'position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top) + 12px);z-index:999;background:#1B4D3E;color:#fff;border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.4;box-shadow:0 6px 20px rgba(0,0,0,.25)';
+  t.innerHTML = (msgs.length ? '<b>Updated from Claude</b><br>' + msgs.join('<br>') : '') +
+    (missed.length ? (msgs.length ? '<br><br>' : '') + '<b>Could not find a listing for:</b> ' + missed.map(esc).join(', ') : '') +
+    '<div style="margin-top:8px;font-size:14px;opacity:.8">Tap to close</div>';
+  t.onclick = () => t.remove();
+  setTimeout(() => { if(t.parentNode) t.remove(); }, 12000);
+}
+document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') pullClaudeLog(); });
+
+/* ---------- send the numbers to GitHub so Claude can read them (data/stats.json) ----------
+   Only listing stats go out: address, status, prices, daily views/saves, calls and showings per day,
+   and logged changes. Client names, phone numbers, notes and fact sheets stay on this phone. */
+const SYNC_KEY = 'wo-gh-token', SYNC_HASH = 'wo-gh-last', SYNC_INFO = 'wo-gh-info';
+const lsGet = k => { try{ return localStorage.getItem(k) || ''; }catch(e){ return ''; } };
+const lsSet = (k, v) => { try{ v ? localStorage.setItem(k, v) : localStorage.removeItem(k); }catch(e){} };
+const syncToken = () => lsGet(SYNC_KEY);
+function syncLineText(){
+  if(!syncToken()) return 'Off. Turn this on so you can ask Claude about your numbers.';
+  return lsGet(SYNC_INFO) || 'On. Waiting for the first send.';
+}
+function setSyncInfo(t){ lsSet(SYNC_INFO, t); const el = document.getElementById('syncLine'); if(el) el.textContent = t; }
+function statsSnapshot(){
+  const day = t => new Date(t).toLocaleDateString('en-CA');
+  const perDay = arr => { const o = {}; (arr||[]).forEach(t => { const d = day(t); o[d] = (o[d]||0) + 1; }); return o; };
+  return {
+    note: 'Sent by the Listings app on Shane\'s phone each time something changes. calls/showings are counts per day; views/saves are that day\'s Zillow numbers.',
+    listings: state.listings.map(l => ({
+      address: l.address || '', status: l.status || '',
+      listDate: l.listDate || '', listPrice: l.listPrice ?? '',
+      priceHistory: (l.priceHistory||[]).map(p => ({ date: p.date, price: p.price })),
+      contractDate: l.contractDate || '', contractPrice: l.contractPrice || '',
+      soldDate: l.soldDate || '', soldPrice: l.soldPrice || '',
+      views: metricsSorted(l).map(m => ({ date: m.date, views: Number(m.views)||0, saves: Number(m.saves)||0 })),
+      calls: perDay(l.calls), showings: perDay(l.showings),
+      changes: (l.changes||[]).map(c => ({ date: c.date, types: c.types||[], note: c.note||'' }))
+        .sort((a,b) => a.date.localeCompare(b.date))
+    }))
+  };
+}
+const b64 = str => btoa(unescape(encodeURIComponent(str)));
+let syncTimer = null, syncBusy = false;
+function queueSync(){ if(!syncToken()) return; clearTimeout(syncTimer); syncTimer = setTimeout(pushStats, 3000); }
+async function pushStats(force){
+  const tok = syncToken();
+  if(!tok || syncBusy) return;
+  const snap = statsSnapshot();
+  const body = JSON.stringify(snap, null, 1);
+  if(!force && body === lsGet(SYNC_HASH)) return;
+  syncBusy = true;
+  const url = `https://api.github.com/repos/${logUser()}/water-oak-data/contents/data/stats.json`;
+  const h = { Authorization: 'Bearer ' + tok, Accept: 'application/vnd.github+json' };
+  try{
+    for(let attempt = 0; attempt < 2; attempt++){
+      let sha;
+      const g = await fetch(url + '?t=' + Date.now(), { headers: h, cache: 'no-store' });
+      if(g.status === 401 || g.status === 403){ setSyncInfo('Not sending: GitHub rejected the token. Tap the button above and paste a new one.'); return; }
+      if(g.ok) sha = (await g.json()).sha;
+      const p = await fetch(url, { method: 'PUT', headers: h,
+        body: JSON.stringify({ message: 'Listings app sync ' + today(), content: b64(body), ...(sha ? { sha } : {}) }) });
+      if(p.ok){
+        lsSet(SYNC_HASH, body);
+        setSyncInfo('On. Last sent ' + new Date().toLocaleString('en-US', { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' }) + '.');
+        return;
+      }
+      if(p.status === 401 || p.status === 403){ setSyncInfo('Not sending: GitHub rejected the token. Tap the button above and paste a new one.'); return; }
+      if(p.status !== 409 && p.status !== 422) break;
+    }
+    setSyncInfo('Last send failed. It will try again next time you change something.');
+  }catch(e){ setSyncInfo('Offline. It will send next time you change something.'); }
+  finally{ syncBusy = false; }
+}
+function connectSync(){
+  const on = !!syncToken();
+  const t = prompt(on
+    ? 'Claude can read your numbers. To turn it off, clear this box and tap OK. To use a new token, paste it here.'
+    : 'Paste the GitHub token here (it starts with github_pat_).', on ? syncToken() : '');
+  if(t === null) return;
+  const v = t.trim();
+  lsSet(SYNC_KEY, v); lsSet(SYNC_HASH, ''); lsSet(SYNC_INFO, '');
+  render();
+  if(v){ setSyncInfo('Sending…'); pushStats(true); }
+}
+document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'hidden' && syncTimer){ clearTimeout(syncTimer); syncTimer = null; pushStats(); } });
+
+$('tabL').onclick = () => { view = 'listings'; render(); window.scrollTo(0, 0); };
+$('tabM').onclick = () => { view = 'market'; render(); window.scrollTo(0, 0); };
+$('tabV').onclick = () => { view = 'metrics'; render(); window.scrollTo(0, 0); };
+$('addBtn').onclick = () => openForm(null);
+load();
+pullClaudeLog().finally(() => pushStats());
+</script>
+</body>
+</html>

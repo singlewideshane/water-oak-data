@@ -1,0 +1,12 @@
+{
+  "name": "SingleWideShane Listings",
+  "short_name": "Listings",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#EFF2EE",
+  "theme_color": "#1B4D3E",
+  "icons": [
+    { "src": "apple-touch-icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
