@@ -1,4 +1,4 @@
-// One-time (re-runnable) copy of the LIVE Listings app from Netlify into app/site.
+// One-time (re-runnable) copy of the LIVE Listings app from Netlify into app/src.
 // Reads only. Exits non-zero if any file fails, so a partial copy is never committed.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +12,7 @@ const api = await fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}/files`,
 if (!api.ok) { console.log('Netlify file list failed', api.status); process.exit(1); }
 const files = await api.json();
 console.log('Live app files:', files.length);
-const OUT = 'app/site';
+const OUT = 'app/src';
 fs.rmSync(OUT, { recursive: true, force: true });
 let failed = 0;
 for (const f of files) {
