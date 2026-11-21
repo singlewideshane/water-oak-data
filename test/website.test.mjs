@@ -45,3 +45,10 @@ test('owner listings not re-confirmed in 30 days drop out', () => {
     { address: '1 A St', price: '1', date_seen: '2020-01-01' }, { address: '2 B St', price: '2', date_seen: new Date().toISOString().slice(0, 10) }] });
   assert.deepEqual(homes.map(h => h.address), ['2 B St']);
 });
+
+test('uses the current asking price, not an old price from before a cut', () => {
+  const stats = { listings: [{ address: '219 Littler Ln', status: 'active', listPrice: 159000,
+    priceHistory: [{ date: '2026-10-20', price: 159999 }, { date: '2026-11-18', price: 159400 }] }] };
+  const homes = collect({ market: {}, others: {}, stats, manual: [], live: null });
+  assert.equal(homes.find(h => /littler/i.test(h.address)).price, 159000);
+});
