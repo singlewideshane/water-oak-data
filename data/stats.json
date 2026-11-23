@@ -415,8 +415,13 @@
    "address": "916 E Norman St.",
    "status": "active",
    "listDate": "2026-06-20",
-   "listPrice": 84900,
-   "priceHistory": [],
+   "listPrice": 84000,
+   "priceHistory": [
+    {
+     "date": "2026-11-23",
+     "price": 84900
+    }
+   ],
    "contractDate": "",
    "contractPrice": "",
    "soldDate": "",
