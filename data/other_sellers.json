@@ -72,6 +72,12 @@
    "status": "ok",
    "feed": 49,
    "others": 3
+  },
+  {
+   "date": "2026-11-24",
+   "status": "not checked",
+   "feed": null,
+   "others": null
   }
  ],
  "homes": {
@@ -130,7 +136,7 @@
    "goneDate": null
   }
  },
- "updated": "2026-11-23",
+ "updated": "2026-11-24",
  "pendingOnMhv": {
   "date": "2026-11-23",
   "addresses": [
