@@ -79,7 +79,7 @@ html body .ed-hero-text{width:min(46%,600px);padding:72px 0}
 html body .ed-hero .fx-eyebrow{font-family:var(--display)!important;font-style:normal!important;color:#FFFFFF!important;
   font-size:clamp(44px,4.6vw,72px)!important;line-height:1.04!important;letter-spacing:0!important;margin:0 0 28px!important}
 html body .ed-hero h1{font-family:var(--serif)!important;font-style:italic;font-weight:400;color:var(--ed-gold-hi)!important;
-  font-size:clamp(22px,1.9vw,30px)!important;line-height:1.35!important;max-width:24em!important;margin:0!important;
+  font-size:clamp(26px,2.3vw,36px)!important;line-height:1.3!important;max-width:24em!important;margin:0!important;
   padding-top:24px;border-top:1px solid var(--ed-rule-dark)}
 html body .ed-hero .uline{background:none!important;padding:0!important;color:inherit}
 
@@ -90,7 +90,7 @@ html body .ed-hero .uline{background:none!important;padding:0!important;color:in
   html body .ed-hero-inner{display:block}
   html body .ed-hero-text{width:auto;padding:36px 0 44px}
   html body .ed-hero .fx-eyebrow{font-size:clamp(38px,10.5vw,48px)!important;margin-bottom:22px!important}
-  html body .ed-hero h1{font-size:22px!important}
+  html body .ed-hero h1{font-size:26px!important}
 }
 
 /* ---------- $900 band ---------- */
