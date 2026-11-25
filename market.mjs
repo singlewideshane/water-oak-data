@@ -54,6 +54,8 @@ export function recordSeen(db, { today, sun, fox, ok }) {
     else {
       const lastP = old.prices[old.prices.length - 1];
       if (!lastP || lastP.price !== h.price) old.prices.push({ date: today, price: h.price });
+      // Black box: a home that comes back keeps a record of the stretch it was off the list.
+      if (old.gone) (old.offList ||= []).push({ left: old.goneDate, back: today });
       Object.assign(old, h, { lastSeen: today, gone: false, goneDate: null });
       delete old.firstAbsent;
     }
@@ -162,4 +164,43 @@ export function repeatedCuts(homes, asOf) {
   rows.sort((a, b) => String(a.address).localeCompare(String(b.address))
     || String(a.stableId).localeCompare(String(b.stableId)));
   return rows;
+}
+
+// Black box: one row per home with its full asking-price history, rebuilt from
+// db.homes every run. first_seen is the robot's first sighting; on_at_start = yes
+// means the home was already listed when the robot started, so it is not a list date.
+const BLACK_BOX_COLS = ['address', 'source', 'status', 'first_seen', 'on_at_start', 'first_ask',
+  'current_ask', 'cuts', 'total_cut', 'last_price_change', 'left_list', 'times_off_list', 'price_history'];
+
+export function blackBoxRows(homes) {
+  const list = Array.isArray(homes) ? homes : Object.values(homes || {});
+  return list.filter(Boolean).map(h => {
+    const prices = (h.prices || []).filter(p => p && p.date);
+    const first = prices.length ? prices[0].price : h.price;
+    const current = prices.length ? prices[prices.length - 1].price : h.price;
+    let cuts = 0;
+    for (let i = 1; i < prices.length; i++) if (prices[i].price < prices[i - 1].price) cuts++;
+    return {
+      address: h.address,
+      source: h.source,
+      status: h.gone ? 'left the list' : h.pending ? 'pending' : 'for sale',
+      first_seen: h.firstSeen || '',
+      on_at_start: h.onAtStart ? 'yes' : 'no',
+      first_ask: first ?? '',
+      current_ask: current ?? '',
+      cuts,
+      total_cut: first != null && current != null ? first - current : '',
+      last_price_change: prices.length > 1 ? prices[prices.length - 1].date : '',
+      left_list: h.gone ? (h.goneDate || '') : '',
+      times_off_list: (h.offList || []).length,
+      price_history: prices.map(p => `${p.date} $${Number(p.price).toLocaleString('en-US')}`).join('; ')
+    };
+  }).sort((a, b) => String(a.address).localeCompare(String(b.address))
+    || String(a.source).localeCompare(String(b.source)));
+}
+
+export function blackBoxCsv(homes) {
+  const esc = v => v == null ? '' : /[",;\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+  const rows = blackBoxRows(homes).map(r => BLACK_BOX_COLS.map(c => esc(r[c])).join(','));
+  return BLACK_BOX_COLS.join(',') + '\n' + rows.join('\n') + (rows.length ? '\n' : '');
 }
