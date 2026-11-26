@@ -84,6 +84,12 @@
    "status": "not checked",
    "feed": null,
    "others": null
+  },
+  {
+   "date": "2026-11-26",
+   "status": "ok",
+   "feed": 59,
+   "others": 4
   }
  ],
  "homes": {
@@ -95,7 +101,7 @@
    "sellerType": "Community",
    "url": "https://www.mhvillage.com/homes/3587037",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-23",
+   "lastSeen": "2026-11-26",
    "prices": [
     {
      "date": "2026-11-15",
@@ -113,7 +119,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3231323",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-23",
+   "lastSeen": "2026-11-26",
    "prices": [
     {
      "date": "2026-11-15",
@@ -131,7 +137,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3521821",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-23",
+   "lastSeen": "2026-11-26",
    "prices": [
     {
      "date": "2026-11-15",
@@ -140,18 +146,36 @@
    ],
    "gone": false,
    "goneDate": null
+  },
+  "529 spruce": {
+   "address": "529 Spruce Drive",
+   "price": 69900,
+   "status": "active",
+   "seller": "LISA HANSON/ANGEL O'BRIEN Right Realty Connection, Inc.",
+   "sellerType": "Dealer",
+   "url": "https://www.mhvillage.com/homes/3599061",
+   "firstSeen": "2026-11-26",
+   "lastSeen": "2026-11-26",
+   "prices": [
+    {
+     "date": "2026-11-26",
+     "price": 69900
+    }
+   ],
+   "gone": false,
+   "goneDate": null
   }
  },
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "pendingOnMhv": {
-  "date": "2026-11-23",
+  "date": "2026-11-26",
   "addresses": [
    "410 Palmer Dr",
    "747 Trevino Dr"
   ]
  },
  "sunOnMhv": {
-  "date": "2026-11-23",
+  "date": "2026-11-26",
   "homes": [
    {
     "address": "201 Cottonwood Cir",
@@ -169,11 +193,6 @@
     "pending": false
    },
    {
-    "address": "832 Bishop Dr",
-    "price": 199900,
-    "pending": false
-   },
-   {
     "address": "513 Palmer Dr",
     "price": 189900,
     "pending": false
@@ -184,12 +203,57 @@
     "pending": false
    },
    {
+    "address": "850 Byrnes Lp",
+    "price": 168995,
+    "pending": false
+   },
+   {
+    "address": "832 Byrnes Lp",
+    "price": 168995,
+    "pending": false
+   },
+   {
     "address": "886 Byrnes Lp",
     "price": 167995,
     "pending": false
    },
    {
-    "address": "880 Byrnes Lp",
+    "address": "728 Woods Dr",
+    "price": 167995,
+    "pending": false
+   },
+   {
+    "address": "461 Byrnes Lp",
+    "price": 164995,
+    "pending": false
+   },
+   {
+    "address": "838 Byrnes Lp",
+    "price": 164995,
+    "pending": false
+   },
+   {
+    "address": "734 Woods Dr",
+    "price": 164995,
+    "pending": false
+   },
+   {
+    "address": "856 Byrnes Lp",
+    "price": 164995,
+    "pending": false
+   },
+   {
+    "address": "820 Byrnes Lp",
+    "price": 164995,
+    "pending": false
+   },
+   {
+    "address": "725 Woods Dr",
+    "price": 164995,
+    "pending": false
+   },
+   {
+    "address": "485 Rahm Way",
     "price": 164995,
     "pending": false
    },
@@ -281,6 +345,11 @@
    {
     "address": "416 Snead Dr",
     "price": 72900,
+    "pending": false
+   },
+   {
+    "address": "212 Birch St",
+    "price": 69900,
     "pending": false
    },
    {
