@@ -90,6 +90,12 @@
    "status": "ok",
    "feed": 59,
    "others": 4
+  },
+  {
+   "date": "2026-11-27",
+   "status": "ok",
+   "feed": 59,
+   "others": 4
   }
  ],
  "homes": {
@@ -101,7 +107,7 @@
    "sellerType": "Community",
    "url": "https://www.mhvillage.com/homes/3587037",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-26",
+   "lastSeen": "2026-11-27",
    "prices": [
     {
      "date": "2026-11-15",
@@ -119,7 +125,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3231323",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-26",
+   "lastSeen": "2026-11-27",
    "prices": [
     {
      "date": "2026-11-15",
@@ -137,7 +143,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3521821",
    "firstSeen": "2026-11-15",
-   "lastSeen": "2026-11-26",
+   "lastSeen": "2026-11-27",
    "prices": [
     {
      "date": "2026-11-15",
@@ -155,7 +161,7 @@
    "sellerType": "Dealer",
    "url": "https://www.mhvillage.com/homes/3599061",
    "firstSeen": "2026-11-26",
-   "lastSeen": "2026-11-26",
+   "lastSeen": "2026-11-27",
    "prices": [
     {
      "date": "2026-11-26",
@@ -166,16 +172,16 @@
    "goneDate": null
   }
  },
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "pendingOnMhv": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "addresses": [
    "410 Palmer Dr",
    "747 Trevino Dr"
   ]
  },
  "sunOnMhv": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "homes": [
    {
     "address": "201 Cottonwood Cir",
