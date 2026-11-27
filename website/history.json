@@ -1,5 +1,5 @@
 {
- "date": "2026-11-20",
+ "date": "2026-11-27",
  "homes": {
   "711 e norman": {
    "address": "711 E. Norman Street",
@@ -45,7 +45,7 @@
   },
   "678 cedar": {
    "address": "678 Cedar La",
-   "price": 59900,
+   "price": 49900,
    "pending": false,
    "source": "Foxfire"
   },
@@ -69,7 +69,7 @@
   },
   "735 sutton": {
    "address": "735 Sutton St",
-   "price": 79900,
+   "price": 75500,
    "pending": false,
    "source": "Foxfire"
   },
@@ -184,12 +184,6 @@
   "214 birch": {
    "address": "214 Birch St",
    "price": 63500,
-   "pending": true,
-   "source": "Sun"
-  },
-  "413 bemen": {
-   "address": "413 Bemen Dr",
-   "price": 59000,
    "pending": true,
    "source": "Sun"
   },
@@ -313,6 +307,72 @@
    "pending": false,
    "source": "Sun"
   },
+  "212 birch": {
+   "address": "212 Birch St",
+   "price": 69900,
+   "pending": false,
+   "source": "Sun"
+  },
+  "856 byrnes": {
+   "address": "856 Byrnes Lp",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "485 rahm": {
+   "address": "485 Rahm Way",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "725 woods": {
+   "address": "725 Woods Dr",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "820 byrnes": {
+   "address": "820 Byrnes Lp",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "734 woods": {
+   "address": "734 Woods Dr",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "461 byrnes": {
+   "address": "461 Byrnes Lp",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "838 byrnes": {
+   "address": "838 Byrnes Lp",
+   "price": 164995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "728 woods": {
+   "address": "728 Woods Dr",
+   "price": 167995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "832 byrnes": {
+   "address": "832 Byrnes Lp",
+   "price": 168995,
+   "pending": false,
+   "source": "Sun"
+  },
+  "850 byrnes": {
+   "address": "850 Byrnes Lp",
+   "price": 168995,
+   "pending": false,
+   "source": "Sun"
+  },
   "508 palmer": {
    "address": "508 Palmer Drive",
    "price": 114000,
@@ -331,6 +391,12 @@
    "pending": false,
    "source": "MHVillage"
   },
+  "529 spruce": {
+   "address": "529 Spruce Drive",
+   "price": 69900,
+   "pending": false,
+   "source": "MHVillage"
+  },
   "410 palmer": {
    "address": "410 Palmer Dr",
    "price": null,
@@ -345,13 +411,13 @@
   },
   "219 littler": {
    "address": "219 Littler Ln",
-   "price": 159999,
+   "price": 159000,
    "pending": false,
    "source": "Shane"
   },
   "916 e norman": {
    "address": "916 E Norman St.",
-   "price": 84900,
+   "price": 84000,
    "pending": false,
    "source": "Shane"
   },
@@ -372,18 +438,6 @@
    "price": 157000,
    "pending": false,
    "source": "Facebook FSBO"
-  },
-  "898 byrnes": {
-   "address": "898 Byrnes Lp",
-   "price": null,
-   "pending": true,
-   "source": "Live check"
-  },
-  "541 spruce": {
-   "address": "541 Spruce Dr",
-   "price": null,
-   "pending": true,
-   "source": "Live check"
   }
  }
 }
