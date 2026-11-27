@@ -1,7 +1,7 @@
 {
  "version": 3,
  "started": "2026-10-04",
- "updated": "2026-11-24",
+ "updated": "2026-11-27",
  "runs": [
   {
    "date": "2026-10-04",
@@ -159,6 +159,13 @@
    "foxfire": 22,
    "sunWebsite": 40,
    "sunCheck": "match"
+  },
+  {
+   "date": "2026-11-27",
+   "sun": 38,
+   "foxfire": 22,
+   "sunWebsite": 38,
+   "sunCheck": "match"
   }
  ],
  "homes": {
@@ -197,7 +204,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26968",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -247,7 +254,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=26988",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -297,7 +304,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27214",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -366,7 +373,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27216",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -393,7 +400,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27218",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -424,7 +431,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27128",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -520,7 +527,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27155",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -534,7 +541,7 @@
   "678 cedar ln": {
    "source": "Foxfire",
    "address": "678 Cedar La",
-   "price": 59900,
+   "price": 49900,
    "beds": 2,
    "baths": 2,
    "sqft": 1056,
@@ -543,7 +550,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -553,6 +560,10 @@
     {
      "date": "2026-10-15",
      "price": 59900
+    },
+    {
+     "date": "2026-11-27",
+     "price": 49900
     }
    ],
    "gone": false,
@@ -570,7 +581,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27174",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -620,7 +631,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27195",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -647,7 +658,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27225",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -661,7 +672,7 @@
   "735 sutton st": {
    "source": "Foxfire",
    "address": "735 Sutton St",
-   "price": 79900,
+   "price": 75500,
    "beds": 2,
    "baths": 2,
    "sqft": 1008,
@@ -670,7 +681,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27231",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -680,6 +691,10 @@
     {
      "date": "2026-10-29",
      "price": 79900
+    },
+    {
+     "date": "2026-11-27",
+     "price": 75500
     }
    ],
    "gone": false,
@@ -697,7 +712,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27233",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -751,7 +766,7 @@
    "pending": true,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58933-201-cottonwood-cir-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -781,7 +796,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/73577-217-hogan-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -817,7 +832,8 @@
    ],
    "gone": false,
    "goneDate": null,
-   "site": "WAT-2668"
+   "site": "WAT-2668",
+   "firstAbsent": "2026-11-27"
   },
   "427 bemen dr": {
    "key": "3293741",
@@ -833,7 +849,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/73506-427-bemen-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -888,7 +904,7 @@
    "pending": true,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/161277-892-byrnes-lp-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -914,7 +930,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/156579-494-sheehan-way-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -965,7 +981,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58896-220-maple-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -991,7 +1007,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59392-214-bradley-ln-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1017,7 +1033,7 @@
    "pending": true,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59703-805-sutton-st-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1047,7 +1063,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59553-813-e-norman-st-32159",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1073,7 +1089,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58981-532-spruce-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1103,7 +1119,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59369-704-water-oak-blvd-32159",
    "firstSeen": "2026-10-05",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1154,7 +1170,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58739-104-magnolia-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1180,7 +1196,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58738-102-magnolia-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1206,7 +1222,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59246-416-snead-dr-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1232,7 +1248,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58987-644-hickory-hill-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1262,7 +1278,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59370-706-water-oak-blvd-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1317,7 +1333,7 @@
    "pending": true,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58917-214-birch-st-32159",
    "firstSeen": "2026-10-04",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": true,
    "prices": [
     {
@@ -1379,7 +1395,8 @@
    ],
    "gone": false,
    "goneDate": null,
-   "site": "WAT-3111"
+   "site": "WAT-3111",
+   "firstAbsent": "2026-11-27"
   },
   "614 nicklaus ct": {
    "key": "3579869",
@@ -1445,7 +1462,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/161288-886-byrnes-lp-32159",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1471,7 +1488,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59746-962-w-norman-st-32159",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1495,7 +1512,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27243",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1522,7 +1539,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27245",
    "firstSeen": "2026-10-15",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1551,7 +1568,7 @@
    "pending": true,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59684-944-w-norman-st-32159",
    "firstSeen": "2026-10-19",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1577,7 +1594,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/55058-304-redbud-ln-32159",
    "firstSeen": "2026-10-22",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1651,7 +1668,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27265",
    "firstSeen": "2026-10-29",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1674,7 +1691,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27262",
    "firstSeen": "2026-10-29",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1697,7 +1714,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27266",
    "firstSeen": "2026-11-02",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1726,7 +1743,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59303-209-sanders-ln-32159",
    "firstSeen": "2026-11-05",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1752,7 +1769,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59387-224-bradley-ln-32159",
    "firstSeen": "2026-11-10",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1776,7 +1793,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27269",
    "firstSeen": "2026-11-10",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1801,7 +1818,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/58847-138-evergreen-ln-32159",
    "firstSeen": "2026-11-13",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1827,7 +1844,7 @@
    "pending": false,
    "url": "https://www.suncommunities.com/florida/water-oak-country-club-estates/59355-705-bishop-dr-32159",
    "firstSeen": "2026-11-13",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1851,7 +1868,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27270",
    "firstSeen": "2026-11-17",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1874,7 +1891,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27272",
    "firstSeen": "2026-11-17",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1897,7 +1914,7 @@
    "pending": false,
    "url": "https://foxfiremanufactured.com/HomedetailCustom.asp?id=27274",
    "firstSeen": "2026-11-17",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1919,7 +1936,7 @@
    "baths": 2,
    "sqft": 1352,
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1941,7 +1958,7 @@
    "baths": 2,
    "sqft": 1536,
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1963,7 +1980,7 @@
    "baths": 2,
    "sqft": 1008,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -1985,7 +2002,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2007,7 +2024,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2029,7 +2046,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2051,7 +2068,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2073,7 +2090,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2095,7 +2112,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2117,7 +2134,7 @@
    "baths": 2,
    "sqft": 1344,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2139,7 +2156,7 @@
    "baths": 2,
    "sqft": 1248,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2161,7 +2178,7 @@
    "baths": 2,
    "sqft": 1248,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2183,7 +2200,7 @@
    "baths": 2,
    "sqft": 1248,
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
+   "lastSeen": "2026-11-27",
    "onAtStart": false,
    "prices": [
     {
@@ -2197,7 +2214,7 @@
  },
  "seen": {
   "Sun": {
-   "date": "2026-11-24",
+   "date": "2026-11-27",
    "ids": [
     "102 magnolia dr",
     "104 magnolia dr",
@@ -2229,12 +2246,10 @@
     "808 e norman st",
     "813 e norman st",
     "820 byrnes lp",
-    "832 bishop dr",
     "832 byrnes lp",
     "838 byrnes lp",
     "850 byrnes lp",
     "856 byrnes lp",
-    "880 byrnes lp",
     "886 byrnes lp",
     "892 byrnes lp",
     "944 w norman st",
@@ -2242,7 +2257,7 @@
    ]
   },
   "Foxfire": {
-   "date": "2026-11-24",
+   "date": "2026-11-27",
    "ids": [
     "111 magnolia dr",
     "114 magnolia dr",

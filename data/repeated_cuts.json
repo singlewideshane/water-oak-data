@@ -10,5 +10,29 @@
   "percent": 0.1669449081803005,
   "status": "active",
   "dom": null
+ },
+ {
+  "address": "678 Cedar La",
+  "source": "Foxfire",
+  "stableId": "27159",
+  "originalAsk": 64900,
+  "currentAsk": 49900,
+  "reductionCount": 2,
+  "totalDollars": 15000,
+  "percent": 0.23112480739599384,
+  "status": "active",
+  "dom": null
+ },
+ {
+  "address": "735 Sutton St",
+  "source": "Foxfire",
+  "stableId": "27231",
+  "originalAsk": 82500,
+  "currentAsk": 75500,
+  "reductionCount": 2,
+  "totalDollars": 7000,
+  "percent": 0.08484848484848485,
+  "status": "active",
+  "dom": null
  }
 ]
